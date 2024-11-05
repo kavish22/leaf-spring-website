@@ -455,17 +455,6 @@ export default function ProductsPage() {
     setOpenSlide(openSlide === index ? null : index);
   };
 
-  const handleScroll = useCallback(() => {
-    if (openSlide !== null) {
-      setOpenSlide(null);
-    }
-  }, [openSlide]);
-
-  useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [handleScroll]);
-
   return (
     <>
       <main>
