@@ -172,22 +172,22 @@ export default function AboutPage() {
               </h2>
 
               <Tabs defaultValue="story" className="w-full">
-                {/* Tabs Container - Fixed spacing */}
-                <div className="bg-gray-50 p-3 rounded-xl shadow-sm mb-6 sm:mb-8">
-                  <TabsList className="w-full grid grid-cols-2 gap-3 sm:flex sm:gap-2">
+                {/* Tabs Container - Optimized for 2x2 matrix on mobile */}
+                <div className="bg-gray-50 p-6 sm:p-3 rounded-xl shadow-sm mb-8 sm:mb-6 min-h-[280px] sm:min-h-fit">
+                  <TabsList className="w-full h-full grid grid-cols-2 grid-rows-2 gap-4 sm:flex sm:gap-2">
                     {[
-                      { value: 'story', icon: <BookOpen className="w-4 h-4" />, label: 'Our Story' },
-                      { value: 'vision', icon: <Eye className="w-4 h-4" />, label: 'Vision' },
-                      { value: 'innovation', icon: <Lightbulb className="w-4 h-4" />, label: 'Innovation' },
-                      { value: 'quality', icon: <Shield className="w-4 h-4" />, label: 'Quality' }
+                      { value: 'story', icon: <BookOpen className="w-5 h-5 sm:w-4 sm:h-4" />, label: 'Our Story' },
+                      { value: 'vision', icon: <Eye className="w-5 h-5 sm:w-4 sm:h-4" />, label: 'Vision' },
+                      { value: 'innovation', icon: <Lightbulb className="w-5 h-5 sm:w-4 sm:h-4" />, label: 'Innovation' },
+                      { value: 'quality', icon: <Shield className="w-5 h-5 sm:w-4 sm:h-4" />, label: 'Quality' }
                     ].map((tab) => (
                       <TabsTrigger 
                         key={tab.value}
                         value={tab.value}
-                        className="flex items-center justify-center gap-2 px-4 py-3.5 text-sm font-medium rounded-lg transition-all duration-300
+                        className="flex flex-col items-center justify-center gap-2 px-4 py-6 sm:py-3.5 sm:flex-row text-base sm:text-sm font-medium rounded-lg transition-all duration-300
                         data-[state=active]:bg-red-600 data-[state=active]:text-white data-[state=active]:shadow-md
                         data-[state=inactive]:bg-white data-[state=inactive]:text-gray-600
-                        hover:bg-red-50 w-full"
+                        hover:bg-red-50 w-full h-full"
                       >
                         {tab.icon}
                         <span className="capitalize">{tab.label}</span>
@@ -196,8 +196,8 @@ export default function AboutPage() {
                   </TabsList>
                 </div>
 
-                {/* Content Container */}
-                <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+                {/* Content Container - Added top margin for better spacing */}
+                <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden mt-2 sm:mt-0">
                   {/* Story Tab */}
                   <TabsContent value="story" className="focus-visible:outline-none">
                     <div className="p-6 space-y-6">
