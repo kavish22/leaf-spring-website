@@ -378,107 +378,124 @@ interface ProductCardProps {
 const ProductCard = ({ product, index, isSlideOpen, onSlideToggle, onLearnMore }: ProductCardProps) => {
   return (
     <motion.div 
-      className="relative w-full"
+      className="relative w-full h-full"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
     >
-      <Card className="overflow-hidden transition-all duration-300 hover:shadow-2xl group flex flex-col h-full bg-white/80 backdrop-blur-sm border-0">
-        <div className="relative h-24 xs:h-32 sm:h-48 lg:h-56">
+      <Card className="overflow-hidden transition-all duration-300 hover:shadow-lg group flex flex-col h-full bg-white/80 backdrop-blur-sm border border-gray-100">
+        {/* Image Container */}
+        <div className="relative h-32 xs:h-36 sm:h-48 lg:h-52 overflow-hidden">
           <Image 
             src={product.image} 
             alt={product.title} 
             fill
             className="object-cover transition-transform duration-500 group-hover:scale-110"
           />
-          <Badge className="absolute top-1 right-1 sm:top-3 sm:right-3 bg-red-600/90 backdrop-blur-sm text-white px-1.5 py-0.5 sm:px-3 sm:py-1 text-[10px] sm:text-sm font-medium">
+          <Badge className="absolute top-2 right-2 sm:top-3 sm:right-3 bg-red-600/90 backdrop-blur-sm text-white px-1.5 sm:px-2.5 py-0.5 sm:py-1 text-[10px] sm:text-xs font-medium">
             {product.category}
           </Badge>
         </div>
         
-        <CardHeader className="p-2 sm:p-4 lg:p-6 pb-1 sm:pb-2">
-          <CardTitle className="text-xs sm:text-lg lg:text-xl font-bold text-gray-900 group-hover:text-red-600 transition-colors line-clamp-2">
+        {/* Content Container */}
+        <div className="flex flex-col flex-grow p-2.5 xs:p-3 sm:p-4 lg:p-5">
+          <h3 className="text-sm xs:text-base sm:text-lg font-bold text-gray-900 mb-1.5 sm:mb-2 line-clamp-2 min-h-[2.5rem] sm:min-h-[3.5rem]">
             {product.title}
-          </CardTitle>
-          <CardDescription className="hidden sm:block text-xs sm:text-sm lg:text-base text-gray-600 mt-0.5 sm:mt-2 line-clamp-2">
-            {product.specs}
-          </CardDescription>
-        </CardHeader>
-        
-        <CardContent className="hidden sm:block px-4 sm:px-6 py-2 sm:py-3 flex-grow">
-          <p className="text-sm sm:text-base text-gray-700 line-clamp-3">
-            {product.benefits}
-          </p>
-        </CardContent>
-        
-        <CardFooter className="p-2 sm:p-4 lg:p-6 pt-1 sm:pt-2 gap-1 sm:gap-3 flex-col">
-          <Button 
-            className="w-full h-7 sm:h-auto text-[10px] sm:text-sm lg:text-base bg-red-600 text-white border border-red-600 hover:bg-white hover:text-red-600 transition-all duration-300 shadow-sm"
-            onClick={() => onSlideToggle(index)}
-          >
-            Details
-            <ChevronDown className={`ml-1 sm:ml-2 h-2 w-2 sm:h-4 sm:w-4 transition-transform duration-300 ${isSlideOpen ? 'rotate-180' : ''}`} />
-          </Button>
-          <Button 
-            className="hidden sm:flex w-full sm:h-auto text-[10px] sm:text-sm lg:text-base bg-white text-red-600 border border-red-600 hover:bg-red-600 hover:text-white transition-all duration-300"
-          >
-            Brochure
-            <Download className="ml-1 sm:ml-2 h-2 w-2 sm:h-4 sm:w-4" />
-          </Button>
-        </CardFooter>
+          </h3>
+          
+          <div className="space-y-2 sm:space-y-3 mb-2.5 sm:mb-4 flex-grow">
+            <div>
+              <p className="text-xs sm:text-sm font-medium text-gray-700">Specifications:</p>
+              <p className="text-xs sm:text-sm text-gray-600 line-clamp-2">{product.specs}</p>
+            </div>
+            
+            <div>
+              <p className="text-xs sm:text-sm font-medium text-gray-700">Benefits:</p>
+              <p className="text-xs sm:text-sm text-gray-600 line-clamp-2">{product.benefits}</p>
+            </div>
+          </div>
 
-        {/* Add this sliding details panel */}
+          {/* Buttons Container */}
+          <div className="grid grid-cols-2 gap-1.5 sm:gap-2 mt-auto">
+            <Button 
+              className="h-7 xs:h-8 sm:h-9 text-xs sm:text-sm bg-red-600 text-white hover:bg-red-700 transition-all duration-300"
+              onClick={() => onSlideToggle(index)}
+            >
+              Details
+              <ChevronDown className={`ml-1 sm:ml-1.5 h-3 w-3 sm:h-4 sm:w-4 transition-transform duration-300 ${isSlideOpen ? 'rotate-180' : ''}`} />
+            </Button>
+            <Button 
+              className="h-7 xs:h-8 sm:h-9 text-xs sm:text-sm bg-white text-red-600 border border-red-600 hover:bg-red-50"
+            >
+              Brochure
+              <Download className="ml-1 sm:ml-1.5 h-3 w-3 sm:h-4 sm:w-4" />
+            </Button>
+          </div>
+        </div>
+
+        {/* Sliding Panel - Keep existing desktop styles, adjust mobile */}
         <div 
           className={cn(
-            "absolute left-0 right-0 bg-white/95 backdrop-blur-sm p-4 transition-all duration-300 shadow-lg",
-            "transform",
-            isSlideOpen ? "bottom-0" : "-bottom-full"
+            "fixed inset-0 z-50 bg-white/95 backdrop-blur-sm transition-all duration-300",
+            "sm:absolute sm:inset-auto sm:left-0 sm:right-0 sm:bottom-0",
+            isSlideOpen ? "translate-y-0" : "translate-y-full"
           )}
-          style={{ maxHeight: '70vh', overflowY: 'auto' }}
+          style={{ 
+            height: 'calc(100vh - 56px)',
+            top: '56px',
+          }}
         >
-          <div className="flex justify-between items-start mb-4">
-            <h3 className="text-lg font-bold text-gray-900">{product.title}</h3>
-            <button 
-              onClick={() => onSlideToggle(index)}
-              className="p-1 hover:bg-gray-100 rounded-full"
-            >
-              <X className="h-4 w-4 text-gray-500" />
-            </button>
-          </div>
-          
-          <div className="space-y-4">
-            <div>
-              <h4 className="font-medium text-gray-900 mb-2">Specifications:</h4>
-              <p className="text-gray-600">{product.specs}</p>
+          <div className="h-full overflow-y-auto">
+            {/* Slide Header */}
+            <div className="sticky top-0 bg-white/95 backdrop-blur-sm p-3 sm:p-4 border-b flex justify-between items-center">
+              <h3 className="text-base sm:text-lg font-bold text-gray-900">{product.title}</h3>
+              <button 
+                onClick={() => onSlideToggle(index)}
+                className="p-1.5 sm:p-2 hover:bg-gray-100 rounded-full transition-colors"
+              >
+                <X className="h-4 w-4 sm:h-5 sm:w-5 text-gray-500" />
+              </button>
             </div>
             
-            <div>
-              <h4 className="font-medium text-gray-900 mb-2">Benefits:</h4>
-              <p className="text-gray-600">{product.benefits}</p>
+            {/* Slide Content */}
+            <div className="p-3 sm:p-4 space-y-4 sm:space-y-6">
+              <div>
+                <h4 className="text-sm sm:text-base font-semibold text-gray-900 mb-1.5 sm:mb-2">Specifications</h4>
+                <p className="text-xs sm:text-sm text-gray-600">{product.specs}</p>
+              </div>
+              
+              <div>
+                <h4 className="text-sm sm:text-base font-semibold text-gray-900 mb-1.5 sm:mb-2">Benefits</h4>
+                <p className="text-xs sm:text-sm text-gray-600">{product.benefits}</p>
+              </div>
+              
+              <div>
+                <h4 className="text-sm sm:text-base font-semibold text-gray-900 mb-1.5 sm:mb-2">Technical Details</h4>
+                <ul className="space-y-1.5 sm:space-y-2 text-xs sm:text-sm text-gray-600">
+                  {product.details.map((detail, i) => (
+                    <li key={i} className="flex items-start">
+                      <ChevronRight className="h-3 w-3 sm:h-4 sm:w-4 text-red-500 mt-0.5 flex-shrink-0" />
+                      <span className="ml-1.5 sm:ml-2">{detail}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
-            
-            <div>
-              <h4 className="font-medium text-gray-900 mb-2">Details:</h4>
-              <ul className="list-disc list-inside space-y-1 text-gray-600">
-                {product.details.map((detail, i) => (
-                  <li key={i}>{detail}</li>
-                ))}
-              </ul>
-            </div>
-            
-            <div className="flex gap-2 pt-4">
+
+            {/* Slide Footer */}
+            <div className="sticky bottom-0 bg-white/95 backdrop-blur-sm p-3 sm:p-4 border-t space-y-1.5 sm:space-y-2">
               <Button 
-                className="flex-1 bg-red-600 text-white hover:bg-red-700"
+                className="w-full h-8 sm:h-10 text-xs sm:text-sm bg-red-600 text-white hover:bg-red-700"
                 onClick={() => onLearnMore(product)}
               >
-                Contact Us
+                Contact Us About This Product
               </Button>
               <Button 
-                className="flex-1 bg-white text-red-600 border border-red-600 hover:bg-red-50"
+                className="w-full h-8 sm:h-10 text-xs sm:text-sm bg-white text-red-600 border border-red-600 hover:bg-red-50"
               >
-                Download Brochure
-                <Download className="ml-2 h-4 w-4" />
+                Download Product Brochure
+                <Download className="ml-1.5 sm:ml-2 h-3 w-3 sm:h-4 sm:w-4" />
               </Button>
             </div>
           </div>
@@ -936,9 +953,9 @@ export default function ProductsPage() {
         </div>
 
         {/* Products Section */}
-        <section ref={productsRef} className="py-8 sm:py-16">
+        <section ref={productsRef} className="py-4 sm:py-8 lg:py-16">
           <div className="container mx-auto px-2 sm:px-4">
-            <div className="grid grid-cols-3 gap-2 sm:gap-4 lg:gap-6">
+            <div className="grid grid-cols-3 xs:grid-cols-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 xs:gap-3 sm:gap-4 lg:gap-6">
               {searchedProducts.map((product, index) => (
                 <ProductCard
                   key={index}
