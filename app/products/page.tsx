@@ -378,108 +378,56 @@ interface ProductCardProps {
 const ProductCard = ({ product, index, isSlideOpen, onSlideToggle, onLearnMore }: ProductCardProps) => {
   return (
     <motion.div 
-      className="relative"
+      className="relative w-full"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
     >
       <Card className="overflow-hidden transition-all duration-300 hover:shadow-2xl group flex flex-col h-full bg-white/80 backdrop-blur-sm border-0">
-        <div className="relative h-72">
+        <div className="relative h-48 sm:h-56 lg:h-72">
           <Image 
             src={product.image} 
             alt={product.title} 
-            width={400} 
-            height={300}
-            placeholder="blur"
-            blurDataURL={`data:image/svg+xml;base64,...`}
-            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+            fill
+            className="object-cover transition-transform duration-500 group-hover:scale-110"
           />
-          <Badge className="absolute top-3 right-3 bg-red-600/90 backdrop-blur-sm text-white px-3 py-1 text-sm font-medium">
+          <Badge className="absolute top-2 right-2 sm:top-3 sm:right-3 bg-red-600/90 backdrop-blur-sm text-white px-2 py-0.5 sm:px-3 sm:py-1 text-xs sm:text-sm font-medium">
             {product.category}
           </Badge>
         </div>
         
-        <CardHeader className="p-6 pb-3">
-          <CardTitle className="text-xl font-bold text-gray-900 group-hover:text-red-600 transition-colors line-clamp-2">
+        <CardHeader className="p-4 sm:p-6 pb-2 sm:pb-3">
+          <CardTitle className="text-lg sm:text-xl font-bold text-gray-900 group-hover:text-red-600 transition-colors line-clamp-2">
             {product.title}
           </CardTitle>
-          <CardDescription className="text-base text-gray-600 mt-2 line-clamp-2">
+          <CardDescription className="text-sm sm:text-base text-gray-600 mt-1 sm:mt-2 line-clamp-2">
             {product.specs}
           </CardDescription>
         </CardHeader>
         
-        <CardContent className="px-6 py-3 flex-grow">
-          <p className="text-base text-gray-700 line-clamp-3">
+        <CardContent className="px-4 sm:px-6 py-2 sm:py-3 flex-grow">
+          <p className="text-sm sm:text-base text-gray-700 line-clamp-3">
             {product.benefits}
           </p>
         </CardContent>
         
-        <CardFooter className="p-6 pt-3 gap-3">
+        <CardFooter className="p-4 sm:p-6 pt-2 sm:pt-3 gap-2 sm:gap-3 flex-col sm:flex-row">
           <Button 
-            className="flex-1 bg-red-600 text-white border-2 border-red-600 hover:bg-white hover:text-red-600 hover:scale-105 transition-all duration-300 shadow-sm"
+            className="w-full sm:flex-1 bg-red-600 text-white border-2 border-red-600 hover:bg-white hover:text-red-600 hover:scale-105 transition-all duration-300 shadow-sm text-sm sm:text-base py-2"
             onClick={() => onSlideToggle(index)}
           >
             Details
-            <ChevronDown className={`ml-2 h-4 w-4 transition-transform duration-300 ${isSlideOpen ? 'rotate-180' : ''}`} />
+            <ChevronDown className={`ml-2 h-3 w-3 sm:h-4 sm:w-4 transition-transform duration-300 ${isSlideOpen ? 'rotate-180' : ''}`} />
           </Button>
           <Button 
-            className="flex-1 bg-white text-red-600 border-2 border-red-600 hover:bg-red-600 hover:text-white hover:scale-105 transition-all duration-300"
+            className="w-full sm:flex-1 bg-white text-red-600 border-2 border-red-600 hover:bg-red-600 hover:text-white hover:scale-105 transition-all duration-300 text-sm sm:text-base py-2"
           >
             Brochure
-            <Download className="ml-2 h-4 w-4" />
+            <Download className="ml-2 h-3 w-3 sm:h-4 sm:w-4" />
           </Button>
         </CardFooter>
-
-        <motion.div 
-          className="absolute left-0 right-0 top-0 bottom-0 bg-white shadow-lg"
-          initial={{ y: '100%' }}
-          animate={{ 
-            y: isSlideOpen ? 0 : '100%',
-            opacity: isSlideOpen ? 1 : 0
-          }}
-          transition={{ 
-            type: "spring",
-            damping: 25,
-            stiffness: 200,
-            mass: 0.8,
-            duration: 0.3
-          }}
-          style={{ 
-            zIndex: 50,
-            position: 'absolute',
-            transformOrigin: 'bottom'
-          }}
-        >
-          <div className="p-6 relative h-full overflow-y-auto">
-            <button
-              onClick={() => onSlideToggle(index)}
-              className="absolute top-2 right-2 p-2 rounded-full hover:bg-gray-100 transition-colors"
-              aria-label="Close details"
-            >
-              <X className="h-5 w-5 text-gray-600" />
-            </button>
-            <h3 className="text-xl font-bold mb-4 pr-8 text-gray-800">
-              {product.title}
-            </h3>
-            <ul className="list-disc pl-5 space-y-2 mb-4">
-              {product.details.map((detail, i) => (
-                <li key={i} className="text-base text-gray-700">{detail}</li>
-              ))}
-            </ul>
-          </div>
-        </motion.div>
       </Card>
-      <motion.div 
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ 
-          opacity: isSlideOpen ? 1 : 0,
-          y: isSlideOpen ? 0 : 20 
-        }}
-        transition={{ duration: 0.3 }}
-      >
-        {/* Card content */}
-      </motion.div>
     </motion.div>
   );
 };
@@ -787,7 +735,7 @@ export default function ProductsPage() {
     <>
       <main className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
         {/* Hero Section */}
-        <section className="relative h-[calc(100vh-56px)] flex items-center justify-center overflow-hidden">
+        <section className="relative h-[60vh] sm:h-[calc(100vh-56px)] flex items-center justify-center overflow-hidden">
           <motion.div 
             className="absolute inset-0 z-0 bg-gray-900"
             style={{ opacity, scale }}
@@ -802,7 +750,7 @@ export default function ProductsPage() {
           </motion.div>
           <div className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
             <motion.h1 
-              className="text-6xl md:text-7xl font-bold mb-8 leading-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-300"
+              className="text-4xl sm:text-5xl md:text-7xl font-bold mb-4 sm:mb-8 leading-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-300"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
@@ -810,7 +758,7 @@ export default function ProductsPage() {
               Our Product Range
             </motion.h1>
             <motion.p 
-              className="text-xl md:text-2xl mb-10"
+              className="text-lg sm:text-xl md:text-2xl mb-6 sm:mb-10"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
@@ -824,13 +772,13 @@ export default function ProductsPage() {
         <div ref={heroEndRef} className="h-1" />
 
         {/* Filter Section - Now positioned correctly */}
-        <div className="sticky top-[56px] z-40 bg-white/80 backdrop-blur-lg shadow-md py-4">
+        <div className="sticky top-[56px] z-40 bg-white/80 backdrop-blur-lg shadow-md py-3 sm:py-4">
           <div className="container mx-auto px-4">
-            <div className="max-w-2xl mx-auto bg-white/95 backdrop-blur-lg rounded-full shadow-lg border border-gray-100 p-2 flex items-center gap-2">
+            <div className="max-w-2xl mx-auto bg-white/95 backdrop-blur-lg rounded-full shadow-lg border border-gray-100 p-1.5 sm:p-2 flex items-center gap-2">
               {/* Search Container */}
               <div className={cn(
                 "relative flex-1 search-container transition-all duration-300",
-                isSearchExpanded ? "flex-grow" : "w-48"
+                isSearchExpanded ? "flex-grow" : "w-full sm:w-48"
               )}>
                 <div className="relative flex items-center">
                   <Search 
@@ -863,11 +811,11 @@ export default function ProductsPage() {
                 )}
               </div>
 
-              {/* Only show divider and categories when search is not expanded */}
+              {/* Only show divider and categories when search is not expanded and screen is larger than mobile */}
               {!isSearchExpanded && (
                 <>
-                  <div className="h-6 w-px bg-gray-200" />
-                  <div className="flex items-center gap-2 overflow-x-auto scrollbar-hide py-1">
+                  <div className="hidden sm:block h-6 w-px bg-gray-200" />
+                  <div className="hidden sm:flex items-center gap-2 overflow-x-auto scrollbar-hide py-1">
                     <button
                       onClick={() => onCategorySelect(null)}
                       className={cn(
@@ -897,13 +845,44 @@ export default function ProductsPage() {
                 </>
               )}
             </div>
+            
+            {/* Mobile category filters */}
+            {!isSearchExpanded && (
+              <div className="sm:hidden mt-3 overflow-x-auto flex items-center gap-2 pb-2 scrollbar-hide">
+                <button
+                  onClick={() => onCategorySelect(null)}
+                  className={cn(
+                    "text-xs px-3 py-1.5 rounded-full whitespace-nowrap transition-all flex-shrink-0",
+                    !selectedCategory 
+                      ? "bg-red-50 text-red-600 font-medium" 
+                      : "text-gray-600 hover:bg-gray-50"
+                  )}
+                >
+                  All
+                </button>
+                {categories.map(category => (
+                  <button
+                    key={category}
+                    onClick={() => onCategorySelect(category)}
+                    className={cn(
+                      "text-xs px-3 py-1.5 rounded-full whitespace-nowrap transition-all flex-shrink-0",
+                      selectedCategory === category 
+                        ? "bg-red-50 text-red-600 font-medium" 
+                        : "text-gray-600 hover:bg-gray-50"
+                    )}
+                  >
+                    {category}
+                  </button>
+                ))}
+              </div>
+            )}
           </div>
         </div>
 
         {/* Products Section */}
-        <section ref={productsRef} className="py-16">
+        <section ref={productsRef} className="py-8 sm:py-16">
           <div className="container mx-auto px-4">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
               {searchedProducts.map((product, index) => (
                 <ProductCard
                   key={index}
