@@ -165,105 +165,115 @@ export default function AboutPage() {
 
         {/* Company Overview */}
         <Suspense fallback={<LoadingSkeleton />}>
-          <section className="py-20 bg-white" aria-labelledby="company-overview">
-            <h2 id="company-overview" className="text-4xl font-bold text-center mb-12">
+          <section className="py-12 sm:py-20 bg-white" aria-labelledby="company-overview">
+            <h2 id="company-overview" className="text-3xl sm:text-4xl font-bold text-center mb-8 sm:mb-12 px-4">
               Our Journey of Excellence
             </h2>
             <div className="container mx-auto px-4">
               <Tabs defaultValue="story" className="w-full">
-                <TabsList className="grid w-full grid-cols-2 md:grid-cols-4 gap-2 sm:gap-4 mb-8">
+                <TabsList className="grid w-full grid-cols-2 gap-1.5 mb-6 sm:mb-8 p-1.5 bg-gray-100/80 rounded-xl sm:grid-cols-4 sm:gap-2">
                   <TabsTrigger 
                     value="story" 
-                    className="text-xs sm:text-sm md:text-lg py-2 px-2 sm:px-4 data-[state=active]:bg-red-600 data-[state=active]:text-white hover:bg-red-50 transition-all duration-300 ease-in-out"
+                    className="flex items-center justify-center gap-1.5 px-3 py-2.5 text-xs font-medium rounded-lg data-[state=active]:bg-red-600 data-[state=active]:text-white hover:bg-red-50 transition-all duration-300 ease-in-out sm:text-sm sm:px-4"
                   >
-                    <BookOpen className="mr-1 sm:mr-2 h-3 w-3 sm:h-4 sm:w-4" /> Our Story
+                    <BookOpen className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                    <span className="whitespace-nowrap">Our Story</span>
                   </TabsTrigger>
                   <TabsTrigger 
                     value="vision" 
-                    className="text-xs sm:text-sm md:text-lg py-2 px-2 sm:px-4 data-[state=active]:bg-red-600 data-[state=active]:text-white hover:bg-red-600 hover:text-white transition-colors"
+                    className="flex items-center justify-center gap-1.5 px-3 py-2.5 text-xs font-medium rounded-lg data-[state=active]:bg-red-600 data-[state=active]:text-white hover:bg-red-600 hover:text-white transition-colors sm:text-sm sm:px-4"
                   >
-                    <Globe className="mr-1 sm:mr-2 h-3 w-3 sm:h-4 sm:w-4" /> Vision & Mission
+                    <Globe className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                    <span className="whitespace-nowrap">Vision & Mission</span>
                   </TabsTrigger>
                   <TabsTrigger 
                     value="innovation" 
-                    className="text-xs sm:text-sm md:text-lg py-2 px-2 sm:px-4 data-[state=active]:bg-red-600 data-[state=active]:text-white hover:bg-red-600 hover:text-white transition-colors"
+                    className="flex items-center justify-center gap-1.5 px-3 py-2.5 text-xs font-medium rounded-lg data-[state=active]:bg-red-600 data-[state=active]:text-white hover:bg-red-600 hover:text-white transition-colors sm:text-sm sm:px-4"
                   >
-                    <Lightbulb className="mr-1 sm:mr-2 h-3 w-3 sm:h-4 sm:w-4" /> Innovation
+                    <Lightbulb className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                    <span className="whitespace-nowrap">Innovation</span>
                   </TabsTrigger>
                   <TabsTrigger 
                     value="quality" 
-                    className="text-xs sm:text-sm md:text-lg py-2 px-2 sm:px-4 data-[state=active]:bg-red-600 data-[state=active]:text-white hover:bg-red-600 hover:text-white transition-colors"
+                    className="flex items-center justify-center gap-1.5 px-3 py-2.5 text-xs font-medium rounded-lg data-[state=active]:bg-red-600 data-[state=active]:text-white hover:bg-red-600 hover:text-white transition-colors sm:text-sm sm:px-4"
                   >
-                    <Shield className="mr-1 sm:mr-2 h-3 w-3 sm:h-4 sm:w-4" /> Quality Assurance
+                    <Shield className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                    <span className="whitespace-nowrap">Quality Assurance</span>
                   </TabsTrigger>
                 </TabsList>
                 
-                <div className="bg-white border rounded-lg">
+                <div className="bg-white border rounded-xl overflow-hidden">
                   <TabsContent value="story">
-                    <div className="space-y-4 p-6">
-                      <h3 className="text-2xl font-bold">Our Story</h3>
-                      <div className="flex flex-col md:flex-row gap-8 items-center">
-                        <div className="w-full md:w-1/2">
-                          <h3 className="text-3xl font-bold mb-4 text-gray-800">Pioneering Leaf Spring Excellence</h3>
-                          <p className="text-lg text-gray-600 mb-6">
+                    <div className="p-4 sm:p-6 space-y-6">
+                      <div className="flex flex-col gap-6 sm:flex-row sm:gap-8">
+                        <div className="w-full sm:w-1/2 space-y-4">
+                          <h3 className="text-2xl sm:text-3xl font-bold text-gray-800">
+                            Pioneering Leaf Spring Excellence
+                          </h3>
+                          <p className="text-base sm:text-lg text-gray-600">
                             Since our inception in 1990, LEAFSPRINGS has been at the forefront of leaf spring manufacturing innovation. Our journey is marked by continuous improvement, technological advancements, and an unwavering commitment to quality.
                           </p>
-                          <ul className="space-y-2">
-                            <li className="flex items-center">
-                              <Clock className="text-red-600 mr-2" />
-                              <span>Over 30 years of industry experience</span>
+                          <ul className="grid grid-cols-1 gap-3 pt-2">
+                            <li className="flex items-center gap-3 p-3 rounded-lg bg-gray-50/50 border border-gray-100">
+                              <Clock className="text-red-600 w-5 h-5 sm:w-6 sm:h-6 flex-shrink-0" />
+                              <span className="text-sm sm:text-base font-medium text-gray-700">Over 30 years of industry experience</span>
                             </li>
-                            <li className="flex items-center">
-                              <Globe className="text-red-600 mr-2" />
-                              <span>Serving clients in more than 50 countries</span>
+                            <li className="flex items-center gap-3 p-3 rounded-lg bg-gray-50/50 border border-gray-100">
+                              <Globe className="text-red-600 w-5 h-5 sm:w-6 sm:h-6 flex-shrink-0" />
+                              <span className="text-sm sm:text-base font-medium text-gray-700">Serving clients in more than 50 countries</span>
                             </li>
-                            <li className="flex items-center">
-                              <Truck className="text-red-600 mr-2" />
-                              <span>1000+ machines delivered worldwide</span>
+                            <li className="flex items-center gap-3 p-3 rounded-lg bg-gray-50/50 border border-gray-100">
+                              <Truck className="text-red-600 w-5 h-5 sm:w-6 sm:h-6 flex-shrink-0" />
+                              <span className="text-sm sm:text-base font-medium text-gray-700">1000+ machines delivered worldwide</span>
                             </li>
                           </ul>
                         </div>
-                        <div className="w-full md:w-1/2">
-                          <Image
-                            src="https://placehold.co/600x400"
-                            alt="LEAFSPRINGS History"
-                            width={600}
-                            height={400}
-                            className="rounded-lg shadow-lg"
-                            loading="lazy"
-                          />
+                        <div className="w-full sm:w-1/2 rounded-xl overflow-hidden shadow-lg border border-gray-100">
+                          <div className="relative aspect-[4/3] w-full">
+                            <Image
+                              src="https://placehold.co/600x400"
+                              alt="LEAFSPRINGS History"
+                              fill
+                              className="object-cover"
+                              loading="lazy"
+                            />
+                          </div>
                         </div>
                       </div>
                     </div>
                   </TabsContent>
 
                   <TabsContent value="vision">
-                    <div className="space-y-4 p-6">
-                      <h3 className="text-2xl font-bold">Vision & Mission</h3>
-                      <div className="flex flex-col md:flex-row gap-8 items-center">
-                        <div className="w-full md:w-1/2 order-2 md:order-1">
-                          <Image
-                            src="https://placehold.co/600x400"
-                            alt="LEAFSPRINGS Vision"
-                            width={600}
-                            height={400}
-                            className="rounded-lg shadow-lg"
-                            loading="lazy"
-                          />
-                        </div>
-                        <div className="w-full md:w-1/2 order-1 md:order-2">
-                          <h3 className="text-3xl font-bold mb-4 text-gray-800">Shaping the Future of Mobility</h3>
-                          <div className="mb-6">
-                            <h4 className="text-xl font-semibold mb-2 text-red-600">Our Vision</h4>
-                            <p className="text-lg text-gray-600">
-                              To be the global leader in leaf spring machinery, known for our dedication to quality, innovation, and customer success.
-                            </p>
+                    <div className="p-4 sm:p-6 space-y-6">
+                      <div className="flex flex-col-reverse gap-6 sm:flex-row sm:gap-8">
+                        <div className="w-full sm:w-1/2 rounded-xl overflow-hidden shadow-lg border border-gray-100">
+                          <div className="relative aspect-[4/3] w-full">
+                            <Image
+                              src="https://placehold.co/600x400"
+                              alt="LEAFSPRINGS Vision"
+                              fill
+                              className="object-cover"
+                              loading="lazy"
+                            />
                           </div>
-                          <div>
-                            <h4 className="text-xl font-semibold mb-2 text-red-600">Our Mission</h4>
-                            <p className="text-lg text-gray-600">
-                              To deliver world-class solutions that empower manufacturers to enhance production efficiency, precision, and durability in the automotive and industrial sectors.
-                            </p>
+                        </div>
+                        <div className="w-full sm:w-1/2 space-y-4">
+                          <h3 className="text-2xl sm:text-3xl font-bold text-gray-800">
+                            Shaping the Future of Mobility
+                          </h3>
+                          <div className="space-y-4">
+                            <div className="p-4 rounded-lg bg-red-50/50 border border-red-100">
+                              <h4 className="text-lg font-semibold mb-2 text-red-600">Our Vision</h4>
+                              <p className="text-base text-gray-700">
+                                To be the global leader in leaf spring machinery, known for our dedication to quality, innovation, and customer success.
+                              </p>
+                            </div>
+                            <div className="p-4 rounded-lg bg-red-50/50 border border-red-100">
+                              <h4 className="text-lg font-semibold mb-2 text-red-600">Our Mission</h4>
+                              <p className="text-base text-gray-700">
+                                To deliver world-class solutions that empower manufacturers to enhance production efficiency, precision, and durability in the automotive and industrial sectors.
+                              </p>
+                            </div>
                           </div>
                         </div>
                       </div>
