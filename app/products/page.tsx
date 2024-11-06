@@ -385,46 +385,46 @@ const ProductCard = ({ product, index, isSlideOpen, onSlideToggle, onLearnMore }
       transition={{ duration: 0.5, delay: index * 0.1 }}
     >
       <Card className="overflow-hidden transition-all duration-300 hover:shadow-2xl group flex flex-col h-full bg-white/80 backdrop-blur-sm border-0">
-        <div className="relative h-48 sm:h-56 lg:h-72">
+        <div className="relative h-24 xs:h-32 sm:h-48 lg:h-56">
           <Image 
             src={product.image} 
             alt={product.title} 
             fill
             className="object-cover transition-transform duration-500 group-hover:scale-110"
           />
-          <Badge className="absolute top-2 right-2 sm:top-3 sm:right-3 bg-red-600/90 backdrop-blur-sm text-white px-2 py-0.5 sm:px-3 sm:py-1 text-xs sm:text-sm font-medium">
+          <Badge className="absolute top-1 right-1 sm:top-3 sm:right-3 bg-red-600/90 backdrop-blur-sm text-white px-1.5 py-0.5 sm:px-3 sm:py-1 text-[10px] sm:text-sm font-medium">
             {product.category}
           </Badge>
         </div>
         
-        <CardHeader className="p-4 sm:p-6 pb-2 sm:pb-3">
-          <CardTitle className="text-lg sm:text-xl font-bold text-gray-900 group-hover:text-red-600 transition-colors line-clamp-2">
+        <CardHeader className="p-2 sm:p-4 lg:p-6 pb-1 sm:pb-2">
+          <CardTitle className="text-xs sm:text-lg lg:text-xl font-bold text-gray-900 group-hover:text-red-600 transition-colors line-clamp-2">
             {product.title}
           </CardTitle>
-          <CardDescription className="text-sm sm:text-base text-gray-600 mt-1 sm:mt-2 line-clamp-2">
+          <CardDescription className="hidden sm:block text-xs sm:text-sm lg:text-base text-gray-600 mt-0.5 sm:mt-2 line-clamp-2">
             {product.specs}
           </CardDescription>
         </CardHeader>
         
-        <CardContent className="px-4 sm:px-6 py-2 sm:py-3 flex-grow">
+        <CardContent className="hidden sm:block px-4 sm:px-6 py-2 sm:py-3 flex-grow">
           <p className="text-sm sm:text-base text-gray-700 line-clamp-3">
             {product.benefits}
           </p>
         </CardContent>
         
-        <CardFooter className="p-4 sm:p-6 pt-2 sm:pt-3 gap-2 sm:gap-3 flex-col sm:flex-row">
+        <CardFooter className="p-2 sm:p-4 lg:p-6 pt-1 sm:pt-2 gap-1 sm:gap-3 flex-col">
           <Button 
-            className="w-full sm:flex-1 bg-red-600 text-white border-2 border-red-600 hover:bg-white hover:text-red-600 hover:scale-105 transition-all duration-300 shadow-sm text-sm sm:text-base py-2"
+            className="w-full h-7 sm:h-auto text-[10px] sm:text-sm lg:text-base bg-red-600 text-white border border-red-600 hover:bg-white hover:text-red-600 transition-all duration-300 shadow-sm"
             onClick={() => onSlideToggle(index)}
           >
             Details
-            <ChevronDown className={`ml-2 h-3 w-3 sm:h-4 sm:w-4 transition-transform duration-300 ${isSlideOpen ? 'rotate-180' : ''}`} />
+            <ChevronDown className={`ml-1 sm:ml-2 h-2 w-2 sm:h-4 sm:w-4 transition-transform duration-300 ${isSlideOpen ? 'rotate-180' : ''}`} />
           </Button>
           <Button 
-            className="w-full sm:flex-1 bg-white text-red-600 border-2 border-red-600 hover:bg-red-600 hover:text-white hover:scale-105 transition-all duration-300 text-sm sm:text-base py-2"
+            className="hidden sm:flex w-full sm:h-auto text-[10px] sm:text-sm lg:text-base bg-white text-red-600 border border-red-600 hover:bg-red-600 hover:text-white transition-all duration-300"
           >
             Brochure
-            <Download className="ml-2 h-3 w-3 sm:h-4 sm:w-4" />
+            <Download className="ml-1 sm:ml-2 h-2 w-2 sm:h-4 sm:w-4" />
           </Button>
         </CardFooter>
       </Card>
@@ -881,8 +881,8 @@ export default function ProductsPage() {
 
         {/* Products Section */}
         <section ref={productsRef} className="py-8 sm:py-16">
-          <div className="container mx-auto px-4">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+          <div className="container mx-auto px-2 sm:px-4">
+            <div className="grid grid-cols-3 gap-2 sm:gap-4 lg:gap-6">
               {searchedProducts.map((product, index) => (
                 <ProductCard
                   key={index}
