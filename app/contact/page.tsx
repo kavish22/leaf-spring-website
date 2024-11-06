@@ -220,7 +220,7 @@ export default function ContactPage() {
                   a: "Absolutely! We specialize in custom leaf spring solutions tailored to your specific needs."
                 }
               ].map((item, index) => (
-                <div key={index} className="bg-gray-50 rounded-lg p-6 text-left">
+                <div key={index} className="bg-gray-50 rounded-lg p-6 text-left border-2 border-red-600">
                   <h3 className="font-semibold text-lg text-gray-900 mb-2">{item.q}</h3>
                   <p className="text-gray-600">{item.a}</p>
                 </div>
