@@ -139,7 +139,7 @@ export default function HomePage() {
     <>
       <main>
         {/* Hero Section */}
-        <section className="relative overflow-hidden py-32">
+        <section className="relative overflow-hidden py-16 md:py-32">
           {/* Add a subtle gradient overlay for better text readability */}
           <div className="absolute inset-0 z-0 bg-gradient-to-r from-black/70 to-black/50" />
           <div className="absolute inset-0 z-0">
@@ -152,17 +152,17 @@ export default function HomePage() {
             />
           </div>
           
-          <div className="container mx-auto px-4 relative z-10 flex flex-col md:flex-row items-center animate-fade-in-up">
+          <div className="container mx-auto px-4 relative z-10 flex flex-col md:flex-row items-center">
             <div className="w-full pr-0 md:pr-12">
               <motion.h1 
-                className="text-6xl md:text-7xl font-bold mb-8 leading-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-300"
+                className="text-4xl sm:text-5xl md:text-7xl font-bold mb-6 md:mb-8 leading-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-300"
               >
                 Complete Leaf Spring Manufacturing Machinery Solutions
               </motion.h1>
-              <motion.p className="text-xl md:text-2xl mb-10">
+              <motion.p className="text-lg sm:text-xl md:text-2xl mb-8 md:mb-10">
                 Industry-Leading Heavy Duty Shearing Machines, Assembly Lines, and Stress Shot Peening Automation Systems
               </motion.p>
-              <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6">
+              <div className="flex flex-col sm:flex-row gap-4 sm:gap-6">
                 <Link href="#product-showcase" className="inline-flex items-center bg-white text-red-600 border-2 border-red-600 hover:bg-red-600 hover:text-white hover:border-2 hover:border-white transition-colors px-8 py-3 rounded-md font-bold">
                   Explore Our Machinery <ChevronRight className="ml-2 h-4 w-4" />
                 </Link>
@@ -175,11 +175,15 @@ export default function HomePage() {
         </section>
 
         {/* Product Showcase */}
-        <section id="product-showcase" className="py-24 bg-white">
+        <section id="product-showcase" className="py-16 md:py-24 bg-white">
           <div className="container mx-auto px-4">
-            <h2 className="text-4xl font-bold mb-4 text-center text-gray-800">Leaf Spring Machinery Product Range</h2>
-            <p className="text-xl mb-16 text-center text-gray-600">Engineered for Reliability and Performance</p>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <h2 className="text-3xl md:text-4xl font-bold mb-3 md:mb-4 text-center text-gray-800">
+              Leaf Spring Machinery Product Range
+            </h2>
+            <p className="text-lg md:text-xl mb-12 md:mb-16 text-center text-gray-600">
+              Engineered for Reliability and Performance
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
               {[
                 {
                   title: "High-Pressure Water Jet Descaler Machine",
@@ -227,10 +231,14 @@ export default function HomePage() {
         </section>
 
         {/* Why Choose Us */}
-        <section className="py-24 bg-gray-100">
+        <section className="py-16 md:py-24 bg-gray-100">
           <div className="container mx-auto px-4">
-            <h2 className="text-4xl font-bold mb-4 text-center text-gray-800">Why Choose Our Leaf Spring Manufacturing Machinery</h2>
-            <p className="text-xl mb-16 text-center text-gray-600">Innovative, Durable, and Certified for Automotive and Heavy-Duty Industries</p>
+            <h2 className="text-3xl md:text-4xl font-bold mb-3 md:mb-4 text-center text-gray-800">
+              Why Choose Our Leaf Spring Manufacturing Machinery
+            </h2>
+            <p className="text-lg md:text-xl mb-12 md:mb-16 text-center text-gray-600">
+              Innovative, Durable, and Certified for Automotive and Heavy-Duty Industries
+            </p>
             
             {/* Add relative positioning and border container */}
             <div className="relative">
@@ -242,7 +250,7 @@ export default function HomePage() {
               
               {/* Content with padding to avoid border overlap */}
               <div className="p-8">
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
                   {[
                     { 
                       title: "ISO 9001-Certified", 
@@ -279,7 +287,7 @@ export default function HomePage() {
               </div>
             </div>
 
-            <div className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-12">
+            <div className="mt-16 md:mt-20 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-12">
               {[
                 { metric: "98%", description: "Customer Satisfaction Rate" },
                 { metric: "90%", description: "Reduction in Downtime" },
@@ -295,7 +303,7 @@ export default function HomePage() {
         </section>
 
         {/* Client Showcase */}
-        <section className="py-24 bg-white">
+        <section className="py-16 md:py-24 bg-white">
           <div className="container mx-auto px-4">
             <h2 className="text-4xl font-bold mb-4 text-center text-gray-800">Trusted by Industry Leaders</h2>
             <p className="text-xl mb-16 text-center text-gray-600">Our clients rely on our machinery for reliable leaf spring manufacturing solutions</p>
@@ -313,9 +321,11 @@ export default function HomePage() {
         </section>
 
         {/* CTA Section */}
-        <section className="py-24 bg-red-700 text-white">
+        <section className="py-16 md:py-24 bg-red-700 text-white">
           <div className="container mx-auto px-4 text-center">
-            <h2 className="text-4xl font-bold mb-8">Explore Our Full Range of Leaf Spring Manufacturing Solutions</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 md:mb-8">
+              Explore Our Full Range of Leaf Spring Manufacturing Solutions
+            </h2>
             <Link href="/products" className="inline-flex items-center bg-white text-red-600 border-2 border-red-600 hover:bg-red-600 hover:text-white hover:border-2 hover:border-white transition-colors px-8 py-3 rounded-md font-bold">
               Browse Our Products <ChevronRight className="ml-2 h-4 w-4" />
             </Link>
