@@ -54,6 +54,36 @@ const ErrorFallback = () => (
   </div>
 )
 
+// Add this new component for mobile timeline item
+const TimelineItem = ({ event, index }: { event: typeof timelineEvents[0], index: number }) => (
+  <motion.div
+    initial={{ opacity: 0, x: -20 }}
+    whileInView={{ opacity: 1, x: 0 }}
+    transition={{ duration: 0.5, delay: index * 0.1 }}
+    viewport={{ once: true }}
+    className="relative pl-8 pb-8 last:pb-0"
+  >
+    {/* Timeline line */}
+    <div className="absolute left-[7px] top-0 bottom-0 w-[2px] bg-red-200" />
+    
+    {/* Timeline dot */}
+    <div className="absolute left-0 top-0 w-4 h-4 rounded-full bg-red-600 shadow-md border-2 border-white" />
+    
+    {/* Content */}
+    <div className="bg-white rounded-lg shadow-md p-4 sm:p-6 border border-gray-100">
+      <span className="inline-block px-3 py-1 rounded-full text-sm font-semibold text-red-600 bg-red-50 mb-2">
+        {event.year}
+      </span>
+      <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2">
+        {event.title}
+      </h3>
+      <p className="text-gray-600 text-sm sm:text-base">
+        {event.description}
+      </p>
+    </div>
+  </motion.div>
+);
+
 export default function AboutPage() {
   const { scrollYProgress } = useScroll()
   const opacity = useTransform(scrollYProgress, [0, 0.2], [1, 0])
@@ -100,21 +130,22 @@ export default function AboutPage() {
     <ErrorBoundary FallbackComponent={ErrorFallback}>
       <main>
         {/* Dynamic Hero Section */}
-        <section className="relative h-[80vh] sm:h-screen flex items-center justify-center overflow-hidden">
+        <section className="relative h-[60vh] sm:h-[calc(100vh-56px)] flex items-center justify-center overflow-hidden">
           <motion.div 
-            className="absolute inset-0 z-0"
+            className="absolute inset-0 z-0 bg-gray-900"
             style={{ opacity, scale }}
           >
             <Image
               src="https://placehold.co/1920x1080"
               alt="LEAFSPRINGS Manufacturing Plant"
               fill
-              className="object-cover"
+              className="object-cover opacity-60"
+              priority
             />
           </motion.div>
           <div className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
             <motion.h1 
-              className="text-3xl sm:text-5xl md:text-7xl font-bold mb-4 sm:mb-6 leading-tight"
+              className="text-4xl sm:text-5xl md:text-7xl font-bold mb-4 sm:mb-8 leading-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-300"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
@@ -122,7 +153,7 @@ export default function AboutPage() {
               Shaping the Future of Leaf Spring Technology
             </motion.h1>
             <motion.p 
-              className="text-lg sm:text-xl md:text-2xl mb-6 sm:mb-10 px-4"
+              className="text-lg sm:text-xl md:text-2xl mb-6 sm:mb-10"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
@@ -343,15 +374,24 @@ export default function AboutPage() {
         </section>
 
         {/* Company Timeline */}
-        <section className="py-20 bg-white">
+        <section className="py-12 sm:py-20 bg-white">
           <div className="container mx-auto px-4">
-            <h2 className="text-4xl font-bold text-center mb-12">Our Journey Through Time</h2>
-            <div className="relative">
+            <motion.h2 
+              className="text-3xl sm:text-4xl font-bold text-center mb-8 sm:mb-12"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+            >
+              Our Journey Through Time
+            </motion.h2>
+
+            {/* Desktop Timeline (hidden on mobile) */}
+            <div className="hidden sm:block relative">
               <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-red-200">
                 {timelineEvents.map((_, index) => (
                   <div 
                     key={index}
-                    className="absolute w-4 h-4 bg-red-600 rounded-full transform -translate-x-1/2"
+                    className="absolute w-4 h-4 bg-red-600 rounded-full transform -translate-x-1/2 border-2 border-white shadow-md"
                     style={{ top: `${(index * 25) + 12}%` }}
                   />
                 ))}
@@ -361,7 +401,7 @@ export default function AboutPage() {
                   key={index}
                   className={`flex flex-col sm:flex-row ${
                     index % 2 === 0 ? 'sm:justify-start' : 'sm:justify-end'
-                  } mb-8`}
+                  } mb-8 sm:mb-16`}
                   initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.5 }}
@@ -371,14 +411,27 @@ export default function AboutPage() {
                     index % 2 === 0 
                       ? 'sm:text-right sm:pr-8' 
                       : 'sm:text-left sm:pl-8'
-                  } text-center sm:text-left`}>
-                    <div className="bg-white p-4 rounded shadow-lg mx-4 sm:mx-0">
-                      <h3 className="text-xl font-bold text-red-600 mb-2">{event.year}</h3>
-                      <h4 className="text-lg font-semibold mb-2">{event.title}</h4>
-                      <p className="text-gray-600">{event.description}</p>
+                  }`}>
+                    <div className="bg-white p-6 rounded-lg shadow-md border border-gray-100 hover:shadow-lg transition-shadow duration-300">
+                      <span className="inline-block px-3 py-1 rounded-full text-sm font-semibold text-red-600 bg-red-50 mb-2">
+                        {event.year}
+                      </span>
+                      <h3 className="text-xl font-bold text-gray-900 mb-2">
+                        {event.title}
+                      </h3>
+                      <p className="text-gray-600">
+                        {event.description}
+                      </p>
                     </div>
                   </div>
                 </motion.div>
+              ))}
+            </div>
+
+            {/* Mobile Timeline (hidden on desktop) */}
+            <div className="sm:hidden">
+              {timelineEvents.map((event, index) => (
+                <TimelineItem key={index} event={event} index={index} />
               ))}
             </div>
           </div>
