@@ -174,21 +174,23 @@ export default function AboutPage() {
             <div className="container mx-auto px-4">
               <Tabs defaultValue="story" className="w-full">
                 {/* Improved Mobile Tab Navigation */}
-                <TabsList className="w-full flex overflow-x-auto hide-scrollbar space-x-2 p-1 bg-gray-50 rounded-xl mb-6">
-                  {['story', 'vision', 'innovation', 'quality'].map((tab) => (
+                <TabsList className="w-full grid grid-cols-2 gap-2 p-1 bg-gray-50 rounded-xl mb-6 sm:flex sm:space-x-2">
+                  {[
+                    { value: 'story', icon: <BookOpen className="w-4 h-4" />, label: 'Our Story' },
+                    { value: 'vision', icon: <Eye className="w-4 h-4" />, label: 'Vision' },
+                    { value: 'innovation', icon: <Lightbulb className="w-4 h-4" />, label: 'Innovation' },
+                    { value: 'quality', icon: <Shield className="w-4 h-4" />, label: 'Quality' }
+                  ].map((tab) => (
                     <TabsTrigger 
-                      key={tab}
-                      value={tab}
-                      className="flex-shrink-0 w-auto min-w-[120px] whitespace-nowrap flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-medium rounded-lg transition-all duration-300
+                      key={tab.value}
+                      value={tab.value}
+                      className="flex items-center justify-center gap-2 px-4 py-3 text-sm font-medium rounded-lg transition-all duration-300
                       data-[state=active]:bg-red-600 data-[state=active]:text-white
                       data-[state=inactive]:bg-white data-[state=inactive]:text-gray-600
-                      hover:bg-red-50"
+                      hover:bg-red-50 w-full"
                     >
-                      {tab === 'story' && <BookOpen className="w-4 h-4" />}
-                      {tab === 'vision' && <Eye className="w-4 h-4" />}
-                      {tab === 'innovation' && <Lightbulb className="w-4 h-4" />}
-                      {tab === 'quality' && <Shield className="w-4 h-4" />}
-                      <span className="capitalize">{tab === 'story' ? 'Our Story' : tab}</span>
+                      {tab.icon}
+                      <span className="capitalize">{tab.label}</span>
                     </TabsTrigger>
                   ))}
                 </TabsList>
@@ -282,7 +284,69 @@ export default function AboutPage() {
                     </div>
                   </TabsContent>
 
-                  {/* Similar optimized layouts for Innovation and Quality tabs */}
+                  {/* Innovation Tab Content */}
+                  <TabsContent value="innovation">
+                    <div className="p-4 sm:p-6 space-y-6">
+                      <div className="text-center sm:text-left">
+                        <h3 className="text-xl sm:text-3xl font-bold text-gray-800 mb-3">
+                          Leading Through Innovation
+                        </h3>
+                        <p className="text-base text-gray-600">
+                          Pioneering advanced manufacturing solutions with cutting-edge technology.
+                        </p>
+                      </div>
+
+                      <div className="grid gap-4">
+                        {[
+                          { icon: <Cog className="w-5 h-5" />, title: "Smart Manufacturing", text: "Industry 4.0 integration with IoT capabilities" },
+                          { icon: <Award className="w-5 h-5" />, title: "Patented Technology", text: "Proprietary solutions for enhanced efficiency" },
+                          { icon: <Target className="w-5 h-5" />, title: "Precision Control", text: "Advanced automation for consistent quality" }
+                        ].map((item, index) => (
+                          <div key={index} className="p-4 rounded-lg bg-gray-50 border border-gray-100">
+                            <div className="flex items-center gap-3 mb-2">
+                              <div className="flex-shrink-0 w-10 h-10 rounded-full bg-red-100 flex items-center justify-center text-red-600">
+                                {item.icon}
+                              </div>
+                              <h4 className="font-semibold text-gray-900">{item.title}</h4>
+                            </div>
+                            <p className="text-gray-600 ml-13">{item.text}</p>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </TabsContent>
+
+                  {/* Quality Tab Content */}
+                  <TabsContent value="quality">
+                    <div className="p-4 sm:p-6 space-y-6">
+                      <div className="text-center sm:text-left">
+                        <h3 className="text-xl sm:text-3xl font-bold text-gray-800 mb-3">
+                          Uncompromising Quality
+                        </h3>
+                        <p className="text-base text-gray-600">
+                          Setting industry standards through rigorous quality control and testing.
+                        </p>
+                      </div>
+
+                      <div className="grid gap-4">
+                        {[
+                          { icon: <Shield className="w-5 h-5" />, title: "ISO Certified", text: "Meeting international quality standards" },
+                          { icon: <Target className="w-5 h-5" />, title: "100% Testing", text: "Comprehensive quality assurance" },
+                          { icon: <Award className="w-5 h-5" />, title: "Industry Leading", text: "Benchmark setting performance" }
+                        ].map((item, index) => (
+                          <div key={index} className="p-4 rounded-lg bg-gray-50 border border-gray-100">
+                            <div className="flex items-center gap-3 mb-2">
+                              <div className="flex-shrink-0 w-10 h-10 rounded-full bg-red-100 flex items-center justify-center text-red-600">
+                                {item.icon}
+                              </div>
+                              <h4 className="font-semibold text-gray-900">{item.title}</h4>
+                            </div>
+                            <p className="text-gray-600 ml-13">{item.text}</p>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </TabsContent>
                 </div>
               </Tabs>
             </div>
