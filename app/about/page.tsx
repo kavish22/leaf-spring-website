@@ -171,9 +171,9 @@ export default function AboutPage() {
                 Our Journey of Excellence
               </h2>
 
-              <Tabs defaultValue="story" className="w-full space-y-6 sm:space-y-8">
-                {/* Tabs Container */}
-                <div className="bg-gray-50 p-3 rounded-xl shadow-sm">
+              <Tabs defaultValue="story" className="w-full">
+                {/* Tabs Container - Fixed spacing */}
+                <div className="bg-gray-50 p-3 rounded-xl shadow-sm mb-6 sm:mb-8">
                   <TabsList className="w-full grid grid-cols-2 gap-3 sm:flex sm:gap-2">
                     {[
                       { value: 'story', icon: <BookOpen className="w-4 h-4" />, label: 'Our Story' },
@@ -226,10 +226,7 @@ export default function AboutPage() {
                           { icon: <Globe className="w-5 h-5" />, text: "Serving clients in more than 50 countries" },
                           { icon: <Truck className="w-5 h-5" />, text: "1000+ machines delivered worldwide" }
                         ].map((stat, index) => (
-                          <div 
-                            key={index}
-                            className="flex items-center gap-4 p-4 rounded-lg bg-gray-50 border border-gray-100 hover:bg-gray-100 transition-colors"
-                          >
+                          <div key={index} className="flex items-center gap-4 p-4 rounded-lg bg-gray-50 border border-gray-100">
                             <div className="flex-shrink-0 w-10 h-10 rounded-full bg-red-100 flex items-center justify-center text-red-600">
                               {stat.icon}
                             </div>
@@ -254,8 +251,9 @@ export default function AboutPage() {
 
                       <div className="grid gap-4">
                         {[
-                          { icon: <Eye className="w-5 h-5" />, title: "Our Vision", text: "To be the global leader in leaf spring machinery." },
-                          { icon: <Target className="w-5 h-5" />, title: "Our Mission", text: "Delivering world-class manufacturing solutions." }
+                          { icon: <Eye className="w-5 h-5" />, title: "Our Vision", text: "To be the global leader in leaf spring machinery, setting industry standards for innovation and excellence." },
+                          { icon: <Target className="w-5 h-5" />, title: "Our Mission", text: "Delivering world-class manufacturing solutions that empower our clients to achieve unprecedented efficiency and quality." },
+                          { icon: <Star className="w-5 h-5" />, title: "Our Goals", text: "Expanding our global footprint while maintaining our commitment to sustainability and innovation." }
                         ].map((item, index) => (
                           <div key={index} className="p-6 rounded-lg bg-gradient-to-br from-red-50 to-red-100/50 border border-red-100">
                             <h4 className="text-lg font-semibold mb-3 text-red-600 flex items-center gap-2">
@@ -269,7 +267,66 @@ export default function AboutPage() {
                     </div>
                   </TabsContent>
 
-                  {/* Innovation and Quality tabs follow the same pattern... */}
+                  {/* Innovation Tab */}
+                  <TabsContent value="innovation" className="focus-visible:outline-none">
+                    <div className="p-6 space-y-6">
+                      <div className="text-center sm:text-left max-w-3xl">
+                        <h3 className="text-xl sm:text-2xl font-bold text-gray-800 mb-3">
+                          Leading Through Innovation
+                        </h3>
+                        <p className="text-base text-gray-600">
+                          Pioneering advanced manufacturing solutions with cutting-edge technology.
+                        </p>
+                      </div>
+
+                      <div className="grid gap-4">
+                        {[
+                          { icon: <Cog className="w-5 h-5" />, title: "Smart Manufacturing", text: "Industry 4.0 integration with IoT capabilities for real-time monitoring and optimization" },
+                          { icon: <Award className="w-5 h-5" />, title: "Patented Technology", text: "Proprietary solutions that deliver unprecedented efficiency and precision" },
+                          { icon: <Target className="w-5 h-5" />, title: "Precision Control", text: "Advanced automation systems ensuring consistent quality and reduced waste" }
+                        ].map((item, index) => (
+                          <div key={index} className="p-6 rounded-lg bg-gray-50 border border-gray-100">
+                            <h4 className="text-lg font-semibold mb-3 text-gray-800 flex items-center gap-2">
+                              <div className="text-red-600">{item.icon}</div>
+                              {item.title}
+                            </h4>
+                            <p className="text-gray-600">{item.text}</p>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </TabsContent>
+
+                  {/* Quality Tab */}
+                  <TabsContent value="quality" className="focus-visible:outline-none">
+                    <div className="p-6 space-y-6">
+                      <div className="text-center sm:text-left max-w-3xl">
+                        <h3 className="text-xl sm:text-2xl font-bold text-gray-800 mb-3">
+                          Uncompromising Quality
+                        </h3>
+                        <p className="text-base text-gray-600">
+                          Setting industry standards through rigorous quality control and testing.
+                        </p>
+                      </div>
+
+                      <div className="grid gap-4">
+                        {[
+                          { icon: <Shield className="w-5 h-5" />, title: "ISO Certified", text: "Maintaining the highest international quality standards in manufacturing" },
+                          { icon: <Target className="w-5 h-5" />, title: "100% Testing", text: "Comprehensive quality assurance at every stage of production" },
+                          { icon: <Award className="w-5 h-5" />, title: "Industry Leading", text: "Setting benchmarks for performance and reliability in the industry" },
+                          { icon: <Users className="w-5 h-5" />, title: "Expert Team", text: "Highly trained professionals ensuring quality at every step" }
+                        ].map((item, index) => (
+                          <div key={index} className="p-6 rounded-lg bg-gray-50 border border-gray-100">
+                            <h4 className="text-lg font-semibold mb-3 text-gray-800 flex items-center gap-2">
+                              <div className="text-red-600">{item.icon}</div>
+                              {item.title}
+                            </h4>
+                            <p className="text-gray-600">{item.text}</p>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </TabsContent>
                 </div>
               </Tabs>
             </div>
