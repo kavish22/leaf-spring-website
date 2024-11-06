@@ -1,14 +1,30 @@
 'use client'
 
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useRef, useMemo } from 'react'
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { X, ChevronDown, Download, ChevronRight } from 'lucide-react'
+import { X, ChevronDown, Download, ChevronRight, Search, Filter } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import WhatsAppButton from '@/components/shared/whatsapp-button'
 import { motion, useScroll, useTransform } from 'framer-motion'
+import { useVirtualizer } from '@tanstack/react-virtual';
+import { ErrorBoundary } from 'react-error-boundary';
+import { useInView } from 'react-intersection-observer'
+import { Skeleton } from "@/components/ui/skeleton"
+import { debounce } from 'lodash';
+import { cn } from "@/lib/utils"
+
+interface Product {
+  title: string;
+  specs: string;
+  benefits: string;
+  image: string;
+  category: string;
+  details: string[];
+  id?: string;
+}
 
 // Products array 
 const products = [
@@ -352,74 +368,87 @@ const products = [
 ]
 
 interface ProductCardProps {
-  product: {
-    title: string;
-    specs: string;
-    benefits: string;
-    image: string;
-    category: string;
-    details: string[];
-  };
+  product: Product;
   index: number;
   isSlideOpen: boolean;
+  onLearnMore: (product: Product) => void;
   onSlideToggle: (index: number) => void;
 }
 
-const ProductCard = ({ product, index, isSlideOpen, onSlideToggle }: ProductCardProps) => {
+const ProductCard = ({ product, index, isSlideOpen, onSlideToggle, onLearnMore }: ProductCardProps) => {
   return (
-    <div className="relative">
-      <Card className="overflow-hidden transition-all duration-300 hover:shadow-xl group flex flex-col h-full">
-        <div className="relative h-64">
+    <motion.div 
+      className="relative"
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5, delay: index * 0.1 }}
+    >
+      <Card className="overflow-hidden transition-all duration-300 hover:shadow-2xl group flex flex-col h-full bg-white/80 backdrop-blur-sm border-0">
+        <div className="relative h-72">
           <Image 
             src={product.image} 
             alt={product.title} 
             width={400} 
-            height={300} 
-            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+            height={300}
+            placeholder="blur"
+            blurDataURL={`data:image/svg+xml;base64,...`}
+            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
           />
-          <Badge className="absolute top-2 right-2 bg-red-600 text-white">{product.category}</Badge>
+          <Badge className="absolute top-3 right-3 bg-red-600/90 backdrop-blur-sm text-white px-3 py-1 text-sm font-medium">
+            {product.category}
+          </Badge>
         </div>
         
-        <CardHeader className="p-6">
-          <CardTitle className="text-xl text-gray-800 group-hover:text-red-600 transition-colors line-clamp-2">
+        <CardHeader className="p-6 pb-3">
+          <CardTitle className="text-xl font-bold text-gray-900 group-hover:text-red-600 transition-colors line-clamp-2">
             {product.title}
           </CardTitle>
-          <CardDescription className="text-base text-gray-600 line-clamp-2 flex">
-            <span className="mr-2">•</span> {product.specs}
+          <CardDescription className="text-base text-gray-600 mt-2 line-clamp-2">
+            {product.specs}
           </CardDescription>
         </CardHeader>
         
-        <CardContent className="p-6 pt-0 flex-grow">
-          <p className="text-base text-gray-700 line-clamp-3 flex">
-            <span className="mr-2">•</span> {product.benefits}
+        <CardContent className="px-6 py-3 flex-grow">
+          <p className="text-base text-gray-700 line-clamp-3">
+            {product.benefits}
           </p>
         </CardContent>
         
-        <CardFooter className="p-6 pt-0">
-          <div className="flex gap-4 w-full">
-            <Button 
-              className="flex-1 bg-red-600 text-white border-2 border-red-600 hover:bg-white hover:text-red-600 hover:border-red-600 transition-all duration-300"
-              onClick={() => onSlideToggle(index)}
-            >
-              <span className="mr-2">Learn More</span>
-              <ChevronDown className={`h-4 w-4 transition-transform duration-300 ${isSlideOpen ? 'rotate-180' : ''}`} />
-            </Button>
-            <Button 
-              className="flex-1 bg-red-600 text-white border-2 border-red-600 hover:bg-white hover:text-red-600 hover:border-red-600 transition-all duration-300 mx-2"
-            >
-              <span className="mr-2">Brochure</span>
-              <Download className="h-4 w-4" />
-            </Button>
-          </div>
+        <CardFooter className="p-6 pt-3 gap-3">
+          <Button 
+            className="flex-1 bg-red-600 text-white border-2 border-red-600 hover:bg-white hover:text-red-600 hover:scale-105 transition-all duration-300 shadow-sm"
+            onClick={() => onSlideToggle(index)}
+          >
+            Details
+            <ChevronDown className={`ml-2 h-4 w-4 transition-transform duration-300 ${isSlideOpen ? 'rotate-180' : ''}`} />
+          </Button>
+          <Button 
+            className="flex-1 bg-white text-red-600 border-2 border-red-600 hover:bg-red-600 hover:text-white hover:scale-105 transition-all duration-300"
+          >
+            Brochure
+            <Download className="ml-2 h-4 w-4" />
+          </Button>
         </CardFooter>
 
-        <div 
-          className={`absolute left-0 right-0 top-0 bottom-0 bg-white shadow-lg transition-all duration-300 ease-in-out ${
-            isSlideOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
-          }`}
-          style={{
-            transform: isSlideOpen ? 'translateY(0)' : 'translateY(-100%)',
-            zIndex: 20
+        <motion.div 
+          className="absolute left-0 right-0 top-0 bottom-0 bg-white shadow-lg"
+          initial={{ y: '100%' }}
+          animate={{ 
+            y: isSlideOpen ? 0 : '100%',
+            opacity: isSlideOpen ? 1 : 0
+          }}
+          transition={{ 
+            type: "spring",
+            damping: 25,
+            stiffness: 200,
+            mass: 0.8,
+            duration: 0.3
+          }}
+          style={{ 
+            zIndex: 50,
+            position: 'absolute',
+            transformOrigin: 'bottom'
           }}
         >
           <div className="p-6 relative h-full overflow-y-auto">
@@ -439,14 +468,153 @@ const ProductCard = ({ product, index, isSlideOpen, onSlideToggle }: ProductCard
               ))}
             </ul>
           </div>
-        </div>
+        </motion.div>
       </Card>
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ 
+          opacity: isSlideOpen ? 1 : 0,
+          y: isSlideOpen ? 0 : 20 
+        }}
+        transition={{ duration: 0.3 }}
+      >
+        {/* Card content */}
+      </motion.div>
+    </motion.div>
+  );
+};
+
+// Add this component
+const ProductSkeleton = () => (
+  <div className="animate-pulse">
+    <div className="h-64 bg-gray-200 rounded-t-lg"></div>
+    <div className="p-6">
+      <div className="h-6 bg-gray-200 rounded w-3/4 mb-4"></div>
+      <div className="h-4 bg-gray-200 rounded w-full mb-2"></div>
+      <div className="h-4 bg-gray-200 rounded w-5/6"></div>
     </div>
+  </div>
+);
+
+const FilterButton = ({ 
+  active, 
+  label, 
+  onClick,
+  count 
+}: { 
+  active: boolean; 
+  label: string; 
+  onClick: () => void;
+  count?: number;
+}) => (
+  <button
+    onClick={onClick}
+    className={cn(
+      "inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200",
+      "border border-transparent",
+      active 
+        ? "bg-red-50 text-red-600 border-red-200" 
+        : "bg-transparent hover:bg-gray-50 text-gray-600",
+      "focus:outline-none focus:ring-2 focus:ring-red-500/20"
+    )}
+  >
+    {label}
+    {count && (
+      <span className={cn(
+        "text-xs px-2 py-0.5 rounded-full",
+        active ? "bg-red-100 text-red-600" : "bg-gray-100 text-gray-600"
+      )}>
+        {count}
+      </span>
+    )}
+  </button>
+);
+
+// Add this new component for the floating filter bar
+const FloatingFilterBar = ({ 
+  searchQuery,
+  selectedCategory,
+  onSearch,
+  onCategorySelect,
+  categories,
+  isVisible 
+}: {
+  searchQuery: string;
+  selectedCategory: string | null;
+  onSearch: (value: string) => void;
+  onCategorySelect: (category: string | null) => void;
+  categories: string[];
+  isVisible: boolean;
+}) => {
+  return (
+    <motion.div
+      initial={{ y: -20, opacity: 0 }}
+      animate={{ 
+        y: isVisible ? 0 : -20,
+        opacity: isVisible ? 1 : 0
+      }}
+      transition={{ duration: 0.3 }}
+      className={cn(
+        "w-full bg-white/80 backdrop-blur-lg shadow-md py-4",
+        isVisible ? "fixed top-[80px] z-30" : "relative"
+      )}
+    >
+      <div className="container mx-auto px-4">
+        <div className="max-w-2xl mx-auto bg-white/95 backdrop-blur-lg rounded-full shadow-lg border border-gray-100 p-2 flex items-center gap-2">
+          {/* Search Input */}
+          <div className="relative flex-1 max-w-xs">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
+            <input
+              type="text"
+              placeholder="Search..."
+              value={searchQuery}
+              onChange={(e) => onSearch(e.target.value)}
+              className="w-full pl-10 pr-4 py-2 bg-transparent text-sm focus:outline-none"
+            />
+          </div>
+
+          {/* Divider */}
+          <div className="h-6 w-px bg-gray-200" />
+
+          {/* Category Filters */}
+          <div className="flex items-center gap-2 overflow-x-auto scrollbar-hide py-1">
+            <button
+              onClick={() => onCategorySelect(null)}
+              className={cn(
+                "text-sm px-3 py-1.5 rounded-full whitespace-nowrap transition-all",
+                !selectedCategory 
+                  ? "bg-red-50 text-red-600 font-medium" 
+                  : "text-gray-600 hover:bg-gray-50"
+              )}
+            >
+              All
+            </button>
+            {categories.map(category => (
+              <button
+                key={category}
+                onClick={() => onCategorySelect(category)}
+                className={cn(
+                  "text-sm px-3 py-1.5 rounded-full whitespace-nowrap transition-all",
+                  selectedCategory === category 
+                    ? "bg-red-50 text-red-600 font-medium" 
+                    : "text-gray-600 hover:bg-gray-50"
+                )}
+              >
+                {category}
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+    </motion.div>
   );
 };
 
 export default function ProductsPage() {
   const [openSlide, setOpenSlide] = useState<number | null>(null);
+  const [isSlideOpen, setIsSlideOpen] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const [isSearchExpanded, setIsSearchExpanded] = useState(false);
   const { scrollYProgress } = useScroll()
   const opacity = useTransform(scrollYProgress, [0, 0.2], [1, 0])
   const scale = useTransform(scrollYProgress, [0, 0.2], [1, 0.8])
@@ -455,25 +623,186 @@ export default function ProductsPage() {
     setOpenSlide(openSlide === index ? null : index);
   };
 
+  const parentRef = useRef<HTMLDivElement>(null);
+
+  // Add category filtering
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const filteredProducts = selectedCategory 
+    ? products.filter(p => p.category === selectedCategory)
+    : products;
+
+  // Add search functionality
+  const [searchQuery, setSearchQuery] = useState('');
+  const searchedProducts = filteredProducts.filter(p => 
+    p.title.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  // Add loading states for buttons
+  const [isDownloading, setIsDownloading] = useState(false);
+
+  // Add loading states
+  const [isLoading, setIsLoading] = useState(true);
+
+  // Add error states for image loading
+  const handleImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+    e.currentTarget.src = '/fallback-image.jpg';
+  };
+
+  // Add intersection observer for animation on scroll
+  const [ref, firstInView] = useInView({
+    threshold: 0.2,
+    triggerOnce: true
+  });
+
+  // Add this useEffect
+  useEffect(() => {
+    // Simulate loading delay
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
+  }, []);
+
+  const [error, setError] = useState<string | null>(null);
+
+  // In your data fetching logic
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        setIsLoading(true);
+        // Your fetch logic here
+        setError(null);
+      } catch (err) {
+        setError('Failed to load products. Please try again later.');
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    fetchProducts();
+  }, []);
+
+  useEffect(() => {
+    const savedScroll = sessionStorage.getItem('productPageScroll');
+    if (savedScroll) {
+      window.scrollTo(0, parseInt(savedScroll));
+      sessionStorage.removeItem('productPageScroll');
+    }
+  }, []);
+
+  // Save scroll position when opening product details
+  const handleLearnMore = (product: Product) => {
+    sessionStorage.setItem('productPageScroll', window.scrollY.toString());
+    setSelectedProduct(product);
+    setIsSlideOpen(true);
+  };
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && isSlideOpen) {
+        setIsSlideOpen(false);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isSlideOpen]);
+
+  // Separate immediate input update from debounced search
+  const debouncedSearch = useCallback(
+    debounce((value: string) => {
+      productsRef.current?.scrollIntoView({ behavior: 'smooth' });
+    }, 300),
+    []
+  );
+
+  // Update the input handler
+  const handleSearchInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchQuery(e.target.value);  // Immediate update
+    debouncedSearch(e.target.value); // Debounced scroll
+  };
+
+  // Update the input element
+  <input
+    type="text"
+    placeholder="Search products..."
+    value={searchQuery}
+    onChange={handleSearchInput}
+    className={cn(
+      "w-full pl-10 pr-4 py-2 rounded-full text-sm focus:outline-none transition-all duration-300",
+      isSearchExpanded ? "bg-red-50 border border-red-100" : "bg-transparent"
+    )}
+    onFocus={() => setIsSearchExpanded(true)}
+  />
+
+  const [isFilterVisible, setIsFilterVisible] = useState(false);
+  
+  // Add intersection observer for products section
+  const productsRef = useRef<HTMLDivElement>(null);
+  const { ref: intersectionRef, inView } = useInView({
+    threshold: 0,
+    rootMargin: "-90% 0px 0px 0px"
+  });
+
+  // Update filter visibility based on scroll position
+  useEffect(() => {
+    setIsFilterVisible(inView);
+  }, [inView]);
+
+  // Get unique categories
+  const categories = useMemo(() => 
+    Array.from(new Set(products.map(p => p.category))).sort(),
+    [products]
+  );
+
+  // Measure the actual header height (56px = py-4 * 2 + some buffer)
+  const HEADER_HEIGHT = 56;
+
+  // Update the intersection observers
+  const { ref: heroEndRef, inView: isHeroVisible } = useInView({
+    threshold: 0,
+    rootMargin: `-${HEADER_HEIGHT}px 0px 0px 0px`
+  });
+
+  const { ref: productsEndRef, inView: isProductsVisible } = useInView({
+    threshold: 1
+  });
+
+  const onCategorySelect = (category: string | null) => {
+    setSelectedCategory(category);
+    productsRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  // Add click outside handler
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (isSearchExpanded && !(e.target as Element).closest('.search-container')) {
+        setIsSearchExpanded(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [isSearchExpanded]);
+
   return (
     <>
-      <main>
-        <section className="relative h-screen flex items-center justify-center overflow-hidden">
+      <main className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
+        {/* Hero Section */}
+        <section className="relative h-[calc(100vh-56px)] flex items-center justify-center overflow-hidden">
           <motion.div 
-            className="absolute inset-0 z-0"
+            className="absolute inset-0 z-0 bg-gray-900"
             style={{ opacity, scale }}
           >
             <Image
               src="https://placehold.co/1920x1080"
               alt="LEAFSPRINGS Products"
-              layout="fill"
-              objectFit="cover"
+              fill
+              className="object-cover opacity-60"
               priority
             />
           </motion.div>
           <div className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
             <motion.h1 
-              className="text-5xl md:text-7xl font-bold mb-6 leading-tight"
+              className="text-6xl md:text-7xl font-bold mb-8 leading-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-300"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
@@ -491,15 +820,97 @@ export default function ProductsPage() {
           </div>
         </section>
 
-        <section id="product-showcase" className="py-16 bg-white">
+        {/* Observer at end of hero section */}
+        <div ref={heroEndRef} className="h-1" />
+
+        {/* Filter Section - Now positioned correctly */}
+        <div className="sticky top-[56px] z-40 bg-white/80 backdrop-blur-lg shadow-md py-4">
           <div className="container mx-auto px-4">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {products.map((product, index) => (
+            <div className="max-w-2xl mx-auto bg-white/95 backdrop-blur-lg rounded-full shadow-lg border border-gray-100 p-2 flex items-center gap-2">
+              {/* Search Container */}
+              <div className={cn(
+                "relative flex-1 search-container transition-all duration-300",
+                isSearchExpanded ? "flex-grow" : "w-48"
+              )}>
+                <div className="relative flex items-center">
+                  <Search 
+                    className={cn(
+                      "absolute left-3 h-4 w-4 transition-all duration-300",
+                      isSearchExpanded ? "text-red-500" : "text-gray-400"
+                    )}
+                    onClick={() => setIsSearchExpanded(true)}
+                  />
+                  <input
+                    type="text"
+                    placeholder="Search products..."
+                    value={searchQuery}
+                    onChange={handleSearchInput}
+                    className={cn(
+                      "w-full pl-10 pr-4 py-2 rounded-full text-sm focus:outline-none transition-all duration-300",
+                      isSearchExpanded ? "bg-red-50 border border-red-100" : "bg-transparent"
+                    )}
+                    onFocus={() => setIsSearchExpanded(true)}
+                  />
+                </div>
+                {isSearchExpanded && searchQuery && (
+                  <X 
+                    className="absolute right-3 h-4 w-4 text-gray-400 hover:text-red-500 cursor-pointer"
+                    onClick={() => {
+                      setSearchQuery('');
+                      setIsSearchExpanded(false);
+                    }}
+                  />
+                )}
+              </div>
+
+              {/* Only show divider and categories when search is not expanded */}
+              {!isSearchExpanded && (
+                <>
+                  <div className="h-6 w-px bg-gray-200" />
+                  <div className="flex items-center gap-2 overflow-x-auto scrollbar-hide py-1">
+                    <button
+                      onClick={() => onCategorySelect(null)}
+                      className={cn(
+                        "text-sm px-3 py-1.5 rounded-full whitespace-nowrap transition-all",
+                        !selectedCategory 
+                          ? "bg-red-50 text-red-600 font-medium" 
+                          : "text-gray-600 hover:bg-gray-50"
+                      )}
+                    >
+                      All
+                    </button>
+                    {categories.map(category => (
+                      <button
+                        key={category}
+                        onClick={() => onCategorySelect(category)}
+                        className={cn(
+                          "text-sm px-3 py-1.5 rounded-full whitespace-nowrap transition-all",
+                          selectedCategory === category 
+                            ? "bg-red-50 text-red-600 font-medium" 
+                            : "text-gray-600 hover:bg-gray-50"
+                        )}
+                      >
+                        {category}
+                      </button>
+                    ))}
+                  </div>
+                </>
+              )}
+            </div>
+          </div>
+        </div>
+
+        {/* Products Section */}
+        <section ref={productsRef} className="py-16">
+          <div className="container mx-auto px-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              {searchedProducts.map((product, index) => (
                 <ProductCard
                   key={index}
                   product={product}
                   index={index}
                   isSlideOpen={openSlide === index}
+                  onLearnMore={() => handleLearnMore(product)}
                   onSlideToggle={handleSlideToggle}
                 />
               ))}
@@ -507,29 +918,30 @@ export default function ProductsPage() {
           </div>
         </section>
 
-        <section className="py-16 bg-red-700">
+        {/* CTA Section */}
+        <section className="bg-gradient-to-r from-red-600 to-red-700 py-20">
           <div className="container mx-auto px-4 text-center">
-            <h2 className="text-3xl font-bold mb-8 text-white">
-              Ready to Elevate Your Leaf Spring Manufacturing?
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+              Need Help Choosing the Right Equipment?
             </h2>
-            <div className="flex justify-center gap-6">
-              <Link 
-                href="/contact" 
-                className="inline-flex items-center bg-white text-red-600 border-2 border-red-600 hover:bg-red-600 hover:text-white hover:border-2 hover:border-white transition-colors px-8 py-3 rounded-md font-bold"
-              >
-                Get In Touch <ChevronRight className="ml-2 h-4 w-4" />
-              </Link>
-              <Link 
-                href="#" 
-                className="inline-flex items-center bg-white text-red-600 border-2 border-red-600 hover:bg-red-600 hover:text-white hover:border-2 hover:border-white transition-colors px-8 py-3 rounded-md font-bold"
-              >
-                Download Company Profile <ChevronRight className="ml-2 h-4 w-4" />
-              </Link>
-            </div>
+            <p className="text-lg text-white/90 mb-8 max-w-2xl mx-auto">
+              Our team of experts is ready to assist you in selecting the perfect machinery for your specific requirements.
+            </p>
+            <Link 
+              href="/contact" 
+              className="inline-flex items-center bg-white text-red-600 border-2 border-red-600 hover:bg-red-600 hover:text-white hover:border-2 hover:border-white transition-colors px-8 py-3 rounded-md font-bold"
+            >
+              Contact Us <ChevronRight className="ml-2 h-4 w-4" />
+            </Link>
           </div>
         </section>
       </main>
       <WhatsAppButton />
+      {error && (
+        <div className="text-red-500 p-4 text-center">
+          {error}
+        </div>
+      )}
     </>
   );
 }
