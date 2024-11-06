@@ -418,17 +418,17 @@ const ProductCard = ({ product, index, isSlideOpen, onSlideToggle, onLearnMore }
             </div>
           </div>
 
-          {/* Buttons Container */}
-          <div className="grid grid-cols-2 gap-1 sm:gap-2 mt-auto">
+          {/* Buttons Container - Adjusted for better mobile display */}
+          <div className="grid grid-cols-2 gap-0.5 xs:gap-1 sm:gap-2 mt-auto">
             <Button 
-              className="h-5 xs:h-7 sm:h-9 text-[8px] leading-none xs:text-xs sm:text-sm bg-red-600 text-white hover:bg-red-700 transition-all duration-300 px-1 xs:px-2 sm:px-4"
+              className="h-6 xs:h-7 sm:h-9 text-[7px] xs:text-[8px] sm:text-sm bg-red-600 text-white hover:bg-red-700 transition-all duration-300 px-0.5 xs:px-1 sm:px-4"
               onClick={() => onSlideToggle(index)}
             >
               Details
               <ChevronDown className={`ml-0.5 xs:ml-1 sm:ml-1.5 h-2 w-2 xs:h-3 xs:w-3 sm:h-4 sm:w-4 transition-transform duration-300 ${isSlideOpen ? 'rotate-180' : ''}`} />
             </Button>
             <Button 
-              className="h-5 xs:h-7 sm:h-9 text-[8px] leading-none xs:text-xs sm:text-sm bg-white text-red-600 border border-red-600 hover:bg-red-50 px-1 xs:px-2 sm:px-4"
+              className="h-6 xs:h-7 sm:h-9 text-[7px] xs:text-[8px] sm:text-sm bg-white text-red-600 border border-red-600 hover:bg-red-50 px-0.5 xs:px-1 sm:px-4"
             >
               Brochure
               <Download className="ml-0.5 xs:ml-1 sm:ml-1.5 h-2 w-2 xs:h-3 xs:w-3 sm:h-4 sm:w-4" />
@@ -436,7 +436,7 @@ const ProductCard = ({ product, index, isSlideOpen, onSlideToggle, onLearnMore }
           </div>
         </div>
 
-        {/* Sliding Panel */}
+        {/* Sliding Panel - Optimized text sizes for mobile */}
         <div 
           className={cn(
             "fixed inset-0 z-50 bg-white/95 backdrop-blur-sm transition-all duration-300",
@@ -450,35 +450,35 @@ const ProductCard = ({ product, index, isSlideOpen, onSlideToggle, onLearnMore }
         >
           <div className="h-full overflow-y-auto">
             {/* Slide Header */}
-            <div className="sticky top-0 bg-white/95 backdrop-blur-sm p-3 sm:p-4 border-b flex justify-between items-center">
-              <h3 className="text-sm sm:text-lg font-bold text-gray-900">{product.title}</h3>
+            <div className="sticky top-0 bg-white/95 backdrop-blur-sm p-2.5 xs:p-3 sm:p-4 border-b flex justify-between items-center">
+              <h3 className="text-xs xs:text-sm sm:text-lg font-bold text-gray-900 pr-2">{product.title}</h3>
               <button 
                 onClick={() => onSlideToggle(index)}
-                className="p-1.5 sm:p-2 hover:bg-gray-100 rounded-full"
+                className="p-1 xs:p-1.5 sm:p-2 hover:bg-gray-100 rounded-full"
               >
-                <X className="h-4 w-4 sm:h-5 sm:w-5 text-gray-500" />
+                <X className="h-3.5 w-3.5 xs:h-4 xs:w-4 sm:h-5 sm:w-5 text-gray-500" />
               </button>
             </div>
             
             {/* Slide Content */}
-            <div className="p-3 sm:p-4 space-y-4 sm:space-y-6">
+            <div className="p-2.5 xs:p-3 sm:p-4 space-y-3 xs:space-y-4 sm:space-y-6">
               <div>
-                <h4 className="text-xs sm:text-base font-semibold text-gray-900 mb-1.5 sm:mb-2">Specifications</h4>
-                <p className="text-xs sm:text-sm text-gray-600">{product.specs}</p>
+                <h4 className="text-[11px] xs:text-xs sm:text-base font-semibold text-gray-900 mb-1 xs:mb-1.5 sm:mb-2">Specifications</h4>
+                <p className="text-[10px] xs:text-xs sm:text-sm text-gray-600">{product.specs}</p>
               </div>
               
               <div>
-                <h4 className="text-xs sm:text-base font-semibold text-gray-900 mb-1.5 sm:mb-2">Benefits</h4>
-                <p className="text-xs sm:text-sm text-gray-600">{product.benefits}</p>
+                <h4 className="text-[11px] xs:text-xs sm:text-base font-semibold text-gray-900 mb-1 xs:mb-1.5 sm:mb-2">Benefits</h4>
+                <p className="text-[10px] xs:text-xs sm:text-sm text-gray-600">{product.benefits}</p>
               </div>
               
               <div>
-                <h4 className="text-xs sm:text-base font-semibold text-gray-900 mb-1.5 sm:mb-2">Technical Details</h4>
-                <ul className="space-y-2 text-xs sm:text-sm text-gray-600">
+                <h4 className="text-[11px] xs:text-xs sm:text-base font-semibold text-gray-900 mb-1 xs:mb-1.5 sm:mb-2">Technical Details</h4>
+                <ul className="space-y-1.5 xs:space-y-2 sm:space-y-2 text-[10px] xs:text-xs sm:text-sm text-gray-600">
                   {product.details.map((detail, i) => (
                     <li key={i} className="flex items-start">
-                      <ChevronRight className="h-3 w-3 sm:h-4 sm:w-4 text-red-500 mt-0.5 flex-shrink-0" />
-                      <span className="ml-1.5 sm:ml-2">{detail}</span>
+                      <ChevronRight className="h-2.5 w-2.5 xs:h-3 xs:w-3 sm:h-4 sm:w-4 text-red-500 mt-0.5 flex-shrink-0" />
+                      <span className="ml-1 xs:ml-1.5 sm:ml-2">{detail}</span>
                     </li>
                   ))}
                 </ul>
@@ -486,18 +486,18 @@ const ProductCard = ({ product, index, isSlideOpen, onSlideToggle, onLearnMore }
             </div>
 
             {/* Slide Footer */}
-            <div className="sticky bottom-0 bg-white/95 backdrop-blur-sm p-3 sm:p-4 border-t space-y-1.5 sm:space-y-2">
+            <div className="sticky bottom-0 bg-white/95 backdrop-blur-sm p-2.5 xs:p-3 sm:p-4 border-t space-y-1.5 xs:space-y-2 sm:space-y-2">
               <Button 
-                className="w-full h-8 sm:h-10 text-xs sm:text-sm bg-red-600 text-white hover:bg-red-700"
+                className="w-full h-7 xs:h-8 sm:h-10 text-[10px] xs:text-xs sm:text-sm bg-red-600 text-white hover:bg-red-700"
                 onClick={() => onLearnMore(product)}
               >
                 Contact Us About This Product
               </Button>
               <Button 
-                className="w-full h-8 sm:h-10 text-xs sm:text-sm bg-white text-red-600 border border-red-600 hover:bg-red-50"
+                className="w-full h-7 xs:h-8 sm:h-10 text-[10px] xs:text-xs sm:text-sm bg-white text-red-600 border border-red-600 hover:bg-red-50"
               >
                 Download Product Brochure
-                <Download className="ml-1.5 sm:ml-2 h-3 w-3 sm:h-4 sm:w-4" />
+                <Download className="ml-1 xs:ml-1.5 sm:ml-2 h-2.5 w-2.5 xs:h-3 xs:w-3 sm:h-4 sm:w-4" />
               </Button>
             </div>
           </div>
