@@ -386,55 +386,57 @@ const ProductCard = ({ product, index, isSlideOpen, onSlideToggle, onLearnMore }
     >
       <Card className="overflow-hidden transition-all duration-300 hover:shadow-lg group flex flex-col h-full bg-white/80 backdrop-blur-sm border border-gray-100">
         {/* Image Container */}
-        <div className="relative h-32 xs:h-36 sm:h-48 lg:h-52 overflow-hidden">
+        <div className="relative h-24 xs:h-32 sm:h-48 lg:h-52 overflow-hidden">
           <Image 
             src={product.image} 
             alt={product.title} 
             fill
             className="object-cover transition-transform duration-500 group-hover:scale-110"
           />
-          <Badge className="absolute top-2 right-2 sm:top-3 sm:right-3 bg-red-600/90 backdrop-blur-sm text-white px-1.5 sm:px-2.5 py-0.5 sm:py-1 text-[10px] sm:text-xs font-medium">
+          <Badge className="absolute top-1 right-1 sm:top-3 sm:right-3 bg-red-600/90 backdrop-blur-sm text-white px-1 sm:px-2.5 py-0.5 text-[8px] leading-relaxed sm:text-xs font-medium">
             {product.category}
           </Badge>
         </div>
         
         {/* Content Container */}
-        <div className="flex flex-col flex-grow p-2.5 xs:p-3 sm:p-4 lg:p-5">
-          <h3 className="text-sm xs:text-base sm:text-lg font-bold text-gray-900 mb-1.5 sm:mb-2 line-clamp-2 min-h-[2.5rem] sm:min-h-[3.5rem]">
+        <div className="flex flex-col flex-grow p-1.5 xs:p-2 sm:p-4 lg:p-5">
+          {/* Title */}
+          <h3 className="text-[10px] leading-tight xs:text-xs sm:text-lg font-bold text-gray-900 mb-1 sm:mb-2 line-clamp-2 min-h-[24px] xs:min-h-[32px] sm:min-h-[3.5rem]">
             {product.title}
           </h3>
           
-          <div className="space-y-2 sm:space-y-3 mb-2.5 sm:mb-4 flex-grow">
+          {/* Specs and Benefits */}
+          <div className="space-y-1 xs:space-y-1.5 sm:space-y-3 mb-1.5 xs:mb-2 sm:mb-4 flex-grow">
             <div>
-              <p className="text-xs sm:text-sm font-medium text-gray-700">Specifications:</p>
-              <p className="text-xs sm:text-sm text-gray-600 line-clamp-2">{product.specs}</p>
+              <p className="text-[8px] leading-tight xs:text-[10px] sm:text-sm font-medium text-gray-700">Specifications:</p>
+              <p className="text-[8px] leading-tight xs:text-[10px] sm:text-sm text-gray-600 line-clamp-2">{product.specs}</p>
             </div>
             
             <div>
-              <p className="text-xs sm:text-sm font-medium text-gray-700">Benefits:</p>
-              <p className="text-xs sm:text-sm text-gray-600 line-clamp-2">{product.benefits}</p>
+              <p className="text-[8px] leading-tight xs:text-[10px] sm:text-sm font-medium text-gray-700">Benefits:</p>
+              <p className="text-[8px] leading-tight xs:text-[10px] sm:text-sm text-gray-600 line-clamp-2">{product.benefits}</p>
             </div>
           </div>
 
           {/* Buttons Container */}
-          <div className="grid grid-cols-2 gap-1.5 sm:gap-2 mt-auto">
+          <div className="grid grid-cols-2 gap-1 sm:gap-2 mt-auto">
             <Button 
-              className="h-7 xs:h-8 sm:h-9 text-xs sm:text-sm bg-red-600 text-white hover:bg-red-700 transition-all duration-300"
+              className="h-5 xs:h-7 sm:h-9 text-[8px] leading-none xs:text-xs sm:text-sm bg-red-600 text-white hover:bg-red-700 transition-all duration-300 px-1 xs:px-2 sm:px-4"
               onClick={() => onSlideToggle(index)}
             >
               Details
-              <ChevronDown className={`ml-1 sm:ml-1.5 h-3 w-3 sm:h-4 sm:w-4 transition-transform duration-300 ${isSlideOpen ? 'rotate-180' : ''}`} />
+              <ChevronDown className={`ml-0.5 xs:ml-1 sm:ml-1.5 h-2 w-2 xs:h-3 xs:w-3 sm:h-4 sm:w-4 transition-transform duration-300 ${isSlideOpen ? 'rotate-180' : ''}`} />
             </Button>
             <Button 
-              className="h-7 xs:h-8 sm:h-9 text-xs sm:text-sm bg-white text-red-600 border border-red-600 hover:bg-red-50"
+              className="h-5 xs:h-7 sm:h-9 text-[8px] leading-none xs:text-xs sm:text-sm bg-white text-red-600 border border-red-600 hover:bg-red-50 px-1 xs:px-2 sm:px-4"
             >
               Brochure
-              <Download className="ml-1 sm:ml-1.5 h-3 w-3 sm:h-4 sm:w-4" />
+              <Download className="ml-0.5 xs:ml-1 sm:ml-1.5 h-2 w-2 xs:h-3 xs:w-3 sm:h-4 sm:w-4" />
             </Button>
           </div>
         </div>
 
-        {/* Sliding Panel - Keep existing desktop styles, adjust mobile */}
+        {/* Sliding Panel */}
         <div 
           className={cn(
             "fixed inset-0 z-50 bg-white/95 backdrop-blur-sm transition-all duration-300",
@@ -449,10 +451,10 @@ const ProductCard = ({ product, index, isSlideOpen, onSlideToggle, onLearnMore }
           <div className="h-full overflow-y-auto">
             {/* Slide Header */}
             <div className="sticky top-0 bg-white/95 backdrop-blur-sm p-3 sm:p-4 border-b flex justify-between items-center">
-              <h3 className="text-base sm:text-lg font-bold text-gray-900">{product.title}</h3>
+              <h3 className="text-sm sm:text-lg font-bold text-gray-900">{product.title}</h3>
               <button 
                 onClick={() => onSlideToggle(index)}
-                className="p-1.5 sm:p-2 hover:bg-gray-100 rounded-full transition-colors"
+                className="p-1.5 sm:p-2 hover:bg-gray-100 rounded-full"
               >
                 <X className="h-4 w-4 sm:h-5 sm:w-5 text-gray-500" />
               </button>
@@ -461,18 +463,18 @@ const ProductCard = ({ product, index, isSlideOpen, onSlideToggle, onLearnMore }
             {/* Slide Content */}
             <div className="p-3 sm:p-4 space-y-4 sm:space-y-6">
               <div>
-                <h4 className="text-sm sm:text-base font-semibold text-gray-900 mb-1.5 sm:mb-2">Specifications</h4>
+                <h4 className="text-xs sm:text-base font-semibold text-gray-900 mb-1.5 sm:mb-2">Specifications</h4>
                 <p className="text-xs sm:text-sm text-gray-600">{product.specs}</p>
               </div>
               
               <div>
-                <h4 className="text-sm sm:text-base font-semibold text-gray-900 mb-1.5 sm:mb-2">Benefits</h4>
+                <h4 className="text-xs sm:text-base font-semibold text-gray-900 mb-1.5 sm:mb-2">Benefits</h4>
                 <p className="text-xs sm:text-sm text-gray-600">{product.benefits}</p>
               </div>
               
               <div>
-                <h4 className="text-sm sm:text-base font-semibold text-gray-900 mb-1.5 sm:mb-2">Technical Details</h4>
-                <ul className="space-y-1.5 sm:space-y-2 text-xs sm:text-sm text-gray-600">
+                <h4 className="text-xs sm:text-base font-semibold text-gray-900 mb-1.5 sm:mb-2">Technical Details</h4>
+                <ul className="space-y-2 text-xs sm:text-sm text-gray-600">
                   {product.details.map((detail, i) => (
                     <li key={i} className="flex items-start">
                       <ChevronRight className="h-3 w-3 sm:h-4 sm:w-4 text-red-500 mt-0.5 flex-shrink-0" />
