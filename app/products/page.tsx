@@ -427,6 +427,62 @@ const ProductCard = ({ product, index, isSlideOpen, onSlideToggle, onLearnMore }
             <Download className="ml-1 sm:ml-2 h-2 w-2 sm:h-4 sm:w-4" />
           </Button>
         </CardFooter>
+
+        {/* Add this sliding details panel */}
+        <div 
+          className={cn(
+            "absolute left-0 right-0 bg-white/95 backdrop-blur-sm p-4 transition-all duration-300 shadow-lg",
+            "transform",
+            isSlideOpen ? "bottom-0" : "-bottom-full"
+          )}
+          style={{ maxHeight: '70vh', overflowY: 'auto' }}
+        >
+          <div className="flex justify-between items-start mb-4">
+            <h3 className="text-lg font-bold text-gray-900">{product.title}</h3>
+            <button 
+              onClick={() => onSlideToggle(index)}
+              className="p-1 hover:bg-gray-100 rounded-full"
+            >
+              <X className="h-4 w-4 text-gray-500" />
+            </button>
+          </div>
+          
+          <div className="space-y-4">
+            <div>
+              <h4 className="font-medium text-gray-900 mb-2">Specifications:</h4>
+              <p className="text-gray-600">{product.specs}</p>
+            </div>
+            
+            <div>
+              <h4 className="font-medium text-gray-900 mb-2">Benefits:</h4>
+              <p className="text-gray-600">{product.benefits}</p>
+            </div>
+            
+            <div>
+              <h4 className="font-medium text-gray-900 mb-2">Details:</h4>
+              <ul className="list-disc list-inside space-y-1 text-gray-600">
+                {product.details.map((detail, i) => (
+                  <li key={i}>{detail}</li>
+                ))}
+              </ul>
+            </div>
+            
+            <div className="flex gap-2 pt-4">
+              <Button 
+                className="flex-1 bg-red-600 text-white hover:bg-red-700"
+                onClick={() => onLearnMore(product)}
+              >
+                Contact Us
+              </Button>
+              <Button 
+                className="flex-1 bg-white text-red-600 border border-red-600 hover:bg-red-50"
+              >
+                Download Brochure
+                <Download className="ml-2 h-4 w-4" />
+              </Button>
+            </div>
+          </div>
+        </div>
       </Card>
     </motion.div>
   );
