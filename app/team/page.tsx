@@ -209,29 +209,22 @@ export default function TeamPage() {
   return (
     <>
       <main>
-        <section className="relative h-[100svh] flex items-center justify-center overflow-hidden">
+        <section className="relative h-[60vh] sm:h-[calc(100vh-56px)] flex items-center justify-center overflow-hidden">
           <motion.div 
-            className="absolute inset-0 z-0 bg-black/40"
+            className="absolute inset-0 z-0 bg-gray-900"
             style={{ opacity, scale }}
           >
             <Image
               src="https://placehold.co/1920x1080"
               alt="LEAFSPRINGS Team"
-              width={1920}
-              height={1080}
-              className="object-cover w-full h-full"
+              fill
+              className="object-cover opacity-60"
               priority
-              sizes="100vw"
             />
           </motion.div>
-          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-            <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-            </svg>
-          </div>
           <div className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
             <motion.h1 
-              className="text-4xl sm:text-5xl md:text-7xl font-bold mb-4 sm:mb-6 leading-tight"
+              className="text-4xl sm:text-5xl md:text-7xl font-bold mb-4 sm:mb-8 leading-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-300"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
@@ -239,13 +232,18 @@ export default function TeamPage() {
               Meet Our Team
             </motion.h1>
             <motion.p 
-              className="text-lg sm:text-xl md:text-2xl mb-8 sm:mb-10"
+              className="text-lg sm:text-xl md:text-2xl mb-6 sm:mb-10"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
               The dedicated professionals behind LEAFSPRINGS' innovative leaf spring machinery solutions
             </motion.p>
+          </div>
+          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+            <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+            </svg>
           </div>
         </section>
 
