@@ -418,7 +418,7 @@ const ProductCard = ({ product, index, isSlideOpen, onSlideToggle, onLearnMore }
             </div>
           </div>
 
-          {/* Buttons Container - Refined for mobile */}
+          {/* Buttons Container - Further refined for mobile */}
           <div className="grid grid-cols-2 gap-0.5 xs:gap-1 sm:gap-2 mt-auto">
             <Button 
               className="h-5 xs:h-6 sm:h-9 text-[6px] xs:text-[8px] sm:text-sm bg-red-600 text-white hover:bg-red-700 transition-all duration-300 px-0.5 xs:px-1 sm:px-4 flex items-center justify-center"
@@ -434,13 +434,13 @@ const ProductCard = ({ product, index, isSlideOpen, onSlideToggle, onLearnMore }
             >
               <span className="flex items-center">
                 Brochure
-                <Download className="ml-0.5 xs:ml-1 sm:ml-1.5 h-1.5 w-1.5 xs:h-2 xs:w-2 sm:h-4 sm:w-4" />
+                <Download className="ml-0.5 xs:ml-1 sm:ml-1.5 h-1 w-1 xs:h-1.5 xs:w-1.5 sm:h-4 sm:w-4" />
               </span>
             </Button>
           </div>
         </div>
 
-        {/* Mobile-Optimized Sliding Panel */}
+        {/* Optimized Mobile Sliding Panel */}
         <div 
           className={cn(
             "fixed inset-0 z-50 bg-white/95 backdrop-blur-sm transition-all duration-300",
@@ -454,25 +454,25 @@ const ProductCard = ({ product, index, isSlideOpen, onSlideToggle, onLearnMore }
         >
           <div className="h-full overflow-y-auto">
             {/* Mobile Slide Header */}
-            <div className="sticky top-0 bg-white/95 backdrop-blur-sm p-2 xs:p-2.5 sm:p-4 border-b flex justify-between items-center">
-              <h3 className="text-[11px] xs:text-xs sm:text-lg font-bold text-gray-900 pr-2 line-clamp-1">{product.title}</h3>
+            <div className="sticky top-0 bg-white/95 backdrop-blur-sm p-1.5 xs:p-2 sm:p-4 border-b flex justify-between items-center">
+              <h3 className="text-[10px] xs:text-xs sm:text-lg font-bold text-gray-900 pr-2 line-clamp-1">{product.title}</h3>
               <button 
                 onClick={() => onSlideToggle(index)}
                 className="p-1 xs:p-1.5 sm:p-2 hover:bg-gray-100 rounded-full"
               >
-                <X className="h-3 w-3 xs:h-3.5 xs:w-3.5 sm:h-5 sm:w-5 text-gray-500" />
+                <X className="h-2.5 w-2.5 xs:h-3 xs:w-3 sm:h-5 sm:w-5 text-gray-500" />
               </button>
             </div>
             
-            {/* Mobile-Optimized Content */}
-            <div className="p-2 xs:p-2.5 sm:p-4 space-y-2 xs:space-y-3 sm:space-y-6">
-              {/* Technical Details Only for Mobile */}
+            {/* Compact Mobile Content */}
+            <div className="p-1.5 xs:p-2 sm:p-4">
+              {/* Mobile-Only Technical Details */}
               <div className="block sm:hidden">
-                <ul className="space-y-1 text-[9px] xs:text-[10px] sm:text-sm text-gray-600">
+                <ul className="grid grid-cols-1 gap-0.5 text-[8px] xs:text-[9px] sm:text-sm text-gray-600">
                   {product.details.map((detail, i) => (
                     <li key={i} className="flex items-start">
-                      <ChevronRight className="h-2 w-2 xs:h-2.5 xs:w-2.5 sm:h-4 sm:w-4 text-red-500 mt-0.5 flex-shrink-0" />
-                      <span className="ml-1 xs:ml-1.5 sm:ml-2">{detail}</span>
+                      <ChevronRight className="h-1.5 w-1.5 xs:h-2 xs:w-2 sm:h-4 sm:w-4 text-red-500 mt-0.5 flex-shrink-0" />
+                      <span className="ml-1 xs:ml-1.5 sm:ml-2 leading-tight">{detail}</span>
                     </li>
                   ))}
                 </ul>
@@ -505,9 +505,9 @@ const ProductCard = ({ product, index, isSlideOpen, onSlideToggle, onLearnMore }
             </div>
 
             {/* Mobile Footer */}
-            <div className="sticky bottom-0 bg-white/95 backdrop-blur-sm p-2 xs:p-2.5 sm:p-4 border-t">
+            <div className="sticky bottom-0 bg-white/95 backdrop-blur-sm p-1.5 xs:p-2 sm:p-4 border-t">
               <Button 
-                className="w-full h-6 xs:h-7 sm:h-10 text-[8px] xs:text-[9px] sm:text-sm bg-red-600 text-white hover:bg-red-700"
+                className="w-full h-5 xs:h-6 sm:h-10 text-[7px] xs:text-[8px] sm:text-sm bg-red-600 text-white hover:bg-red-700"
                 onClick={() => onSlideToggle(index)}
               >
                 Close
