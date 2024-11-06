@@ -173,19 +173,19 @@ export default function AboutPage() {
 
             <div className="container mx-auto px-4">
               <Tabs defaultValue="story" className="w-full">
-                {/* Mobile-optimized Tab Navigation */}
-                <TabsList className="flex flex-wrap sm:grid sm:grid-cols-4 gap-2 mb-6 p-2 bg-gray-50 rounded-xl overflow-x-auto">
-                  {['story', 'vision', 'innovation', 'quality'].map((tab, index) => (
+                {/* Improved Mobile Tab Navigation */}
+                <TabsList className="w-full flex overflow-x-auto hide-scrollbar space-x-2 p-1 bg-gray-50 rounded-xl mb-6">
+                  {['story', 'vision', 'innovation', 'quality'].map((tab) => (
                     <TabsTrigger 
                       key={tab}
                       value={tab}
-                      className="flex-1 min-w-[160px] sm:min-w-0 flex items-center justify-center gap-2 px-4 py-3 text-sm font-medium rounded-lg transition-all duration-300
+                      className="flex-shrink-0 w-auto min-w-[120px] whitespace-nowrap flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-medium rounded-lg transition-all duration-300
                       data-[state=active]:bg-red-600 data-[state=active]:text-white
                       data-[state=inactive]:bg-white data-[state=inactive]:text-gray-600
                       hover:bg-red-50"
                     >
                       {tab === 'story' && <BookOpen className="w-4 h-4" />}
-                      {tab === 'vision' && <Globe className="w-4 h-4" />}
+                      {tab === 'vision' && <Eye className="w-4 h-4" />}
                       {tab === 'innovation' && <Lightbulb className="w-4 h-4" />}
                       {tab === 'quality' && <Shield className="w-4 h-4" />}
                       <span className="capitalize">{tab === 'story' ? 'Our Story' : tab}</span>
@@ -194,10 +194,9 @@ export default function AboutPage() {
                 </TabsList>
 
                 <div className="bg-white rounded-xl overflow-hidden border border-gray-100">
-                  {/* Story Tab Content */}
+                  {/* Story Tab Content - Improved Mobile Layout */}
                   <TabsContent value="story">
-                    <div className="p-4 space-y-8">
-                      {/* Title Section */}
+                    <div className="p-4 sm:p-6 space-y-6">
                       <div className="text-center sm:text-left">
                         <h3 className="text-xl sm:text-3xl font-bold text-gray-800 mb-3">
                           Pioneering Leaf Spring Excellence
@@ -207,8 +206,7 @@ export default function AboutPage() {
                         </p>
                       </div>
 
-                      {/* Image Section - Mobile Optimized */}
-                      <div className="relative aspect-[16/9] w-full rounded-lg overflow-hidden shadow-lg">
+                      <div className="relative aspect-video w-full rounded-lg overflow-hidden shadow-lg">
                         <Image
                           src="https://placehold.co/600x400"
                           alt="LEAFSPRINGS History"
@@ -218,8 +216,7 @@ export default function AboutPage() {
                         />
                       </div>
 
-                      {/* Stats Cards - Mobile Optimized */}
-                      <div className="grid gap-4">
+                      <div className="grid gap-3">
                         {[
                           { icon: <Clock className="w-5 h-5" />, text: "Over 30 years of industry experience" },
                           { icon: <Globe className="w-5 h-5" />, text: "Serving clients in more than 50 countries" },
@@ -227,7 +224,7 @@ export default function AboutPage() {
                         ].map((stat, index) => (
                           <div 
                             key={index}
-                            className="flex items-center gap-4 p-4 rounded-lg bg-gray-50 border border-gray-100"
+                            className="flex items-center gap-4 p-4 rounded-lg bg-gray-50 border border-gray-100 hover:bg-gray-100 transition-colors"
                           >
                             <div className="flex-shrink-0 w-10 h-10 rounded-full bg-red-100 flex items-center justify-center text-red-600">
                               {stat.icon}
