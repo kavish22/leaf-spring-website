@@ -100,7 +100,7 @@ export default function AboutPage() {
     <ErrorBoundary FallbackComponent={ErrorFallback}>
       <main>
         {/* Dynamic Hero Section */}
-        <section className="relative h-screen flex items-center justify-center overflow-hidden">
+        <section className="relative h-[80vh] sm:h-screen flex items-center justify-center overflow-hidden">
           <motion.div 
             className="absolute inset-0 z-0"
             style={{ opacity, scale }}
@@ -114,7 +114,7 @@ export default function AboutPage() {
           </motion.div>
           <div className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
             <motion.h1 
-              className="text-4xl sm:text-5xl md:text-7xl font-bold mb-6 leading-tight"
+              className="text-3xl sm:text-5xl md:text-7xl font-bold mb-4 sm:mb-6 leading-tight"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
@@ -122,7 +122,7 @@ export default function AboutPage() {
               Shaping the Future of Leaf Spring Technology
             </motion.h1>
             <motion.p 
-              className="text-xl md:text-2xl mb-10"
+              className="text-lg sm:text-xl md:text-2xl mb-6 sm:mb-10 px-4"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
@@ -140,30 +140,30 @@ export default function AboutPage() {
             </h2>
             <div className="container mx-auto px-4">
               <Tabs defaultValue="story" className="w-full">
-                <TabsList className="grid w-full grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+                <TabsList className="grid w-full grid-cols-2 md:grid-cols-4 gap-2 sm:gap-4 mb-8">
                   <TabsTrigger 
                     value="story" 
-                    className="text-sm md:text-lg data-[state=active]:bg-red-600 data-[state=active]:text-white hover:bg-red-50 transition-all duration-300 ease-in-out"
+                    className="text-xs sm:text-sm md:text-lg py-2 px-2 sm:px-4 data-[state=active]:bg-red-600 data-[state=active]:text-white hover:bg-red-50 transition-all duration-300 ease-in-out"
                   >
-                    <BookOpen className="mr-2 h-4 w-4" /> Our Story
+                    <BookOpen className="mr-1 sm:mr-2 h-3 w-3 sm:h-4 sm:w-4" /> Our Story
                   </TabsTrigger>
                   <TabsTrigger 
                     value="vision" 
-                    className="text-sm md:text-lg data-[state=active]:bg-red-600 data-[state=active]:text-white hover:bg-red-600 hover:text-white transition-colors"
+                    className="text-xs sm:text-sm md:text-lg py-2 px-2 sm:px-4 data-[state=active]:bg-red-600 data-[state=active]:text-white hover:bg-red-600 hover:text-white transition-colors"
                   >
-                    <Globe className="mr-2 h-4 w-4" /> Vision & Mission
+                    <Globe className="mr-1 sm:mr-2 h-3 w-3 sm:h-4 sm:w-4" /> Vision & Mission
                   </TabsTrigger>
                   <TabsTrigger 
                     value="innovation" 
-                    className="text-sm md:text-lg data-[state=active]:bg-red-600 data-[state=active]:text-white hover:bg-red-600 hover:text-white transition-colors"
+                    className="text-xs sm:text-sm md:text-lg py-2 px-2 sm:px-4 data-[state=active]:bg-red-600 data-[state=active]:text-white hover:bg-red-600 hover:text-white transition-colors"
                   >
-                    <Lightbulb className="mr-2 h-4 w-4" /> Innovation
+                    <Lightbulb className="mr-1 sm:mr-2 h-3 w-3 sm:h-4 sm:w-4" /> Innovation
                   </TabsTrigger>
                   <TabsTrigger 
                     value="quality" 
-                    className="text-sm md:text-lg data-[state=active]:bg-red-600 data-[state=active]:text-white hover:bg-red-600 hover:text-white transition-colors"
+                    className="text-xs sm:text-sm md:text-lg py-2 px-2 sm:px-4 data-[state=active]:bg-red-600 data-[state=active]:text-white hover:bg-red-600 hover:text-white transition-colors"
                   >
-                    <Shield className="mr-2 h-4 w-4" /> Quality Assurance
+                    <Shield className="mr-1 sm:mr-2 h-3 w-3 sm:h-4 sm:w-4" /> Quality Assurance
                   </TabsTrigger>
                 </TabsList>
                 
@@ -359,14 +359,20 @@ export default function AboutPage() {
               {timelineEvents.map((event, index) => (
                 <motion.div
                   key={index}
-                  className={`flex ${index % 2 === 0 ? 'justify-start' : 'justify-end'} mb-8`}
+                  className={`flex flex-col sm:flex-row ${
+                    index % 2 === 0 ? 'sm:justify-start' : 'sm:justify-end'
+                  } mb-8`}
                   initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.5 }}
                   viewport={{ once: true }}
                 >
-                  <div className={`w-5/12 ${index % 2 === 0 ? 'text-right pr-8' : 'text-left pl-8'}`}>
-                    <div className="bg-white p-4 rounded shadow-lg">
+                  <div className={`w-full sm:w-5/12 ${
+                    index % 2 === 0 
+                      ? 'sm:text-right sm:pr-8' 
+                      : 'sm:text-left sm:pl-8'
+                  } text-center sm:text-left`}>
+                    <div className="bg-white p-4 rounded shadow-lg mx-4 sm:mx-0">
                       <h3 className="text-xl font-bold text-red-600 mb-2">{event.year}</h3>
                       <h4 className="text-lg font-semibold mb-2">{event.title}</h4>
                       <p className="text-gray-600">{event.description}</p>
@@ -388,11 +394,13 @@ export default function AboutPage() {
               </p>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-7xl mx-auto px-4">
               {testimonials
                 .slice(currentSet * 3, (currentSet * 3) + 3)
                 .map((testimonial, index) => (
-                  <Card key={index + (currentSet * 3)} className="h-[400px] bg-white hover:shadow-xl transition-shadow duration-300 relative overflow-hidden">
+                  <Card key={index + (currentSet * 3)} 
+                    className="min-h-[350px] sm:h-[400px] bg-white hover:shadow-xl transition-shadow duration-300 relative overflow-hidden"
+                  >
                     <CardContent className="p-8 flex flex-col h-full">
                       {/* Rating Stars */}
                       <div className="flex mb-6">
@@ -443,10 +451,12 @@ export default function AboutPage() {
         </section>
 
         {/* CTA Section */}
-        <section className="py-24 bg-red-700 text-white">
+        <section className="py-16 sm:py-24 bg-red-700 text-white">
           <div className="container mx-auto px-4 text-center">
-            <h2 className="text-4xl font-bold mb-8">Ready to Transform Your Leaf Spring Manufacturing?</h2>
-            <div className="flex flex-col sm:flex-row justify-center gap-4">
+            <h2 className="text-3xl sm:text-4xl font-bold mb-6 sm:mb-8 px-4">
+              Ready to Transform Your Leaf Spring Manufacturing?
+            </h2>
+            <div className="flex flex-col sm:flex-row justify-center gap-4 px-4">
               <Link 
                 href="/contact" 
                 className="inline-flex items-center bg-white text-red-600 border-2 border-red-600 hover:bg-red-600 hover:text-white hover:border-2 hover:border-white transition-colors px-8 py-3 rounded-md font-bold"
