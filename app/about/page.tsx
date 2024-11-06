@@ -415,68 +415,85 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* Testimonials */}
-        <section className="py-20 bg-gray-100">
+        {/* Testimonials Section */}
+        <section className="py-16 sm:py-20 bg-gray-100">
           <div className="container mx-auto px-4">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold mb-4">What Our Clients Say</h2>
+            <div className="text-center mb-10 sm:mb-16">
+              <h2 className="text-3xl sm:text-4xl font-bold mb-4">
+                What Our Clients Say
+              </h2>
               <p className="text-gray-600 text-lg max-w-2xl mx-auto">
                 Discover why leading manufacturers trust LEAFSPRINGS for their machinery needs
               </p>
             </div>
             
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-7xl mx-auto px-4">
-              {testimonials
-                .slice(currentSet * 3, (currentSet * 3) + 3)
-                .map((testimonial, index) => (
-                  <Card key={index + (currentSet * 3)} 
-                    className="min-h-[350px] sm:h-[400px] bg-white hover:shadow-xl transition-shadow duration-300 relative overflow-hidden"
-                  >
-                    <CardContent className="p-8 flex flex-col h-full">
-                      {/* Rating Stars */}
-                      <div className="flex mb-6">
-                        {[...Array(5)].map((_, i) => (
-                          <Star 
-                            key={i} 
-                            className="w-5 h-5 text-yellow-400 fill-current"
-                          />
-                        ))}
-                      </div>
-                      
-                      {/* Testimonial Content */}
-                      <p className="text-gray-700 text-lg mb-auto relative z-10 leading-relaxed">
-                        "{testimonial.content}"
-                      </p>
-                      
-                      {/* Author Info */}
-                      <div className="flex items-center border-t pt-6 mt-6">
-                        <div className="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center">
-                          <span className="text-red-600 font-bold text-xl">
-                            {testimonial.author.charAt(0)}
-                          </span>
+            <div className="relative">
+              {/* Testimonials Container */}
+              <div className="flex flex-nowrap overflow-x-auto hide-scrollbar gap-4 pb-6 sm:pb-0 sm:grid sm:grid-cols-3 sm:gap-6 max-w-7xl mx-auto">
+                {testimonials
+                  .slice(currentSet * 3, (currentSet * 3) + 3)
+                  .map((testimonial, index) => (
+                    <Card 
+                      key={index + (currentSet * 3)} 
+                      className="flex-shrink-0 w-[300px] sm:w-auto bg-white hover:shadow-xl transition-all duration-300 relative group"
+                    >
+                      <CardContent className="p-6 sm:p-8 flex flex-col h-full">
+                        {/* Quote Icon */}
+                        <div className="absolute top-6 right-6 text-red-100">
+                          <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+                          </svg>
                         </div>
-                        <div className="ml-4">
-                          <p className="font-semibold text-gray-900">{testimonial.author}</p>
-                          <p className="text-red-600">{testimonial.company}</p>
+
+                        {/* Rating Stars */}
+                        <div className="flex mb-4">
+                          {[...Array(5)].map((_, i) => (
+                            <Star 
+                              key={i} 
+                              className="w-5 h-5 text-yellow-400 fill-current"
+                            />
+                          ))}
                         </div>
-                      </div>
-                    </CardContent>
-                  </Card>
+                        
+                        {/* Testimonial Content */}
+                        <p className="text-gray-700 text-base leading-relaxed mb-6 line-clamp-4">
+                          "{testimonial.content}"
+                        </p>
+                        
+                        {/* Author Info */}
+                        <div className="mt-auto pt-4 border-t border-gray-100">
+                          <div className="flex items-center">
+                            <div className="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center">
+                              <span className="text-red-600 font-bold text-lg">
+                                {testimonial.author.charAt(0)}
+                              </span>
+                            </div>
+                            <div className="ml-3">
+                              <p className="font-semibold text-gray-900">{testimonial.author}</p>
+                              <p className="text-sm text-red-600">{testimonial.company}</p>
+                            </div>
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  ))}
+              </div>
+
+              {/* Navigation Dots */}
+              <div className="flex justify-center items-center gap-3 mt-6">
+                {[0, 1, 2].map((index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentSet(index)}
+                    className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
+                      index === currentSet 
+                        ? 'bg-red-600 w-6' 
+                        : 'bg-red-200 hover:bg-red-300'
+                    }`}
+                    aria-label={`Go to testimonial set ${index + 1}`}
+                  />
                 ))}
-            </div>
-            
-            {/* Update the navigation dots */}
-            <div className="flex justify-center mt-12 gap-2">
-              {[0, 1, 2].map((index) => (
-                <button
-                  key={index}
-                  onClick={() => setCurrentSet(index)}
-                  className={`w-3 h-3 rounded-full ${
-                    index === currentSet ? 'bg-red-600' : 'bg-red-200'
-                  }`}
-                  aria-label={`Go to testimonial set ${index + 1}`}
-                />
-              ))}
+              </div>
             </div>
           </div>
         </section>
