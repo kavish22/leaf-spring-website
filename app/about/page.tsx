@@ -272,13 +272,13 @@ export default function AboutPage() {
         </section>
 
         {/* Company Overview - Our Journey of Excellence */}
-        <section className="py-16 sm:py-24 bg-white" aria-labelledby="company-overview">
+        <section className="py-12 sm:py-24 bg-white" aria-labelledby="company-overview">
           <div className="container mx-auto px-4">
-            <div className="max-w-3xl mx-auto text-center mb-16">
-              <h2 className="text-3xl sm:text-4xl font-bold mb-4">
+            <div className="max-w-3xl mx-auto text-center mb-8 sm:mb-16">
+              <h2 className="text-2xl sm:text-4xl font-bold mb-4">
                 Our Journey of Excellence
               </h2>
-              <p className="text-gray-600">
+              <p className="text-gray-600 text-sm sm:text-base px-4">
                 Discover how we've been shaping the future of leaf spring manufacturing through innovation, 
                 quality, and unwavering commitment to excellence.
               </p>
@@ -286,20 +286,20 @@ export default function AboutPage() {
 
             <Tabs defaultValue="story" className="w-full max-w-7xl mx-auto">
               {/* Tabs Navigation */}
-              <TabsList className="flex justify-center mb-12 bg-transparent">
+              <TabsList className="flex flex-wrap justify-center mb-8 sm:mb-12 bg-transparent gap-2 sm:gap-0">
                 {[
-                  { value: 'story', icon: <BookOpen className="w-5 h-5" />, label: 'Our Story' },
-                  { value: 'vision', icon: <Eye className="w-5 h-5" />, label: 'Vision' },
-                  { value: 'innovation', icon: <Lightbulb className="w-5 h-5" />, label: 'Innovation' },
-                  { value: 'quality', icon: <Shield className="w-5 h-5" />, label: 'Quality' }
+                  { value: 'story', icon: <BookOpen className="w-4 h-4 sm:w-5 sm:h-5" />, label: 'Our Story' },
+                  { value: 'vision', icon: <Eye className="w-4 h-4 sm:w-5 sm:h-5" />, label: 'Vision' },
+                  { value: 'innovation', icon: <Lightbulb className="w-4 h-4 sm:w-5 sm:h-5" />, label: 'Innovation' },
+                  { value: 'quality', icon: <Shield className="w-4 h-4 sm:w-5 sm:h-5" />, label: 'Quality' }
                 ].map((tab) => (
                   <TabsTrigger 
                     key={tab.value}
                     value={tab.value}
-                    className="inline-flex items-center gap-3 px-8 py-4 text-base font-medium
+                    className="inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-8 py-2 sm:py-4 text-sm sm:text-base font-medium
                       data-[state=active]:bg-red-600 data-[state=active]:text-white
                       data-[state=inactive]:bg-gray-50 data-[state=inactive]:text-gray-600
-                      hover:bg-red-50 transition-all duration-300"
+                      hover:bg-red-50 transition-all duration-300 rounded-full sm:rounded-md w-full sm:w-auto"
                   >
                     {tab.icon}
                     {tab.label}
@@ -310,29 +310,29 @@ export default function AboutPage() {
               {/* Common Tab Content Layout */}
               {['story', 'vision', 'innovation', 'quality'].map((tabValue) => (
                 <TabsContent key={tabValue} value={tabValue}>
-                  <div className="grid lg:grid-cols-12 gap-12 items-center">
+                  <div className="grid lg:grid-cols-12 gap-8 sm:gap-12 items-center">
                     {/* Content Column */}
-                    <div className="lg:col-span-5 space-y-8">
+                    <div className="lg:col-span-5 space-y-6 sm:space-y-8 order-2 lg:order-1">
                       {/* Dynamic Content based on tab */}
                       {tabValue === 'story' && (
                         <>
                           <div>
-                            <h3 className="text-3xl font-bold mb-4">Three Decades of Excellence</h3>
-                            <p className="text-gray-600 text-lg">
+                            <h3 className="text-2xl sm:text-3xl font-bold mb-4">Three Decades of Excellence</h3>
+                            <p className="text-gray-600 text-base sm:text-lg">
                               Since 1990, we've been pioneering innovations in leaf spring manufacturing, 
                               setting industry standards and delivering excellence worldwide.
                             </p>
                           </div>
-                          <div className="grid grid-cols-2 gap-6">
+                          <div className="grid grid-cols-2 gap-3 sm:gap-6">
                             {[
                               { number: "30+", label: "Years of Excellence" },
                               { number: "50+", label: "Countries Served" },
                               { number: "1000+", label: "Machines Delivered" },
                               { number: "24/7", label: "Customer Support" }
                             ].map((stat, index) => (
-                              <div key={index} className="bg-gray-50 p-6 rounded-xl">
-                                <div className="text-3xl font-bold text-red-600 mb-1">{stat.number}</div>
-                                <div className="text-sm text-gray-600">{stat.label}</div>
+                              <div key={index} className="bg-gray-50 p-4 sm:p-6 rounded-xl hover:bg-gray-100 transition-colors duration-300">
+                                <div className="text-xl sm:text-3xl font-bold text-red-600 mb-1">{stat.number}</div>
+                                <div className="text-xs sm:text-sm text-gray-600">{stat.label}</div>
                               </div>
                             ))}
                           </div>
@@ -414,10 +414,10 @@ export default function AboutPage() {
                     </div>
 
                     {/* Image Column */}
-                    <div className="lg:col-span-7">
-                      <div className="relative h-[600px] rounded-2xl overflow-hidden shadow-2xl">
+                    <div className="lg:col-span-7 order-1 lg:order-2">
+                      <div className="relative h-[300px] sm:h-[600px] rounded-xl sm:rounded-2xl overflow-hidden shadow-lg sm:shadow-2xl">
                         <Image
-                          src={`/images/${tabValue}-image.jpg`} // Replace with your actual images
+                          src={`/images/${tabValue}-image.jpg`}
                           alt={`LEAFSPRINGS ${tabValue}`}
                           fill
                           className="object-cover hover:scale-105 transition-transform duration-700"
