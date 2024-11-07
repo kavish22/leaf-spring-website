@@ -75,25 +75,34 @@ const InfiniteCarousel = ({ testimonials }: { testimonials: Testimonial[] }) => 
         {testimonials.map((testimonial, index) => (
           <Card 
             key={`testimonial-${index}`}
-            className="w-[300px] flex-shrink-0 bg-white hover:shadow-lg transition-shadow duration-300"
+            className="w-[400px] h-[250px] flex-shrink-0 bg-white hover:shadow-xl transition-all duration-300 border border-gray-100"
           >
-            <CardContent className="p-6">
-              <div className="flex items-center gap-4 mb-4">
-                <Image
-                  src={testimonial.image}
-                  alt={testimonial.name}
-                  width={50}
-                  height={50}
-                  className="rounded-full"
-                />
+            <CardContent className="p-8 h-full flex flex-col">
+              {/* Quote section */}
+              <div className="relative mb-8">
+                <div className="absolute -top-4 left-0 text-red-600 text-5xl opacity-20">"</div>
+                <blockquote className="text-gray-700 text-base leading-relaxed line-clamp-4 pt-2 px-2">
+                  {testimonial.quote}
+                </blockquote>
+                <div className="absolute bottom-0 right-0 text-red-600 text-5xl opacity-20">"</div>
+              </div>
+
+              {/* Profile section */}
+              <div className="mt-auto flex items-center gap-4 border-t pt-6 border-gray-100">
+                <div className="w-14 h-14 rounded-full overflow-hidden border-2 border-gray-100">
+                  <Image
+                    src={testimonial.image}
+                    alt={testimonial.name}
+                    width={56}
+                    height={56}
+                    className="object-cover w-full h-full"
+                  />
+                </div>
                 <div>
-                  <h4 className="font-semibold text-gray-800">{testimonial.name}</h4>
+                  <h4 className="font-semibold text-gray-800 text-base">{testimonial.name}</h4>
                   <p className="text-sm text-gray-600">{testimonial.position}</p>
                 </div>
               </div>
-              <blockquote className="text-gray-700 italic">
-                "{testimonial.quote}"
-              </blockquote>
             </CardContent>
           </Card>
         ))}
@@ -112,18 +121,15 @@ export default function TeamPage() {
 
   // Update team members with categories
   const teamMembers: TeamMember[] = [
-    { name: "John Doe", position: "CEO", image: "https://placehold.co/300x300", category: 'management' },
-    { name: "Jane Smith", position: "CTO", image: "https://placehold.co/300x300", category: 'management' },
-    { name: "Mike Johnson", position: "Head of Engineering", image: "https://placehold.co/300x300", category: 'engineering' },
-    { name: "Sarah Williams", position: "Lead Designer", image: "https://placehold.co/300x300", category: 'design' },
-    { name: "Chris Brown", position: "Sales Director", image: "https://placehold.co/300x300", category: 'management' },
-    { name: "Emily Davis", position: "Marketing Manager", image: "https://placehold.co/300x300", category: 'management' },
-    { name: "David Wilson", position: "Product Manager", image: "https://placehold.co/300x300", category: 'management' },
-    { name: "Lisa Taylor", position: "HR Manager", image: "https://placehold.co/300x300", category: 'support' },
-    { name: "Robert Martinez", position: "Quality Assurance Lead", image: "https://placehold.co/300x300", category: 'engineering' },
-    { name: "Jennifer Lee", position: "Customer Support Manager", image: "https://placehold.co/300x300", category: 'support' },
-    { name: "Kevin Chen", position: "Software Engineer", image: "https://placehold.co/300x300", category: 'engineering' },
-    { name: "Amanda White", position: "Financial Analyst", image: "https://placehold.co/300x300", category: 'support' },
+    { name: "Gunalan Pallavarasu", position: "Chairman and Managing Director", image: "/images/team/Gunalan photo.webp", category: 'management' },
+    { name: "Santhana Lakshmi", position: "Director", image: "/images/team/Santhana lakshmi photo.webp", category: 'management' },
+    { name: "Pooja Abhirami", position: "Business Development", image: "/images/team/Pooja.webp", category: 'management' },
+    { name: "Ashok Kushwah", position: "Engineering Head", image: "/images/team/Ashok.webp", category: 'engineering' },
+    { name: "Md Shakil Khan", position: "Manufacturing & Quality Head", image: "/images/team/Shakil.webp", category: 'engineering' },
+    { name: "Vivek Singh", position: "Technical Services Head", image: "/images/team/Vivek Singh.webp", category: 'engineering' },
+    { name: "Basant Gurjar", position: "Marketing Manager", image: "/images/team/Basant.webp", category: 'management' },
+    { name: "Tarun Kushwah", position: "Design Lead", image: "/images/team/Tarun.webp", category: 'design' },
+    { name: "Pankaj Mahadik", position: "Production Supervisor", image: "/images/team/Pankaj.webp", category: 'engineering' },
   ];
 
   // Filter team members based on active filter
@@ -133,76 +139,58 @@ export default function TeamPage() {
 
   const testimonials: Testimonial[] = [
     {
-      name: "John Doe",
-      position: "Senior Engineer",
-      image: "https://placehold.co/100x100",
-      quote: "Working at LEAFSPRINGS has been an incredible journey of innovation and growth."
+      name: "Gunalan Pallavarasu",
+      position: "Chairman and Managing Director",
+      image: "/images/team/Gunalan photo.webp",
+      quote: "Proud to lead a team that consistently pushes boundaries in leaf spring innovation. Together, we're building something extraordinary."
     },
     {
-      name: "Sarah Smith",
+      name: "Santhana Lakshmi",
+      position: "Director",
+      image: "/images/team/Santhana lakshmi photo.webp",
+      quote: "At Leaf Springs Machinery, we've created more than a company - we've built a family that shares a passion for excellence."
+    },
+    {
+      name: "Pooja Abhirami",
+      position: "Business Development",
+      image: "/images/team/Pooja.webp",
+      quote: "Every day brings new opportunities to connect with clients who share our vision for quality and innovation."
+    },
+    {
+      name: "Ashok Kushwah",
+      position: "Engineering Head",
+      image: "/images/team/Ashok.webp",
+      quote: "Working with cutting-edge technology and a talented team makes every engineering challenge exciting and rewarding."
+    },
+    {
+      name: "Md Shakil Khan",
+      position: "Manufacturing & Quality Head",
+      image: "/images/team/Shakil.webp",
+      quote: "The dedication to quality here is unmatched. We take pride in every product that leaves our facility."
+    },
+    {
+      name: "Vivek Singh",
+      position: "Technical Services Head",
+      image: "/images/team/Vivek Singh.webp",
+      quote: "Being part of a team that values innovation and customer satisfaction makes every day meaningful."
+    },
+    {
+      name: "Basant Gurjar",
+      position: "Marketing Manager",
+      image: "/images/team/Basant.webp",
+      quote: "It's inspiring to share our success stories and see the positive impact we make in the industry."
+    },
+    {
+      name: "Tarun Kushwah",
       position: "Design Lead",
-      image: "https://placehold.co/100x100",
-      quote: "The collaborative environment here brings out the best in every team member."
+      image: "/images/team/Tarun.webp",
+      quote: "The creative freedom and support here enable us to design solutions that truly make a difference."
     },
     {
-      name: "Michael Chen",
-      position: "Product Manager",
-      image: "https://placehold.co/100x100",
-      quote: "I'm proud to be part of a team that's revolutionizing the industry."
-    },
-    {
-      name: "Emily Brown",
-      position: "Quality Assurance",
-      image: "https://placehold.co/100x100",
-      quote: "The commitment to excellence here is unmatched in the industry."
-    },
-    {
-      name: "David Wilson",
-      position: "Technical Lead",
-      image: "https://placehold.co/100x100",
-      quote: "Every day brings new challenges and opportunities for growth."
-    },
-    {
-      name: "Lisa Anderson",
-      position: "Software Engineer",
-      image: "https://placehold.co/100x100",
-      quote: "The support and mentorship I've received here has been invaluable."
-    },
-    {
-      name: "Robert Taylor",
-      position: "Systems Architect",
-      image: "https://placehold.co/100x100",
-      quote: "Innovation is not just encouraged, it's part of our DNA."
-    },
-    {
-      name: "Jennifer Lee",
-      position: "Project Manager",
-      image: "https://placehold.co/100x100",
-      quote: "The team's dedication to quality is truly inspiring."
-    },
-    {
-      name: "Kevin Martinez",
-      position: "Development Lead",
-      image: "https://placehold.co/100x100",
-      quote: "We're constantly pushing the boundaries of what's possible."
-    },
-    {
-      name: "Amanda White",
-      position: "UX Designer",
-      image: "https://placehold.co/100x100",
-      quote: "The creative freedom here allows us to deliver exceptional results."
-    },
-    {
-      name: "Thomas Johnson",
-      position: "Research Engineer",
-      image: "https://placehold.co/100x100",
-      quote: "Being part of groundbreaking projects is incredibly rewarding."
-    },
-    {
-      name: "Rachel Garcia",
-      position: "Technical Architect",
-      image: "https://placehold.co/100x100",
-      quote: "The collaborative spirit here drives our success every day."
+      name: "Pankaj Mahadik",
+      position: "Production Supervisor",
+      image: "/images/team/Pankaj.webp",
+      quote: "The collaborative spirit and commitment to excellence make Leaf Springs Machinery an amazing place to work."
     }
   ];
 
@@ -321,24 +309,23 @@ export default function TeamPage() {
                     duration: 0.5,
                     delay: index * 0.1,
                   }}
-                  layout  // Add this to handle smooth transitions when filtering
+                  layout
                 >
-                  <Card className="overflow-hidden transition-all duration-300 hover:shadow-xl group">
-                    <div className="relative">
-                      <Image
-                        src={member.image}
-                        alt={member.name}
-                        width={300}
-                        height={300}
-                        className="w-full h-56 md:h-64 object-cover transition-transform duration-300 group-hover:scale-105"
-                      />
+                  <Card className="overflow-hidden transition-all duration-300 hover:shadow-xl">
+                    <div className="relative bg-gray-50 h-72 p-4">
+                      <div className="relative h-full w-full border border-gray-200 bg-white">
+                        <Image
+                          src={member.image}
+                          alt={member.name}
+                          fill
+                          className="object-contain p-2"
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        />
+                      </div>
                     </div>
-                    <CardContent className="text-center p-6">
-                      <h3 className="text-xl font-semibold mb-2 text-gray-800">{member.name}</h3>
-                      <p className="text-gray-600 mb-3">{member.position}</p>
-                      <p className="text-sm text-gray-500 line-clamp-3">
-                        Brief description about the team member's expertise and experience.
-                      </p>
+                    <CardContent className="text-center p-4 bg-white">
+                      <h3 className="text-xl font-semibold mb-1 text-gray-800">{member.name}</h3>
+                      <p className="text-gray-600">{member.position}</p>
                     </CardContent>
                   </Card>
                 </motion.div>

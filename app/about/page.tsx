@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Image from 'next/image'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { Button } from "@/components/ui/button"
@@ -28,7 +28,15 @@ const timelineEvents = [
   { year: 2020, title: "Industry 4.0 Integration", description: "Implemented AI and IoT solutions in our manufacturing processes." },
 ]
 
-const testimonials = [
+// Define the testimonial type first
+type Testimonial = {
+  author: string;
+  company: string;
+  content: string;
+}
+
+// Update the testimonials array type
+const testimonials: Testimonial[] = [
   { author: "Alex Thompson", company: "AutoTech Industries", content: "LEAFSPRINGS has been instrumental in optimizing our production line. Their innovative solutions have significantly improved our efficiency." },
   { author: "Maria Garcia", company: "Global Motors", content: "The quality and reliability of LEAFSPRINGS machinery are unmatched. They've been a crucial partner in our manufacturing success." },
   { author: "Chris Lee", company: "EcoVehicles", content: "Working with LEAFSPRINGS has helped us stay at the forefront of sustainable vehicle manufacturing. Their expertise is truly invaluable." },
@@ -83,6 +91,106 @@ const TimelineItem = ({ event, index }: { event: typeof timelineEvents[0], index
     </div>
   </motion.div>
 );
+
+// Add this component near the top of the file
+const InfiniteTestimonialCarousel = ({ testimonials }: { testimonials: Testimonial[] }) => {
+  const baseVelocity = -0.5
+  const scrollerRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const scroller = scrollerRef.current
+    if (!scroller) return
+
+    const scrollContent = Array.from(scroller.children)
+    
+    // Clone items for seamless loop
+    scrollContent.forEach(item => {
+      const clone = item.cloneNode(true)
+      scroller.appendChild(clone)
+    })
+
+    let xPos = 0
+    let animationFrameId: number
+
+    const animate = () => {
+      xPos += baseVelocity
+
+      // Reset position when first set is fully scrolled
+      const contentWidth = scrollContent.length * (384 + 24) // card width + gap
+      if (Math.abs(xPos) >= contentWidth) {
+        xPos = 0
+      }
+
+      scroller.style.transform = `translateX(${xPos}px)`
+      animationFrameId = requestAnimationFrame(animate)
+    }
+
+    animate()
+
+    return () => {
+      cancelAnimationFrame(animationFrameId)
+    }
+  }, [])
+
+  return (
+    <div className="overflow-hidden">
+      <div
+        ref={scrollerRef}
+        className="flex gap-6"
+        style={{
+          width: 'max-content',
+          willChange: 'transform'
+        }}
+      >
+        {testimonials.map((testimonial: typeof testimonials[0], index: number) => (
+          <Card 
+            key={`testimonial-${index}`}
+            className="w-[384px] flex-shrink-0 bg-white hover:shadow-xl transition-shadow duration-300"
+          >
+            <CardContent className="p-6 sm:p-8 flex flex-col h-full">
+              {/* Quote Icon */}
+              <div className="text-red-100 mb-4">
+                <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+                </svg>
+              </div>
+
+              {/* Rating Stars */}
+              <div className="flex mb-4">
+                {[...Array(5)].map((_, i) => (
+                  <Star 
+                    key={i} 
+                    className="w-5 h-5 text-yellow-400 fill-current"
+                  />
+                ))}
+              </div>
+              
+              {/* Testimonial Content */}
+              <p className="text-gray-700 text-base leading-relaxed mb-6">
+                "{testimonial.content}"
+              </p>
+              
+              {/* Author Info */}
+              <div className="mt-auto pt-4 border-t border-gray-100">
+                <div className="flex items-center">
+                  <div className="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center">
+                    <span className="text-red-600 font-bold text-lg">
+                      {testimonial.author.charAt(0)}
+                    </span>
+                  </div>
+                  <div className="ml-3">
+                    <p className="font-semibold text-gray-900">{testimonial.author}</p>
+                    <p className="text-sm text-red-600">{testimonial.company}</p>
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+    </div>
+  )
+}
 
 export default function AboutPage() {
   const { scrollYProgress } = useScroll()
@@ -163,175 +271,166 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* Company Overview */}
-        <Suspense fallback={<LoadingSkeleton />}>
-          <section className="py-8 sm:py-20 bg-white" aria-labelledby="company-overview">
-            <div className="container mx-auto px-4">
-              <h2 id="company-overview" className="text-2xl sm:text-4xl font-bold text-center mb-8 sm:mb-12">
+        {/* Company Overview - Our Journey of Excellence */}
+        <section className="py-16 sm:py-24 bg-white" aria-labelledby="company-overview">
+          <div className="container mx-auto px-4">
+            <div className="max-w-3xl mx-auto text-center mb-16">
+              <h2 className="text-3xl sm:text-4xl font-bold mb-4">
                 Our Journey of Excellence
               </h2>
+              <p className="text-gray-600">
+                Discover how we've been shaping the future of leaf spring manufacturing through innovation, 
+                quality, and unwavering commitment to excellence.
+              </p>
+            </div>
 
-              <Tabs defaultValue="story" className="w-full">
-                {/* Tabs Container - Optimized for 2x2 matrix on mobile */}
-                <div className="bg-gray-50 p-6 sm:p-3 rounded-xl shadow-sm mb-8 sm:mb-6 min-h-[280px] sm:min-h-fit">
-                  <TabsList className="w-full h-full grid grid-cols-2 grid-rows-2 gap-4 sm:flex sm:gap-2">
-                    {[
-                      { value: 'story', icon: <BookOpen className="w-5 h-5 sm:w-4 sm:h-4" />, label: 'Our Story' },
-                      { value: 'vision', icon: <Eye className="w-5 h-5 sm:w-4 sm:h-4" />, label: 'Vision' },
-                      { value: 'innovation', icon: <Lightbulb className="w-5 h-5 sm:w-4 sm:h-4" />, label: 'Innovation' },
-                      { value: 'quality', icon: <Shield className="w-5 h-5 sm:w-4 sm:h-4" />, label: 'Quality' }
-                    ].map((tab) => (
-                      <TabsTrigger 
-                        key={tab.value}
-                        value={tab.value}
-                        className="flex flex-col items-center justify-center gap-2 px-4 py-6 sm:py-3.5 sm:flex-row text-base sm:text-sm font-medium rounded-lg transition-all duration-300
-                        data-[state=active]:bg-red-600 data-[state=active]:text-white data-[state=active]:shadow-md
-                        data-[state=inactive]:bg-white data-[state=inactive]:text-gray-600
-                        hover:bg-red-50 w-full h-full"
-                      >
-                        {tab.icon}
-                        <span className="capitalize">{tab.label}</span>
-                      </TabsTrigger>
-                    ))}
-                  </TabsList>
-                </div>
+            <Tabs defaultValue="story" className="w-full max-w-7xl mx-auto">
+              {/* Tabs Navigation */}
+              <TabsList className="flex justify-center mb-12 bg-transparent">
+                {[
+                  { value: 'story', icon: <BookOpen className="w-5 h-5" />, label: 'Our Story' },
+                  { value: 'vision', icon: <Eye className="w-5 h-5" />, label: 'Vision' },
+                  { value: 'innovation', icon: <Lightbulb className="w-5 h-5" />, label: 'Innovation' },
+                  { value: 'quality', icon: <Shield className="w-5 h-5" />, label: 'Quality' }
+                ].map((tab) => (
+                  <TabsTrigger 
+                    key={tab.value}
+                    value={tab.value}
+                    className="inline-flex items-center gap-3 px-8 py-4 text-base font-medium
+                      data-[state=active]:bg-red-600 data-[state=active]:text-white
+                      data-[state=inactive]:bg-gray-50 data-[state=inactive]:text-gray-600
+                      hover:bg-red-50 transition-all duration-300"
+                  >
+                    {tab.icon}
+                    {tab.label}
+                  </TabsTrigger>
+                ))}
+              </TabsList>
 
-                {/* Content Container - Added top margin for better spacing */}
-                <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden mt-2 sm:mt-0">
-                  {/* Story Tab */}
-                  <TabsContent value="story" className="focus-visible:outline-none">
-                    <div className="p-6 space-y-6">
-                      <div className="text-center sm:text-left max-w-3xl">
-                        <h3 className="text-xl sm:text-2xl font-bold text-gray-800 mb-3">
-                          Pioneering Leaf Spring Excellence
-                        </h3>
-                        <p className="text-base text-gray-600">
-                          Since our inception in 1990, LEAFSPRINGS has been at the forefront of leaf spring manufacturing innovation.
-                        </p>
-                      </div>
+              {/* Common Tab Content Layout */}
+              {['story', 'vision', 'innovation', 'quality'].map((tabValue) => (
+                <TabsContent key={tabValue} value={tabValue}>
+                  <div className="grid lg:grid-cols-12 gap-12 items-center">
+                    {/* Content Column */}
+                    <div className="lg:col-span-5 space-y-8">
+                      {/* Dynamic Content based on tab */}
+                      {tabValue === 'story' && (
+                        <>
+                          <div>
+                            <h3 className="text-3xl font-bold mb-4">Three Decades of Excellence</h3>
+                            <p className="text-gray-600 text-lg">
+                              Since 1990, we've been pioneering innovations in leaf spring manufacturing, 
+                              setting industry standards and delivering excellence worldwide.
+                            </p>
+                          </div>
+                          <div className="grid grid-cols-2 gap-6">
+                            {[
+                              { number: "30+", label: "Years of Excellence" },
+                              { number: "50+", label: "Countries Served" },
+                              { number: "1000+", label: "Machines Delivered" },
+                              { number: "24/7", label: "Customer Support" }
+                            ].map((stat, index) => (
+                              <div key={index} className="bg-gray-50 p-6 rounded-xl">
+                                <div className="text-3xl font-bold text-red-600 mb-1">{stat.number}</div>
+                                <div className="text-sm text-gray-600">{stat.label}</div>
+                              </div>
+                            ))}
+                          </div>
+                        </>
+                      )}
 
-                      <div className="relative aspect-video w-full rounded-lg overflow-hidden shadow-md">
+                      {tabValue === 'vision' && (
+                        <>
+                          <div>
+                            <h3 className="text-3xl font-bold mb-4">Shaping Tomorrow's Manufacturing</h3>
+                            <p className="text-gray-600 text-lg mb-8">
+                              Our vision extends beyond current capabilities, driving innovation 
+                              and sustainability in global manufacturing.
+                            </p>
+                          </div>
+                          <div className="space-y-6">
+                            {[
+                              { title: "Global Leadership", desc: "Setting worldwide standards in manufacturing excellence" },
+                              { title: "Sustainable Future", desc: "Committed to eco-friendly manufacturing processes" },
+                              { title: "Innovation Hub", desc: "Continuous development of cutting-edge technologies" }
+                            ].map((item, index) => (
+                              <div key={index} className="bg-gray-50 p-6 rounded-xl">
+                                <h4 className="text-xl font-semibold mb-2">{item.title}</h4>
+                                <p className="text-gray-600">{item.desc}</p>
+                              </div>
+                            ))}
+                          </div>
+                        </>
+                      )}
+
+                      {tabValue === 'innovation' && (
+                        <>
+                          <div>
+                            <h3 className="text-3xl font-bold mb-4">Pioneering Smart Manufacturing</h3>
+                            <p className="text-gray-600 text-lg mb-8">
+                              Leveraging Industry 4.0 technologies to revolutionize manufacturing 
+                              with unprecedented precision.
+                            </p>
+                          </div>
+                          <div className="space-y-6">
+                            {[
+                              { title: "AI Integration", desc: "Smart manufacturing processes with real-time optimization" },
+                              { title: "IoT Solutions", desc: "Connected systems for seamless operation monitoring" },
+                              { title: "Automation", desc: "Advanced robotics for precision manufacturing" }
+                            ].map((item, index) => (
+                              <div key={index} className="bg-gray-50 p-6 rounded-xl border-l-4 border-red-600">
+                                <h4 className="text-xl font-semibold mb-2">{item.title}</h4>
+                                <p className="text-gray-600">{item.desc}</p>
+                              </div>
+                            ))}
+                          </div>
+                        </>
+                      )}
+
+                      {tabValue === 'quality' && (
+                        <>
+                          <div>
+                            <h3 className="text-3xl font-bold mb-4">Uncompromising Quality Standards</h3>
+                            <p className="text-gray-600 text-lg mb-8">
+                              Our commitment to quality is reflected in every machine we produce, 
+                              backed by rigorous testing.
+                            </p>
+                          </div>
+                          <div className="grid grid-cols-2 gap-6">
+                            {[
+                              { icon: <Shield className="w-8 h-8" />, title: "ISO 9001:2015" },
+                              { icon: <Award className="w-8 h-8" />, title: "100% Testing" },
+                              { icon: <Users className="w-8 h-8" />, title: "Expert Team" },
+                              { icon: <Target className="w-8 h-8" />, title: "Zero Defect" }
+                            ].map((item, index) => (
+                              <div key={index} className="bg-gray-50 p-6 rounded-xl text-center">
+                                <div className="text-red-600 mb-3 flex justify-center">{item.icon}</div>
+                                <h4 className="font-semibold text-gray-900">{item.title}</h4>
+                              </div>
+                            ))}
+                          </div>
+                        </>
+                      )}
+                    </div>
+
+                    {/* Image Column */}
+                    <div className="lg:col-span-7">
+                      <div className="relative h-[600px] rounded-2xl overflow-hidden shadow-2xl">
                         <Image
-                          src="https://placehold.co/600x400"
-                          alt="LEAFSPRINGS History"
+                          src={`/images/${tabValue}-image.jpg`} // Replace with your actual images
+                          alt={`LEAFSPRINGS ${tabValue}`}
                           fill
-                          className="object-cover"
-                          loading="lazy"
+                          className="object-cover hover:scale-105 transition-transform duration-700"
+                          priority
                         />
                       </div>
-
-                      <div className="grid gap-4">
-                        {[
-                          { icon: <Clock className="w-5 h-5" />, text: "Over 30 years of industry experience" },
-                          { icon: <Globe className="w-5 h-5" />, text: "Serving clients in more than 50 countries" },
-                          { icon: <Truck className="w-5 h-5" />, text: "1000+ machines delivered worldwide" }
-                        ].map((stat, index) => (
-                          <div key={index} className="flex items-center gap-4 p-4 rounded-lg bg-gray-50 border border-gray-100">
-                            <div className="flex-shrink-0 w-10 h-10 rounded-full bg-red-100 flex items-center justify-center text-red-600">
-                              {stat.icon}
-                            </div>
-                            <p className="font-medium text-gray-700">{stat.text}</p>
-                          </div>
-                        ))}
-                      </div>
                     </div>
-                  </TabsContent>
-
-                  {/* Vision Tab */}
-                  <TabsContent value="vision" className="focus-visible:outline-none">
-                    <div className="p-6 space-y-6">
-                      <div className="text-center sm:text-left max-w-3xl">
-                        <h3 className="text-xl sm:text-2xl font-bold text-gray-800 mb-3">
-                          Shaping the Future of Mobility
-                        </h3>
-                        <p className="text-base text-gray-600">
-                          Leading the industry with innovative solutions and forward-thinking approaches.
-                        </p>
-                      </div>
-
-                      <div className="grid gap-4">
-                        {[
-                          { icon: <Eye className="w-5 h-5" />, title: "Our Vision", text: "To be the global leader in leaf spring machinery, setting industry standards for innovation and excellence." },
-                          { icon: <Target className="w-5 h-5" />, title: "Our Mission", text: "Delivering world-class manufacturing solutions that empower our clients to achieve unprecedented efficiency and quality." },
-                          { icon: <Star className="w-5 h-5" />, title: "Our Goals", text: "Expanding our global footprint while maintaining our commitment to sustainability and innovation." }
-                        ].map((item, index) => (
-                          <div key={index} className="p-6 rounded-lg bg-gradient-to-br from-red-50 to-red-100/50 border border-red-100">
-                            <h4 className="text-lg font-semibold mb-3 text-red-600 flex items-center gap-2">
-                              {item.icon}
-                              {item.title}
-                            </h4>
-                            <p className="text-gray-700">{item.text}</p>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </TabsContent>
-
-                  {/* Innovation Tab */}
-                  <TabsContent value="innovation" className="focus-visible:outline-none">
-                    <div className="p-6 space-y-6">
-                      <div className="text-center sm:text-left max-w-3xl">
-                        <h3 className="text-xl sm:text-2xl font-bold text-gray-800 mb-3">
-                          Leading Through Innovation
-                        </h3>
-                        <p className="text-base text-gray-600">
-                          Pioneering advanced manufacturing solutions with cutting-edge technology.
-                        </p>
-                      </div>
-
-                      <div className="grid gap-4">
-                        {[
-                          { icon: <Cog className="w-5 h-5" />, title: "Smart Manufacturing", text: "Industry 4.0 integration with IoT capabilities for real-time monitoring and optimization" },
-                          { icon: <Award className="w-5 h-5" />, title: "Patented Technology", text: "Proprietary solutions that deliver unprecedented efficiency and precision" },
-                          { icon: <Target className="w-5 h-5" />, title: "Precision Control", text: "Advanced automation systems ensuring consistent quality and reduced waste" }
-                        ].map((item, index) => (
-                          <div key={index} className="p-6 rounded-lg bg-gray-50 border border-gray-100">
-                            <h4 className="text-lg font-semibold mb-3 text-gray-800 flex items-center gap-2">
-                              <div className="text-red-600">{item.icon}</div>
-                              {item.title}
-                            </h4>
-                            <p className="text-gray-600">{item.text}</p>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </TabsContent>
-
-                  {/* Quality Tab */}
-                  <TabsContent value="quality" className="focus-visible:outline-none">
-                    <div className="p-6 space-y-6">
-                      <div className="text-center sm:text-left max-w-3xl">
-                        <h3 className="text-xl sm:text-2xl font-bold text-gray-800 mb-3">
-                          Uncompromising Quality
-                        </h3>
-                        <p className="text-base text-gray-600">
-                          Setting industry standards through rigorous quality control and testing.
-                        </p>
-                      </div>
-
-                      <div className="grid gap-4">
-                        {[
-                          { icon: <Shield className="w-5 h-5" />, title: "ISO Certified", text: "Maintaining the highest international quality standards in manufacturing" },
-                          { icon: <Target className="w-5 h-5" />, title: "100% Testing", text: "Comprehensive quality assurance at every stage of production" },
-                          { icon: <Award className="w-5 h-5" />, title: "Industry Leading", text: "Setting benchmarks for performance and reliability in the industry" },
-                          { icon: <Users className="w-5 h-5" />, title: "Expert Team", text: "Highly trained professionals ensuring quality at every step" }
-                        ].map((item, index) => (
-                          <div key={index} className="p-6 rounded-lg bg-gray-50 border border-gray-100">
-                            <h4 className="text-lg font-semibold mb-3 text-gray-800 flex items-center gap-2">
-                              <div className="text-red-600">{item.icon}</div>
-                              {item.title}
-                            </h4>
-                            <p className="text-gray-600">{item.text}</p>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </TabsContent>
-                </div>
-              </Tabs>
-            </div>
-          </section>
-        </Suspense>
+                  </div>
+                </TabsContent>
+              ))}
+            </Tabs>
+          </div>
+        </section>
 
         {/* Core Values */}
         <section className="py-20 bg-gray-100">
@@ -428,72 +527,12 @@ export default function AboutPage() {
             </div>
             
             <div className="relative">
-              {/* Testimonials Container */}
-              <div className="flex flex-nowrap overflow-x-auto hide-scrollbar gap-4 pb-6 sm:pb-0 sm:grid sm:grid-cols-3 sm:gap-6 max-w-7xl mx-auto">
-                {testimonials
-                  .slice(currentSet * 3, (currentSet * 3) + 3)
-                  .map((testimonial, index) => (
-                    <Card 
-                      key={index + (currentSet * 3)} 
-                      className="flex-shrink-0 w-[300px] sm:w-auto bg-white hover:shadow-xl transition-all duration-300 relative group"
-                    >
-                      <CardContent className="p-6 sm:p-8 flex flex-col h-full">
-                        {/* Quote Icon */}
-                        <div className="absolute top-6 right-6 text-red-100">
-                          <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
-                          </svg>
-                        </div>
-
-                        {/* Rating Stars */}
-                        <div className="flex mb-4">
-                          {[...Array(5)].map((_, i) => (
-                            <Star 
-                              key={i} 
-                              className="w-5 h-5 text-yellow-400 fill-current"
-                            />
-                          ))}
-                        </div>
-                        
-                        {/* Testimonial Content */}
-                        <p className="text-gray-700 text-base leading-relaxed mb-6 line-clamp-4">
-                          "{testimonial.content}"
-                        </p>
-                        
-                        {/* Author Info */}
-                        <div className="mt-auto pt-4 border-t border-gray-100">
-                          <div className="flex items-center">
-                            <div className="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center">
-                              <span className="text-red-600 font-bold text-lg">
-                                {testimonial.author.charAt(0)}
-                              </span>
-                            </div>
-                            <div className="ml-3">
-                              <p className="font-semibold text-gray-900">{testimonial.author}</p>
-                              <p className="text-sm text-red-600">{testimonial.company}</p>
-                            </div>
-                          </div>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  ))}
-              </div>
-
-              {/* Navigation Dots */}
-              <div className="flex justify-center items-center gap-3 mt-6">
-                {[0, 1, 2].map((index) => (
-                  <button
-                    key={index}
-                    onClick={() => setCurrentSet(index)}
-                    className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
-                      index === currentSet 
-                        ? 'bg-red-600 w-6' 
-                        : 'bg-red-200 hover:bg-red-300'
-                    }`}
-                    aria-label={`Go to testimonial set ${index + 1}`}
-                  />
-                ))}
-              </div>
+              {/* Gradient overlays */}
+              <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-gray-100 to-transparent z-10" />
+              <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-gray-100 to-transparent z-10" />
+              
+              {/* Testimonials carousel */}
+              <InfiniteTestimonialCarousel testimonials={testimonials} />
             </div>
           </div>
         </section>

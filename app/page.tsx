@@ -134,42 +134,115 @@ const productStructuredData = {
   }))
 }
 
+// Update the clients array before the HomePage component
+const clients = [
+  { name: "Client 1", logo: "/images/clients/client (1).webp" },
+  { name: "Client 2", logo: "/images/clients/client (2).webp" },
+  { name: "Client 3", logo: "/images/clients/client (3).webp" },
+  { name: "Client 4", logo: "/images/clients/client (4).webp" },
+  { name: "Client 5", logo: "/images/clients/client (5).webp" },
+  { name: "Client 6", logo: "/images/clients/client (6).webp" },
+  { name: "Client 7", logo: "/images/clients/client (7).webp" },
+  { name: "Client 8", logo: "/images/clients/client (8).webp" },
+  { name: "Client 9", logo: "/images/clients/client (9).webp" },
+];
+
 export default function HomePage() {
   return (
     <>
       <main>
         {/* Hero Section */}
-        <section className="relative overflow-hidden py-16 md:py-32">
-          {/* Add a subtle gradient overlay for better text readability */}
-          <div className="absolute inset-0 z-0 bg-gradient-to-r from-black/70 to-black/50" />
+        <section className="relative min-h-[90vh] flex items-center overflow-hidden">
+          {/* Enhanced gradient overlay with multiple layers */}
           <div className="absolute inset-0 z-0">
-            <Image
-              src="https://placehold.co/1920x1080/333333/ffffff"
-              alt="Hero Background"
-              fill
-              className="object-cover"
-              priority
-            />
+            <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/70 to-black/50" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
           </div>
           
-          <div className="container mx-auto px-4 relative z-10 flex flex-col md:flex-row items-center">
-            <div className="w-full pr-0 md:pr-12">
-              <motion.h1 
-                className="text-4xl sm:text-5xl md:text-7xl font-bold mb-6 md:mb-8 leading-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-300"
+          {/* Background image with subtle animation */}
+          <div className="absolute inset-0 z-0 scale-105">
+            <motion.div
+              initial={{ scale: 1.1 }}
+              animate={{ scale: 1 }}
+              transition={{ duration: 10, repeat: Infinity, repeatType: "reverse" }}
+              className="h-full w-full"
+            >
+              <Image
+                src="https://placehold.co/1920x1080/333333/ffffff"
+                alt="Hero Background"
+                fill
+                className="object-cover"
+                priority
+                quality={90}
+              />
+            </motion.div>
+          </div>
+          
+          <div className="container mx-auto px-4 relative z-10">
+            <div className="max-w-4xl">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
               >
-                Complete Leaf Spring Manufacturing Machinery Solutions
-              </motion.h1>
-              <motion.p className="text-lg sm:text-xl md:text-2xl mb-8 md:mb-10">
+                <span className="inline-block px-4 py-2 bg-red-600/20 text-white rounded-full text-sm font-semibold mb-6 backdrop-blur-sm border border-red-600/20">
+                  Industry Leading Solutions
+                </span>
+                <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold mb-6 md:mb-8 leading-tight">
+                  <span className="bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-gray-300">
+                    Complete Leaf Spring Manufacturing Machinery Solutions
+                  </span>
+                </h1>
+              </motion.div>
+
+              <motion.p 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                className="text-xl sm:text-2xl md:text-3xl mb-12 md:mb-14 text-gray-200 max-w-3xl"
+              >
                 Industry-Leading Heavy Duty Shearing Machines, Assembly Lines, and Stress Shot Peening Automation Systems
               </motion.p>
-              <div className="flex flex-col sm:flex-row gap-4 sm:gap-6">
-                <Link href="#product-showcase" className="inline-flex items-center bg-white text-red-600 border-2 border-red-600 hover:bg-red-600 hover:text-white hover:border-2 hover:border-white transition-colors px-8 py-3 rounded-md font-bold">
-                  Explore Our Machinery <ChevronRight className="ml-2 h-4 w-4" />
+
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+                className="flex flex-col sm:flex-row gap-6 sm:gap-8 items-center"
+              >
+                <Link 
+                  href="#product-showcase" 
+                  className="group w-full sm:w-auto inline-flex items-center justify-center bg-red-600 text-white border-2 border-red-600 hover:bg-red-700 hover:border-red-700 transition-all duration-300 px-8 py-4 rounded-full font-bold text-lg shadow-lg hover:shadow-red-600/30"
+                >
+                  Explore Our Machinery 
+                  <ChevronRight className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
                 </Link>
-                <Link href="#contact" className="inline-flex items-center bg-white text-red-600 border-2 border-red-600 hover:bg-red-600 hover:text-white hover:border-2 hover:border-white transition-colors px-8 py-3 rounded-md font-bold">
-                  Get In Touch <ChevronRight className="ml-2 h-4 w-4" />
+                <Link 
+                  href="#contact" 
+                  className="group w-full sm:w-auto inline-flex items-center justify-center bg-white/10 text-white border-2 border-white/20 hover:bg-white/20 backdrop-blur-sm transition-all duration-300 px-8 py-4 rounded-full font-bold text-lg shadow-lg"
+                >
+                  Get In Touch 
+                  <ChevronRight className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
                 </Link>
-              </div>
+                
+                {/* Added social proof */}
+                <motion.div 
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.8, delay: 0.6 }}
+                  className="hidden lg:flex items-center gap-4 ml-8 text-white/80"
+                >
+                  <div className="w-px h-12 bg-white/20" />
+                  <div>
+                    <div className="flex -space-x-3">
+                      {[1, 2, 3, 4].map((i) => (
+                        <div key={i} className="w-10 h-10 rounded-full border-2 border-red-600 bg-white/10 backdrop-blur-sm" />
+                      ))}
+                    </div>
+                    <p className="text-sm mt-2">Trusted by 500+ Companies</p>
+                  </div>
+                </motion.div>
+              </motion.div>
             </div>
           </div>
         </section>
@@ -189,21 +262,21 @@ export default function HomePage() {
                   title: "High-Pressure Water Jet Descaler Machine",
                   specs: "Operates at 300 BAR, removing 95-99% of scale for better surface quality.",
                   benefits: "Provides clean surfaces on leaf springs, ideal for tough automotive and industrial environments.",
-                  image: "https://placehold.co/400x300",
+                  image: "/images/products/Descaler.webp",
                   icon: <Gauge className="w-8 h-8 text-red-600" />
                 },
                 {
                   title: "Heavy-Duty Leaf Spring Shearing Machine",
                   specs: "250-ton capacity, scissor mechanism for precise shearing.",
                   benefits: "Boosts manufacturing efficiency, precisely cuts heavy materials in high-demand industrial setups.",
-                  image: "https://placehold.co/400x300",
+                  image: "/images/products/Shearing.webp",
                   icon: <Shield className="w-8 h-8 text-red-600" />
                 },
                 {
                   title: "Automated Heat Treatment Furnace",
                   specs: "Customizable temperature control for optimized leaf spring toughness.",
                   benefits: "Enhances durability and strength, meeting global standards for industrial applications.",
-                  image: "https://placehold.co/400x300",
+                  image: "/images/products/heat-furnace.webp",
                   icon: <Flame className="w-8 h-8 text-red-600" />
                 }
               ].map((product, index) => (
@@ -312,10 +385,7 @@ export default function HomePage() {
               <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-white to-transparent z-10" />
               <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-white to-transparent z-10" />
               
-              <InfiniteClientCarousel clients={Array.from({ length: 10 }).map((_, index) => ({
-                name: `Client ${index + 1}`,
-                logo: "https://placehold.co/120x120"
-              }))} />
+              <InfiniteClientCarousel clients={clients} />
             </div>
           </div>
         </section>

@@ -32,7 +32,7 @@ const products = [
     title: "Heavy Duty Shearing Machine",
     specs: "250 Ton capacity, Scissor mechanism",
     benefits: "Hydraulic operation, ideal for heavy-duty shearing of large sections",
-    image: "https://placehold.co/400x300",
+    image: "/images/products/Shearing.webp",
     category: "Shearing",
     details: [
       "Capacity / Power: 250 Ton",
@@ -46,7 +46,7 @@ const products = [
     title: "Heavy Assembly Line",
     specs: "50 Ton capacity, Dual piston telescopic press",
     benefits: "Automated operation for automotive suspension systems assembly",
-    image: "https://placehold.co/400x300",
+    image: "/images/products/Heavy assembly line.webp",
     category: "Assembly",
     details: [
       "Capacity / Power: 50 Ton",
@@ -60,7 +60,7 @@ const products = [
     title: "SSP Automation Line",
     specs: "15+5+15 Ton press, Low-cost automations",
     benefits: "Fully automatic operation for stress peening",
-    image: "https://placehold.co/400x300",
+    image: "/images/products/SSP auto.webp",
     category: "Automation",
     details: [
       "Capacity / Power: 15+5+15 Ton (press)",
@@ -74,7 +74,7 @@ const products = [
     title: "High Pressure De-scaler",
     specs: "300 BAR pressure, Sophisticated hydraulic controls",
     benefits: "Cleans 95-99% scales, suitable for steel mills",
-    image: "https://placehold.co/400x300",
+    image: "/images/products/Descaler.webp",
     category: "Cleaning",
     details: [
       "Capacity / Power: 300 BAR pressure",
@@ -88,7 +88,7 @@ const products = [
     title: "Hydraulic Endurance Testing",
     specs: "20 Ton load, CNC servo control machine",
     benefits: "Load and endurance testing with custom cylinder for long life",
-    image: "https://placehold.co/400x300",
+    image: "/images/products/Endurance testing mc.webp",
     category: "Testing",
     details: [
       "Capacity / Power: 20 Ton load",
@@ -102,7 +102,7 @@ const products = [
     title: "Z-bending Press-Inclined",
     specs: "400 Ton (4 cylinders), Multi-cylinder design",
     benefits: "Hot application for thickness bending up to 60mm",
-    image: "https://placehold.co/400x300",
+    image: "/images/products/z-bending press-inclined.webp",
     category: "Bending",
     details: [
       "Capacity / Power: 400 Ton (4 cylinders)",
@@ -116,7 +116,7 @@ const products = [
     title: "Z-bending Press-4 Cylinder",
     specs: "350 Ton (3 cylinders), Clamping and bending",
     benefits: "Hot application for thickness bending up to 60mm",
-    image: "https://placehold.co/400x300",
+    image: "/images/products/Z Press Machine-4-cylinder.webp",
     category: "Bending",
     details: [
       "Capacity / Power: 350 Ton (3 cylinders)",
@@ -130,7 +130,7 @@ const products = [
     title: "Profile Checking Gauge",
     specs: "Max length 1600mm, Parabolic profile gauge",
     benefits: "Hot or cold profile checking with ±1 mm length tolerance",
-    image: "https://placehold.co/400x300",
+    image: "/images/products/Profile checking.webp",
     category: "Measurement",
     details: [
       "Capacity / Power: Max length 1600mm",
@@ -144,7 +144,7 @@ const products = [
     title: "Straightening - Linear",
     specs: "50 Ton capacity, Precision sliding machine",
     benefits: "Hydraulic operation for lateral bend correction in hot conditions",
-    image: "https://placehold.co/400x300",
+    image: "/images/products/Straighening-Linear.webp",
     category: "Straightening",
     details: [
       "Capacity / Power: 50 Ton",
@@ -158,7 +158,7 @@ const products = [
     title: "Straightening - Parallelogram",
     specs: "50 Ton capacity, Parallelogram mechanism",
     benefits: "Hydraulic operation for lateral bend correction in hot conditions",
-    image: "https://placehold.co/400x300",
+    image: "/images/products/Straighening-Parallelogram.webp",
     category: "Straightening",
     details: [
       "Capacity / Power: 50 Ton",
@@ -172,7 +172,7 @@ const products = [
     title: "Eye Grinding Machine",
     specs: "Max eye dia: 120mm, 960 RPM Machine",
     benefits: "Hydraulic operation with magnetic separator and auto coolant",
-    image: "https://placehold.co/400x300",
+    image: "/images/products/eye grinding blur.webp",
     category: "Grinding",
     details: [
       "Capacity / Power: Max eye dia: 120mm",
@@ -186,7 +186,7 @@ const products = [
     title: "Eye Rolling Machine",
     specs: "Max thickness: 25mm, Two-stage curling",
     benefits: "Hydraulic operation for 180-degree curling in hot applications",
-    image: "https://placehold.co/400x300",
+    image: "/images/products/eye rolling machine image.webp",
     category: "Rolling",
     details: [
       "Capacity / Power: Max thickness: 25mm",
@@ -200,7 +200,7 @@ const products = [
     title: "Eye Reaming Machine",
     specs: "Max eye dia: 60mm, VFD speed adjustment",
     benefits: "Hydraulic operation for bush reaming with separate coolant system",
-    image: "https://placehold.co/400x300",
+    image: "/images/products/Eye reaming machine image.webp",
     category: "Reaming",
     details: [
       "Capacity / Power: Max eye dia: 60mm",
@@ -214,7 +214,7 @@ const products = [
     title: "Eye Boring Machine",
     specs: "Boring dia: 20-60mm, LHS spindle rotation",
     benefits: "Hydraulic operation with ±0.02 mm tolerance and 40 sec cycle time",
-    image: "https://placehold.co/400x300",
+    image: "/images/products/eye boring machine.webp",
     category: "Boring",
     details: [
       "Capacity / Power: Boring dia: 20-60mm",
@@ -228,7 +228,7 @@ const products = [
     title: "Eye Milling Machine",
     specs: "Milling stock 0.5-2.0mm, 150mm diameter milling cutter",
     benefits: "Hydraulic operation for milling after parabolic rolling",
-    image: "https://placehold.co/400x300",
+    image: "/images/products/Eye milling machine.webp",
     category: "Milling",
     details: [
       "Capacity / Power: Milling stock 0.5-2.0mm",
@@ -242,7 +242,7 @@ const products = [
     title: "Hockey Bending Machine",
     specs: "25+25+50 Ton, Precision sliding machine",
     benefits: "Hydraulic operation for lateral bend correction and hockey bending",
-    image: "https://placehold.co/400x300",
+    image: "/images/products/Hockey bending.webp",
     category: "Bending",
     details: [
       "Capacity / Power: 25+25+50 Ton",
@@ -256,7 +256,7 @@ const products = [
     title: "Mechanical Straightening Machine",
     specs: "Max 180 Ton, High stroke frequency machine",
     benefits: "Mechanical operation with 48 cycles per minute and 22 KW power",
-    image: "https://placehold.co/400x300",
+    image: "/images/products/Cold straightening image.webp",
     category: "Straightening",
     details: [
       "Capacity / Power: Max 180 Ton",
@@ -270,7 +270,7 @@ const products = [
     title: "Bush Pressing Machine",
     specs: "10 Ton capacity, Load/deflection control",
     benefits: "Hydraulic operation with 650mm daylight and 400mm stroke",
-    image: "https://placehold.co/400x300",
+    image: "/images/products/Bush pressing machine image.webp",
     category: "Pressing",
     details: [
       "Capacity / Power: 10 Ton",
@@ -284,7 +284,7 @@ const products = [
     title: "Multi Station Press",
     specs: "100T/200T/100T/100T, Common hydraulic powerpack",
     benefits: "Manual/Robotic loading for forming and cutting operations",
-    image: "https://placehold.co/400x300",
+    image: "/images/products/Multi-Station-press.webp",
     category: "Pressing",
     details: [
       "Capacity / Power: 100T/200T/100T/100T",
@@ -298,7 +298,7 @@ const products = [
     title: "Scragging Machine",
     specs: "5-50 Ton capacity, HMI-based system",
     benefits: "Manual/Hydraulic operation for pressing assemblies",
-    image: "https://placehold.co/400x300",
+    image: "/images/products/scragging machine.webp",
     category: "Pressing",
     details: [
       "Capacity / Power: 5-50 Ton",
@@ -312,7 +312,7 @@ const products = [
     title: "Short Taper Rolling Machine",
     specs: "200 Ton rolling station, Manual loading/unloading",
     benefits: "Manual operation for tapered rolling of leaf springs",
-    image: "https://placehold.co/400x300",
+    image: "/images/products/short taper rolling image.webp",
     category: "Rolling",
     details: [
       "Capacity / Power: 200 Ton (rolling station)",
@@ -326,7 +326,7 @@ const products = [
     title: "Leaf Correction Press",
     specs: "15-60 Ton capacity, Hydraulically operated",
     benefits: "Hydraulic operation for re-cambering and bend correction",
-    image: "https://placehold.co/400x300",
+    image: "/images/products/Leaf spring correction press.webp",
     category: "Pressing",
     details: [
       "Capacity / Power: 15-60 Ton",
@@ -340,7 +340,7 @@ const products = [
     title: "Magnetic Loader",
     specs: "500 kg lifting capacity, Magneto pneumatic manipulator",
     benefits: "Magnetic operation for stock manipulation",
-    image: "https://placehold.co/400x300",
+    image: "/images/products/magnetic loader.webp",
     category: "Loading",
     details: [
       "Capacity / Power: 500 kg lifting capacity",
@@ -354,7 +354,7 @@ const products = [
     title: "Manual Leaf Spring Assembling Machine",
     specs: "5-20 Ton capacity, All steel fabrication",
     benefits: "Hydraulic operation for leaf spring assembly",
-    image: "https://placehold.co/400x300",
+    image: "/images/products/Leaf spring Assembling press.webp",
     category: "Assembly",
     details: [
       "Capacity / Power: 5-20 Ton",
@@ -389,9 +389,9 @@ const ProductCard = ({ product, index, isSlideOpen, onSlideToggle, onLearnMore }
         <div className="relative h-24 xs:h-32 sm:h-48 lg:h-52 overflow-hidden">
           <Image 
             src={product.image} 
-            alt={product.title} 
+            alt={product.title}
             fill
-            className="object-cover transition-transform duration-500 group-hover:scale-110"
+            className="object-cover"
           />
           <Badge className="absolute top-1 right-1 sm:top-3 sm:right-3 bg-red-600/90 backdrop-blur-sm text-white px-1 sm:px-2.5 py-0.5 text-[8px] leading-relaxed sm:text-xs font-medium">
             {product.category}
@@ -443,7 +443,7 @@ const ProductCard = ({ product, index, isSlideOpen, onSlideToggle, onLearnMore }
         {/* Optimized Mobile Sliding Panel */}
         <div 
           className={cn(
-            "fixed inset-0 z-50 bg-white/95 backdrop-blur-sm transition-all duration-300",
+            "fixed inset-0 z-50 bg-white/95 backdrop-blur-sm transition-all duration-300 flex flex-col",
             "sm:absolute sm:inset-auto sm:left-0 sm:right-0 sm:bottom-0",
             isSlideOpen ? "translate-y-0" : "translate-y-full"
           )}
@@ -452,27 +452,27 @@ const ProductCard = ({ product, index, isSlideOpen, onSlideToggle, onLearnMore }
             top: '56px',
           }}
         >
-          <div className="h-full overflow-y-auto">
-            {/* Mobile Slide Header */}
-            <div className="sticky top-0 bg-white/95 backdrop-blur-sm p-1.5 xs:p-2 sm:p-4 border-b flex justify-between items-center">
-              <h3 className="text-[10px] xs:text-xs sm:text-lg font-bold text-gray-900 pr-2 line-clamp-1">{product.title}</h3>
-              <button 
-                onClick={() => onSlideToggle(index)}
-                className="p-1 xs:p-1.5 sm:p-2 hover:bg-gray-100 rounded-full"
-              >
-                <X className="h-2.5 w-2.5 xs:h-3 xs:w-3 sm:h-5 sm:w-5 text-gray-500" />
-              </button>
-            </div>
-            
-            {/* Compact Mobile Content */}
+          {/* Header */}
+          <div className="sticky top-0 bg-white/95 backdrop-blur-sm p-1.5 xs:p-2 sm:p-4 border-b flex justify-between items-center">
+            <h3 className="text-[10px] xs:text-xs sm:text-lg font-bold text-gray-900 pr-2">{product.title}</h3>
+            <button 
+              onClick={() => onSlideToggle(index)}
+              className="p-1 xs:p-1.5 sm:p-2 hover:bg-gray-100 rounded-full"
+            >
+              <X className="h-2.5 w-2.5 xs:h-3 xs:w-3 sm:h-5 sm:w-5 text-gray-500" />
+            </button>
+          </div>
+          
+          {/* Content - with flex-grow to push footer down */}
+          <div className="flex-grow overflow-y-auto">
             <div className="p-1.5 xs:p-2 sm:p-4">
               {/* Mobile-Only Technical Details */}
               <div className="block sm:hidden">
-                <ul className="grid grid-cols-1 gap-0.5 text-[8px] xs:text-[9px] sm:text-sm text-gray-600">
+                <ul className="grid grid-cols-1 gap-1.5 text-[7px] xs:text-[8px] text-gray-600">
                   {product.details.map((detail, i) => (
                     <li key={i} className="flex items-start">
                       <ChevronRight className="h-1.5 w-1.5 xs:h-2 xs:w-2 sm:h-4 sm:w-4 text-red-500 mt-0.5 flex-shrink-0" />
-                      <span className="ml-1 xs:ml-1.5 sm:ml-2 leading-tight">{detail}</span>
+                      <span className="ml-1 xs:ml-1.5 sm:ml-2">{detail}</span>
                     </li>
                   ))}
                 </ul>
@@ -480,22 +480,22 @@ const ProductCard = ({ product, index, isSlideOpen, onSlideToggle, onLearnMore }
 
               {/* Desktop Content - Hidden on Mobile */}
               <div className="hidden sm:block">
+                <div className="mb-4">
+                  <h4 className="text-sm font-semibold text-gray-900 mb-2">Specifications</h4>
+                  <p className="text-xs text-gray-600">{product.specs}</p>
+                </div>
+                
+                <div className="mb-4">
+                  <h4 className="text-sm font-semibold text-gray-900 mb-2">Benefits</h4>
+                  <p className="text-xs text-gray-600">{product.benefits}</p>
+                </div>
+                
                 <div>
-                  <h4 className="text-base font-semibold text-gray-900 mb-2">Specifications</h4>
-                  <p className="text-sm text-gray-600">{product.specs}</p>
-                </div>
-                
-                <div className="mt-4">
-                  <h4 className="text-base font-semibold text-gray-900 mb-2">Benefits</h4>
-                  <p className="text-sm text-gray-600">{product.benefits}</p>
-                </div>
-                
-                <div className="mt-4">
-                  <h4 className="text-base font-semibold text-gray-900 mb-2">Technical Details</h4>
-                  <ul className="space-y-2 text-sm text-gray-600">
+                  <h4 className="text-sm font-semibold text-gray-900 mb-2">Technical Details</h4>
+                  <ul className="space-y-1.5 text-xs text-gray-600">
                     {product.details.map((detail, i) => (
                       <li key={i} className="flex items-start">
-                        <ChevronRight className="h-4 w-4 text-red-500 mt-0.5 flex-shrink-0" />
+                        <ChevronRight className="h-3 w-3 text-red-500 mt-0.5 flex-shrink-0" />
                         <span className="ml-2">{detail}</span>
                       </li>
                     ))}
@@ -503,9 +503,11 @@ const ProductCard = ({ product, index, isSlideOpen, onSlideToggle, onLearnMore }
                 </div>
               </div>
             </div>
+          </div>
 
-            {/* Mobile Footer */}
-            <div className="sticky bottom-0 bg-white/95 backdrop-blur-sm p-1.5 xs:p-2 sm:p-4 border-t">
+          {/* Footer - will stay at bottom due to flex layout */}
+          <div className="bg-white/95 backdrop-blur-sm border-t">
+            <div className="p-1.5 xs:p-2 sm:p-4">
               <Button 
                 className="w-full h-5 xs:h-6 sm:h-10 text-[7px] xs:text-[8px] sm:text-sm bg-red-600 text-white hover:bg-red-700"
                 onClick={() => onSlideToggle(index)}
