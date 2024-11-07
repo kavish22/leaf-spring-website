@@ -372,6 +372,16 @@ export default function AboutPage() {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.5 }}
                     >
+                      <div className="relative h-[600px] rounded-2xl overflow-hidden shadow-2xl">
+                        <Image
+                          src="/images/story-image.jpg"
+                          alt="Our Story"
+                          fill
+                          className="object-cover hover:scale-105 transition-transform duration-500"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+                      </div>
+
                       <div className="space-y-8">
                         <div>
                           <h3 className="text-3xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-red-600 to-red-800">
@@ -382,36 +392,44 @@ export default function AboutPage() {
                             consistently setting new industry standards and pushing the boundaries of what's possible.
                           </p>
                         </div>
-                        
-                        <div className="grid grid-cols-2 gap-6">
+
+                        <div className="space-y-6">
                           {[
-                            { number: "30+", label: "Years of Excellence" },
-                            { number: "50+", label: "Countries Served" },
-                            { number: "1000+", label: "Machines Delivered" },
-                            { number: "24/7", label: "Expert Support" }
-                          ].map((stat, idx) => (
+                            {
+                              icon: <Clock className="w-8 h-8 text-red-600" />,
+                              title: "30+ Years Experience",
+                              description: "Pioneering leaf spring manufacturing since 1990"
+                            },
+                            {
+                              icon: <Globe className="w-8 h-8 text-red-600" />,
+                              title: "Global Presence",
+                              description: "Serving customers in over 50 countries worldwide"
+                            },
+                            {
+                              icon: <Award className="w-8 h-8 text-red-600" />,
+                              title: "1000+ Machines Delivered",
+                              description: "Trusted by manufacturers globally"
+                            }
+                          ].map((item, idx) => (
                             <motion.div 
                               key={idx}
-                              className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow"
-                              initial={{ opacity: 0, y: 20 }}
-                              animate={{ opacity: 1, y: 0 }}
+                              className="bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition-all group"
+                              initial={{ opacity: 0, x: 20 }}
+                              animate={{ opacity: 1, x: 0 }}
                               transition={{ delay: idx * 0.1 }}
                             >
-                              <div className="text-3xl font-bold text-red-600 mb-1">{stat.number}</div>
-                              <div className="text-sm text-gray-600">{stat.label}</div>
+                              <div className="flex gap-4 items-start">
+                                <div className="p-3 bg-red-50 rounded-xl group-hover:bg-red-100 transition-colors">
+                                  {item.icon}
+                                </div>
+                                <div>
+                                  <h4 className="text-xl font-semibold mb-2">{item.title}</h4>
+                                  <p className="text-gray-600">{item.description}</p>
+                                </div>
+                              </div>
                             </motion.div>
                           ))}
                         </div>
-                      </div>
-                      
-                      <div className="relative h-[600px] rounded-2xl overflow-hidden shadow-2xl">
-                        <Image
-                          src="/images/story-image.jpg"
-                          alt="Our Story"
-                          fill
-                          className="object-cover hover:scale-105 transition-transform duration-500"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
                       </div>
                     </motion.div>
                   </TabsContent>
@@ -464,7 +482,7 @@ export default function AboutPage() {
                           ].map((item, idx) => (
                             <motion.div 
                               key={idx}
-                              className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-all group"
+                              className="bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition-all group"
                               initial={{ opacity: 0, x: 20 }}
                               animate={{ opacity: 1, x: 0 }}
                               transition={{ delay: idx * 0.1 }}
@@ -532,7 +550,7 @@ export default function AboutPage() {
                           ].map((item, idx) => (
                             <motion.div 
                               key={idx}
-                              className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-all group"
+                              className="bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition-all group"
                               initial={{ opacity: 0, y: 20 }}
                               animate={{ opacity: 1, y: 0 }}
                               transition={{ delay: idx * 0.1 }}
@@ -548,7 +566,7 @@ export default function AboutPage() {
                         </div>
                       </div>
 
-                      <div className="relative h-[600px] rounded-2xl overflow-hidden shadow-2xl">
+                      <div className="relative h-[300px] rounded-2xl overflow-hidden shadow-2xl">
                         <Image
                           src="/images/innovation-image.jpg"
                           alt="Innovation"
@@ -567,7 +585,7 @@ export default function AboutPage() {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.5 }}
                     >
-                      <div className="relative h-[600px] rounded-2xl overflow-hidden shadow-2xl">
+                      <div className="relative h-[300px] rounded-2xl overflow-hidden shadow-2xl">
                         <Image
                           src="/images/quality-image.jpg"
                           alt="Quality"
@@ -611,7 +629,7 @@ export default function AboutPage() {
                           ].map((item, idx) => (
                             <motion.div 
                               key={idx}
-                              className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-all group"
+                              className="bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition-all group"
                               initial={{ opacity: 0, x: 20 }}
                               animate={{ opacity: 1, x: 0 }}
                               transition={{ delay: idx * 0.1 }}
@@ -638,88 +656,328 @@ export default function AboutPage() {
               </Tabs>
             </div>
 
-            {/* Mobile Design (keep existing code) */}
-            <div className="lg:hidden">
-              <div className="space-y-6">
-                {[
-                  { 
-                    value: 'story', 
-                    icon: <BookOpen className="w-5 h-5" />, 
-                    label: 'Our Story',
-                    title: 'Three Decades of Excellence',
-                    description: 'Since 1990, we have been pioneering innovations in leaf spring manufacturing, setting industry standards worldwide.',
-                    stats: [
-                      { number: "30+", label: "Years" },
-                      { number: "50+", label: "Countries" },
-                      { number: "1000+", label: "Machines" },
-                      { number: "24/7", label: "Support" }
-                    ]
-                  },
-                  { 
-                    value: 'vision', 
-                    icon: <Eye className="w-5 h-5" />, 
-                    label: 'Vision',
-                    title: 'Shaping Tomorrow',
-                    description: 'Our vision extends beyond current capabilities, driving innovation and sustainability in manufacturing.',
-                    highlights: ['Global Leadership', 'Sustainable Future', 'Innovation Hub']
-                  },
-                  // ... similar structure for innovation and quality
-                ].map((section) => (
-                  <div 
-                    key={section.value}
-                    className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden"
+            {/* Mobile Design */}
+            <div className="lg:hidden px-4">
+              <Tabs defaultValue="story" className="w-full">
+                {/* Mobile Tab List */}
+                <TabsList className="flex w-full overflow-x-auto gap-2 mb-6 pb-2 scrollbar-hide bg-transparent">
+                  {[
+                    { value: 'story', icon: <BookOpen className="w-4 h-4" />, label: 'Story' },
+                    { value: 'vision', icon: <Eye className="w-4 h-4" />, label: 'Vision' },
+                    { value: 'innovation', icon: <Lightbulb className="w-4 h-4" />, label: 'Innovation' },
+                    { value: 'quality', icon: <Shield className="w-4 h-4" />, label: 'Quality' }
+                  ].map((tab) => (
+                    <TabsTrigger 
+                      key={tab.value}
+                      value={tab.value}
+                      className="group inline-flex items-center gap-2 px-4 py-2 text-sm font-medium
+                        bg-white border border-gray-200 shadow-sm whitespace-nowrap
+                        data-[state=active]:bg-red-600 data-[state=active]:text-white data-[state=active]:border-red-600
+                        data-[state=inactive]:hover:bg-red-50 data-[state=inactive]:hover:border-red-200
+                        transition-all duration-300 rounded-lg flex-shrink-0"
+                    >
+                      <span className="group-data-[state=active]:text-white group-data-[state=inactive]:text-red-600">
+                        {tab.icon}
+                      </span>
+                      {tab.label}
+                    </TabsTrigger>
+                  ))}
+                </TabsList>
+
+                {/* Story Tab */}
+                <TabsContent value="story">
+                  <motion.div 
+                    className="space-y-8"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5 }}
                   >
-                    {/* Header */}
-                    <div className="flex items-center gap-3 p-4 bg-gray-50">
-                      <div className="w-10 h-10 rounded-full bg-red-100 flex items-center justify-center text-red-600">
-                        {section.icon}
-                      </div>
-                      <h3 className="font-semibold text-lg">{section.label}</h3>
+                    {/* Image Section */}
+                    <div className="relative h-[300px] rounded-2xl overflow-hidden shadow-2xl">
+                      <Image
+                        src="/images/story-image.jpg"
+                        alt="Our Story"
+                        fill
+                        className="object-cover hover:scale-105 transition-transform duration-500"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
                     </div>
 
-                    {/* Content */}
-                    <div className="p-4">
-                      {/* Image */}
-                      <div className="relative h-48 rounded-lg overflow-hidden mb-4">
-                        <Image
-                          src={`/images/${section.value}-image.jpg`}
-                          alt={section.label}
-                          fill
-                          className="object-cover"
-                          priority
-                        />
+                    <div className="space-y-8">
+                      <div>
+                        <h3 className="text-3xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-red-600 to-red-800">
+                          Three Decades of Excellence
+                        </h3>
+                        <p className="text-gray-600 text-lg leading-relaxed">
+                          Since 1990, we have been at the forefront of leaf spring manufacturing innovation,
+                          consistently setting new industry standards and pushing the boundaries of what's possible.
+                        </p>
                       </div>
 
-                      <h4 className="text-xl font-bold mb-2">{section.title}</h4>
-                      <p className="text-gray-600 text-sm mb-4">{section.description}</p>
-
-                      {/* Stats Grid if available */}
-                      {section.stats && (
-                        <div className="grid grid-cols-2 gap-3">
-                          {section.stats.map((stat, idx) => (
-                            <div key={idx} className="bg-gray-50 p-3 rounded-lg text-center">
-                              <div className="text-lg font-bold text-red-600">{stat.number}</div>
-                              <div className="text-xs text-gray-600">{stat.label}</div>
+                      <div className="space-y-6">
+                        {[
+                          {
+                            icon: <Clock className="w-8 h-8 text-red-600" />,
+                            title: "30+ Years Experience",
+                            description: "Pioneering leaf spring manufacturing since 1990"
+                          },
+                          {
+                            icon: <Globe className="w-8 h-8 text-red-600" />,
+                            title: "Global Presence",
+                            description: "Serving customers in over 50 countries worldwide"
+                          },
+                          {
+                            icon: <Award className="w-8 h-8 text-red-600" />,
+                            title: "1000+ Machines Delivered",
+                            description: "Trusted by manufacturers globally"
+                          }
+                        ].map((item, idx) => (
+                          <motion.div 
+                            key={idx}
+                            className="bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition-all group"
+                            initial={{ opacity: 0, x: 20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: idx * 0.1 }}
+                          >
+                            <div className="flex gap-4 items-start">
+                              <div className="p-3 bg-red-50 rounded-xl group-hover:bg-red-100 transition-colors">
+                                {item.icon}
+                              </div>
+                              <div>
+                                <h4 className="text-xl font-semibold mb-2">{item.title}</h4>
+                                <p className="text-gray-600">{item.description}</p>
+                              </div>
                             </div>
-                          ))}
-                        </div>
-                      )}
-
-                      {/* Highlights if available */}
-                      {section.highlights && (
-                        <div className="space-y-2">
-                          {section.highlights.map((highlight, idx) => (
-                            <div key={idx} className="flex items-center gap-2 text-sm">
-                              <div className="w-2 h-2 rounded-full bg-red-500"></div>
-                              {highlight}
-                            </div>
-                          ))}
-                        </div>
-                      )}
+                          </motion.div>
+                        ))}
+                      </div>
                     </div>
-                  </div>
-                ))}
-              </div>
+                  </motion.div>
+                </TabsContent>
+
+                {/* Vision Tab */}
+                <TabsContent value="vision">
+                  <motion.div 
+                    className="space-y-8"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5 }}
+                  >
+                    {/* Image Section */}
+                    <div className="relative h-[300px] rounded-2xl overflow-hidden shadow-2xl">
+                      <Image
+                        src="/images/vision-image.jpg"
+                        alt="Our Vision"
+                        fill
+                        className="object-cover hover:scale-105 transition-transform duration-500"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+                    </div>
+
+                    <div className="space-y-8">
+                      <div>
+                        <h3 className="text-3xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-800">
+                          Shaping Tomorrow's Manufacturing
+                        </h3>
+                        <p className="text-gray-600 text-lg leading-relaxed">
+                          Our vision goes beyond conventional manufacturing. We're creating a future where 
+                          innovation, sustainability, and precision converge to transform the automotive industry.
+                        </p>
+                      </div>
+
+                      <div className="space-y-6">
+                        {[
+                          {
+                            icon: <Target className="w-8 h-8 text-blue-600" />,
+                            title: "Global Leadership",
+                            description: "Setting worldwide standards in leaf spring manufacturing technology"
+                          },
+                          {
+                            icon: <Globe className="w-8 h-8 text-blue-600" />,
+                            title: "Sustainable Future",
+                            description: "Pioneering eco-friendly manufacturing processes"
+                          },
+                          {
+                            icon: <Lightbulb className="w-8 h-8 text-blue-600" />,
+                            title: "Innovation Hub",
+                            description: "Continuous research and development for breakthrough solutions"
+                          }
+                        ].map((item, idx) => (
+                          <motion.div 
+                            key={idx}
+                            className="bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition-all group"
+                            initial={{ opacity: 0, x: 20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: idx * 0.1 }}
+                          >
+                            <div className="flex gap-4 items-start">
+                              <div className="p-3 bg-blue-50 rounded-xl group-hover:bg-blue-100 transition-colors">
+                                {item.icon}
+                              </div>
+                              <div>
+                                <h4 className="text-xl font-semibold mb-2">{item.title}</h4>
+                                <p className="text-gray-600">{item.description}</p>
+                              </div>
+                            </div>
+                          </motion.div>
+                        ))}
+                      </div>
+                    </div>
+                  </motion.div>
+                </TabsContent>
+
+                {/* Innovation Tab */}
+                <TabsContent value="innovation">
+                  <motion.div 
+                    className="space-y-8"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5 }}
+                  >
+                    <div className="space-y-8">
+                      <div>
+                        <h3 className="text-3xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-purple-800">
+                          Leading Through Innovation
+                        </h3>
+                        <p className="text-gray-600 text-lg leading-relaxed">
+                          Our commitment to innovation drives us to continuously develop cutting-edge 
+                          solutions that revolutionize leaf spring manufacturing processes.
+                        </p>
+                      </div>
+
+                      <div className="grid grid-cols-2 gap-6">
+                        {[
+                          {
+                            icon: <Cog className="w-10 h-10 text-purple-600" />,
+                            title: "Smart Automation",
+                            value: "100%",
+                            subtitle: "Process Automation"
+                          },
+                          {
+                            icon: <Target className="w-10 h-10 text-purple-600" />,
+                            title: "Precision",
+                            value: "±0.1mm",
+                            subtitle: "Accuracy Rate"
+                          },
+                          {
+                            icon: <Award className="w-10 h-10 text-purple-600" />,
+                            title: "Patents",
+                            value: "50+",
+                            subtitle: "Active Patents"
+                          },
+                          {
+                            icon: <Truck className="w-10 h-10 text-purple-600" />,
+                            title: "Integration",
+                            value: "4.0",
+                            subtitle: "Industry Ready"
+                          }
+                        ].map((item, idx) => (
+                          <motion.div 
+                            key={idx}
+                            className="bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition-all group"
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: idx * 0.1 }}
+                          >
+                            <div className="p-3 bg-purple-50 rounded-xl w-fit group-hover:bg-purple-100 transition-colors mb-4">
+                              {item.icon}
+                            </div>
+                            <h4 className="text-lg font-semibold mb-1">{item.title}</h4>
+                            <div className="text-2xl font-bold text-purple-600 mb-1">{item.value}</div>
+                            <p className="text-sm text-gray-600">{item.subtitle}</p>
+                          </motion.div>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className="relative h-[300px] rounded-2xl overflow-hidden shadow-2xl">
+                      <Image
+                        src="/images/innovation-image.jpg"
+                        alt="Innovation"
+                        fill
+                        className="object-cover hover:scale-105 transition-transform duration-500"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+                    </div>
+                  </motion.div>
+                </TabsContent>
+
+                {/* Quality Tab */}
+                <TabsContent value="quality">
+                  <motion.div 
+                    className="space-y-8"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5 }}
+                  >
+                    <div className="relative h-[300px] rounded-2xl overflow-hidden shadow-2xl">
+                      <Image
+                        src="/images/quality-image.jpg"
+                        alt="Quality"
+                        fill
+                        className="object-cover hover:scale-105 transition-transform duration-500"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+                    </div>
+
+                    <div className="space-y-8">
+                      <div>
+                        <h3 className="text-3xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-green-600 to-green-800">
+                          Uncompromising Quality
+                        </h3>
+                        <p className="text-gray-600 text-lg leading-relaxed">
+                          Quality isn't just a commitment—it's the foundation of everything we do. 
+                          Our rigorous standards ensure excellence in every machine we produce.
+                        </p>
+                      </div>
+
+                      <div className="space-y-6">
+                        {[
+                          {
+                            icon: <Shield className="w-12 h-12 text-green-600" />,
+                            title: "ISO 9001:2015 Certified",
+                            description: "Internationally recognized quality management system",
+                            metric: "100% Compliance"
+                          },
+                          {
+                            icon: <Target className="w-12 h-12 text-green-600" />,
+                            title: "Quality Control",
+                            description: "Multi-stage inspection and testing protocols",
+                            metric: "Zero Defect Policy"
+                          },
+                          {
+                            icon: <Clock className="w-12 h-12 text-green-600" />,
+                            title: "Continuous Monitoring",
+                            description: "24/7 quality assurance throughout production",
+                            metric: "Real-time Tracking"
+                          }
+                        ].map((item, idx) => (
+                          <motion.div 
+                            key={idx}
+                            className="bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition-all group"
+                            initial={{ opacity: 0, x: 20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: idx * 0.1 }}
+                          >
+                            <div className="flex gap-6 items-center">
+                              <div className="p-3 bg-green-50 rounded-xl group-hover:bg-green-100 transition-colors">
+                                {item.icon}
+                              </div>
+                              <div>
+                                <h4 className="text-xl font-semibold mb-1">{item.title}</h4>
+                                <p className="text-gray-600 mb-2">{item.description}</p>
+                                <span className="inline-block px-3 py-1 bg-green-50 text-green-700 rounded-full text-sm font-medium">
+                                  {item.metric}
+                                </span>
+                              </div>
+                            </div>
+                          </motion.div>
+                        ))}
+                      </div>
+                    </div>
+                  </motion.div>
+                </TabsContent>
+              </Tabs>
             </div>
           </div>
         </section>
