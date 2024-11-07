@@ -185,9 +185,6 @@ export default function HomePage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
               >
-                <span className="inline-block px-3 py-1 bg-red-600/20 text-white rounded-full text-sm font-medium mb-3 backdrop-blur-sm border border-red-600/20">
-                  Industry Leading Solutions
-                </span>
                 <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 md:mb-4 leading-tight">
                   <span className="bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-gray-300">
                     Complete Leaf Spring Manufacturing Machinery Solutions
@@ -250,7 +247,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Product Showcase - Enhanced */}
+        {/* Product Showcase Section */}
         <section id="product-showcase" className="py-12 md:py-20">
           <div className="container mx-auto px-4">
             <motion.div
@@ -266,6 +263,7 @@ export default function HomePage() {
               <p className="text-lg md:text-xl mb-6 md:mb-8 text-center text-gray-600">
                 Engineered for Reliability and Performance
               </p>
+              {/* Product cards grid */}
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
                 {[
                   {
@@ -329,40 +327,55 @@ export default function HomePage() {
                   </Card>
                 ))}
               </div>
-              <div className="text-center mt-6">
-                <Link href="/products/leaf-spring-machinery" className="inline-flex items-center bg-red-600 text-white border-2 border-red-600 hover:bg-white hover:text-red-600 transition-colors px-8 py-3 rounded-md">
-                  View All Products <ChevronRight className="ml-2 h-4 w-4" />
-                </Link>
-              </div>
             </motion.div>
           </div>
         </section>
 
-        {/* Why Choose Us - Enhanced */}
-        <section className="py-8 md:py-12 relative">
-          {/* Add decorative elements */}
-          <div className="absolute inset-0 opacity-5 pointer-events-none">
-            <div className="absolute top-0 left-0 w-64 h-64 bg-red-600 rounded-full blur-3xl" />
-            <div className="absolute bottom-0 right-0 w-64 h-64 bg-red-800 rounded-full blur-3xl" />
+        {/* View All Products Button - Added space at top */}
+        <div className="py-4 md:py-6 -mt-12 md:-mt-20 bg-gradient-to-b from-white to-gray-50">
+          <div className="container mx-auto px-4">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="text-center mt-4 md:mt-6"
+            >
+              <Link 
+                href="/products/leaf-spring-machinery" 
+                className="inline-flex items-center justify-center bg-red-600 text-white border-2 border-red-600 hover:bg-white hover:text-red-600 transition-colors px-8 py-3 rounded-md font-semibold shadow-lg hover:shadow-red-100"
+              >
+                View All Products <ChevronRight className="ml-2 h-4 w-4" />
+              </Link>
+            </motion.div>
+          </div>
+        </div>
+
+        {/* Why Choose Us Section */}
+        <section className="py-16 md:py-24 relative bg-black">
+          {/* Enhanced decorative elements */}
+          <div className="absolute inset-0 opacity-20 pointer-events-none">
+            <div className="absolute top-0 left-0 w-96 h-96 bg-red-600 rounded-full blur-[128px]" />
+            <div className="absolute bottom-0 right-0 w-96 h-96 bg-red-800 rounded-full blur-[128px]" />
           </div>
           
           <div className="container mx-auto px-4 relative">
             <div className="max-w-3xl mx-auto text-center mb-4 md:mb-6">
-              <h2 className="text-3xl md:text-4xl font-bold mb-3 text-red-600">
+              <h2 className="text-3xl md:text-4xl font-bold mb-3 text-white">
                 Why Choose Our Leaf Spring Manufacturing Machinery
               </h2>
-              <p className="text-lg md:text-xl text-gray-600">
+              <p className="text-lg md:text-xl text-gray-300">
                 Innovative, Durable, and Certified for Automotive and Heavy-Duty Industries
               </p>
             </div>
             
             {/* Feature Cards */}
             <div className="relative">
-              {/* Fading borders - made more subtle */}
-              <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gray-400/50 to-transparent" />
-              <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-gray-400/50 to-transparent" />
-              <div className="absolute inset-y-0 left-0 w-px bg-gradient-to-b from-transparent via-gray-400/50 to-transparent" />
-              <div className="absolute inset-y-0 right-0 w-px bg-gradient-to-b from-transparent via-gray-400/50 to-transparent" />
+              {/* Fading borders - adjusted for dark theme */}
+              <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gray-700 to-transparent" />
+              <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-gray-700 to-transparent" />
+              <div className="absolute inset-y-0 left-0 w-px bg-gradient-to-b from-transparent via-gray-700 to-transparent" />
+              <div className="absolute inset-y-0 right-0 w-px bg-gradient-to-b from-transparent via-gray-700 to-transparent" />
               
               {/* Content with improved padding and layout */}
               <div className="p-6 md:p-8">
@@ -370,39 +383,39 @@ export default function HomePage() {
                   {[
                     { 
                       title: "ISO Certified", 
-                      icon: <Award className="w-8 h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 text-red-600" />, 
+                      icon: <Award className="w-8 h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 text-red-500" />, 
                       description: "Quality assured manufacturing" 
                     },
                     { 
                       title: "Heavy-Duty", 
-                      icon: <Shield className="w-8 h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 text-red-600" />, 
+                      icon: <Shield className="w-8 h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 text-red-500" />, 
                       description: "Built for industrial use" 
                     },
                     { 
                       title: "Advanced Tech", 
-                      icon: <Zap className="w-8 h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 text-red-600" />, 
+                      icon: <Zap className="w-8 h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 text-red-500" />, 
                       description: "Latest innovations" 
                     },
                     { 
                       title: "Global Reach", 
-                      icon: <Globe className="w-8 h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 text-red-600" />, 
+                      icon: <Globe className="w-8 h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 text-red-500" />, 
                       description: "Worldwide trusted" 
                     },
                   ].map((item, index) => (
                     <Card 
                       key={index} 
-                      className="text-center transition-all duration-300 hover:shadow-xl group bg-white/50 backdrop-blur-sm border border-gray-200/50 shadow-[0_0_1px_rgba(0,0,0,0.3)]"
+                      className="text-center transition-all duration-300 hover:shadow-xl group bg-black/50 backdrop-blur-sm border border-gray-800 shadow-[0_0_1px_rgba(255,255,255,0.1)]"
                     >
                       <CardHeader className="space-y-3 pb-2 md:pb-4 px-2 md:px-6">
-                        <div className="mx-auto rounded-full bg-red-50 p-2 md:p-3 transition-transform duration-300 group-hover:scale-110 group-hover:bg-red-100 border border-gray-100 shadow-sm">
+                        <div className="mx-auto rounded-full bg-gray-900 p-2 md:p-3 transition-transform duration-300 group-hover:scale-110 group-hover:bg-gray-800 border border-gray-800 shadow-sm">
                           {item.icon}
                         </div>
-                        <CardTitle className="text-base md:text-xl lg:text-2xl text-gray-800 line-clamp-1">
+                        <CardTitle className="text-base md:text-xl lg:text-2xl text-gray-100 line-clamp-1">
                           {item.title}
                         </CardTitle>
                       </CardHeader>
                       <CardContent className="px-2 md:px-6">
-                        <p className="text-xs md:text-sm lg:text-base text-gray-600 line-clamp-2 min-h-[2.5rem] md:min-h-0">
+                        <p className="text-xs md:text-sm lg:text-base text-gray-400 line-clamp-2 min-h-[2.5rem] md:min-h-0">
                           {item.description}
                         </p>
                       </CardContent>
@@ -418,9 +431,9 @@ export default function HomePage() {
                 { metric: "90%", description: "Reduction in Downtime" },
                 { metric: "50+", description: "Global Clients Served" },
               ].map((item, index) => (
-                <div key={index} className="bg-white p-8 rounded-lg shadow-lg text-center transition-all duration-300 hover:shadow-xl hover:bg-red-50 border border-gray-200/50">
-                  <h3 className="text-5xl font-bold text-red-600 mb-4">{item.metric}</h3>
-                  <p className="text-xl text-gray-700">{item.description}</p>
+                <div key={index} className="bg-gray-900 p-8 rounded-lg shadow-lg text-center transition-all duration-300 hover:shadow-xl hover:bg-gray-800 border border-gray-800">
+                  <h3 className="text-5xl font-bold text-red-500 mb-4">{item.metric}</h3>
+                  <p className="text-xl text-gray-300">{item.description}</p>
                 </div>
               ))}
             </div>
