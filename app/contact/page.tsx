@@ -5,23 +5,54 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Phone, Mail, MapPin, Clock, Send, MessageSquare, Building, Users } from 'lucide-react'
 import WhatsAppButton from '@/components/shared/whatsapp-button'
+import { motion, useScroll, useTransform } from 'framer-motion'
 
 export default function ContactPage() {
+  const { scrollYProgress } = useScroll()
+  const opacity = useTransform(scrollYProgress, [0, 0.2], [1, 0])
+  const scale = useTransform(scrollYProgress, [0, 0.2], [1, 0.8])
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     console.log('Form submitted')
   }
 
+  // Add hero pattern
+  const heroPattern = {
+    backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+  };
+
   return (
     <main className="min-h-screen">
-      {/* Hero Section with Background */}
-      <section className="relative h-[40vh] bg-gradient-to-r from-red-600 to-red-800">
-        <div className="absolute inset-0 bg-black/50" />
-        <div className="relative container h-full mx-auto px-4 flex flex-col justify-center items-center text-center text-white">
-          <h1 className="text-5xl md:text-6xl font-bold mb-6">Let's Connect</h1>
-          <p className="text-xl md:text-2xl max-w-2xl mx-auto">
+      {/* Updated Hero Section */}
+      <section className="relative h-[60vh] sm:h-[calc(100vh-56px)] flex items-center justify-center overflow-hidden bg-gradient-to-b from-black to-gray-900">
+        <motion.div 
+          className="absolute inset-0 z-0"
+          style={{ opacity, scale, ...heroPattern }}
+        >
+        </motion.div>
+        <div className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
+          <motion.h1 
+            className="text-4xl sm:text-5xl md:text-7xl font-bold mb-4 sm:mb-8 leading-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-300"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            Let's Connect
+          </motion.h1>
+          <motion.p 
+            className="text-lg sm:text-xl md:text-2xl mb-6 sm:mb-10"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
             We're here to help you optimize your manufacturing process with our innovative leaf spring solutions
-          </p>
+          </motion.p>
+        </div>
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+          <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+          </svg>
         </div>
       </section>
 
@@ -46,7 +77,7 @@ export default function ContactPage() {
                 description: "Dedicated professionals at your service"
               }
             ].map((item, index) => (
-              <div key={index} className="bg-white rounded-lg shadow-xl p-6 transform hover:-translate-y-1 transition-all duration-300">
+              <div key={index} className="bg-white rounded-lg shadow-xl p-6 transform hover:-translate-y-1 transition-all duration-300 border-4 border-red-600">
                 <div className="flex items-center space-x-4">
                   <div className="bg-red-50 p-3 rounded-full">
                     <item.icon className="w-6 h-6 text-red-600" />
@@ -68,7 +99,7 @@ export default function ContactPage() {
           <div className="max-w-7xl mx-auto">
             <div className="grid lg:grid-cols-2 gap-16">
               {/* Contact Information */}
-              <div className="space-y-12">
+              <div className="space-y-8 bg-white rounded-2xl p-8 lg:p-12 border-4 border-red-600">
                 <div>
                   <h2 className="text-3xl font-bold text-gray-900 mb-6">Get in Touch</h2>
                   <p className="text-gray-600 mb-8">
@@ -100,7 +131,7 @@ export default function ContactPage() {
                       detail: "Madhya Pradesh, India"
                     }
                   ].map((item, index) => (
-                    <div key={index} className="flex items-start space-x-4 p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-all duration-300">
+                    <div key={index} className="flex items-start space-x-4 p-4 bg-gray-50 rounded-lg shadow-sm hover:shadow-md transition-all duration-300 border-2 border-red-600">
                       <div className="bg-red-50 p-3 rounded-full">
                         <item.icon className="w-6 h-6 text-red-600" />
                       </div>
@@ -120,7 +151,7 @@ export default function ContactPage() {
                 </div>
 
                 {/* Map */}
-                <div className="bg-white p-2 rounded-lg shadow-lg overflow-hidden">
+                <div className="bg-gray-50 p-4 rounded-lg shadow-lg overflow-hidden border-2 border-red-600">
                   <iframe
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3679.332528666897!2d75.85344531496!3d22.75999998509083!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3962fd0b7d3c4c8f%3A0x4a3c91a1f5a6e0a!2sSanwer%20Rd%2C%20Indore%2C%20Madhya%20Pradesh!5e0!3m2!1sen!2sin!4v1651234567890!5m2!1sen!2sin"
                     className="w-full h-[300px] rounded-lg"
@@ -133,7 +164,7 @@ export default function ContactPage() {
               </div>
 
               {/* Contact Form */}
-              <div className="bg-white rounded-2xl shadow-xl p-8 lg:p-12">
+              <div className="bg-white rounded-2xl p-8 lg:p-12 border-4 border-red-600">
                 <h2 className="text-2xl font-bold text-gray-900 mb-8">Send us a Message</h2>
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid sm:grid-cols-2 gap-6">
@@ -141,14 +172,14 @@ export default function ContactPage() {
                       <label className="block text-sm font-medium text-gray-700 mb-2">First Name</label>
                       <Input 
                         placeholder="John" 
-                        className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent" 
+                        className="w-full px-4 py-2 border-2 border-red-600 rounded-lg focus:ring-4 focus:ring-red-500/20" 
                       />
                     </div>
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">Last Name</label>
                       <Input 
                         placeholder="Doe" 
-                        className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent" 
+                        className="w-full px-4 py-2 border-2 border-red-600 rounded-lg focus:ring-4 focus:ring-red-500/20" 
                       />
                     </div>
                   </div>
@@ -157,7 +188,7 @@ export default function ContactPage() {
                     <label className="block text-sm font-medium text-gray-700 mb-2">Company Name</label>
                     <Input 
                       placeholder="Your Company Ltd." 
-                      className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent" 
+                      className="w-full px-4 py-2 border-2 border-red-600 rounded-lg focus:ring-4 focus:ring-red-500/20" 
                     />
                   </div>
 
@@ -166,7 +197,7 @@ export default function ContactPage() {
                     <Input 
                       type="email" 
                       placeholder="john@company.com" 
-                      className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent" 
+                      className="w-full px-4 py-2 border-2 border-red-600 rounded-lg focus:ring-4 focus:ring-red-500/20" 
                     />
                   </div>
 
@@ -175,7 +206,7 @@ export default function ContactPage() {
                     <Input 
                       type="tel" 
                       placeholder="+1 (555) 000-0000" 
-                      className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent" 
+                      className="w-full px-4 py-2 border-2 border-red-600 rounded-lg focus:ring-4 focus:ring-red-500/20" 
                     />
                   </div>
 
@@ -183,13 +214,13 @@ export default function ContactPage() {
                     <label className="block text-sm font-medium text-gray-700 mb-2">Message</label>
                     <Textarea 
                       placeholder="Tell us about your requirements..."
-                      className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent min-h-[150px]"
+                      className="w-full px-4 py-2 border-2 border-red-600 rounded-lg focus:ring-4 focus:ring-red-500/20 min-h-[150px]"
                     />
                   </div>
 
                   <Button 
                     type="submit" 
-                    className="w-full bg-red-600 hover:bg-red-700 text-white py-3 rounded-lg font-medium transition-colors duration-300"
+                    className="w-full bg-red-600 hover:bg-red-700 text-white py-3 rounded-lg font-medium transition-all duration-300 border-2 border-red-600"
                   >
                     Send Message <Send className="ml-2 h-4 w-4" />
                   </Button>

@@ -827,16 +827,10 @@ export default function ProductsPage() {
         {/* Hero Section */}
         <section className="relative h-[60vh] sm:h-[calc(100vh-56px)] flex items-center justify-center overflow-hidden">
           <motion.div 
-            className="absolute inset-0 z-0 bg-gray-900"
+            className="absolute inset-0 z-0 bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900"
             style={{ opacity, scale }}
           >
-            <Image
-              src="https://placehold.co/1920x1080"
-              alt="LEAFSPRINGS Products"
-              fill
-              className="object-cover opacity-60"
-              priority
-            />
+            {/* Removed Image component */}
           </motion.div>
           <div className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
             <motion.h1 

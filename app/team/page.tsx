@@ -111,6 +111,11 @@ const InfiniteCarousel = ({ testimonials }: { testimonials: Testimonial[] }) => 
   )
 }
 
+// Add a subtle pattern overlay to the hero section
+const heroPattern = {
+  backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+};
+
 export default function TeamPage() {
   const { scrollYProgress } = useScroll()
   const opacity = useTransform(scrollYProgress, [0, 0.2], [1, 0])
@@ -196,19 +201,12 @@ export default function TeamPage() {
 
   return (
     <>
-      <main>
-        <section className="relative h-[60vh] sm:h-[calc(100vh-56px)] flex items-center justify-center overflow-hidden">
+      <main className="bg-gradient-to-b from-gray-50 to-white">
+        <section className="relative h-[60vh] sm:h-[calc(100vh-56px)] flex items-center justify-center overflow-hidden bg-gradient-to-b from-black to-gray-900">
           <motion.div 
-            className="absolute inset-0 z-0 bg-gray-900"
-            style={{ opacity, scale }}
+            className="absolute inset-0 z-0"
+            style={{ opacity, scale, ...heroPattern }}
           >
-            <Image
-              src="https://placehold.co/1920x1080"
-              alt="LEAFSPRINGS Team"
-              fill
-              className="object-cover opacity-60"
-              priority
-            />
           </motion.div>
           <div className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
             <motion.h1 
@@ -225,7 +223,7 @@ export default function TeamPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              The dedicated professionals behind LEAFSPRINGS' innovative leaf spring machinery solutions
+              The dedicated professionals behind Leaf Spring Machinery's innovative leaf spring machinery solutions.
             </motion.p>
           </div>
           <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
@@ -235,8 +233,9 @@ export default function TeamPage() {
           </div>
         </section>
 
-        <section className="py-12 sm:py-16 md:py-24 bg-white">
-          <div className="container mx-auto px-4">
+        <section className="py-12 sm:py-16 md:py-24 bg-white relative">
+          <div className="absolute inset-0 bg-gradient-to-b from-gray-50/50 to-transparent" />
+          <div className="container mx-auto px-4 relative">
             <motion.div 
               className="text-center max-w-3xl mx-auto mb-12"
               initial={{ opacity: 0, y: 20 }}
@@ -245,7 +244,7 @@ export default function TeamPage() {
               transition={{ duration: 0.6 }}
             >
               <h2 className="text-2xl sm:text-3xl font-bold mb-4 text-gray-800">Our Expert Team</h2>
-              <p className="text-gray-600">Meet the talented individuals who make LEAFSPRINGS a leader in leaf spring machinery solutions.</p>
+              <p className="text-gray-600">Meet the talented individuals who make Leaf Spring Machinery a leader in leaf spring machinery solutions.</p>
             </motion.div>
 
             <motion.div 
@@ -292,13 +291,7 @@ export default function TeamPage() {
               </Button>
             </motion.div>
 
-            <motion.div 
-              className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-6 md:gap-8"
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-            >
+            <motion.div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 px-2 sm:gap-6 sm:px-4 md:gap-8 md:px-6">
               {filteredTeamMembers.map((member, index) => (
                 <motion.div
                   key={index}
@@ -311,21 +304,26 @@ export default function TeamPage() {
                   }}
                   layout
                 >
-                  <Card className="overflow-hidden transition-all duration-300 hover:shadow-xl">
-                    <div className="relative bg-gray-50 h-72 p-4">
-                      <div className="relative h-full w-full border border-gray-200 bg-white">
+                  <Card className="overflow-hidden transition-all duration-300 hover:shadow-xl group">
+                    <div className="relative bg-gradient-to-b from-gray-50 to-white h-36 sm:h-48 md:h-72 p-2 sm:p-4">
+                      <div className="relative h-full w-full border border-gray-200 rounded-sm bg-white overflow-hidden">
                         <Image
                           src={member.image}
                           alt={member.name}
                           fill
-                          className="object-contain p-2"
-                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                          className="object-contain p-1 sm:p-2"
+                          sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
                         />
                       </div>
                     </div>
-                    <CardContent className="text-center p-4 bg-white">
-                      <h3 className="text-xl font-semibold mb-1 text-gray-800">{member.name}</h3>
-                      <p className="text-gray-600">{member.position}</p>
+                    <CardContent className="text-center p-2 sm:p-3 md:p-4 bg-white relative">
+                      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-red-600/20 to-transparent" />
+                      <h3 className="text-base sm:text-lg md:text-xl font-semibold mb-0.5 sm:mb-1 text-gray-800 truncate">
+                        {member.name}
+                      </h3>
+                      <p className="text-xs sm:text-sm md:text-base text-gray-600 truncate">
+                        {member.position}
+                      </p>
                     </CardContent>
                   </Card>
                 </motion.div>
@@ -334,16 +332,17 @@ export default function TeamPage() {
           </div>
         </section>
 
-        <section className="py-12 sm:py-16 md:py-24 bg-gray-100 border-t-4 border-b-4 border-red-600">
-          <div className="container mx-auto px-4 text-center">
-            <h2 className="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8 text-gray-800">Join Our Team</h2>
-            <p className="text-base sm:text-lg md:text-xl mb-8 sm:mb-12 max-w-3xl mx-auto text-gray-600">
+        <section className="py-12 sm:py-16 md:py-24 bg-gradient-to-br from-gray-900 to-red-900 text-white relative">
+          <div className="absolute inset-0" style={heroPattern} />
+          <div className="container mx-auto px-4 text-center relative">
+            <h2 className="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8 text-white">Join Our Team</h2>
+            <p className="text-base sm:text-lg md:text-xl mb-8 sm:mb-12 max-w-3xl mx-auto text-gray-100">
               We're always looking for talented individuals to join our innovative team. Explore our current openings and be part of shaping the future of leaf spring machinery.
             </p>
             <Button 
               variant="default" 
               size="lg" 
-              className="bg-red-600 hover:bg-red-700 text-white transition-colors text-base sm:text-lg px-6 sm:px-8 py-2.5 sm:py-3" 
+              className="bg-white hover:bg-gray-100 text-red-600 transition-colors text-base sm:text-lg px-6 sm:px-8 py-2.5 sm:py-3" 
               asChild
             >
               <Link href="/contact">Contact Us</Link>
@@ -351,12 +350,13 @@ export default function TeamPage() {
           </div>
         </section>
 
-        <section className="py-16 bg-gray-50">
-          <div className="container mx-auto px-4">
+        <section className="py-16 bg-gradient-to-b from-gray-50 to-white relative">
+          <div className="absolute inset-0 bg-grid-gray-100/40" />
+          <div className="container mx-auto px-4 relative">
             <div className="text-center max-w-3xl mx-auto mb-12">
               <h2 className="text-3xl font-bold mb-4">What Our Team Says</h2>
               <p className="text-gray-600">
-                Hear directly from our team members about their experiences working at LEAFSPRINGS
+                Hear directly from our team members about their experiences working at Leaf Springs Machinery.
               </p>
             </div>
             

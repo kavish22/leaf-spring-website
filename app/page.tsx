@@ -7,7 +7,8 @@ import { Award, Shield, Zap, Globe, Gauge, Flame, ChevronRight } from 'lucide-re
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRef, useEffect } from 'react'
-import { motion } from 'framer-motion'
+import { motion, useScroll, useTransform } from "framer-motion"
+import { cn } from "@/lib/utils"
 
 // Add this interface at the top of the file
 interface Client {
@@ -148,15 +149,21 @@ const clients = [
 ];
 
 export default function HomePage() {
+  // Add scroll animation hooks
+  const { scrollYProgress } = useScroll()
+  const opacity = useTransform(scrollYProgress, [0, 0.2], [1, 0])
+
   return (
     <>
-      <main>
+      <main className="bg-gradient-to-b from-gray-50 to-white">
         {/* Hero Section */}
         <section className="relative min-h-[90vh] flex items-center overflow-hidden">
-          {/* Enhanced gradient overlay with multiple layers */}
+          {/* Enhanced gradient overlay */}
           <div className="absolute inset-0 z-0">
-            <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/70 to-black/50" />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/80 to-black/70" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
+            {/* Add subtle pattern overlay */}
+            <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'url("/patterns/grid.svg")' }} />
           </div>
           
           {/* Background image with subtle animation */}
@@ -167,28 +174,21 @@ export default function HomePage() {
               transition={{ duration: 10, repeat: Infinity, repeatType: "reverse" }}
               className="h-full w-full"
             >
-              <Image
-                src="https://placehold.co/1920x1080/333333/ffffff"
-                alt="Hero Background"
-                fill
-                className="object-cover"
-                priority
-                quality={90}
-              />
+              <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-900" />
             </motion.div>
           </div>
           
           <div className="container mx-auto px-4 relative z-10">
-            <div className="max-w-4xl">
+            <div className="max-w-3xl">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
               >
-                <span className="inline-block px-4 py-2 bg-red-600/20 text-white rounded-full text-sm font-semibold mb-6 backdrop-blur-sm border border-red-600/20">
+                <span className="inline-block px-3 py-1 bg-red-600/20 text-white rounded-full text-sm font-medium mb-3 backdrop-blur-sm border border-red-600/20">
                   Industry Leading Solutions
                 </span>
-                <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold mb-6 md:mb-8 leading-tight">
+                <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 md:mb-4 leading-tight">
                   <span className="bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-gray-300">
                     Complete Leaf Spring Manufacturing Machinery Solutions
                   </span>
@@ -199,7 +199,7 @@ export default function HomePage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="text-xl sm:text-2xl md:text-3xl mb-12 md:mb-14 text-gray-200 max-w-3xl"
+                className="text-base sm:text-lg md:text-xl mb-6 md:mb-8 text-gray-200 max-w-2xl leading-relaxed"
               >
                 Industry-Leading Heavy Duty Shearing Machines, Assembly Lines, and Stress Shot Peening Automation Systems
               </motion.p>
@@ -208,38 +208,41 @@ export default function HomePage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
-                className="flex flex-col sm:flex-row gap-6 sm:gap-8 items-center"
+                className="flex flex-col sm:flex-row gap-3 sm:gap-4 items-center"
               >
                 <Link 
                   href="#product-showcase" 
-                  className="group w-full sm:w-auto inline-flex items-center justify-center bg-red-600 text-white border-2 border-red-600 hover:bg-red-700 hover:border-red-700 transition-all duration-300 px-8 py-4 rounded-full font-bold text-lg shadow-lg hover:shadow-red-600/30"
+                  className="group w-full sm:w-auto inline-flex items-center justify-center bg-red-600 text-white border-2 border-red-600 hover:bg-red-700 hover:border-red-700 transition-all duration-300 px-5 py-2.5 rounded-full text-sm font-semibold shadow-lg hover:shadow-red-600/30"
                 >
                   Explore Our Machinery 
-                  <ChevronRight className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
+                  <ChevronRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
                 </Link>
                 <Link 
                   href="#contact" 
-                  className="group w-full sm:w-auto inline-flex items-center justify-center bg-white/10 text-white border-2 border-white/20 hover:bg-white/20 backdrop-blur-sm transition-all duration-300 px-8 py-4 rounded-full font-bold text-lg shadow-lg"
+                  className="group w-full sm:w-auto inline-flex items-center justify-center bg-white/10 text-white border-2 border-white/20 hover:bg-white/20 backdrop-blur-sm transition-all duration-300 px-5 py-2.5 rounded-full text-sm font-semibold shadow-lg"
                 >
                   Get In Touch 
-                  <ChevronRight className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
+                  <ChevronRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
                 </Link>
                 
-                {/* Added social proof */}
+                {/* Social proof - Only show on larger screens */}
                 <motion.div 
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.8, delay: 0.6 }}
-                  className="hidden lg:flex items-center gap-4 ml-8 text-white/80"
+                  className="hidden lg:flex items-center gap-4 ml-6 text-white/80"
                 >
-                  <div className="w-px h-12 bg-white/20" />
+                  <div className="w-px h-8 bg-white/20" />
                   <div>
-                    <div className="flex -space-x-3">
+                    <div className="flex -space-x-1.5">
                       {[1, 2, 3, 4].map((i) => (
-                        <div key={i} className="w-10 h-10 rounded-full border-2 border-red-600 bg-white/10 backdrop-blur-sm" />
+                        <div 
+                          key={i} 
+                          className="w-6 h-6 rounded-full border-2 border-red-600 bg-white/10 backdrop-blur-sm"
+                        />
                       ))}
                     </div>
-                    <p className="text-sm mt-2">Trusted by 500+ Companies</p>
+                    <p className="text-xs mt-1.5">Trusted by 500+ Companies</p>
                   </div>
                 </motion.div>
               </motion.div>
@@ -247,112 +250,161 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Product Showcase */}
-        <section id="product-showcase" className="py-16 md:py-24 bg-white">
+        {/* Product Showcase - Enhanced */}
+        <section id="product-showcase" className="py-12 md:py-20">
           <div className="container mx-auto px-4">
-            <h2 className="text-3xl md:text-4xl font-bold mb-3 md:mb-4 text-center text-gray-800">
-              Leaf Spring Machinery Product Range
-            </h2>
-            <p className="text-lg md:text-xl mb-12 md:mb-16 text-center text-gray-600">
-              Engineered for Reliability and Performance
-            </p>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-              {[
-                {
-                  title: "High-Pressure Water Jet Descaler Machine",
-                  specs: "Operates at 300 BAR, removing 95-99% of scale for better surface quality.",
-                  benefits: "Provides clean surfaces on leaf springs, ideal for tough automotive and industrial environments.",
-                  image: "/images/products/Descaler.webp",
-                  icon: <Gauge className="w-8 h-8 text-red-600" />
-                },
-                {
-                  title: "Heavy-Duty Leaf Spring Shearing Machine",
-                  specs: "250-ton capacity, scissor mechanism for precise shearing.",
-                  benefits: "Boosts manufacturing efficiency, precisely cuts heavy materials in high-demand industrial setups.",
-                  image: "/images/products/Shearing.webp",
-                  icon: <Shield className="w-8 h-8 text-red-600" />
-                },
-                {
-                  title: "Automated Heat Treatment Furnace",
-                  specs: "Customizable temperature control for optimized leaf spring toughness.",
-                  benefits: "Enhances durability and strength, meeting global standards for industrial applications.",
-                  image: "/images/products/heat-furnace.webp",
-                  icon: <Flame className="w-8 h-8 text-red-600" />
-                }
-              ].map((product, index) => (
-                <Card key={index} className="overflow-hidden transition-all duration-300 hover:shadow-xl group">
-                  <Image src={product.image} alt={product.title} width={400} height={300} className="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-105" />
-                  <CardHeader>
-                    <CardTitle className="flex items-center text-2xl text-gray-800">
-                      <span className="mr-3 text-red-600 group-hover:text-red-700 transition-colors">{product.icon}</span>
-                      {product.title}
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="font-semibold mb-2 text-gray-700">{product.specs}</p>
-                    <p className="text-gray-600">{product.benefits}</p>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-            <div className="text-center mt-16">
-              <Link href="/products/leaf-spring-machinery" className="inline-flex items-center bg-red-600 text-white border-2 border-red-600 hover:bg-white hover:text-red-600 transition-colors px-8 py-3 rounded-md">
-                View All Products <ChevronRight className="ml-2 h-4 w-4" />
-              </Link>
-            </div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="text-center"
+            >
+              <h2 className="text-4xl md:text-5xl font-bold mb-3 bg-clip-text text-transparent bg-gradient-to-r from-red-600 to-red-800 leading-[1.3] pb-2">
+                Leaf Spring Machinery Product Range
+              </h2>
+              <p className="text-lg md:text-xl mb-6 md:mb-8 text-center text-gray-600">
+                Engineered for Reliability and Performance
+              </p>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+                {[
+                  {
+                    title: "High-Pressure Water Jet Descaler Machine",
+                    specs: "Operates at 300 BAR, removing 95-99% of scale for better surface quality.",
+                    benefits: "Provides clean surfaces on leaf springs, ideal for tough automotive and industrial environments.",
+                    image: "/images/products/Descaler.webp"
+                  },
+                  {
+                    title: "Heavy-Duty Leaf Spring Shearing Machine",
+                    specs: "250-ton capacity, robust scissor mechanism for precise and efficient shearing.",
+                    benefits: "Boosts manufacturing efficiency, precisely cuts heavy materials in high-demand industrial setups.",
+                    image: "/images/products/Shearing.webp"
+                  },
+                  {
+                    title: "Automated Heat Treatment Furnace",
+                    specs: "Customizable temperature control for optimized leaf spring toughness.",
+                    benefits: "Enhances durability and strength, meeting global standards for industrial applications.",
+                    image: "/images/products/heat-furnace.webp"
+                  }
+                ].map((product, index) => (
+                  <Card 
+                    key={index} 
+                    className="overflow-hidden transition-all duration-300 hover:shadow-xl bg-white border-0 shadow-lg h-full"
+                  >
+                    <div className="relative h-[300px]">
+                      <Image 
+                        src={product.image} 
+                        alt={product.title} 
+                        fill
+                        className="object-cover"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+                    </div>
+                    
+                    <CardHeader className="space-y-4 pb-2">
+                      <CardTitle className="text-xl font-bold tracking-tight text-gray-900 leading-tight text-left">
+                        {product.title}
+                      </CardTitle>
+                    </CardHeader>
+                    
+                    <CardContent className="space-y-4">
+                      <div className="space-y-2">
+                        <h4 className="text-sm font-semibold uppercase tracking-wider text-red-600 text-left">
+                          Specifications
+                        </h4>
+                        <p className="text-sm text-gray-700 leading-relaxed text-left">
+                          {product.specs}
+                        </p>
+                      </div>
+                      
+                      <div className="space-y-2">
+                        <h4 className="text-sm font-semibold uppercase tracking-wider text-red-600 text-left">
+                          Key Benefits
+                        </h4>
+                        <p className="text-sm text-gray-700 leading-relaxed text-left">
+                          {product.benefits}
+                        </p>
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+              <div className="text-center mt-6">
+                <Link href="/products/leaf-spring-machinery" className="inline-flex items-center bg-red-600 text-white border-2 border-red-600 hover:bg-white hover:text-red-600 transition-colors px-8 py-3 rounded-md">
+                  View All Products <ChevronRight className="ml-2 h-4 w-4" />
+                </Link>
+              </div>
+            </motion.div>
           </div>
         </section>
 
-        {/* Why Choose Us */}
-        <section className="py-16 md:py-24 bg-gray-100">
-          <div className="container mx-auto px-4">
-            <h2 className="text-3xl md:text-4xl font-bold mb-3 md:mb-4 text-center text-gray-800">
-              Why Choose Our Leaf Spring Manufacturing Machinery
-            </h2>
-            <p className="text-lg md:text-xl mb-12 md:mb-16 text-center text-gray-600">
-              Innovative, Durable, and Certified for Automotive and Heavy-Duty Industries
-            </p>
+        {/* Why Choose Us - Enhanced */}
+        <section className="py-8 md:py-12 relative">
+          {/* Add decorative elements */}
+          <div className="absolute inset-0 opacity-5 pointer-events-none">
+            <div className="absolute top-0 left-0 w-64 h-64 bg-red-600 rounded-full blur-3xl" />
+            <div className="absolute bottom-0 right-0 w-64 h-64 bg-red-800 rounded-full blur-3xl" />
+          </div>
+          
+          <div className="container mx-auto px-4 relative">
+            <div className="max-w-3xl mx-auto text-center mb-4 md:mb-6">
+              <h2 className="text-3xl md:text-4xl font-bold mb-3 text-red-600">
+                Why Choose Our Leaf Spring Manufacturing Machinery
+              </h2>
+              <p className="text-lg md:text-xl text-gray-600">
+                Innovative, Durable, and Certified for Automotive and Heavy-Duty Industries
+              </p>
+            </div>
             
-            {/* Add relative positioning and border container */}
+            {/* Feature Cards */}
             <div className="relative">
-              {/* Fading borders */}
-              <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-red-600 to-transparent" />
-              <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-red-600 to-transparent" />
-              <div className="absolute inset-y-0 left-0 w-px bg-gradient-to-b from-transparent via-red-600 to-transparent" />
-              <div className="absolute inset-y-0 right-0 w-px bg-gradient-to-b from-transparent via-red-600 to-transparent" />
+              {/* Fading borders - made more subtle */}
+              <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gray-400/50 to-transparent" />
+              <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-gray-400/50 to-transparent" />
+              <div className="absolute inset-y-0 left-0 w-px bg-gradient-to-b from-transparent via-gray-400/50 to-transparent" />
+              <div className="absolute inset-y-0 right-0 w-px bg-gradient-to-b from-transparent via-gray-400/50 to-transparent" />
               
-              {/* Content with padding to avoid border overlap */}
-              <div className="p-8">
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+              {/* Content with improved padding and layout */}
+              <div className="p-6 md:p-8">
+                <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 lg:gap-8">
                   {[
                     { 
-                      title: "ISO 9001-Certified", 
-                      icon: <Award className="w-12 h-12 text-red-600" />, 
-                      description: "Ensuring consistent quality and reliability in every machine" 
+                      title: "ISO Certified", 
+                      icon: <Award className="w-8 h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 text-red-600" />, 
+                      description: "Quality assured manufacturing" 
                     },
                     { 
-                      title: "Heavy-Duty Design", 
-                      icon: <Shield className="w-12 h-12 text-red-600" />, 
-                      description: "Built to withstand rigorous industrial applications" 
+                      title: "Heavy-Duty", 
+                      icon: <Shield className="w-8 h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 text-red-600" />, 
+                      description: "Built for industrial use" 
                     },
                     { 
-                      title: "Advanced Technology", 
-                      icon: <Zap className="w-12 h-12 text-red-600" />, 
-                      description: "Incorporating the latest in manufacturing innovations" 
+                      title: "Advanced Tech", 
+                      icon: <Zap className="w-8 h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 text-red-600" />, 
+                      description: "Latest innovations" 
                     },
                     { 
-                      title: "Global Performance", 
-                      icon: <Globe className="w-12 h-12 text-red-600" />, 
-                      description: "Trusted by industry leaders worldwide" 
+                      title: "Global Reach", 
+                      icon: <Globe className="w-8 h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 text-red-600" />, 
+                      description: "Worldwide trusted" 
                     },
                   ].map((item, index) => (
-                    <Card key={index} className="text-center transition-all duration-300 hover:shadow-xl group hover:-translate-y-1 bg-white">
-                      <CardHeader>
-                        <div className="mx-auto mb-4 transition-transform duration-300 group-hover:scale-110">{item.icon}</div>
-                        <CardTitle className="text-2xl text-gray-800">{item.title}</CardTitle>
+                    <Card 
+                      key={index} 
+                      className="text-center transition-all duration-300 hover:shadow-xl group bg-white/50 backdrop-blur-sm border border-gray-200/50 shadow-[0_0_1px_rgba(0,0,0,0.3)]"
+                    >
+                      <CardHeader className="space-y-3 pb-2 md:pb-4 px-2 md:px-6">
+                        <div className="mx-auto rounded-full bg-red-50 p-2 md:p-3 transition-transform duration-300 group-hover:scale-110 group-hover:bg-red-100 border border-gray-100 shadow-sm">
+                          {item.icon}
+                        </div>
+                        <CardTitle className="text-base md:text-xl lg:text-2xl text-gray-800 line-clamp-1">
+                          {item.title}
+                        </CardTitle>
                       </CardHeader>
-                      <CardContent>
-                        <p className="text-gray-600">{item.description}</p>
+                      <CardContent className="px-2 md:px-6">
+                        <p className="text-xs md:text-sm lg:text-base text-gray-600 line-clamp-2 min-h-[2.5rem] md:min-h-0">
+                          {item.description}
+                        </p>
                       </CardContent>
                     </Card>
                   ))}
@@ -366,7 +418,7 @@ export default function HomePage() {
                 { metric: "90%", description: "Reduction in Downtime" },
                 { metric: "50+", description: "Global Clients Served" },
               ].map((item, index) => (
-                <div key={index} className="bg-white p-8 rounded-lg shadow-lg text-center transition-all duration-300 hover:shadow-xl hover:bg-red-50">
+                <div key={index} className="bg-white p-8 rounded-lg shadow-lg text-center transition-all duration-300 hover:shadow-xl hover:bg-red-50 border border-gray-200/50">
                   <h3 className="text-5xl font-bold text-red-600 mb-4">{item.metric}</h3>
                   <p className="text-xl text-gray-700">{item.description}</p>
                 </div>
@@ -375,30 +427,52 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Client Showcase */}
-        <section className="py-16 md:py-24 bg-white">
+        {/* Client Showcase - Enhanced */}
+        <section className="py-24 md:py-32 bg-gradient-to-b from-white to-gray-50">
           <div className="container mx-auto px-4">
-            <h2 className="text-4xl font-bold mb-4 text-center text-gray-800">Trusted by Industry Leaders</h2>
-            <p className="text-xl mb-16 text-center text-gray-600">Our clients rely on our machinery for reliable leaf spring manufacturing solutions</p>
-            
-            <div className="relative">
-              <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-white to-transparent z-10" />
-              <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-white to-transparent z-10" />
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+            >
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 text-center bg-clip-text text-transparent bg-gradient-to-r from-red-600 to-red-700 leading-[1.3] pb-2">
+                Trusted by Industry Leaders
+              </h2>
+              <p className="text-xl mb-16 text-center text-gray-600">
+                Our clients rely on our machinery for reliable leaf spring manufacturing solutions
+              </p>
               
-              <InfiniteClientCarousel clients={clients} />
-            </div>
+              <div className="relative">
+                <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-white to-transparent z-10" />
+                <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-white to-transparent z-10" />
+                
+                <InfiniteClientCarousel clients={clients} />
+              </div>
+            </motion.div>
           </div>
         </section>
 
-        {/* CTA Section */}
-        <section className="py-16 md:py-24 bg-red-700 text-white">
-          <div className="container mx-auto px-4 text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 md:mb-8">
-              Explore Our Full Range of Leaf Spring Manufacturing Solutions
-            </h2>
-            <Link href="/products" className="inline-flex items-center bg-white text-red-600 border-2 border-red-600 hover:bg-red-600 hover:text-white hover:border-2 hover:border-white transition-colors px-8 py-3 rounded-md font-bold">
-              Browse Our Products <ChevronRight className="ml-2 h-4 w-4" />
-            </Link>
+        {/* CTA Section - Enhanced */}
+        <section className="py-24 md:py-32 relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-r from-red-700 via-red-600 to-red-700" />
+          <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'url("/patterns/circuit.svg")' }} />
+          
+          <div className="container mx-auto px-4 relative">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="text-center text-white"
+            >
+              <h2 className="text-3xl md:text-4xl font-bold mb-6 md:mb-8">
+                Explore Our Full Range of Leaf Spring Manufacturing Solutions
+              </h2>
+              <Link href="/products" className="inline-flex items-center bg-white text-red-600 border-2 border-red-600 hover:bg-red-600 hover:text-white hover:border-2 hover:border-white transition-colors px-8 py-3 rounded-md font-bold">
+                Browse Our Products <ChevronRight className="ml-2 h-4 w-4" />
+              </Link>
+            </motion.div>
           </div>
         </section>
       </main>
