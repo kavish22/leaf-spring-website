@@ -7,7 +7,6 @@ import { Award, Shield, Zap, Globe, Gauge, Flame, ChevronRight } from 'lucide-re
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRef, useEffect } from 'react'
-import { motion, useScroll, useTransform } from "framer-motion"
 import { cn } from "@/lib/utils"
 
 // Add this interface at the top of the file
@@ -57,30 +56,38 @@ const InfiniteClientCarousel = ({ clients }: { clients: Client[] }) => {
   }, [])
 
   return (
-    <div className="overflow-hidden">
+    <div className="overflow-hidden p-4">
       <div
         ref={scrollerRef}
-        className="flex gap-6"
+        className="flex gap-8"
         style={{
           width: 'max-content',
           willChange: 'transform'
         }}
       >
         {clients.map((client, index) => (
-          <Card 
-            key={`client-${index}`}
-            className="w-[200px] flex-shrink-0 bg-white hover:shadow-lg transition-shadow duration-300 border border-red-600"
-          >
-            <CardContent className="flex aspect-square items-center justify-center p-6">
-              <Image
-                src={client.logo}
-                alt={client.name}
-                width={120}
-                height={120}
-                className="max-w-full max-h-full object-contain"
-              />
-            </CardContent>
-          </Card>
+          <div key={`client-${index}`} className="flex-shrink-0">
+            <Card 
+              className="w-[200px] h-[200px] border-2 border-red-900 rounded-xl overflow-hidden 
+                        bg-gradient-to-br from-white to-red-50 hover:shadow-xl transition-all duration-300 
+                        hover:border-red-800 group hover:-translate-y-1 hover:shadow-red-900/10"
+            >
+              <CardContent className="w-full h-full p-4">
+                <div className="w-full h-full flex items-center justify-center border-2 border-red-900/50 
+                              rounded-lg bg-white p-4 group-hover:border-red-800/50 
+                              transition-all duration-300">
+                  <Image
+                    src={client.logo}
+                    alt={client.name}
+                    width={140}
+                    height={140}
+                    className="max-w-full max-h-full object-contain opacity-90 group-hover:opacity-100 
+                              transition-opacity duration-300 drop-shadow-sm"
+                  />
+                </div>
+              </CardContent>
+            </Card>
+          </div>
         ))}
       </div>
     </div>
@@ -152,66 +159,43 @@ const heroPattern = {
   backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
 };
 
-export default function HomePage() {
-  const { scrollYProgress } = useScroll({
-    axis: 'y'
-  })
-  const opacity = useTransform(scrollYProgress, [0, 0.2], [1, 0])
+// Add a new subtle pattern overlay
+const subtlePattern = {
+  backgroundImage: `url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E")`,
+};
 
+export default function HomePage() {
   return (
     <>
       <main className="bg-gradient-to-b from-gray-50 to-white w-full overflow-x-hidden">
-        {/* Hero Section */}
+        {/* Hero Section - Enhanced */}
         <section className="relative h-[60vh] sm:h-[calc(100vh-56px)] flex items-center overflow-hidden">
-          {/* Enhanced gradient overlay */}
           <div className="absolute inset-0 z-0">
-            <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/80 to-black/70" />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
-            {/* Add subtle pattern overlay */}
-            <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'url("/patterns/grid.svg")' }} />
+            <div className="absolute inset-0 bg-gradient-to-r from-black/95 via-black/90 to-black/85" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/90 to-transparent" />
+            <div className="absolute inset-0" style={subtlePattern} />
           </div>
           
           {/* Background image with subtle animation */}
           <div className="absolute inset-0 z-0 scale-105">
-            <motion.div
-              initial={{ scale: 1.1 }}
-              animate={{ scale: 1 }}
-              transition={{ duration: 10, repeat: Infinity, repeatType: "reverse" }}
-              className="h-full w-full"
-            >
+            <div className="h-full w-full">
               <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-900" />
-            </motion.div>
+            </div>
           </div>
           
           <div className="container mx-auto px-4 relative z-10">
             <div className="max-w-3xl">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
-              >
-                <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 md:mb-4 leading-tight">
-                  <span className="bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-gray-300">
-                    Complete Leaf Spring Manufacturing Machinery Solutions
-                  </span>
-                </h1>
-              </motion.div>
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 md:mb-4 leading-tight">
+                <span className="bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-gray-300">
+                  Complete Leaf Spring Manufacturing Machinery Solutions
+                </span>
+              </h1>
 
-              <motion.p 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                className="text-base sm:text-lg md:text-xl mb-6 md:mb-8 text-gray-200 max-w-2xl leading-relaxed"
-              >
+              <p className="text-base sm:text-lg md:text-xl mb-6 md:mb-8 text-gray-200 max-w-2xl leading-relaxed">
                 Industry-Leading Heavy Duty Shearing Machines, Assembly Lines, and Stress Shot Peening Automation Systems
-              </motion.p>
+              </p>
 
-              <motion.div 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.4 }}
-                className="flex flex-col sm:flex-row gap-3 sm:gap-4 items-center"
-              >
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 items-center">
                 <Link 
                   href="#product-showcase" 
                   className="group w-full sm:w-auto inline-flex items-center justify-center bg-red-600 text-white border-2 border-red-600 hover:bg-red-700 hover:border-red-700 transition-all duration-300 px-5 py-2.5 rounded-full text-sm font-semibold shadow-lg hover:shadow-red-600/30"
@@ -228,12 +212,7 @@ export default function HomePage() {
                 </Link>
                 
                 {/* Social proof - Only show on larger screens */}
-                <motion.div 
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 0.8, delay: 0.6 }}
-                  className="hidden lg:flex items-center gap-4 ml-6 text-white/80"
-                >
+                <div className="hidden lg:flex items-center gap-4 ml-6 text-white/80">
                   <div className="w-px h-8 bg-white/20" />
                   <div>
                     <div className="flex -space-x-1.5">
@@ -246,22 +225,17 @@ export default function HomePage() {
                     </div>
                     <p className="text-xs mt-1.5">Trusted by 500+ Companies</p>
                   </div>
-                </motion.div>
-              </motion.div>
+                </div>
+              </div>
             </div>
           </div>
         </section>
 
-        {/* Product Showcase Section */}
-        <section id="product-showcase" className="py-12 md:py-20">
-          <div className="container mx-auto px-4">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="text-center"
-            >
+        {/* Product Showcase Section - Enhanced */}
+        <section id="product-showcase" className="py-16 md:py-24 relative">
+          <div className="absolute inset-0 bg-gradient-to-b from-gray-50/50 to-white/50 backdrop-blur-sm" />
+          <div className="container mx-auto px-4 relative">
+            <div className="text-center">
               <h2 className="text-4xl md:text-5xl font-bold mb-3 bg-clip-text text-transparent bg-gradient-to-r from-red-600 to-red-800 leading-[1.3] pb-2">
                 Leaf Spring Machinery Product Range
               </h2>
@@ -269,7 +243,7 @@ export default function HomePage() {
                 Engineered for Reliability and Performance
               </p>
               {/* Product cards grid */}
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
                 {[
                   {
                     title: "High-Pressure Water Jet Descaler Machine",
@@ -292,16 +266,19 @@ export default function HomePage() {
                 ].map((product, index) => (
                   <Card 
                     key={index} 
-                    className="overflow-hidden transition-all duration-300 hover:shadow-xl bg-white border-0 shadow-lg h-full"
+                    className="overflow-hidden bg-white border border-gray-100 rounded-xl 
+                              shadow-[0_2px_10px_-4px_rgba(0,0,0,0.1)]
+                              transition-all duration-300 ease-out
+                              hover:-translate-y-1 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.15)]"
                   >
-                    <div className="relative h-[300px]">
+                    <div className="relative h-[300px] overflow-hidden">
                       <Image 
                         src={product.image} 
                         alt={product.title} 
                         fill
                         className="object-cover"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
                     </div>
                     
                     <CardHeader className="space-y-4 pb-2">
@@ -332,37 +309,30 @@ export default function HomePage() {
                   </Card>
                 ))}
               </div>
-            </motion.div>
+            </div>
           </div>
         </section>
 
         {/* View All Products Button - Adjusted spacing */}
-        <div className="-mt-16 md:-mt-24 py-4 md:py-6 bg-gradient-to-b from-white to-gray-50">
+        <div className="-mt-20 md:-mt-28 py-4 md:py-6 bg-gradient-to-b from-white to-gray-50 relative z-10">
           <div className="container mx-auto px-4">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="text-center mt-4 md:mt-6"
-            >
+            <div className="text-center mt-4 md:mt-6">
               <Link 
                 href="/products" 
-                className="inline-flex items-center justify-center bg-red-600 text-white border-2 border-red-600 hover:bg-white hover:text-red-600 transition-colors px-8 py-3 rounded-md font-semibold shadow-lg hover:shadow-red-100"
+                className="inline-flex items-center justify-center bg-red-600 text-white border-2 border-red-600 
+                          hover:bg-red-700 hover:border-red-700 transition-colors px-8 py-3 rounded-md 
+                          font-semibold shadow-lg hover:shadow-red-100"
               >
                 View All Products <ChevronRight className="ml-2 h-4 w-4" />
               </Link>
-            </motion.div>
+            </div>
           </div>
         </div>
 
-        {/* Why Choose Us Section */}
-        <section className="py-16 md:py-24 relative bg-black">
-          {/* Enhanced decorative elements */}
-          <div className="absolute inset-0 opacity-20 pointer-events-none">
-            <div className="absolute top-0 left-0 w-96 h-96 bg-red-600 rounded-full blur-[128px]" />
-            <div className="absolute bottom-0 right-0 w-96 h-96 bg-red-800 rounded-full blur-[128px]" />
-          </div>
+        {/* Why Choose Us Section - Enhanced */}
+        <section className="py-20 md:py-32 relative bg-black">
+          <div className="absolute inset-0" style={subtlePattern} />
+          <div className="absolute inset-0 bg-gradient-to-br from-black/90 to-black/80" />
           
           <div className="container mx-auto px-4 relative">
             <div className="max-w-3xl mx-auto text-center mb-4 md:mb-6">
@@ -384,7 +354,7 @@ export default function HomePage() {
               
               {/* Content with improved padding and layout */}
               <div className="p-6 md:p-8">
-                <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 lg:gap-8">
+                <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 lg:gap-10">
                   {[
                     { 
                       title: "ISO Certified", 
@@ -409,7 +379,7 @@ export default function HomePage() {
                   ].map((item, index) => (
                     <Card 
                       key={index} 
-                      className="text-center transition-all duration-300 hover:shadow-xl group bg-black/50 backdrop-blur-sm border border-gray-800 shadow-[0_0_1px_rgba(255,255,255,0.1)]"
+                      className="text-center transition-all duration-300 hover:shadow-2xl group bg-black/60 backdrop-blur-md border border-gray-800/50 rounded-xl overflow-hidden"
                     >
                       <CardHeader className="space-y-3 pb-2 md:pb-4 px-2 md:px-6">
                         <div className="mx-auto rounded-full bg-gray-900 p-2 md:p-3 transition-transform duration-300 group-hover:scale-110 group-hover:bg-gray-800 border border-gray-800 shadow-sm">
@@ -451,12 +421,7 @@ export default function HomePage() {
         {/* Client Showcase - Enhanced */}
         <section className="py-24 md:py-32 bg-gradient-to-b from-white to-gray-50">
           <div className="container mx-auto px-4">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-            >
+            <div>
               <h2 className="text-4xl md:text-5xl font-bold mb-6 text-center bg-clip-text text-transparent bg-gradient-to-r from-red-600 to-red-700 leading-[1.3] pb-2">
                 Trusted by Industry Leaders
               </h2>
@@ -470,7 +435,7 @@ export default function HomePage() {
                 
                 <InfiniteClientCarousel clients={clients} />
               </div>
-            </motion.div>
+            </div>
           </div>
         </section>
 
