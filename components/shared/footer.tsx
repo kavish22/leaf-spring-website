@@ -16,10 +16,10 @@ export default function Footer() {
   type ContactItem = [LucideIcon, string];
 
   const contactItems: ContactItem[] = [
-    [Phone, '+1 (555) 123-4567'],
+    [Phone, '+91 81200 07474 '],
     [Mail, 'info@leafsprings.com'],
-    [MapPin, '123 Manufacturing St'],
-    [Clock, '9am-5pm']
+    [MapPin, 'Sawer Road, Indore, MP, India'],
+    [Clock, '10:00am-7:00pm IST']
   ];
 
   return (
