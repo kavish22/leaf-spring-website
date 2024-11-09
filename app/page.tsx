@@ -69,7 +69,7 @@ const InfiniteClientCarousel = ({ clients }: { clients: Client[] }) => {
           <div key={`client-${index}`} className="flex-shrink-0">
             <Card 
               className="w-[200px] h-[200px] border-2 border-red-900 rounded-xl overflow-hidden 
-                        bg-gradient-to-br from-white to-red-50 hover:shadow-xl transition-all duration-300 
+                        bg-white hover:shadow-xl transition-all duration-300 
                         hover:border-red-800 group hover:-translate-y-1 hover:shadow-red-900/10"
             >
               <CardContent className="w-full h-full p-4">
@@ -237,7 +237,7 @@ export default function HomePage() {
           <div className="container mx-auto px-4 relative">
             <div className="text-center mb-12 md:mb-16">
               <h2 className="text-4xl md:text-5xl font-bold mb-3 bg-clip-text text-transparent bg-gradient-to-r from-red-600 to-red-800 leading-[1.3] pb-2">
-                Leaf Spring Machinery Product Range
+                LEAF SPRING MACHINERY PRODUCT RANGE
               </h2>
               <p className="text-lg md:text-xl text-gray-600">
                 Engineered for Reliability and Performance
@@ -420,7 +420,7 @@ export default function HomePage() {
         </section>
 
         {/* Client Showcase - Enhanced */}
-        <section className="pt-12 pb-24 md:pt-16 md:pb-32 bg-gradient-to-b from-white to-gray-50">
+        <section className="pt-12 pb-24 md:pt-16 md:pb-32 bg-white">
           <div className="container mx-auto px-4">
             <div>
               <h2 className="text-4xl md:text-5xl font-bold mb-6 text-center bg-clip-text text-transparent bg-gradient-to-r from-red-600 to-red-700 leading-[1.3] pb-2">
