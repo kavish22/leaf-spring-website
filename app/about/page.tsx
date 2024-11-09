@@ -1121,16 +1121,12 @@ export default function AboutPage() {
               <h2 className="text-3xl sm:text-4xl font-bold mb-4">
                 What Our Clients Say
               </h2>
-              <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+              <p className="text-gray-400 text-lg max-w-2xl mx-auto">
                 Discover why leading manufacturers trust LEAFSPRINGS for their machinery needs
               </p>
             </div>
             
             <div className="relative">
-              {/* Gradient overlays */}
-              <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-gray-100 to-transparent z-10" />
-              <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-gray-100 to-transparent z-10" />
-              
               {/* Testimonials carousel */}
               <InfiniteTestimonialCarousel testimonials={testimonials} />
             </div>
@@ -1138,24 +1134,40 @@ export default function AboutPage() {
         </section>
 
         {/* CTA Section */}
-        <section className="py-16 sm:py-24 bg-red-700 text-white">
-          <div className="container mx-auto px-4 text-center">
-            <h2 className="text-3xl sm:text-4xl font-bold mb-6 sm:mb-8 px-4">
+        <section className="py-16 sm:py-24 bg-gradient-to-br from-gray-900 to-red-900 text-white relative">
+          {/* Add the pattern overlay */}
+          <div className="absolute inset-0" style={{ 
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")` 
+          }} />
+          
+          <div className="container mx-auto px-4 text-center relative">
+            <h2 className="text-3xl sm:text-4xl font-bold mb-6 sm:mb-8 text-white">
               Ready to Transform Your Leaf Spring Manufacturing?
             </h2>
-            <div className="flex flex-col sm:flex-row justify-center gap-4 px-4">
-              <Link 
-                href="/contact" 
-                className="inline-flex items-center bg-white text-red-600 border-2 border-red-600 hover:bg-red-600 hover:text-white hover:border-2 hover:border-white transition-colors px-8 py-3 rounded-md font-bold"
+            <p className="text-base sm:text-lg md:text-xl mb-8 sm:mb-12 max-w-3xl mx-auto text-gray-100">
+              Take the first step towards optimizing your manufacturing process with our innovative solutions.
+            </p>
+            <div className="flex flex-col sm:flex-row justify-center gap-4">
+              <Button 
+                variant="default" 
+                size="lg" 
+                className="bg-white hover:bg-gray-100 text-red-600 transition-colors text-base sm:text-lg px-6 sm:px-8 py-2.5 sm:py-3"
+                asChild
               >
-                Contact Sales <ChevronRight className="ml-2 h-4 w-4" />
-              </Link>
-              <Link 
-                href="/products" 
-                className="inline-flex items-center bg-white text-red-600 border-2 border-red-600 hover:bg-red-600 hover:text-white hover:border-2 hover:border-white transition-colors px-8 py-3 rounded-md font-bold"
+                <Link href="/contact">
+                  Contact Sales <ChevronRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
+              <Button 
+                variant="default" 
+                size="lg" 
+                className="bg-white hover:bg-gray-100 text-red-600 transition-colors text-base sm:text-lg px-6 sm:px-8 py-2.5 sm:py-3"
+                asChild
               >
-                View Products <ChevronRight className="ml-2 h-4 w-4" />
-              </Link>
+                <Link href="/products">
+                  View Products <ChevronRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
             </div>
           </div>
         </section>

@@ -813,6 +813,11 @@ export default function ProductsPage() {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, [isSearchExpanded]);
 
+  // Add this near the top of your file, with other constants
+  const heroPattern = {
+    backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+  };
+
   return (
     <>
       <main className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
@@ -968,20 +973,23 @@ export default function ProductsPage() {
         </section>
 
         {/* CTA Section */}
-        <section className="bg-gradient-to-r from-red-600 to-red-700 py-20">
-          <div className="container mx-auto px-4 text-center">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+        <section className="py-12 sm:py-16 md:py-24 bg-gradient-to-br from-gray-900 to-red-900 text-white relative">
+          <div className="absolute inset-0" style={heroPattern} />
+          <div className="container mx-auto px-4 text-center relative">
+            <h2 className="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8 text-white">
               Need Help Choosing the Right Equipment?
             </h2>
-            <p className="text-lg text-white/90 mb-8 max-w-2xl mx-auto">
+            <p className="text-base sm:text-lg md:text-xl mb-8 sm:mb-12 max-w-3xl mx-auto text-gray-100">
               Our team of experts is ready to assist you in selecting the perfect machinery for your specific requirements.
             </p>
-            <Link 
-              href="/contact" 
-              className="inline-flex items-center bg-white text-red-600 border-2 border-red-600 hover:bg-red-600 hover:text-white hover:border-2 hover:border-white transition-colors px-8 py-3 rounded-md font-bold"
+            <Button 
+              variant="default" 
+              size="lg" 
+              className="bg-white hover:bg-gray-100 text-red-600 transition-colors text-base sm:text-lg px-6 sm:px-8 py-2.5 sm:py-3" 
+              asChild
             >
-              Contact Us <ChevronRight className="ml-2 h-4 w-4" />
-            </Link>
+              <Link href="/contact">Contact Us</Link>
+            </Button>
           </div>
         </section>
       </main>

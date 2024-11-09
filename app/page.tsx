@@ -148,6 +148,10 @@ const clients = [
   { name: "Client 9", logo: "/images/clients/client (9).webp" },
 ];
 
+const heroPattern = {
+  backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+};
+
 export default function HomePage() {
   const { scrollYProgress } = useScroll({
     axis: 'y'
@@ -470,26 +474,24 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* CTA Section - Enhanced */}
-        <section className="py-24 md:py-32 relative overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-r from-red-700 via-red-600 to-red-700" />
-          <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'url("/patterns/circuit.svg")' }} />
-          
-          <div className="container mx-auto px-4 relative">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="text-center text-white"
+        {/* CTA Section - Updated to match Join Our Team style */}
+        <section className="py-12 sm:py-16 md:py-24 bg-gradient-to-br from-gray-900 to-red-900 text-white relative">
+          <div className="absolute inset-0" style={heroPattern} />
+          <div className="container mx-auto px-4 text-center relative">
+            <h2 className="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8 text-white">
+              Explore Our Full Range of Leaf Spring Manufacturing Solutions
+            </h2>
+            <p className="text-base sm:text-lg md:text-xl mb-8 sm:mb-12 max-w-3xl mx-auto text-gray-100">
+              Discover our comprehensive selection of high-quality machinery designed for optimal performance and reliability.
+            </p>
+            <Button 
+              variant="default" 
+              size="lg" 
+              className="bg-white hover:bg-gray-100 text-red-600 transition-colors text-base sm:text-lg px-6 sm:px-8 py-2.5 sm:py-3" 
+              asChild
             >
-              <h2 className="text-2xl md:text-4xl font-bold mb-6 md:mb-8">
-                Explore Our Full Range of Leaf Spring Manufacturing Solutions
-              </h2>
-              <Link href="/products" className="inline-flex items-center bg-white text-red-600 border-2 border-red-600 hover:bg-red-600 hover:text-white hover:border-2 hover:border-white transition-colors px-6 md:px-8 py-2 md:py-3 rounded-md font-bold text-sm md:text-base">
-                Browse Our Products <ChevronRight className="ml-2 h-3 w-3 md:h-4 md:w-4" />
-              </Link>
-            </motion.div>
+              <Link href="/products">Browse Our Products</Link>
+            </Button>
           </div>
         </section>
       </main>

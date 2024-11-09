@@ -75,32 +75,45 @@ const InfiniteCarousel = ({ testimonials }: { testimonials: Testimonial[] }) => 
         {testimonials.map((testimonial, index) => (
           <Card 
             key={`testimonial-${index}`}
-            className="w-[400px] h-[250px] flex-shrink-0 bg-white hover:shadow-xl transition-all duration-300 border border-gray-100"
+            className="w-[280px] sm:w-[400px] h-[200px] sm:h-[250px] flex-shrink-0 bg-white/95 backdrop-blur-sm hover:shadow-xl transition-all duration-300 border border-gray-200/50"
           >
-            <CardContent className="p-8 h-full flex flex-col">
+            <CardContent className="p-4 sm:p-8 h-full flex flex-col justify-between relative">
+              {/* Background accent */}
+              <div className="absolute inset-0 bg-gradient-to-br from-red-50 to-transparent opacity-40 rounded-lg" />
+              
               {/* Quote section */}
-              <div className="relative mb-8">
-                <div className="absolute -top-4 left-0 text-red-600 text-5xl opacity-20">"</div>
-                <blockquote className="text-gray-700 text-base leading-relaxed line-clamp-4 pt-2 px-2">
+              <div className="relative flex-1">
+                <div className="absolute -top-1.5 -left-0.5 text-red-500 text-3xl sm:text-5xl opacity-20">"</div>
+                <blockquote className="text-gray-700 text-[13px] sm:text-base leading-snug sm:leading-relaxed line-clamp-4 sm:line-clamp-4 px-3 pt-2">
                   {testimonial.quote}
                 </blockquote>
-                <div className="absolute bottom-0 right-0 text-red-600 text-5xl opacity-20">"</div>
+                <div className="absolute -bottom-2 -right-0.5 text-red-500 text-3xl sm:text-5xl opacity-20 rotate-180">"</div>
               </div>
 
+              {/* Divider */}
+              <div className="w-full h-px bg-gradient-to-r from-transparent via-red-200/50 to-transparent my-2 sm:my-3" />
+
               {/* Profile section */}
-              <div className="mt-auto flex items-center gap-4 border-t pt-6 border-gray-100">
-                <div className="w-14 h-14 rounded-full overflow-hidden border-2 border-gray-100">
-                  <Image
-                    src={testimonial.image}
-                    alt={testimonial.name}
-                    width={56}
-                    height={56}
-                    className="object-cover w-full h-full"
-                  />
+              <div className="flex items-center gap-3 sm:gap-4 pt-1 sm:pt-2">
+                <div className="relative group">
+                  <div className="absolute -inset-0.5 bg-gradient-to-br from-red-500 to-red-600 rounded-full opacity-50 group-hover:opacity-70 blur-sm transition-opacity"></div>
+                  <div className="relative w-10 h-10 sm:w-14 sm:h-14 rounded-full overflow-hidden border-2 border-white shadow-md">
+                    <Image
+                      src={testimonial.image}
+                      alt={testimonial.name}
+                      width={56}
+                      height={56}
+                      className="object-cover w-full h-full"
+                    />
+                  </div>
                 </div>
                 <div>
-                  <h4 className="font-semibold text-gray-800 text-base">{testimonial.name}</h4>
-                  <p className="text-sm text-gray-600">{testimonial.position}</p>
+                  <h4 className="font-semibold text-gray-800 text-sm sm:text-base leading-tight mb-0.5">
+                    {testimonial.name}
+                  </h4>
+                  <p className="text-xs sm:text-sm text-gray-600 leading-tight">
+                    {testimonial.position}
+                  </p>
                 </div>
               </div>
             </CardContent>
@@ -332,6 +345,22 @@ export default function TeamPage() {
           </div>
         </section>
 
+        <section className="py-16 bg-gradient-to-b from-gray-900 to-black relative">
+          <div className="absolute inset-0 bg-grid-gray-100/40" />
+          <div className="container mx-auto px-4 relative">
+            <div className="text-center max-w-3xl mx-auto mb-12">
+              <h2 className="text-3xl font-bold mb-4 text-white">What Our Team Says</h2>
+              <p className="text-gray-300">
+                Hear directly from our team members about their experiences working at Leaf Springs Machinery.
+              </p>
+            </div>
+            
+            <div className="relative">
+              <InfiniteCarousel testimonials={testimonials} />
+            </div>
+          </div>
+        </section>
+
         <section className="py-12 sm:py-16 md:py-24 bg-gradient-to-br from-gray-900 to-red-900 text-white relative">
           <div className="absolute inset-0" style={heroPattern} />
           <div className="container mx-auto px-4 text-center relative">
@@ -347,25 +376,6 @@ export default function TeamPage() {
             >
               <Link href="/contact">Contact Us</Link>
             </Button>
-          </div>
-        </section>
-
-        <section className="py-16 bg-gradient-to-b from-gray-50 to-white relative">
-          <div className="absolute inset-0 bg-grid-gray-100/40" />
-          <div className="container mx-auto px-4 relative">
-            <div className="text-center max-w-3xl mx-auto mb-12">
-              <h2 className="text-3xl font-bold mb-4">What Our Team Says</h2>
-              <p className="text-gray-600">
-                Hear directly from our team members about their experiences working at Leaf Springs Machinery.
-              </p>
-            </div>
-            
-            <div className="relative">
-              <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-gray-50 to-transparent z-10" />
-              <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-gray-50 to-transparent z-10" />
-              
-              <InfiniteCarousel testimonials={testimonials} />
-            </div>
           </div>
         </section>
       </main>
