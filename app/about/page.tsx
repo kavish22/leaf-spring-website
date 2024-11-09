@@ -657,24 +657,24 @@ export default function AboutPage() {
             </div>
 
             {/* Mobile Design */}
-            <div className="lg:hidden px-4">
+            <div className="lg:hidden">
               <Tabs defaultValue="story" className="w-full">
                 {/* Mobile Tab List */}
-                <TabsList className="flex w-full overflow-x-auto gap-2 mb-6 pb-2 scrollbar-hide bg-transparent">
+                <TabsList className="flex w-full overflow-x-auto gap-1 mb-4 pb-1 scrollbar-hide bg-transparent">
                   {[
-                    { value: 'story', icon: <BookOpen className="w-4 h-4" />, label: 'Story' },
-                    { value: 'vision', icon: <Eye className="w-4 h-4" />, label: 'Vision' },
-                    { value: 'innovation', icon: <Lightbulb className="w-4 h-4" />, label: 'Innovation' },
-                    { value: 'quality', icon: <Shield className="w-4 h-4" />, label: 'Quality' }
+                    { value: 'story', icon: <BookOpen className="w-3 h-3" />, label: 'Story' },
+                    { value: 'vision', icon: <Eye className="w-3 h-3" />, label: 'Vision' },
+                    { value: 'innovation', icon: <Lightbulb className="w-3 h-3" />, label: 'Innovation' },
+                    { value: 'quality', icon: <Shield className="w-3 h-3" />, label: 'Quality' }
                   ].map((tab) => (
                     <TabsTrigger 
                       key={tab.value}
                       value={tab.value}
-                      className="group inline-flex items-center gap-2 px-4 py-2 text-sm font-medium
+                      className="group inline-flex items-center gap-0.5 px-2 py-1 text-[10px] font-medium
                         bg-white border border-gray-200 shadow-sm whitespace-nowrap
                         data-[state=active]:bg-red-600 data-[state=active]:text-white data-[state=active]:border-red-600
                         data-[state=inactive]:hover:bg-red-50 data-[state=inactive]:hover:border-red-200
-                        transition-all duration-300 rounded-lg flex-shrink-0"
+                        transition-all duration-300 rounded-md flex-shrink-0"
                     >
                       <span className="group-data-[state=active]:text-white group-data-[state=inactive]:text-red-600">
                         {tab.icon}
@@ -692,7 +692,6 @@ export default function AboutPage() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5 }}
                   >
-                    {/* Image Section */}
                     <div className="relative h-[300px] rounded-2xl overflow-hidden shadow-2xl">
                       <Image
                         src="/images/story-image.jpg"
@@ -717,19 +716,22 @@ export default function AboutPage() {
                       <div className="space-y-6">
                         {[
                           {
-                            icon: <Clock className="w-8 h-8 text-red-600" />,
+                            icon: <Clock className="w-12 h-12 text-red-600" />,
                             title: "30+ Years Experience",
-                            description: "Pioneering leaf spring manufacturing since 1990"
+                            description: "Pioneering leaf spring manufacturing since 1990",
+                            metric: "Since 1990"
                           },
                           {
-                            icon: <Globe className="w-8 h-8 text-red-600" />,
+                            icon: <Globe className="w-12 h-12 text-red-600" />,
                             title: "Global Presence",
-                            description: "Serving customers in over 50 countries worldwide"
+                            description: "Serving customers in over 50 countries worldwide",
+                            metric: "50+ Countries"
                           },
                           {
-                            icon: <Award className="w-8 h-8 text-red-600" />,
-                            title: "1000+ Machines Delivered",
-                            description: "Trusted by manufacturers globally"
+                            icon: <Award className="w-12 h-12 text-red-600" />,
+                            title: "Industry Leader",
+                            description: "Setting worldwide standards in manufacturing",
+                            metric: "Top Rated"
                           }
                         ].map((item, idx) => (
                           <motion.div 
@@ -739,13 +741,16 @@ export default function AboutPage() {
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ delay: idx * 0.1 }}
                           >
-                            <div className="flex gap-4 items-start">
+                            <div className="flex gap-6 items-center">
                               <div className="p-3 bg-red-50 rounded-xl group-hover:bg-red-100 transition-colors">
                                 {item.icon}
                               </div>
                               <div>
-                                <h4 className="text-xl font-semibold mb-2">{item.title}</h4>
-                                <p className="text-gray-600">{item.description}</p>
+                                <h4 className="text-xl font-semibold mb-1">{item.title}</h4>
+                                <p className="text-gray-600 mb-2">{item.description}</p>
+                                <span className="inline-block px-3 py-1 bg-red-50 text-red-700 rounded-full text-sm font-medium">
+                                  {item.metric}
+                                </span>
                               </div>
                             </div>
                           </motion.div>
@@ -763,7 +768,6 @@ export default function AboutPage() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5 }}
                   >
-                    {/* Image Section */}
                     <div className="relative h-[300px] rounded-2xl overflow-hidden shadow-2xl">
                       <Image
                         src="/images/vision-image.jpg"
@@ -788,19 +792,22 @@ export default function AboutPage() {
                       <div className="space-y-6">
                         {[
                           {
-                            icon: <Target className="w-8 h-8 text-blue-600" />,
+                            icon: <Target className="w-12 h-12 text-blue-600" />,
                             title: "Global Leadership",
-                            description: "Setting worldwide standards in leaf spring manufacturing technology"
+                            description: "Setting worldwide standards in leaf spring manufacturing technology",
+                            metric: "Industry Leader"
                           },
                           {
-                            icon: <Globe className="w-8 h-8 text-blue-600" />,
+                            icon: <Globe className="w-12 h-12 text-blue-600" />,
                             title: "Sustainable Future",
-                            description: "Pioneering eco-friendly manufacturing processes"
+                            description: "Pioneering eco-friendly manufacturing processes",
+                            metric: "Eco-Friendly"
                           },
                           {
-                            icon: <Lightbulb className="w-8 h-8 text-blue-600" />,
+                            icon: <Lightbulb className="w-12 h-12 text-blue-600" />,
                             title: "Innovation Hub",
-                            description: "Continuous research and development for breakthrough solutions"
+                            description: "Continuous research and development for breakthrough solutions",
+                            metric: "R&D Focus"
                           }
                         ].map((item, idx) => (
                           <motion.div 
@@ -810,13 +817,16 @@ export default function AboutPage() {
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ delay: idx * 0.1 }}
                           >
-                            <div className="flex gap-4 items-start">
+                            <div className="flex gap-6 items-center">
                               <div className="p-3 bg-blue-50 rounded-xl group-hover:bg-blue-100 transition-colors">
                                 {item.icon}
                               </div>
                               <div>
-                                <h4 className="text-xl font-semibold mb-2">{item.title}</h4>
-                                <p className="text-gray-600">{item.description}</p>
+                                <h4 className="text-xl font-semibold mb-1">{item.title}</h4>
+                                <p className="text-gray-600 mb-2">{item.description}</p>
+                                <span className="inline-block px-3 py-1 bg-blue-50 text-blue-700 rounded-full text-sm font-medium">
+                                  {item.metric}
+                                </span>
                               </div>
                             </div>
                           </motion.div>
@@ -834,6 +844,16 @@ export default function AboutPage() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5 }}
                   >
+                    <div className="relative h-[300px] rounded-2xl overflow-hidden shadow-2xl">
+                      <Image
+                        src="/images/innovation-image.jpg"
+                        alt="Innovation"
+                        fill
+                        className="object-cover hover:scale-105 transition-transform duration-500"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+                    </div>
+
                     <div className="space-y-8">
                       <div>
                         <h3 className="text-3xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-purple-800">
@@ -845,59 +865,49 @@ export default function AboutPage() {
                         </p>
                       </div>
 
-                      <div className="grid grid-cols-2 gap-6">
+                      <div className="space-y-6">
                         {[
                           {
-                            icon: <Cog className="w-10 h-10 text-purple-600" />,
+                            icon: <Cog className="w-12 h-12 text-purple-600" />,
                             title: "Smart Automation",
-                            value: "100%",
-                            subtitle: "Process Automation"
+                            description: "Fully automated manufacturing processes",
+                            metric: "100% Automated"
                           },
                           {
-                            icon: <Target className="w-10 h-10 text-purple-600" />,
-                            title: "Precision",
-                            value: "±0.1mm",
-                            subtitle: "Accuracy Rate"
+                            icon: <Target className="w-12 h-12 text-purple-600" />,
+                            title: "Precision Control",
+                            description: "Industry-leading accuracy in production",
+                            metric: "±0.1mm Precision"
                           },
                           {
-                            icon: <Award className="w-10 h-10 text-purple-600" />,
-                            title: "Patents",
-                            value: "50+",
-                            subtitle: "Active Patents"
-                          },
-                          {
-                            icon: <Truck className="w-10 h-10 text-purple-600" />,
-                            title: "Integration",
-                            value: "4.0",
-                            subtitle: "Industry Ready"
+                            icon: <Award className="w-12 h-12 text-purple-600" />,
+                            title: "Patent Portfolio",
+                            description: "Extensive portfolio of innovative technologies",
+                            metric: "50+ Patents"
                           }
                         ].map((item, idx) => (
                           <motion.div 
                             key={idx}
                             className="bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition-all group"
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
+                            initial={{ opacity: 0, x: 20 }}
+                            animate={{ opacity: 1, x: 0 }}
                             transition={{ delay: idx * 0.1 }}
                           >
-                            <div className="p-3 bg-purple-50 rounded-xl w-fit group-hover:bg-purple-100 transition-colors mb-4">
-                              {item.icon}
+                            <div className="flex gap-6 items-center">
+                              <div className="p-3 bg-purple-50 rounded-xl group-hover:bg-purple-100 transition-colors">
+                                {item.icon}
+                              </div>
+                              <div>
+                                <h4 className="text-xl font-semibold mb-1">{item.title}</h4>
+                                <p className="text-gray-600 mb-2">{item.description}</p>
+                                <span className="inline-block px-3 py-1 bg-purple-50 text-purple-700 rounded-full text-sm font-medium">
+                                  {item.metric}
+                                </span>
+                              </div>
                             </div>
-                            <h4 className="text-lg font-semibold mb-1">{item.title}</h4>
-                            <div className="text-2xl font-bold text-purple-600 mb-1">{item.value}</div>
-                            <p className="text-sm text-gray-600">{item.subtitle}</p>
                           </motion.div>
                         ))}
                       </div>
-                    </div>
-
-                    <div className="relative h-[300px] rounded-2xl overflow-hidden shadow-2xl">
-                      <Image
-                        src="/images/innovation-image.jpg"
-                        alt="Innovation"
-                        fill
-                        className="object-cover hover:scale-105 transition-transform duration-500"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
                     </div>
                   </motion.div>
                 </TabsContent>

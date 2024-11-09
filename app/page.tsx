@@ -69,7 +69,7 @@ const InfiniteClientCarousel = ({ clients }: { clients: Client[] }) => {
         {clients.map((client, index) => (
           <Card 
             key={`client-${index}`}
-            className="w-[200px] flex-shrink-0 bg-white hover:shadow-lg transition-shadow duration-300"
+            className="w-[200px] flex-shrink-0 bg-white hover:shadow-lg transition-shadow duration-300 border border-red-600"
           >
             <CardContent className="flex aspect-square items-center justify-center p-6">
               <Image
@@ -149,13 +149,14 @@ const clients = [
 ];
 
 export default function HomePage() {
-  // Add scroll animation hooks
-  const { scrollYProgress } = useScroll()
+  const { scrollYProgress } = useScroll({
+    axis: 'y'
+  })
   const opacity = useTransform(scrollYProgress, [0, 0.2], [1, 0])
 
   return (
     <>
-      <main className="bg-gradient-to-b from-gray-50 to-white">
+      <main className="bg-gradient-to-b from-gray-50 to-white w-full overflow-x-hidden">
         {/* Hero Section */}
         <section className="relative min-h-[90vh] flex items-center overflow-hidden">
           {/* Enhanced gradient overlay */}
@@ -331,8 +332,8 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* View All Products Button - Added space at top */}
-        <div className="py-4 md:py-6 -mt-12 md:-mt-20 bg-gradient-to-b from-white to-gray-50">
+        {/* View All Products Button - Adjusted spacing */}
+        <div className="-mt-16 md:-mt-24 py-4 md:py-6 bg-gradient-to-b from-white to-gray-50">
           <div className="container mx-auto px-4">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -431,7 +432,10 @@ export default function HomePage() {
                 { metric: "90%", description: "Reduction in Downtime" },
                 { metric: "50+", description: "Global Clients Served" },
               ].map((item, index) => (
-                <div key={index} className="bg-gray-900 p-8 rounded-lg shadow-lg text-center transition-all duration-300 hover:shadow-xl hover:bg-gray-800 border border-gray-800">
+                <div 
+                  key={index} 
+                  className="bg-black/50 backdrop-blur-sm border border-gray-800 shadow-[0_0_1px_rgba(255,255,255,0.1)] p-8 rounded-lg text-center transition-all duration-300 hover:shadow-xl hover:bg-gray-800"
+                >
                   <h3 className="text-5xl font-bold text-red-500 mb-4">{item.metric}</h3>
                   <p className="text-xl text-gray-300">{item.description}</p>
                 </div>
@@ -479,11 +483,11 @@ export default function HomePage() {
               transition={{ duration: 0.8 }}
               className="text-center text-white"
             >
-              <h2 className="text-3xl md:text-4xl font-bold mb-6 md:mb-8">
+              <h2 className="text-2xl md:text-4xl font-bold mb-6 md:mb-8">
                 Explore Our Full Range of Leaf Spring Manufacturing Solutions
               </h2>
-              <Link href="/products" className="inline-flex items-center bg-white text-red-600 border-2 border-red-600 hover:bg-red-600 hover:text-white hover:border-2 hover:border-white transition-colors px-8 py-3 rounded-md font-bold">
-                Browse Our Products <ChevronRight className="ml-2 h-4 w-4" />
+              <Link href="/products" className="inline-flex items-center bg-white text-red-600 border-2 border-red-600 hover:bg-red-600 hover:text-white hover:border-2 hover:border-white transition-colors px-6 md:px-8 py-2 md:py-3 rounded-md font-bold text-sm md:text-base">
+                Browse Our Products <ChevronRight className="ml-2 h-3 w-3 md:h-4 md:w-4" />
               </Link>
             </motion.div>
           </div>

@@ -4,17 +4,16 @@ import { useState, useEffect, useCallback, useRef, useMemo } from 'react'
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { X, ChevronDown, Download, ChevronRight, Search, Filter } from 'lucide-react'
+import { X, ChevronDown, Download, ChevronRight, Search, Filter, ShoppingCart, Plus, FileText, Info } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import WhatsAppButton from '@/components/shared/whatsapp-button'
-import { motion, useScroll, useTransform } from 'framer-motion'
 import { useVirtualizer } from '@tanstack/react-virtual';
 import { ErrorBoundary } from 'react-error-boundary';
-import { useInView } from 'react-intersection-observer'
 import { Skeleton } from "@/components/ui/skeleton"
 import { debounce } from 'lodash';
 import { cn } from "@/lib/utils"
+import { useInView } from 'react-intersection-observer';
 
 interface Product {
   title: string;
@@ -376,14 +375,12 @@ interface ProductCardProps {
 }
 
 const ProductCard = ({ product, index, isSlideOpen, onSlideToggle, onLearnMore }: ProductCardProps) => {
+  const handleBrochure = (product: Product) => {
+    console.log('Download brochure for:', product.title);
+  };
+
   return (
-    <motion.div 
-      className="relative w-full h-full"
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
-    >
+    <div className="relative w-full h-full">
       <Card className="overflow-hidden transition-all duration-300 hover:shadow-lg group flex flex-col h-full bg-white/80 backdrop-blur-sm border border-gray-100">
         {/* Image Container */}
         <div className="relative h-24 xs:h-32 sm:h-48 lg:h-52 overflow-hidden">
@@ -418,24 +415,34 @@ const ProductCard = ({ product, index, isSlideOpen, onSlideToggle, onLearnMore }
             </div>
           </div>
 
-          {/* Buttons Container - Further refined for mobile */}
-          <div className="grid grid-cols-2 gap-0.5 xs:gap-1 sm:gap-2 mt-auto">
+          {/* Action Buttons Container */}
+          <div className="mt-1 xs:mt-1.5 sm:mt-4 grid grid-cols-2 gap-1 xs:gap-1.5 sm:block sm:space-y-2">
             <Button 
-              className="h-5 xs:h-6 sm:h-9 text-[6px] xs:text-[8px] sm:text-sm bg-red-600 text-white hover:bg-red-700 transition-all duration-300 px-0.5 xs:px-1 sm:px-4 flex items-center justify-center"
-              onClick={() => onSlideToggle(index)}
+              className={cn(
+                "w-full text-white bg-red-600 hover:bg-red-700",
+                "h-4 xs:h-5 sm:h-8",
+                "text-[6px] xs:text-[7px] sm:text-xs",
+                "rounded px-1 xs:px-2 sm:px-4",
+                "flex items-center justify-center",
+                "border border-red-600 sm:border-transparent"
+              )}
+              onClick={() => handleBrochure(product)}
             >
-              <span className="flex items-center">
-                Details
-                <ChevronDown className={`ml-0.5 xs:ml-1 sm:ml-1.5 h-1.5 w-1.5 xs:h-2 xs:w-2 sm:h-4 sm:w-4 transition-transform duration-300 ${isSlideOpen ? 'rotate-180' : ''}`} />
-              </span>
+              <FileText className="hidden sm:inline-block sm:mr-2 sm:h-4 sm:w-4" />
+              Brochure
             </Button>
             <Button 
-              className="h-5 xs:h-6 sm:h-9 text-[6px] xs:text-[8px] sm:text-sm bg-white text-red-600 border border-red-600 hover:bg-red-50 px-0.5 xs:px-1 sm:px-4 flex items-center justify-center"
+              className={cn(
+                "w-full bg-white text-red-600 border border-red-600 hover:bg-red-50",
+                "h-4 xs:h-5 sm:h-8",
+                "text-[6px] xs:text-[7px] sm:text-xs",
+                "rounded px-1 xs:px-2 sm:px-4",
+                "flex items-center justify-center"
+              )}
+              onClick={() => onSlideToggle(index)}
             >
-              <span className="flex items-center">
-                Brochure
-                <Download className="ml-0.5 xs:ml-1 sm:ml-1.5 h-1 w-1 xs:h-1.5 xs:w-1.5 sm:h-4 sm:w-4" />
-              </span>
+              <Info className="hidden sm:inline-block sm:mr-2 sm:h-4 sm:w-4" />
+              Details
             </Button>
           </div>
         </div>
@@ -452,30 +459,34 @@ const ProductCard = ({ product, index, isSlideOpen, onSlideToggle, onLearnMore }
             top: '56px',
           }}
         >
-          {/* Header */}
-          <div className="sticky top-0 bg-white/95 backdrop-blur-sm p-1.5 xs:p-2 sm:p-4 border-b flex justify-between items-center">
-            <h3 className="text-[10px] xs:text-xs sm:text-lg font-bold text-gray-900 pr-2">{product.title}</h3>
+          {/* Extra Compact Header */}
+          <div className="sticky top-0 bg-white/95 backdrop-blur-sm p-1 xs:p-1.5 sm:p-4 border-b flex justify-between items-center">
+            <h3 className="text-[10px] xs:text-xs sm:text-lg font-bold text-gray-900 pr-2 line-clamp-2">{product.title}</h3>
             <button 
               onClick={() => onSlideToggle(index)}
-              className="p-1 xs:p-1.5 sm:p-2 hover:bg-gray-100 rounded-full"
+              className="p-0.5 hover:bg-gray-100 rounded-full flex-shrink-0"
             >
-              <X className="h-2.5 w-2.5 xs:h-3 xs:w-3 sm:h-5 sm:w-5 text-gray-500" />
+              <X className="h-3 w-3 xs:h-3.5 xs:w-3.5 sm:h-5 sm:w-5 text-gray-500" />
             </button>
           </div>
           
-          {/* Content - with flex-grow to push footer down */}
+          {/* Content - Maximum Space for Details */}
           <div className="flex-grow overflow-y-auto">
             <div className="p-1.5 xs:p-2 sm:p-4">
               {/* Mobile-Only Technical Details */}
               <div className="block sm:hidden">
-                <ul className="grid grid-cols-1 gap-1.5 text-[7px] xs:text-[8px] text-gray-600">
-                  {product.details.map((detail, i) => (
-                    <li key={i} className="flex items-start">
-                      <ChevronRight className="h-1.5 w-1.5 xs:h-2 xs:w-2 sm:h-4 sm:w-4 text-red-500 mt-0.5 flex-shrink-0" />
-                      <span className="ml-1 xs:ml-1.5 sm:ml-2">{detail}</span>
-                    </li>
-                  ))}
-                </ul>
+                {/* Technical Details Section */}
+                <div>
+                  <h4 className="text-[8px] xs:text-[10px] font-semibold text-gray-900 mb-1">Technical Details</h4>
+                  <ul className="space-y-[2px] xs:space-y-1">
+                    {product.details.map((detail, i) => (
+                      <li key={i} className="flex items-start">
+                        <ChevronRight className="h-1.5 w-1.5 xs:h-2 xs:w-2 text-red-500 mt-[3px] flex-shrink-0" />
+                        <span className="ml-0.5 text-[7px] xs:text-[9px] text-gray-600 leading-tight">{detail}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
 
               {/* Desktop Content - Hidden on Mobile */}
@@ -505,11 +516,11 @@ const ProductCard = ({ product, index, isSlideOpen, onSlideToggle, onLearnMore }
             </div>
           </div>
 
-          {/* Footer - will stay at bottom due to flex layout */}
+          {/* Extra Compact Footer */}
           <div className="bg-white/95 backdrop-blur-sm border-t">
-            <div className="p-1.5 xs:p-2 sm:p-4">
+            <div className="p-1 xs:p-1.5 sm:p-4">
               <Button 
-                className="w-full h-5 xs:h-6 sm:h-10 text-[7px] xs:text-[8px] sm:text-sm bg-red-600 text-white hover:bg-red-700"
+                className="w-full h-6 xs:h-7 sm:h-10 text-[8px] xs:text-[10px] sm:text-sm bg-red-600 text-white hover:bg-red-700"
                 onClick={() => onSlideToggle(index)}
               >
                 Close
@@ -518,7 +529,7 @@ const ProductCard = ({ product, index, isSlideOpen, onSlideToggle, onLearnMore }
           </div>
         </div>
       </Card>
-    </motion.div>
+    </div>
   );
 };
 
@@ -585,13 +596,7 @@ const FloatingFilterBar = ({
   isVisible: boolean;
 }) => {
   return (
-    <motion.div
-      initial={{ y: -20, opacity: 0 }}
-      animate={{ 
-        y: isVisible ? 0 : -20,
-        opacity: isVisible ? 1 : 0
-      }}
-      transition={{ duration: 0.3 }}
+    <div
       className={cn(
         "w-full bg-white/80 backdrop-blur-lg shadow-md py-4",
         isVisible ? "fixed top-[80px] z-30" : "relative"
@@ -644,7 +649,7 @@ const FloatingFilterBar = ({
           </div>
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 };
 
@@ -653,9 +658,6 @@ export default function ProductsPage() {
   const [isSlideOpen, setIsSlideOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [isSearchExpanded, setIsSearchExpanded] = useState(false);
-  const { scrollYProgress } = useScroll()
-  const opacity = useTransform(scrollYProgress, [0, 0.2], [1, 0])
-  const scale = useTransform(scrollYProgress, [0, 0.2], [1, 0.8])
 
   const handleSlideToggle = (index: number) => {
     setOpenSlide(openSlide === index ? null : index);
@@ -685,12 +687,6 @@ export default function ProductsPage() {
   const handleImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
     e.currentTarget.src = '/fallback-image.jpg';
   };
-
-  // Add intersection observer for animation on scroll
-  const [ref, firstInView] = useInView({
-    threshold: 0.2,
-    triggerOnce: true
-  });
 
   // Add this useEffect
   useEffect(() => {
@@ -747,15 +743,15 @@ export default function ProductsPage() {
   // Separate immediate input update from debounced search
   const debouncedSearch = useCallback(
     debounce((value: string) => {
-      productsRef.current?.scrollIntoView({ behavior: 'smooth' });
+      document.getElementById('products-section')?.scrollIntoView({ behavior: 'smooth' });
     }, 300),
     []
   );
 
   // Update the input handler
   const handleSearchInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchQuery(e.target.value);  // Immediate update
-    debouncedSearch(e.target.value); // Debounced scroll
+    setSearchQuery(e.target.value);
+    debouncedSearch(e.target.value);
   };
 
   // Update the input element
@@ -773,12 +769,11 @@ export default function ProductsPage() {
 
   const [isFilterVisible, setIsFilterVisible] = useState(false);
   
-  // Add intersection observer for products section
-  const productsRef = useRef<HTMLDivElement>(null);
-  const { ref: intersectionRef, inView } = useInView({
-    threshold: 0,
-    rootMargin: "-90% 0px 0px 0px"
-  });
+  // Create a separate ref for scrolling
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  // Use this for the intersection observer
+  const { ref: productsRef, inView } = useInView();
 
   // Update filter visibility based on scroll position
   useEffect(() => {
@@ -806,7 +801,7 @@ export default function ProductsPage() {
 
   const onCategorySelect = (category: string | null) => {
     setSelectedCategory(category);
-    productsRef.current?.scrollIntoView({ behavior: 'smooth' });
+    document.getElementById('products-section')?.scrollIntoView({ behavior: 'smooth' });
   };
 
   // Add click outside handler
@@ -826,45 +821,31 @@ export default function ProductsPage() {
       <main className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
         {/* Hero Section */}
         <section className="relative h-[60vh] sm:h-[calc(100vh-56px)] flex items-center justify-center overflow-hidden">
-          <motion.div 
-            className="absolute inset-0 z-0 bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900"
-            style={{ opacity, scale }}
-          >
-            {/* Removed Image component */}
-          </motion.div>
+          <div className="absolute inset-0 z-0 bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900">
+          </div>
           <div className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
-            <motion.h1 
-              className="text-4xl sm:text-5xl md:text-7xl font-bold mb-4 sm:mb-8 leading-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-300"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-            >
+            <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold mb-4 sm:mb-8 leading-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-300">
               Our Product Range
-            </motion.h1>
-            <motion.p 
-              className="text-lg sm:text-xl md:text-2xl mb-6 sm:mb-10"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-            >
+            </h1>
+            <p className="text-lg sm:text-xl md:text-2xl mb-6 sm:mb-10">
               Discover our comprehensive range of high-performance leaf spring machinery, engineered for excellence in automotive and heavy industry applications.
-            </motion.p>
+            </p>
           </div>
         </section>
 
         {/* Observer at end of hero section */}
         <div ref={heroEndRef} className="h-1" />
 
-        {/* Filter Section - Now positioned correctly */}
-        <div className="sticky top-[56px] z-40 bg-white/80 backdrop-blur-lg shadow-md py-3 sm:py-4">
-          <div className="container mx-auto px-4">
+        {/* Filter Section */}
+        <div className="sticky top-[56px] z-40 bg-white/80 backdrop-blur-lg sm:bg-transparent sm:backdrop-blur-none py-3 sm:py-4">
+          <div className="container mx-auto px-4 mt-2 sm:mt-0">
             <div className="max-w-2xl mx-auto bg-white/95 backdrop-blur-lg rounded-full shadow-lg border border-gray-100 p-1.5 sm:p-2 flex items-center gap-2">
               {/* Search Container */}
               <div className={cn(
                 "relative flex-1 search-container transition-all duration-300",
                 isSearchExpanded ? "flex-grow" : "w-full sm:w-48"
               )}>
-                <div className="relative flex items-center">
+                <div className="relative flex items-center w-full">
                   <Search 
                     className={cn(
                       "absolute left-3 h-4 w-4 transition-all duration-300",
@@ -872,27 +853,31 @@ export default function ProductsPage() {
                     )}
                     onClick={() => setIsSearchExpanded(true)}
                   />
-                  <input
-                    type="text"
-                    placeholder="Search products..."
-                    value={searchQuery}
-                    onChange={handleSearchInput}
-                    className={cn(
-                      "w-full pl-10 pr-4 py-2 rounded-full text-sm focus:outline-none transition-all duration-300",
-                      isSearchExpanded ? "bg-red-50 border border-red-100" : "bg-transparent"
+                  <div className="relative w-full">
+                    <input
+                      type="text"
+                      placeholder="Search products..."
+                      value={searchQuery}
+                      onChange={handleSearchInput}
+                      className={cn(
+                        "w-full pl-10 pr-8 py-2 rounded-full text-sm focus:outline-none transition-all duration-300",
+                        isSearchExpanded ? "bg-red-50 border border-red-100" : "bg-transparent"
+                      )}
+                      onFocus={() => setIsSearchExpanded(true)}
+                    />
+                    {isSearchExpanded && (
+                      <button
+                        className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-red-500"
+                        onClick={() => {
+                          setSearchQuery('');
+                          setIsSearchExpanded(false);
+                        }}
+                      >
+                        <X className="h-4 w-4" />
+                      </button>
                     )}
-                    onFocus={() => setIsSearchExpanded(true)}
-                  />
+                  </div>
                 </div>
-                {isSearchExpanded && searchQuery && (
-                  <X 
-                    className="absolute right-3 h-4 w-4 text-gray-400 hover:text-red-500 cursor-pointer"
-                    onClick={() => {
-                      setSearchQuery('');
-                      setIsSearchExpanded(false);
-                    }}
-                  />
-                )}
               </div>
 
               {/* Only show divider and categories when search is not expanded and screen is larger than mobile */}
@@ -964,17 +949,21 @@ export default function ProductsPage() {
         </div>
 
         {/* Products Section */}
-        <section ref={productsRef} className="py-4 sm:py-8 lg:py-16">
+        <section 
+          ref={productsRef}
+          className="py-4 sm:py-8 lg:py-16"
+          id="products-section"
+        >
           <div className="container mx-auto px-2 sm:px-4">
-            <div className="grid grid-cols-3 xs:grid-cols-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 xs:gap-3 sm:gap-4 lg:gap-6">
+            <div className="grid grid-cols-2 xs:grid-cols-3 lg:grid-cols-4 gap-2 xs:gap-3 sm:gap-4">
               {searchedProducts.map((product, index) => (
                 <ProductCard
                   key={index}
                   product={product}
                   index={index}
                   isSlideOpen={openSlide === index}
-                  onLearnMore={() => handleLearnMore(product)}
                   onSlideToggle={handleSlideToggle}
+                  onLearnMore={handleLearnMore}
                 />
               ))}
             </div>

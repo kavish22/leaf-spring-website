@@ -20,8 +20,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
-      <body className="min-h-screen">
+    <html lang="en" className="!scroll-smooth">
+      <body className="min-h-screen overflow-x-hidden overflow-y-auto">
         <Header />
         <main>
           {children}
