@@ -505,11 +505,21 @@ export default function AboutPage() {
 
                   <TabsContent value="innovation">
                     <motion.div 
-                      className="grid grid-cols-2 gap-16 items-center"
+                      className="space-y-8"
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.5 }}
                     >
+                      <div className="relative h-[600px] rounded-2xl overflow-hidden shadow-2xl">
+                        <Image
+                          src="/images/innovation-image.jpg"
+                          alt="Innovation"
+                          fill
+                          className="object-cover hover:scale-105 transition-transform duration-500"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+                      </div>
+
                       <div className="space-y-8">
                         <div>
                           <h3 className="text-3xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-purple-800">
@@ -565,27 +575,17 @@ export default function AboutPage() {
                           ))}
                         </div>
                       </div>
-
-                      <div className="relative h-[300px] rounded-2xl overflow-hidden shadow-2xl">
-                        <Image
-                          src="/images/innovation-image.jpg"
-                          alt="Innovation"
-                          fill
-                          className="object-cover hover:scale-105 transition-transform duration-500"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-                      </div>
                     </motion.div>
                   </TabsContent>
 
                   <TabsContent value="quality">
                     <motion.div 
-                      className="grid grid-cols-2 gap-16 items-center"
+                      className="space-y-8"
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.5 }}
                     >
-                      <div className="relative h-[300px] rounded-2xl overflow-hidden shadow-2xl">
+                      <div className="relative h-[600px] rounded-2xl overflow-hidden shadow-2xl">
                         <Image
                           src="/images/quality-image.jpg"
                           alt="Quality"
@@ -844,7 +844,7 @@ export default function AboutPage() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5 }}
                   >
-                    <div className="relative h-[300px] rounded-2xl overflow-hidden shadow-2xl">
+                    <div className="relative h-[600px] rounded-2xl overflow-hidden shadow-2xl">
                       <Image
                         src="/images/innovation-image.jpg"
                         alt="Innovation"
@@ -920,7 +920,7 @@ export default function AboutPage() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5 }}
                   >
-                    <div className="relative h-[300px] rounded-2xl overflow-hidden shadow-2xl">
+                    <div className="relative h-[600px] rounded-2xl overflow-hidden shadow-2xl">
                       <Image
                         src="/images/quality-image.jpg"
                         alt="Quality"
