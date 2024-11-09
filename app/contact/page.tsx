@@ -6,7 +6,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { Phone, Mail, MapPin, Send, MessageSquare, Clock, ChevronDown, Search } from 'lucide-react'
 import WhatsAppButton from '@/components/shared/whatsapp-button'
 import { Card, CardContent } from "@/components/ui/card"
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs"
 
 const contactInfo = [
@@ -176,6 +176,12 @@ const EnhancedFAQSection = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<FAQCategory>('all');
   const [openFAQIndex, setOpenFAQIndex] = useState<number | null>(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Add useEffect to handle window check
+  useEffect(() => {
+    setIsMobile(window.innerWidth < 768);
+  }, []);
 
   const filteredFAQs = faqs.filter(faq => {
     const matchesSearch = !searchQuery || 
@@ -234,7 +240,7 @@ const EnhancedFAQSection = () => {
           {/* FAQ List */}
           <div className="bg-white rounded-2xl shadow-xl border border-red-100">
             {/* Show all FAQs on mobile, filtered FAQs on desktop */}
-            {(window.innerWidth < 768 ? faqs : filteredFAQs).map((faq, index) => (
+            {(isMobile ? faqs : filteredFAQs).map((faq, index) => (
               <FAQItem
                 key={index}
                 faq={faq}
@@ -245,7 +251,7 @@ const EnhancedFAQSection = () => {
             ))}
             
             {/* No results message - only show on desktop */}
-            {filteredFAQs.length === 0 && window.innerWidth >= 768 && (
+            {filteredFAQs.length === 0 && !isMobile && (
               <div className="px-6 py-12 text-center">
                 <Search className="h-12 w-12 text-red-300 mx-auto mb-4" />
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">
