@@ -84,41 +84,49 @@ const faqCategories = {
   orders: "Orders & Payment"
 };
 
-const faqs = [
+// Update the type definition
+type FAQCategory = 'product' | 'shipping' | 'support' | 'quality' | 'orders' | 'all';
+type StrictFAQCategory = Exclude<FAQCategory, 'all'>;
+
+interface FAQ {
+  question: string;
+  answer: string;
+  category: StrictFAQCategory;
+}
+
+// Remove the 'as const' assertion from the faqs array
+const faqs: FAQ[] = [
   {
     question: "How quickly can you respond to inquiries?",
     answer: "We typically respond to all inquiries within 24 hours during business days. For urgent matters, please contact us by phone at +91-8120005961 for immediate assistance.",
-    category: "support" as FAQCategory
+    category: "support"
   },
   {
     question: "Do you offer international shipping?",
     answer: "Yes, we provide worldwide shipping services for our leaf springs. We have extensive experience in international logistics, customs documentation, and have established partnerships with reliable shipping providers to ensure safe and timely delivery to any global destination.",
-    category: "shipping" as FAQCategory
+    category: "shipping"
   },
   {
     question: "What are your quality certifications?",
     answer: "We maintain the highest quality standards in the industry with certifications including: ISO 9001:2015, IATF 16949:2016, and ISO 14001:2015. Our manufacturing processes are regularly audited and comply with international automotive quality management systems.",
-    category: "quality" as FAQCategory
+    category: "quality"
   },
   {
     question: "Can you handle custom specifications?",
     answer: "Absolutely! Custom manufacturing is our specialty. We can produce leaf springs according to your exact specifications, including material grade, dimensions, load capacity, and performance characteristics. Our engineering team will work closely with you throughout the design and manufacturing process.",
-    category: "product" as FAQCategory
+    category: "product"
   },
   {
     question: "What is your minimum order quantity (MOQ)?",
     answer: "Our MOQ varies depending on the product specifications and complexity. We're flexible and can accommodate both small custom orders and large production runs. Contact our sales team for specific MOQ details for your requirements.",
-    category: "orders" as FAQCategory
+    category: "orders"
   },
   {
     question: "Do you provide warranty on your products?",
     answer: "Yes, all our leaf springs come with a standard warranty against manufacturing defects. The warranty period varies by product type and application. We also offer extended warranty options for specific industrial applications.",
-    category: "quality" as FAQCategory
+    category: "quality"
   }
-] as const;
-
-// First, ensure these type definitions are at the top level
-type FAQCategory = 'product' | 'shipping' | 'support' | 'quality' | 'orders' | 'all';
+];
 
 interface FAQ {
   question: string;
