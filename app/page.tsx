@@ -216,7 +216,7 @@ export default function HomePage() {
                   <ChevronRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
                 </Link>
                 <Link 
-                  href="#contact" 
+                  href="/contact" 
                   className="group w-full sm:w-auto inline-flex items-center justify-center bg-white/10 text-white border-2 border-white/20 hover:bg-white/20 backdrop-blur-sm transition-all duration-300 px-5 py-2.5 rounded-full text-sm font-semibold shadow-lg"
                 >
                   Get In Touch 
@@ -343,7 +343,7 @@ export default function HomePage() {
               className="text-center mt-4 md:mt-6"
             >
               <Link 
-                href="/products/leaf-spring-machinery" 
+                href="/products" 
                 className="inline-flex items-center justify-center bg-red-600 text-white border-2 border-red-600 hover:bg-white hover:text-red-600 transition-colors px-8 py-3 rounded-md font-semibold shadow-lg hover:shadow-red-100"
               >
                 View All Products <ChevronRight className="ml-2 h-4 w-4" />
