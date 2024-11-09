@@ -715,11 +715,8 @@ export default function ProductsPage() {
   }, []);
 
   useEffect(() => {
-    const savedScroll = sessionStorage.getItem('productPageScroll');
-    if (savedScroll) {
-      window.scrollTo(0, parseInt(savedScroll));
-      sessionStorage.removeItem('productPageScroll');
-    }
+    // Scroll to top when component mounts
+    window.scrollTo(0, 0);
   }, []);
 
   // Save scroll position when opening product details
