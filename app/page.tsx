@@ -231,84 +231,85 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Product Showcase Section - Enhanced */}
-        <section id="product-showcase" className="py-16 md:py-24 relative">
+        {/* Product Showcase Section - Adjusted spacing */}
+        <section id="product-showcase" className="pt-8 pb-16 md:pt-12 md:pb-24 relative">
           <div className="absolute inset-0 bg-gradient-to-b from-gray-50/50 to-white/50 backdrop-blur-sm" />
           <div className="container mx-auto px-4 relative">
-            <div className="text-center">
+            <div className="text-center mb-12 md:mb-16">
               <h2 className="text-4xl md:text-5xl font-bold mb-3 bg-clip-text text-transparent bg-gradient-to-r from-red-600 to-red-800 leading-[1.3] pb-2">
                 Leaf Spring Machinery Product Range
               </h2>
-              <p className="text-lg md:text-xl mb-6 md:mb-8 text-center text-gray-600">
+              <p className="text-lg md:text-xl text-gray-600">
                 Engineered for Reliability and Performance
               </p>
-              {/* Product cards grid */}
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
-                {[
-                  {
-                    title: "High-Pressure Water Jet Descaler Machine",
-                    specs: "Operates at 300 BAR, removing 95-99% of scale for better surface quality.",
-                    benefits: "Provides clean surfaces on leaf springs, ideal for tough automotive and industrial environments.",
-                    image: "/images/products/Descaler.webp"
-                  },
-                  {
-                    title: "Heavy-Duty Leaf Spring Shearing Machine",
-                    specs: "250-ton capacity, robust scissor mechanism for precise and efficient shearing.",
-                    benefits: "Boosts manufacturing efficiency, precisely cuts heavy materials in high-demand industrial setups.",
-                    image: "/images/products/Shearing.webp"
-                  },
-                  {
-                    title: "Automated Heat Treatment Furnace",
-                    specs: "Customizable temperature control for optimized leaf spring toughness.",
-                    benefits: "Enhances durability and strength, meeting global standards for industrial applications.",
-                    image: "/images/products/heat-furnace.webp"
-                  }
-                ].map((product, index) => (
-                  <Card 
-                    key={index} 
-                    className="overflow-hidden bg-white border border-gray-100 rounded-xl 
-                              shadow-[0_2px_10px_-4px_rgba(0,0,0,0.1)]
-                              transition-all duration-300 ease-out
-                              hover:-translate-y-1 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.15)]"
-                  >
-                    <div className="relative h-[300px] overflow-hidden">
-                      <Image 
-                        src={product.image} 
-                        alt={product.title} 
-                        fill
-                        className="object-cover"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+            </div>
+
+            {/* Product cards grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
+              {[
+                {
+                  title: "High-Pressure Water Jet Descaler Machine",
+                  specs: "Operates at 300 BAR, removing 95-99% of scale for better surface quality.",
+                  benefits: "Provides clean surfaces on leaf springs, ideal for tough automotive and industrial environments.",
+                  image: "/images/products/Descaler.webp"
+                },
+                {
+                  title: "Heavy-Duty Leaf Spring Shearing Machine",
+                  specs: "250-ton capacity, robust scissor mechanism for precise and efficient shearing.",
+                  benefits: "Boosts manufacturing efficiency, precisely cuts heavy materials in high-demand industrial setups.",
+                  image: "/images/products/Shearing.webp"
+                },
+                {
+                  title: "Automated Heat Treatment Furnace",
+                  specs: "Customizable temperature control for optimized leaf spring toughness.",
+                  benefits: "Enhances durability and strength, meeting global standards for industrial applications.",
+                  image: "/images/products/heat-furnace.webp"
+                }
+              ].map((product, index) => (
+                <Card 
+                  key={index} 
+                  className="overflow-hidden bg-white border border-gray-100 rounded-xl 
+                            shadow-[0_2px_10px_-4px_rgba(0,0,0,0.1)]
+                            transition-all duration-300 ease-out
+                            hover:-translate-y-1 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.15)]"
+                >
+                  <div className="relative h-[300px] overflow-hidden">
+                    <Image 
+                      src={product.image} 
+                      alt={product.title} 
+                      fill
+                      className="object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+                  </div>
+                  
+                  <CardHeader className="space-y-4 pb-2">
+                    <CardTitle className="text-xl font-bold tracking-tight text-gray-900 leading-tight text-left">
+                      {product.title}
+                    </CardTitle>
+                  </CardHeader>
+                  
+                  <CardContent className="space-y-4">
+                    <div className="space-y-2">
+                      <h4 className="text-sm font-semibold uppercase tracking-wider text-red-600 text-left">
+                        Specifications
+                      </h4>
+                      <p className="text-sm text-gray-700 leading-relaxed text-left">
+                        {product.specs}
+                      </p>
                     </div>
                     
-                    <CardHeader className="space-y-4 pb-2">
-                      <CardTitle className="text-xl font-bold tracking-tight text-gray-900 leading-tight text-left">
-                        {product.title}
-                      </CardTitle>
-                    </CardHeader>
-                    
-                    <CardContent className="space-y-4">
-                      <div className="space-y-2">
-                        <h4 className="text-sm font-semibold uppercase tracking-wider text-red-600 text-left">
-                          Specifications
-                        </h4>
-                        <p className="text-sm text-gray-700 leading-relaxed text-left">
-                          {product.specs}
-                        </p>
-                      </div>
-                      
-                      <div className="space-y-2">
-                        <h4 className="text-sm font-semibold uppercase tracking-wider text-red-600 text-left">
-                          Key Benefits
-                        </h4>
-                        <p className="text-sm text-gray-700 leading-relaxed text-left">
-                          {product.benefits}
-                        </p>
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
+                    <div className="space-y-2">
+                      <h4 className="text-sm font-semibold uppercase tracking-wider text-red-600 text-left">
+                        Key Benefits
+                      </h4>
+                      <p className="text-sm text-gray-700 leading-relaxed text-left">
+                        {product.benefits}
+                      </p>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
             </div>
           </div>
         </section>
@@ -419,7 +420,7 @@ export default function HomePage() {
         </section>
 
         {/* Client Showcase - Enhanced */}
-        <section className="py-24 md:py-32 bg-gradient-to-b from-white to-gray-50">
+        <section className="pt-12 pb-24 md:pt-16 md:pb-32 bg-gradient-to-b from-white to-gray-50">
           <div className="container mx-auto px-4">
             <div>
               <h2 className="text-4xl md:text-5xl font-bold mb-6 text-center bg-clip-text text-transparent bg-gradient-to-r from-red-600 to-red-700 leading-[1.3] pb-2">
