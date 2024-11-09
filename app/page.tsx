@@ -162,7 +162,7 @@ export default function HomePage() {
     <>
       <main className="bg-gradient-to-b from-gray-50 to-white w-full overflow-x-hidden">
         {/* Hero Section */}
-        <section className="relative min-h-[90vh] flex items-center overflow-hidden">
+        <section className="relative h-[60vh] sm:h-[calc(100vh-56px)] flex items-center overflow-hidden">
           {/* Enhanced gradient overlay */}
           <div className="absolute inset-0 z-0">
             <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/80 to-black/70" />

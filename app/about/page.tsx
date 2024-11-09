@@ -165,7 +165,7 @@ const InfiniteTestimonialCarousel = ({ testimonials }: { testimonials: Testimoni
         {testimonials.map((testimonial: typeof testimonials[0], index: number) => (
           <Card 
             key={`testimonial-${index}`}
-            className="w-[384px] flex-shrink-0 bg-white hover:shadow-xl transition-shadow duration-300"
+            className="w-[384px] flex-shrink-0 bg-white hover:shadow-xl transition-shadow duration-300 border-red-500"
           >
             <CardContent className="p-6 sm:p-8 flex flex-col h-full">
               {/* Quote Icon */}
@@ -992,8 +992,11 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* Core Values */}
+        {/* Core Values / Client Testimonials Section */}
         <section className="py-16 sm:py-24 relative overflow-hidden">
+          {/* Add this red border section */}
+          <div className="w-full h-px bg-red-600 mb-16" />
+          
           {/* Add subtle background pattern */}
           <div className="absolute inset-0 opacity-5">
             <div className="absolute inset-0 bg-repeat" style={{ 
@@ -1003,6 +1006,7 @@ export default function AboutPage() {
           
           <div className="container mx-auto px-4">
             <div className="text-center mb-10 sm:mb-16">
+              <div className="w-24 h-1 bg-red-600 mx-auto mb-8" />
               <h2 className="text-3xl sm:text-4xl font-bold mb-4 text-red-600">
                 What Our Clients Say
               </h2>
