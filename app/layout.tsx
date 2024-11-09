@@ -20,7 +20,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className="!scroll-smooth">
+    <html lang="en" style={{ scrollBehavior: 'auto' }}>
       <body className="min-h-screen overflow-x-hidden overflow-y-auto">
         <Header />
         <main>
