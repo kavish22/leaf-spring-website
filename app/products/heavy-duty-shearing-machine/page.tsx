@@ -10,40 +10,41 @@ import WhatsAppButton from '@/components/shared/whatsapp-button'
 import Link from 'next/link'
 
 const product = {
-  title: "Straightening - Linear",
-  specs: "50 Ton capacity, Precision sliding machine",
-  benefits: "Hydraulic operation for lateral bend correction in hot conditions",
-  image: "/images/products/Straightening-Linear.webp",
-  category: "Straightening",
+  title: "Heavy Duty Shearing Machine",
+  specs: "300 Ton capacity, Hydraulic operation",
+  benefits: "Precision cutting with adjustable blade clearance",
+  image: "/images/products/Shearing.webp",
+  category: "Shearing",
   details: [
-    "Capacity / Power: 50 Ton",
-    "Key Mechanism / Design: Precision sliding",
+    "Capacity / Power: 300 Ton",
+    "Key Mechanism / Design: Hydraulic shearing system",
     "Operation Type: Hydraulic",
-    "Applications: Lateral bend correction",
-    "Additional Features: Hot condition operation",
-    "Control System: Digital interface",
-    "Maximum Material Size: Up to 50mm diameter",
-    "Processing Length: Up to 3000mm"
+    "Applications: Heavy-duty metal cutting",
+    "Additional Features: Adjustable blade clearance, automatic stroke control"
   ],
-  description: `Our Linear Straightening Machine combines robust 50-ton capacity with precision sliding mechanisms for optimal straightening control. Designed for hot condition applications, this hydraulic system ensures accurate and consistent straightening results for materials up to 50mm in diameter and 3000mm in length.`,
+  description: `Our Heavy Duty Shearing Machine delivers powerful 300-ton cutting capacity with precision hydraulic control. Featuring adjustable blade clearance and automatic stroke control, this machine ensures clean, accurate cuts for heavy-duty metal processing applications.`,
   features: [
-    "50 Ton pressing capacity",
+    "300 Ton cutting capacity",
+    "Hydraulic operation system",
+    "Adjustable blade clearance",
+    "Automatic stroke control",
+    "Heavy-duty frame construction",
+    "Safety interlocking system",
     "Digital control interface",
-    "Hot condition operation",
-    "Precision sliding mechanism",
-    "Hydraulic control system",
-    "3000mm length capacity",
-    "Automated operation capability",
-    "Industrial-grade construction"
+    "Quick blade change system"
   ],
   gallery: [
-    "/images/products/Straighening-Linear.webp",
-    // Add more images/videos as needed
+    { type: 'image', url: "/images/products/Shearing.webp" },
+    { type: 'image', url: "/images/products/Shearing-2.jpg" },
+    { type: 'image', url: "/images/products/Shearing-3.jpg" },
+    { type: 'video', url: "/images/products/Shearing-25mm.mp4" },
+    { type: 'video', url: "https://www.youtube.com/embed/gZ49yp2zo0I?rel=0" },
+    { type: 'video', url: "https://www.youtube.com/embed/WwOQ2fnjPfs?rel=0" },
   ]
 }
 
 export default function ProductPage() {
-  const [selectedImage, setSelectedImage] = useState(product.gallery[0])
+  const [selectedImage, setSelectedImage] = useState(product.image)
   const [isImageModalOpen, setIsImageModalOpen] = useState(false)
 
   return (
@@ -69,17 +70,29 @@ export default function ProductPage() {
                 <div
                   key={index}
                   className={`relative aspect-video bg-white rounded-lg overflow-hidden cursor-pointer border-2 
-                    ${selectedImage === media ? 'border-red-600' : 'border-gray-200'}`}
+                    ${selectedImage === media.url ? 'border-red-600' : 'border-gray-200'}`}
                   onClick={() => {
-                    setSelectedImage(media);
+                    setSelectedImage(media.url);
                   }}
                 >
-                  <Image
-                    src={media}
-                    alt={`${product.title} ${index + 1}`}
-                    fill
-                    className="object-cover"
-                  />
+                  {media.type === 'video' ? (
+                    <div className="relative w-full h-full bg-gray-100 flex items-center justify-center">
+                      <Image 
+                        src={product.image}
+                        alt="Video thumbnail"
+                        fill
+                        className="object-cover"
+                      />
+                      <PlayCircle className="absolute text-red-600 w-10 h-10" />
+                    </div>
+                  ) : (
+                    <Image
+                      src={media.url}
+                      alt={`${product.title} ${index + 1}`}
+                      fill
+                      className="object-cover"
+                    />
+                  )}
                 </div>
               ))}
             </div>
@@ -87,13 +100,22 @@ export default function ProductPage() {
             {/* Main Display */}
             <div className="relative aspect-video bg-white rounded-lg overflow-hidden cursor-pointer"
                  onClick={() => setIsImageModalOpen(true)}>
-              <Image
-                src={selectedImage}
-                alt={product.title}
-                fill
-                className="object-cover"
-                priority
-              />
+              {selectedImage.includes('youtube.com') || selectedImage.endsWith('.mp4') ? (
+                <iframe
+                  src={selectedImage}
+                  className="w-full h-full"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              ) : (
+                <Image
+                  src={selectedImage}
+                  alt={product.title}
+                  fill
+                  className="object-cover"
+                  priority
+                />
+              )}
             </div>
           </div>
 
@@ -157,12 +179,21 @@ export default function ProductPage() {
           onClick={() => setIsImageModalOpen(false)}
         >
           <div className="relative w-full max-w-4xl aspect-video">
-            <Image
-              src={selectedImage}
-              alt={product.title}
-              fill
-              className="object-contain"
-            />
+            {selectedImage.includes('youtube.com') || selectedImage.endsWith('.mp4') ? (
+              <iframe
+                src={selectedImage}
+                className="w-full h-full"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            ) : (
+              <Image
+                src={selectedImage}
+                alt={product.title}
+                fill
+                className="object-contain"
+              />
+            )}
           </div>
         </div>
       )}

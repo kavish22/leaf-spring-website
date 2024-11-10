@@ -11,36 +11,43 @@ import Link from 'next/link'
 
 const product = {
   title: "Straightening - Parallelogram",
-  specs: "50 Ton capacity, Parallelogram mechanism",
-  benefits: "Hydraulic operation for lateral bend correction in hot conditions",
-  image: "/images/products/Straighening-Parallelogram.webp",
+  specs: "Up to 60mm diameter, 4000mm length capacity",
+  benefits: "Advanced parallelogram design for superior straightening accuracy",
+  image: "/images/products/straightening-parallelogram.webp",
   category: "Straightening",
   details: [
-    "Capacity / Power: 50 Ton",
-    "Key Mechanism / Design: Parallelogram mechanism",
-    "Operation Type: Hydraulic",
-    "Applications: Lateral bend correction",
-    "Additional Features: Suitable for hot conditions"
+    "Capacity / Power: Up to 60mm diameter",
+    "Key Mechanism / Design: Parallelogram roller configuration",
+    "Operation Type: Automatic with precision control",
+    "Applications: Heavy-duty bar and tube straightening",
+    "Additional Features: 4000mm length capacity, Multi-roller system",
+    "Control System: PLC-based with touch interface",
+    "Straightening Speed: Variable, up to 30m/min",
+    "Power Requirements: 380V/50Hz, 3-phase"
   ],
-  description: `The Parallelogram Straightening Machine features an innovative 50-ton capacity system with a specialized parallelogram mechanism. Engineered for hot condition operations, this hydraulic system ensures precise lateral bend correction with its unique geometric design.`,
+  description: `Our Parallelogram Straightening Machine represents the pinnacle of straightening technology, 
+  handling materials up to 60mm in diameter and 4000mm in length. The unique parallelogram roller configuration 
+  ensures superior straightening accuracy while minimizing material stress, making it ideal for demanding 
+  industrial applications.`,
   features: [
-    "50 Ton operating capacity",
-    "Parallelogram mechanism design",
-    "Hot condition operation",
-    "Hydraulic control system",
-    "Precision bend correction",
-    "Advanced safety features",
-    "Robust industrial construction",
-    "User-friendly controls"
+    "60mm maximum diameter capacity",
+    "4000mm length handling capability",
+    "Parallelogram roller arrangement",
+    "Advanced pressure control system",
+    "Multiple straightening passes",
+    "Automated material handling",
+    "Quick-change roller system",
+    "Safety interlocking mechanism"
   ],
   gallery: [
     "/images/products/Straighening-Parallelogram.webp",
-    // Add more images/videos as needed
+    "/images/products/straightening-parallelogram-2.webp",
+    "/images/products/straightening-parallelogram-3.webp"
   ]
 }
 
 export default function ProductPage() {
-  const [selectedImage, setSelectedImage] = useState(product.image)
+  const [selectedImage, setSelectedImage] = useState(product.gallery[0])
   const [isImageModalOpen, setIsImageModalOpen] = useState(false)
 
   return (
@@ -67,28 +74,14 @@ export default function ProductPage() {
                   key={index}
                   className={`relative aspect-video bg-white rounded-lg overflow-hidden cursor-pointer border-2 
                     ${selectedImage === media ? 'border-red-600' : 'border-gray-200'}`}
-                  onClick={() => {
-                    setSelectedImage(media);
-                  }}
+                  onClick={() => setSelectedImage(media)}
                 >
-                  {media.includes('youtube.com') ? (
-                    <div className="w-full h-full bg-gray-100 flex items-center justify-center">
-                      <Image 
-                        src={product.image}
-                        alt="Video thumbnail"
-                        fill
-                        className="object-cover"
-                      />
-                      <PlayCircle className="absolute text-red-600 w-10 h-10" />
-                    </div>
-                  ) : (
-                    <Image
-                      src={media}
-                      alt={`${product.title} ${index + 1}`}
-                      fill
-                      className="object-cover"
-                    />
-                  )}
+                  <Image
+                    src={media}
+                    alt={`${product.title} ${index + 1}`}
+                    fill
+                    className="object-cover"
+                  />
                 </div>
               ))}
             </div>
@@ -96,22 +89,13 @@ export default function ProductPage() {
             {/* Main Display */}
             <div className="relative aspect-video bg-white rounded-lg overflow-hidden cursor-pointer"
                  onClick={() => setIsImageModalOpen(true)}>
-              {selectedImage.includes('youtube.com') ? (
-                <iframe
-                  src={selectedImage}
-                  className="w-full h-full"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                />
-              ) : (
-                <Image
-                  src={selectedImage}
-                  alt={product.title}
-                  fill
-                  className="object-cover"
-                  priority
-                />
-              )}
+              <Image
+                src={selectedImage}
+                alt={product.title}
+                fill
+                className="object-cover"
+                priority
+              />
             </div>
           </div>
 
@@ -148,23 +132,42 @@ export default function ProductPage() {
                 ))}
               </ul>
             </Card>
+
+            {/* Contact Actions */}
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Button className="flex-1 bg-red-600 hover:bg-red-700 text-white" asChild>
+                <Link href="/contact">
+                  <Phone className="mr-2 h-4 w-4" />
+                  Contact Sales
+                </Link>
+              </Button>
+              <Button className="flex-1 text-red-600 border-red-600 hover:bg-red-50" variant="outline" asChild>
+                <Link href="mailto:sales@example.com">
+                  <Mail className="mr-2 h-4 w-4" />
+                  Email Inquiry
+                </Link>
+              </Button>
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Contact Actions */}
-      <div className="flex flex-col sm:flex-row gap-4">
-        <Button className="flex-1 bg-red-600 hover:bg-red-700 text-white" asChild>
-          <Link href="/contact">
-            <Phone className="mr-2 h-4 w-4" />
-            Contact Sales
-          </Link>
-        </Button>
-        <Button className="flex-1 text-red-600 hover:bg-red-100">
-          <Mail className="mr-2 h-4 w-4" />
-          Contact Support
-        </Button>
-      </div>
+      {/* Image Modal */}
+      {isImageModalOpen && (
+        <div 
+          className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4"
+          onClick={() => setIsImageModalOpen(false)}
+        >
+          <div className="relative w-full max-w-4xl aspect-video">
+            <Image
+              src={selectedImage}
+              alt={product.title}
+              fill
+              className="object-contain"
+            />
+          </div>
+        </div>
+      )}
     </main>
   )
-}
+} 
