@@ -4,7 +4,7 @@ import { useState, useEffect, useCallback, useRef, useMemo } from 'react'
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { X, ChevronDown, Download, ChevronRight, Search, Filter, ShoppingCart, Plus, FileText, Info } from 'lucide-react'
+import { X, ChevronDown, Download, ChevronRight, Search, Filter, ShoppingCart, Plus, FileText, Info, ChevronLeft } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import WhatsAppButton from '@/components/shared/whatsapp-button'
@@ -15,11 +15,16 @@ import { debounce } from 'lodash';
 import { cn } from "@/lib/utils"
 import { useInView } from 'react-intersection-observer';
 import { motion, useScroll, useTransform } from 'framer-motion'
+import { useSwipeable } from 'react-swipeable';
 
 interface Product {
   title: string;
   specs: string;
   benefits: string;
+  media?: {
+    type: 'image' | 'video';
+    url: string;
+  }[];
   image: string;
   category: string;
   details: string[];
@@ -33,6 +38,14 @@ const products = [
     specs: "250 Ton capacity, Scissor mechanism",
     benefits: "Hydraulic operation, ideal for heavy-duty shearing of large sections",
     image: "/images/products/Shearing.webp",
+    media: [
+      { type: 'image' as const, url: "/images/products/Shearing.webp" },
+      { type: 'image' as const, url: "/images/products/Shearing-2.jpg" },
+      { type: 'image' as const, url: "/images/products/Shearing-3.jpg" },
+      { type: 'video' as const, url: "/images/products/Shearing-25mm.mp4" },
+      { type: 'video' as const, url: "https://www.youtube.com/embed/gZ49yp2zo0I?rel=0" },
+      { type: 'video' as const, url: "https://www.youtube.com/embed/WwOQ2fnjPfs?rel=0" },
+    ],
     category: "Shearing",
     details: [
       "Capacity / Power: 250 Ton",
@@ -373,24 +386,222 @@ interface ProductCardProps {
   isSlideOpen: boolean;
   onLearnMore: (product: Product) => void;
   onSlideToggle: (index: number) => void;
+  isVideoReady: boolean;
 }
 
-const ProductCard = ({ product, index, isSlideOpen, onSlideToggle, onLearnMore }: ProductCardProps) => {
+const ProductCard = ({ product, index, isSlideOpen, onSlideToggle, onLearnMore, isVideoReady }: ProductCardProps) => {
+  const [currentMediaIndex, setCurrentMediaIndex] = useState(0);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [videoKey, setVideoKey] = useState(0); // Force video reload
+
+  // Reset and play video when slide opens
+  useEffect(() => {
+    if (isSlideOpen && isVideoReady && product.media?.[currentMediaIndex]?.type === 'video') {
+      // Force reload by updating key
+      setVideoKey(prev => prev + 1);
+      
+      const timer = setTimeout(() => {
+        if (product.media?.[currentMediaIndex]?.url.includes('youtube.com')) {
+          // YouTube video
+          const iframe = document.querySelector(`iframe[data-slide="${currentMediaIndex}"]`) as HTMLIFrameElement;
+          if (iframe && product.media?.[currentMediaIndex]?.url) {
+            const url = new URL(product.media[currentMediaIndex].url);
+            url.searchParams.set('autoplay', '1');
+            url.searchParams.set('mute', '1');
+            url.searchParams.set('playsinline', '1');
+            url.searchParams.set('controls', '1');
+            (iframe as HTMLIFrameElement).src = url.toString();
+          }
+        } else if (videoRef.current) {
+          // Local video
+          videoRef.current.muted = true;
+          videoRef.current.currentTime = 0;
+          videoRef.current.play().catch(console.error);
+        }
+      }, 500);
+
+      return () => clearTimeout(timer);
+    }
+  }, [isSlideOpen, isVideoReady, currentMediaIndex, product.media]);
+
+  const renderMedia = () => {
+    // If no media array or it's empty, use the default cover image
+    if (!product.media?.[currentMediaIndex]) {
+      return (
+        <Image 
+          src={product.image} 
+          alt={product.title}
+          fill
+          className="object-cover"
+          onError={(e) => {
+            e.currentTarget.src = '/images/fallback.jpg'
+          }}
+        />
+      );
+    }
+
+    if (product.media[currentMediaIndex].type === 'video') {
+      if (product.media[currentMediaIndex].url.includes('youtube.com')) {
+        return (
+          <iframe
+            key={videoKey}
+            data-slide={currentMediaIndex}
+            width="100%"
+            height="100%"
+            src={`${product.media[currentMediaIndex].url}?enablejsapi=1&mute=1&playsinline=1&controls=1`}
+            title={`${product.title} video`}
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+            className="absolute inset-0 w-full h-full"
+          />
+        );
+      } else {
+        return (
+          <video
+            key={videoKey}
+            ref={videoRef}
+            data-slide={currentMediaIndex}
+            src={product.media[currentMediaIndex].url}
+            controls
+            playsInline
+            muted
+            loop
+            preload="auto"
+            className="absolute inset-0 w-full h-full object-cover"
+          >
+            <source src={product.media[currentMediaIndex].url} type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        );
+      }
+    }
+
+    return (
+      <Image 
+        src={product.media[currentMediaIndex].url} 
+        alt={`${product.title} - ${currentMediaIndex + 1}`}
+        fill
+        className="object-cover"
+        onError={(e) => {
+          e.currentTarget.src = '/images/fallback.jpg'
+        }}
+      />
+    );
+  };
+
+  const [isPlaying, setIsPlaying] = useState(false);
+  
+  // Only show media controls if product has multiple media items
+  const hasMultipleMedia = product.media && product.media.length > 1;
+
+  const handleMediaNav = (index: number) => {
+    setCurrentMediaIndex(index);
+    setIsPlaying(false); // Reset playing state when switching media
+  };
+
   const handleBrochure = (product: Product) => {
     console.log('Download brochure for:', product.title);
+  };
+
+  const swipeHandlers = useSwipeable({
+    onSwipedLeft: () => {
+      if (product.media && currentMediaIndex < product.media.length - 1) {
+        handleMediaNav(currentMediaIndex + 1);
+      }
+    },
+    onSwipedRight: () => {
+      if (product.media && currentMediaIndex > 0) {
+        handleMediaNav(currentMediaIndex - 1);
+      }
+    },
+  });
+
+  useEffect(() => {
+    if (product.media?.[currentMediaIndex]?.type === 'video') {
+      const videoElement = document.querySelector(`iframe[data-slide="${currentMediaIndex}"]`) as HTMLIFrameElement;
+      if (videoElement && videoElement.src.includes('youtube.com')) {
+        const currentSrc = videoElement.src;
+        videoElement.src = currentSrc;
+      }
+    }
+  }, [currentMediaIndex, product.media]);
+
+  // Handle video autoplay
+  useEffect(() => {
+    if (isSlideOpen && isVideoReady && product.media?.[currentMediaIndex]?.type === 'video') {
+      const timer = setTimeout(() => {
+        if (product.media?.[currentMediaIndex]?.url.includes('youtube.com')) {
+          // YouTube video
+          const iframe = document.querySelector(`iframe[data-slide="${currentMediaIndex}"]`) as HTMLIFrameElement;
+          if (iframe && product.media?.[currentMediaIndex]?.url) {
+            const newSrc = `${product.media[currentMediaIndex].url}?enablejsapi=1&mute=1&playsinline=1&controls=1&rel=0`;
+            iframe.src = newSrc;
+          }
+        } else {
+          // Local video
+          const video = document.querySelector(`video[data-slide="${currentMediaIndex}"]`) as HTMLVideoElement;
+          if (video) {
+            video.muted = true;
+            video.currentTime = 0;
+            const playPromise = video.play();
+            if (playPromise !== undefined) {
+              playPromise.catch(error => {
+                console.log("Autoplay prevented:", error);
+              });
+            }
+          }
+        }
+      }, 300);
+
+      return () => clearTimeout(timer);
+    }
+  }, [isSlideOpen, isVideoReady, currentMediaIndex, product.media]);
+
+  const renderMediaControls = () => {
+    if (!product.media || product.media.length <= 1) return null;
+
+    return (
+      <>
+        {/* Left Arrow */}
+        {currentMediaIndex > 0 && (
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              handleMediaNav(currentMediaIndex - 1);
+            }}
+            className="absolute left-1 top-1/2 -translate-y-1/2 z-10 p-1 rounded-full bg-black/50 text-white hover:bg-black/70 transition-colors"
+            aria-label="Previous"
+          >
+            <ChevronLeft className="h-4 w-4 sm:h-5 sm:w-5" />
+          </button>
+        )}
+
+        {/* Right Arrow */}
+        {currentMediaIndex < (product.media?.length ?? 0) - 1 && (
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              handleMediaNav(currentMediaIndex + 1);
+            }}
+            className="absolute right-1 top-1/2 -translate-y-1/2 z-10 p-1 rounded-full bg-black/50 text-white hover:bg-black/70 transition-colors"
+            aria-label="Next"
+          >
+            <ChevronRight className="h-4 w-4 sm:h-5 sm:w-5" />
+          </button>
+        )}
+      </>
+    );
   };
 
   return (
     <div className="relative w-full h-full">
       <Card className="overflow-hidden transition-all duration-300 hover:shadow-lg group flex flex-col h-full bg-white/80 backdrop-blur-sm border border-gray-100">
-        {/* Image Container */}
-        <div className="relative h-24 xs:h-32 sm:h-48 lg:h-52 overflow-hidden">
-          <Image 
-            src={product.image} 
-            alt={product.title}
-            fill
-            className="object-cover"
-          />
+        {/* Image/Media Container */}
+        <div className="relative h-24 xs:h-32 sm:h-48 lg:h-52 w-full">
+          {renderMedia()}
+          {renderMediaControls()}
+          
           <Badge className="absolute top-1 right-1 sm:top-3 sm:right-3 bg-red-600/90 backdrop-blur-sm text-white px-1 sm:px-2.5 py-0.5 text-[8px] leading-relaxed sm:text-xs font-medium">
             {product.category}
           </Badge>
@@ -428,9 +639,21 @@ const ProductCard = ({ product, index, isSlideOpen, onSlideToggle, onLearnMore }
                 "border border-red-600 sm:border-transparent"
               )}
               onClick={() => handleBrochure(product)}
+              asChild
             >
-              <FileText className="hidden sm:inline-block sm:mr-2 sm:h-4 sm:w-4" />
-              Brochure
+              <Link href={product.title === "Heavy Assembly Line" ? "/products/heavy-assembly-line" : "#"}>
+                {product.title === "Heavy Assembly Line" ? (
+                  <>
+                    <Info className="hidden sm:inline-block sm:mr-2 sm:h-4 sm:w-4" />
+                    Explore
+                  </>
+                ) : (
+                  <>
+                    <FileText className="hidden sm:inline-block sm:mr-2 sm:h-4 sm:w-4" />
+                    Brochure
+                  </>
+                )}
+              </Link>
             </Button>
             <Button 
               className={cn(
@@ -823,6 +1046,22 @@ export default function ProductsPage() {
   const opacity = useTransform(scrollYProgress, [0, 0.2], [1, 0])
   const scale = useTransform(scrollYProgress, [0, 0.2], [1, 0.8])
 
+  // Add state to track if slide is open
+  const [isVideoReady, setIsVideoReady] = useState(false);
+
+  // Update useEffect to handle video readiness
+  useEffect(() => {
+    if (isSlideOpen) {
+      // Small delay to ensure slide transition is complete
+      const timer = setTimeout(() => {
+        setIsVideoReady(true);
+      }, 300);
+      return () => clearTimeout(timer);
+    } else {
+      setIsVideoReady(false);
+    }
+  }, [isSlideOpen]);
+
   return (
     <>
       <main className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
@@ -993,6 +1232,7 @@ export default function ProductsPage() {
                   isSlideOpen={openSlide === index}
                   onSlideToggle={handleSlideToggle}
                   onLearnMore={handleLearnMore}
+                  isVideoReady={isVideoReady}
                 />
               ))}
             </div>
