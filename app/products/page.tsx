@@ -641,18 +641,12 @@ const ProductCard = ({ product, index, isSlideOpen, onSlideToggle, onLearnMore, 
               onClick={() => handleBrochure(product)}
               asChild
             >
-              <Link href={product.title === "Heavy Assembly Line" ? "/products/heavy-assembly-line" : "#"}>
-                {product.title === "Heavy Assembly Line" ? (
-                  <>
-                    <Info className="hidden sm:inline-block sm:mr-2 sm:h-4 sm:w-4" />
-                    Explore
-                  </>
-                ) : (
-                  <>
-                    <FileText className="hidden sm:inline-block sm:mr-2 sm:h-4 sm:w-4" />
-                    Brochure
-                  </>
-                )}
+              <Link
+                href={`/products/${product.title.toLowerCase().replace(/\s+/g, '-')}`}
+                legacyBehavior={false}
+              >
+                <Info className="hidden sm:inline-block sm:mr-2 sm:h-4 sm:w-4" />
+                Explore
               </Link>
             </Button>
             <Button 
