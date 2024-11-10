@@ -10,21 +10,21 @@ import WhatsAppButton from '@/components/shared/whatsapp-button'
 import Link from 'next/link'
 
 const product = {
-  title: "Heavy Duty Shearing Machine",
-  specs: "300 Ton capacity, Hydraulic operation",
-  benefits: "Precision cutting with adjustable blade clearance",
-  image: "/images/products/Shearing.webp",
-  category: "Shearing",
+  title: "Heavy Assembly Line",
+  specs: "50 Ton capacity, Dual piston telescopic press",
+  benefits: "Automated operation for automotive suspension systems assembly",
+  image: "/images/products/Heavy Assembly Line.webp",
+  category: "Assembly",
   details: [
-    "Capacity / Power: 300 Ton",
-    "Key Mechanism / Design: Hydraulic shearing system",
-    "Operation Type: Hydraulic",
-    "Applications: Heavy-duty metal cutting",
-    "Additional Features: Adjustable blade clearance, automatic stroke control"
+    "Capacity / Power: 50 Ton",
+    "Key Mechanism / Design: Dual piston telescopic press, batch code printing",
+    "Operation Type: Automated",
+    "Applications: Assembly of automotive suspension systems",
+    "Additional Features: Integrated inspection, vibration-free conveyor, load/position sensors"
   ],
-  description: `Our Heavy Duty Shearing Machine delivers powerful 300-ton cutting capacity with precision hydraulic control. Featuring adjustable blade clearance and automatic stroke control, this machine ensures clean, accurate cuts for heavy-duty metal processing applications.`,
+  description: `Our Heavy Assembly Line delivers powerful 50-ton cutting capacity with precision hydraulic control. Featuring adjustable blade clearance and automatic stroke control, this machine ensures clean, accurate cuts for heavy-duty metal processing applications.`,
   features: [
-    "300 Ton cutting capacity",
+    "50 Ton cutting capacity",
     "Hydraulic operation system",
     "Adjustable blade clearance",
     "Automatic stroke control",
@@ -34,10 +34,10 @@ const product = {
     "Quick blade change system"
   ],
   gallery: [
-    { type: 'image', url: "/images/products/Shearing.webp" },
-    { type: 'image', url: "/images/products/Shearing-2.jpg" },
-    { type: 'image', url: "/images/products/Shearing-3.jpg" },
-    { type: 'video', url: "/images/products/Shearing-25mm.mp4" },
+    { type: 'image', url: "/images/products/Heavy Assembly Line.webp" },
+    { type: 'image', url: "/images/products/Assembly-2.jpg" },
+    { type: 'image', url: "/images/products/Assembly-3.jpg" },
+    { type: 'video', url: "/images/products/Assembly-25mm.mp4" },
     { type: 'video', url: "https://www.youtube.com/embed/gZ49yp2zo0I?rel=0" },
     { type: 'video', url: "https://www.youtube.com/embed/WwOQ2fnjPfs?rel=0" },
   ]

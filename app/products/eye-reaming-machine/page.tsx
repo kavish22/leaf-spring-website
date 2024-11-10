@@ -13,9 +13,9 @@ const product = {
   title: "Eye Reaming Machine",
   category: "Eye Processing",
   description: "Advanced eye reaming machine designed for precise and efficient processing of leaf spring eyes. Features automated control systems and adjustable reaming parameters for optimal performance.",
-  image: "/images/products/Eye reaming machine image.webp",
+  image: "/images/products/Eye Reaming Machine.webp",
   gallery: [
-    "/images/products/Eye reaming machine image.webp",
+    "/images/products/Eye Reaming Machine.webp",
     // Add more images once available
   ],
   specs: "Reaming diameter: 20-80mm, Hydraulic operation",

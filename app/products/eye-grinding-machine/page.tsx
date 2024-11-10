@@ -13,7 +13,7 @@ const product = {
   title: "Eye Grinding Machine",
   specs: "Max eye dia: 120mm, 960 RPM Machine",
   benefits: "Hydraulic operation with magnetic separator and auto coolant",
-  image: "/images/products/eye grinding blur.webp",
+  image: "/images/products/Eye Grinding Machine.webp",
   category: "Grinding",
   details: [
     "Capacity / Power: Max eye dia: 120mm",
@@ -34,7 +34,7 @@ const product = {
     "Advanced safety features"
   ],
   gallery: [
-    "/images/products/eye grinding blur.webp",
+    "/images/products/Eye Grinding Machine.webp",
     // Add more images/videos as needed
   ]
 }

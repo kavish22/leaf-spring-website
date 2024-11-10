@@ -13,7 +13,7 @@ const product = {
   title: "Mechanical Straightening Machine",
   specs: "Max 180 Ton, High stroke frequency machine",
   benefits: "Mechanical operation with 48 cycles per minute and 22 KW power",
-  image: "/images/products/Cold straightening image.webp",
+  image: "/images/products/Mechanical Straightening Machine.webp",
   category: "Straightening",
   details: [
     "Capacity / Power: Max 180 Ton",
@@ -34,7 +34,7 @@ const product = {
     "Industrial-grade durability"
   ],
   gallery: [
-    "/images/products/Cold straightening image.webp",
+    "/images/products/Mechanical Straightening Machine.webp",
     // Add more images/videos as needed
   ]
 }

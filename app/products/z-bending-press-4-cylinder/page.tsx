@@ -13,7 +13,7 @@ const product = {
   title: "Z-bending Press-4 Cylinder",
   specs: "350 Ton (3 cylinders), Clamping and bending",
   benefits: "Hot application for thickness bending up to 60mm",
-  image: "/images/products/Z Press Machine-4-cylinder.webp",
+  image: "/images/products/Z-Bending Press-4 Cylinder.webp",
   category: "Bending",
   details: [
     "Capacity / Power: 350 Ton (3 cylinders)",
@@ -34,7 +34,7 @@ const product = {
     "Heavy-duty construction"
   ],
   gallery: [
-    "/images/products/Z Press Machine-4-cylinder.webp",
+    "/images/products/Z-Bending Press-4 Cylinder.webp",
     // Add more images/videos as needed
   ]
 }

@@ -13,7 +13,7 @@ const product = {
   title: "Leaf Correction Press",
   specs: "15-60 Ton capacity, Hydraulically operated",
   benefits: "Hydraulic operation for re-cambering and bend correction",
-  image: "/images/products/Leaf spring correction press.webp",
+  image: "/images/products/Leaf Correction Press.webp",
   category: "Pressing",
   details: [
     "Capacity / Power: 15-60 Ton",
@@ -37,7 +37,7 @@ const product = {
     "Pressure monitoring display"
   ],
   gallery: [
-    "/images/products/Leaf spring correction press.webp",
+    "/images/products/Leaf Correction Press.webp",
     // Add more images/videos as needed
   ]
 } 

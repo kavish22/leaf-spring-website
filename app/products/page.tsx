@@ -37,7 +37,7 @@ const products = [
     title: "Heavy Duty Shearing Machine",
     specs: "250 Ton capacity, Scissor mechanism",
     benefits: "Hydraulic operation, ideal for heavy-duty shearing of large sections",
-    image: "/images/products/Shearing.webp",
+    image: "/images/products/Heavy Duty Shearing Machine.webp",
     category: "Shearing",
     details: [
       "Capacity / Power: 250 Ton",
@@ -51,7 +51,7 @@ const products = [
     title: "Heavy Assembly Line",
     specs: "50 Ton capacity, Dual piston telescopic press",
     benefits: "Automated operation for automotive suspension systems assembly",
-    image: "/images/products/Heavy assembly line.webp",
+    image: "/images/products/Heavy Assembly Line.webp",
     category: "Assembly",
     details: [
       "Capacity / Power: 50 Ton",
@@ -65,7 +65,7 @@ const products = [
     title: "SSP Automation Line",
     specs: "15+5+15 Ton press, Low-cost automations",
     benefits: "Fully automatic operation for stress peening",
-    image: "/images/products/SSP auto.webp",
+    image: "/images/products/SSP Automation Line.webp",
     category: "Automation",
     details: [
       "Capacity / Power: 15+5+15 Ton (press)",
@@ -79,7 +79,7 @@ const products = [
     title: "High Pressure De-scaler",
     specs: "300 BAR pressure, Sophisticated hydraulic controls",
     benefits: "Cleans 95-99% scales, suitable for steel mills",
-    image: "/images/products/Descaler.webp",
+    image: "/images/products/High Pressure De-scaler.webp",
     category: "Cleaning",
     details: [
       "Capacity / Power: 300 BAR pressure",
@@ -93,7 +93,7 @@ const products = [
     title: "Hydraulic Endurance Testing",
     specs: "20 Ton load, CNC servo control machine",
     benefits: "Load and endurance testing with custom cylinder for long life",
-    image: "/images/products/Endurance testing mc.webp",
+    image: "/images/products/Hydraulic Endurance Testing.webp",
     category: "Testing",
     details: [
       "Capacity / Power: 20 Ton load",
@@ -107,7 +107,7 @@ const products = [
     title: "Z-bending Press-Inclined",
     specs: "400 Ton (4 cylinders), Multi-cylinder design",
     benefits: "Hot application for thickness bending up to 60mm",
-    image: "/images/products/z-bending press-inclined.webp",
+    image: "/images/products/Z-bending Press-Inclined.webp",
     category: "Bending",
     details: [
       "Capacity / Power: 400 Ton (4 cylinders)",
@@ -121,7 +121,7 @@ const products = [
     title: "Z-bending Press-4 Cylinder",
     specs: "350 Ton (3 cylinders), Clamping and bending",
     benefits: "Hot application for thickness bending up to 60mm",
-    image: "/images/products/Z Press Machine-4-cylinder.webp",
+    image: "/images/products/Z-bending Press-4 Cylinder.webp",
     category: "Bending",
     details: [
       "Capacity / Power: 350 Ton (3 cylinders)",
@@ -135,7 +135,7 @@ const products = [
     title: "Profile Checking Gauge",
     specs: "Max length 1600mm, Parabolic profile gauge",
     benefits: "Hot or cold profile checking with ±1 mm length tolerance",
-    image: "/images/products/Profile checking.webp",
+    image: "/images/products/Profile Checking Gauge.webp",
     category: "Measurement",
     details: [
       "Capacity / Power: Max length 1600mm",
@@ -149,7 +149,7 @@ const products = [
     title: "Straightening - Linear",
     specs: "50 Ton capacity, Precision sliding machine",
     benefits: "Hydraulic operation for lateral bend correction in hot conditions",
-    image: "/images/products/Straighening-Linear.webp",
+    image: "/images/products/Straightening - Linear.webp",
     category: "Straightening",
     details: [
       "Capacity / Power: 50 Ton",
@@ -163,7 +163,7 @@ const products = [
     title: "Straightening - Parallelogram",
     specs: "50 Ton capacity, Parallelogram mechanism",
     benefits: "Hydraulic operation for lateral bend correction in hot conditions",
-    image: "/images/products/Straighening-Parallelogram.webp",
+    image: "/images/products/Straightening - Parallelogram.webp",
     category: "Straightening",
     details: [
       "Capacity / Power: 50 Ton",
@@ -177,7 +177,7 @@ const products = [
     title: "Eye Grinding Machine",
     specs: "Max eye dia: 120mm, 960 RPM Machine",
     benefits: "Hydraulic operation with magnetic separator and auto coolant",
-    image: "/images/products/eye grinding blur.webp",
+    image: "/images/products/Eye Grinding Machine.webp",
     category: "Grinding",
     details: [
       "Capacity / Power: Max eye dia: 120mm",
@@ -191,7 +191,7 @@ const products = [
     title: "Eye Rolling Machine",
     specs: "Max thickness: 25mm, Two-stage curling",
     benefits: "Hydraulic operation for 180-degree curling in hot applications",
-    image: "/images/products/eye rolling machine image.webp",
+    image: "/images/products/Eye Rolling Machine.webp",
     category: "Rolling",
     details: [
       "Capacity / Power: Max thickness: 25mm",
@@ -205,7 +205,7 @@ const products = [
     title: "Eye Reaming Machine",
     specs: "Max eye dia: 60mm, VFD speed adjustment",
     benefits: "Hydraulic operation for bush reaming with separate coolant system",
-    image: "/images/products/Eye reaming machine image.webp",
+    image: "/images/products/Eye Reaming Machine.webp",
     category: "Reaming",
     details: [
       "Capacity / Power: Max eye dia: 60mm",
@@ -219,7 +219,7 @@ const products = [
     title: "Eye Boring Machine",
     specs: "Boring dia: 20-60mm, LHS spindle rotation",
     benefits: "Hydraulic operation with ±0.02 mm tolerance and 40 sec cycle time",
-    image: "/images/products/eye boring machine.webp",
+    image: "/images/products/Eye Boring Machine.webp",
     category: "Boring",
     details: [
       "Capacity / Power: Boring dia: 20-60mm",
@@ -233,7 +233,7 @@ const products = [
     title: "Eye Milling Machine",
     specs: "Milling stock 0.5-2.0mm, 150mm diameter milling cutter",
     benefits: "Hydraulic operation for milling after parabolic rolling",
-    image: "/images/products/Eye milling machine.webp",
+    image: "/images/products/Eye Milling Machine.webp",
     category: "Milling",
     details: [
       "Capacity / Power: Milling stock 0.5-2.0mm",
@@ -247,7 +247,7 @@ const products = [
     title: "Hockey Bending Machine",
     specs: "25+25+50 Ton, Precision sliding machine",
     benefits: "Hydraulic operation for lateral bend correction and hockey bending",
-    image: "/images/products/Hockey bending.webp",
+    image: "/images/products/Hockey Bending Machine.webp",
     category: "Bending",
     details: [
       "Capacity / Power: 25+25+50 Ton",
@@ -261,7 +261,7 @@ const products = [
     title: "Mechanical Straightening Machine",
     specs: "Max 180 Ton, High stroke frequency machine",
     benefits: "Mechanical operation with 48 cycles per minute and 22 KW power",
-    image: "/images/products/Cold straightening image.webp",
+    image: "/images/products/Mechanical Straightening Machine.webp",
     category: "Straightening",
     details: [
       "Capacity / Power: Max 180 Ton",
@@ -275,7 +275,7 @@ const products = [
     title: "Bush Pressing Machine",
     specs: "10 Ton capacity, Load/deflection control",
     benefits: "Hydraulic operation with 650mm daylight and 400mm stroke",
-    image: "/images/products/Bush pressing machine image.webp",
+    image: "/images/products/Bush Pressing Machine.webp",
     category: "Pressing",
     details: [
       "Capacity / Power: 10 Ton",
@@ -289,7 +289,7 @@ const products = [
     title: "Multi Station Press",
     specs: "100T/200T/100T/100T, Common hydraulic powerpack",
     benefits: "Manual/Robotic loading for forming and cutting operations",
-    image: "/images/products/Multi-Station-press.webp",
+    image: "/images/products/Multi Station Press.webp",
     category: "Pressing",
     details: [
       "Capacity / Power: 100T/200T/100T/100T",
@@ -303,7 +303,7 @@ const products = [
     title: "Scragging Machine",
     specs: "5-50 Ton capacity, HMI-based system",
     benefits: "Manual/Hydraulic operation for pressing assemblies",
-    image: "/images/products/scragging machine.webp",
+    image: "/images/products/Scragging Machine.webp",
     category: "Pressing",
     details: [
       "Capacity / Power: 5-50 Ton",
@@ -317,7 +317,7 @@ const products = [
     title: "Short Taper Rolling Machine",
     specs: "200 Ton rolling station, Manual loading/unloading",
     benefits: "Manual operation for tapered rolling of leaf springs",
-    image: "/images/products/short taper rolling image.webp",
+    image: "/images/products/Short Taper Rolling Machine.webp",
     category: "Rolling",
     details: [
       "Capacity / Power: 200 Ton (rolling station)",
@@ -331,7 +331,7 @@ const products = [
     title: "Leaf Correction Press",
     specs: "15-60 Ton capacity, Hydraulically operated",
     benefits: "Hydraulic operation for re-cambering and bend correction",
-    image: "/images/products/Leaf spring correction press.webp",
+    image: "/images/products/Leaf Correction Press.webp",
     category: "Pressing",
     details: [
       "Capacity / Power: 15-60 Ton",
@@ -345,7 +345,7 @@ const products = [
     title: "Magnetic Loader",
     specs: "500 kg lifting capacity, Magneto pneumatic manipulator",
     benefits: "Magnetic operation for stock manipulation",
-    image: "/images/products/magnetic loader.webp",
+    image: "/images/products/Magnetic Loader.webp",
     category: "Loading",
     details: [
       "Capacity / Power: 500 kg lifting capacity",
@@ -359,14 +359,13 @@ const products = [
     title: "Manual Leaf Spring Assembling Machine",
     specs: "5-20 Ton capacity, All steel fabrication",
     benefits: "Hydraulic operation for leaf spring assembly",
-    image: "/images/products/Leaf spring Assembling press.webp",
+    image: "/images/products/Manual Leaf Spring Assembling Machine.webp",
     category: "Assembly",
     details: [
       "Capacity / Power: 5-20 Ton",
       "Key Mechanism / Design: All steel fabrication",
       "Operation Type: Hydraulic",
       "Applications: Leaf spring assembly",
-      
       "Additional Features: Robust, steel-fabricated design"
     ]
   },

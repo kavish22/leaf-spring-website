@@ -13,7 +13,7 @@ const product = {
   title: "Magnetic Loader",
   specs: "500 kg lifting capacity, Magneto pneumatic manipulator",
   benefits: "Magnetic operation for stock manipulation",
-  image: "/images/products/magnetic loader.webp",
+  image: "/images/products/Magnetic Loader.webp",
   category: "Loading",
   details: [
     "Capacity / Power: 500 kg lifting capacity",
@@ -34,7 +34,7 @@ const product = {
     "Durable construction"
   ],
   gallery: [
-    "/images/products/magnetic loader.webp",
+    "/images/products/Magnetic Loader.webp",
     // Add more images/videos as needed
   ]
 }

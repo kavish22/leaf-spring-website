@@ -13,7 +13,7 @@ const product = {
   title: "High Pressure De-scaler",
   specs: "300 BAR pressure, Sophisticated hydraulic controls",
   benefits: "Cleans 95-99% scales, suitable for steel mills",
-  image: "/images/products/Descaler.webp",
+  image: "/images/products/High Pressure De-scaler.webp",
   category: "Cleaning",
   details: [
     "Capacity / Power: 300 BAR pressure",
@@ -34,7 +34,7 @@ const product = {
     "Industrial-grade durability"
   ],
   gallery: [
-    "/images/products/Descaler.webp",
+    "/images/products/High Pressure De-scaler.webp",
     // Add more images/videos as needed
   ]
 }

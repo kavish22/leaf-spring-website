@@ -13,7 +13,7 @@ const product = {
   title: "Manual Leaf Spring Assembling Machine",
   specs: "5-20 Ton capacity, All steel fabrication",
   benefits: "Hydraulic operation for leaf spring assembly",
-  image: "/images/products/Leaf spring Assembling press.webp",
+  image: "/images/products/Leaf Spring Assembling Press.webp",
   category: "Assembly",
   details: [
     "Capacity / Power: 5-20 Ton",
@@ -37,7 +37,7 @@ const product = {
     "Easy maintenance design"
   ],
   gallery: [
-    "/images/products/Leaf spring Assembling press.webp",
+    "/images/products/Leaf Spring Assembling Press.webp",
     // Add more images/videos as needed
   ]
 } 

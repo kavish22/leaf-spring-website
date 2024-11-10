@@ -13,7 +13,7 @@ const product = {
   title: "Eye Boring Machine",
   specs: "Boring dia: 20-60mm, LHS spindle rotation",
   benefits: "Hydraulic operation with ±0.02 mm tolerance and 40 sec cycle time",
-  image: "/images/products/eye boring machine.webp",
+  image: "/images/products/Eye Boring Machine.webp",
   category: "Boring",
   details: [
     "Capacity / Power: Boring dia: 20-60mm",
@@ -34,7 +34,7 @@ const product = {
     "Industrial-grade durability"
   ],
   gallery: [
-    "/images/products/eye boring machine.webp",
+    "/images/products/Eye Boring Machine.webp",
     // Add more images/videos as needed
   ]
 }

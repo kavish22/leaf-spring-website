@@ -13,7 +13,7 @@ const product = {
   title: "SSP Automation Line",
   specs: "15+5+15 Ton press, Low-cost automations",
   benefits: "Fully automatic operation for stress peening",
-  image: "/images/products/SSP auto.webp",
+  image: "/images/products/SSP Automation Line.webp",
   category: "Automation",
   details: [
     "Capacity / Power: 15+5+15 Ton (press)",
@@ -34,7 +34,7 @@ const product = {
     "Enhanced safety features"
   ],
   gallery: [
-    "/images/products/SSP auto.webp",
+    "/images/products/SSP Automation Line.webp",
     // Add more images/videos as needed
   ]
 }

@@ -13,7 +13,7 @@ const product = {
   title: "Straightening - Parallelogram",
   specs: "Up to 60mm diameter, 4000mm length capacity",
   benefits: "Advanced parallelogram design for superior straightening accuracy",
-  image: "/images/products/straightening-parallelogram.webp",
+  image: "/images/products/Straightening-Parallelogram.webp",
   category: "Straightening",
   details: [
     "Capacity / Power: Up to 60mm diameter",
@@ -40,9 +40,9 @@ const product = {
     "Safety interlocking mechanism"
   ],
   gallery: [
-    "/images/products/Straighening-Parallelogram.webp",
-    "/images/products/straightening-parallelogram-2.webp",
-    "/images/products/straightening-parallelogram-3.webp"
+    "/images/products/Straightening-Parallelogram.webp",
+    "/images/products/Straightening-Parallelogram-2.webp",
+    "/images/products/Straightening-Parallelogram-3.webp"
   ]
 }
 

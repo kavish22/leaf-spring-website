@@ -13,7 +13,7 @@ const product = {
   title: "Eye Milling Machine",
   specs: "Milling stock 0.5-2.0mm, 150mm diameter milling cutter",
   benefits: "Hydraulic operation for milling after parabolic rolling",
-  image: "/images/products/Eye milling machine.webp",
+  image: "/images/products/Eye Milling Machine.webp",
   category: "Milling",
   details: [
     "Capacity / Power: Milling stock 0.5-2.0mm",
@@ -34,7 +34,7 @@ const product = {
     "Robust construction"
   ],
   gallery: [
-    "/images/products/Eye milling machine.webp",
+    "/images/products/Eye Milling Machine.webp",
     // Add more images/videos as needed
   ]
 }

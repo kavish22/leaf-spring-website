@@ -13,7 +13,7 @@ const product = {
   title: "Eye Rolling Machine",
   specs: "Max thickness: 25mm, Two-stage curling",
   benefits: "Hydraulic operation for 180-degree curling in hot applications",
-  image: "/images/products/eye rolling machine image.webp",
+  image: "/images/products/Eye Rolling Machine.webp",
   category: "Rolling",
   details: [
     "Capacity / Power: Max thickness: 25mm",
@@ -33,8 +33,8 @@ const product = {
     "Safety interlocks",
     "Robust industrial design"
   ],
-  gallery: [
-    "/images/products/eye rolling machine image.webp",
+  gallery: [  
+    "/images/products/Eye Rolling Machine.webp",
     // Add more images/videos as needed
   ]
 }

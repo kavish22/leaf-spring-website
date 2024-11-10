@@ -13,7 +13,7 @@ const product = {
   title: "Short Taper Rolling Machine",
   specs: "200 Ton rolling station, Manual loading/unloading",
   benefits: "Manual operation for tapered rolling of leaf springs",
-  image: "/images/products/short taper rolling image.webp",
+  image: "/images/products/Short Taper Rolling Machine.webp",
   category: "Rolling",
   details: [
     "Capacity / Power: 200 Ton (rolling station)",
@@ -34,7 +34,7 @@ const product = {
     "Robust construction"
   ],
   gallery: [
-    "/images/products/short taper rolling image.webp",
+      "/images/products/Short Taper Rolling Machine.webp",
     // Add more images/videos as needed
   ]
 }

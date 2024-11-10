@@ -13,7 +13,7 @@ const product = {
   title: "Hydraulic Endurance Testing",
   specs: "20 Ton load, CNC servo control machine",
   benefits: "Load and endurance testing with custom cylinder for long life",
-  image: "/images/products/Endurance testing mc.webp",
+  image: "/images/products/Hydraulic Endurance Testing.webp",
   category: "Testing",
   details: [
     "Capacity / Power: 20 Ton load",
@@ -34,7 +34,7 @@ const product = {
     "Automated test sequences"
   ],
   gallery: [
-    "/images/products/Endurance testing mc.webp",
+    "/images/products/Hydraulic Endurance Testing.webp",
     // Add more images/videos as needed
   ]
 }

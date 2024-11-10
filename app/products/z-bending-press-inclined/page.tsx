@@ -13,7 +13,7 @@ const product = {
   title: "Z-bending Press-Inclined",
   specs: "400 Ton (4 cylinders), Multi-cylinder design",
   benefits: "Hot application for thickness bending up to 60mm",
-  image: "/images/products/z-bending press-inclined.webp",
+  image: "/images/products/Z-bending Press-Inclined.webp",
   category: "Bending",
   details: [
     "Capacity / Power: 400 Ton (4 cylinders)",
@@ -34,7 +34,7 @@ const product = {
     "Industrial-grade construction"
   ],
   gallery: [
-    "/images/products/z-bending press-inclined.webp",
+    "/images/products/Z-bending Press-Inclined.webp",
     // Add more images/videos as needed
   ]
 }

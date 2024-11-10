@@ -13,7 +13,7 @@ const product = {
   title: "Hockey Bending Machine",
   specs: "25+25+50 Ton, Precision sliding machine",
   benefits: "Hydraulic operation for lateral bend correction and hockey bending",
-  image: "/images/products/Hockey bending.webp",
+  image: "/images/products/Hockey Bending Machine.webp",
   category: "Bending",
   details: [
     "Capacity / Power: 25+25+50 Ton",
@@ -34,7 +34,7 @@ const product = {
     "Industrial-grade construction"
   ],
   gallery: [
-    "/images/products/Hockey bending.webp",
+    "/images/products/Hockey Bending Machine.webp",
     // Add more images/videos as needed
   ]
 }

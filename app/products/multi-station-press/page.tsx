@@ -13,7 +13,7 @@ const product = {
   title: "Multi Station Press",
   specs: "100T/200T/100T/100T, Common hydraulic powerpack",
   benefits: "Manual/Robotic loading for forming and cutting operations",
-  image: "/images/products/Multi-Station-press.webp",
+  image: "/images/products/Multi Station Press.webp",
   category: "Pressing",
   details: [
     "Capacity / Power: 100T/200T/100T/100T",
@@ -34,7 +34,7 @@ const product = {
     "Industrial-grade construction"
   ],
   gallery: [
-    "/images/products/Multi-Station-press.webp",
+    "/images/products/Multi Station Press.webp",
     // Add more images/videos as needed
   ]
 }

@@ -37,7 +37,7 @@ const product = {
     "Industrial-grade construction"
   ],
   gallery: [
-    "/images/products/Straighening-Linear.webp",
+    "/images/products/Straightening-Linear.webp",
     // Add more images/videos as needed
   ]
 }

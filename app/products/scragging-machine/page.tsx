@@ -13,7 +13,7 @@ const product = {
   title: "Scragging Machine",
   specs: "5-50 Ton capacity, HMI-based system",
   benefits: "Manual/Hydraulic operation for pressing assemblies",
-  image: "/images/products/scragging machine.webp",
+  image: "/images/products/Scragging Machine.webp",
   category: "Pressing",
   details: [
     "Capacity / Power: 5-50 Ton",
@@ -34,7 +34,7 @@ const product = {
     "Industrial-grade reliability"
   ],
   gallery: [
-    "/images/products/scragging machine.webp",
+    "/images/products/Scragging Machine.webp",
     // Add more images/videos as needed
   ]
 }

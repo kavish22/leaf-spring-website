@@ -13,7 +13,7 @@ const product = {
   title: "Bush Pressing Machine",
   specs: "10 Ton capacity, Load/deflection control",
   benefits: "Hydraulic operation with 650mm daylight and 400mm stroke",
-  image: "/images/products/Bush pressing machine image.webp",
+  image: "/images/products/Bush Pressing Machine.webp",
   category: "Pressing",
   details: [
     "Capacity / Power: 10 Ton",
@@ -34,7 +34,7 @@ const product = {
     "Robust construction"
   ],
   gallery: [
-    "/images/products/Bush pressing machine image.webp",
+    "/images/products/Bush Pressing Machine.webp",
     // Add more images/videos as needed
   ]
 }

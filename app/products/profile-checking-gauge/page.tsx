@@ -13,8 +13,8 @@ const product = {
   title: "Profile Checking Gauge",
   specs: "Max length 1600mm, Parabolic profile gauge",
   benefits: "Hot or cold profile checking with ±1 mm length tolerance",
-  image: "/images/products/Profile checking.webp",
-  category: "Measurement",
+  image: "/images/products/Profile Checking Gauge.webp",
+  category: "Measurement",    
   details: [
     "Capacity / Power: Max length 1600mm",
     "Key Mechanism / Design: Parabolic profile gauge",
@@ -34,7 +34,7 @@ const product = {
     "Durable construction"
   ],
   gallery: [
-    "/images/products/Profile checking.webp",
+    "/images/products/Profile Checking Gauge.webp",
     // Add more images/videos as needed
   ]
 }

@@ -13,7 +13,7 @@ const product = {
   title: "Heavy Assembly Line",
   specs: "50 Ton capacity, Dual piston telescopic press",
   benefits: "Automated operation for automotive suspension systems assembly",
-  image: "/images/products/Heavy assembly line.webp",
+  image: "/images/products/Heavy Assembly Line.webp",
   category: "Assembly",
   details: [
     "Capacity / Power: 50 Ton",
@@ -34,7 +34,7 @@ const product = {
     "Safety compliance features"
   ],
   gallery: [
-    "/images/products/Heavy assembly line.webp",
+    "/images/products/Heavy Assembly Line.webp",
     "https://www.youtube.com/embed/cmFrl9TqsTA"
   ]
 }
