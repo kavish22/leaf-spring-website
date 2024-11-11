@@ -349,7 +349,7 @@ export default function HomePage() {
           <div className="container mx-auto px-4 relative">
             <div className="max-w-5xl mx-auto text-center mb-4 mt-8 sm:mt-12">
               <div className="inline-block">
-                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-[28px] font-bold mb-2 sm:mb-3 text-white leading-tight pb-1 sm:pb-2 px-4 sm:px-6 text-center">
+                <h2 className="text-2xl sm:text-3xl md:text-3xl lg:text-[28px] font-bold mb-2 sm:mb-3 text-white leading-tight pb-1 sm:pb-2 px-4 sm:px-6 text-center">
                   <span className="block sm:hidden text-center mx-auto">
                     Why Choose Our Leaf Spring<br />Manufacturing Machinery
                   </span>
