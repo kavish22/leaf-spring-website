@@ -223,7 +223,7 @@ export default function HomePage() {
                         />
                       ))}
                     </div>
-                    <p className="text-xs mt-1.5">Trusted by 500+ Companies</p>
+                    <p className="text-xs mt-1.5">Trusted by 50+ Companies</p>
                   </div>
                 </div>
               </div>
@@ -250,20 +250,20 @@ export default function HomePage() {
                 {
                   title: "High-Pressure Water Jet Descaler Machine",
                   specs: "Operates at 300 BAR, removing 95-99% of scale for better surface quality.",
-                  benefits: "Provides clean surfaces on leaf springs, ideal for tough automotive and industrial environments.",
+                  benefits: "Provides clean and decarb free surfaces on the rolled leaf, loss of profile is avoided, Endurance life of the leaf improved.",
                   image: "/images/products/Descaler.webp"
                 },
                 {
                   title: "Heavy-Duty Leaf Spring Shearing Machine",
                   specs: "250-ton capacity, robust scissor mechanism for precise and efficient shearing.",
-                  benefits: "Boosts manufacturing efficiency, precisely cuts heavy materials in high-demand industrial setups.",
+                  benefits: "Thickness up to 32mm possible, Hydraulic shearing enables higher tooling life.",
                   image: "/images/products/Shearing.webp"
                 },
                 {
-                  title: "Automated Heat Treatment Furnace",
-                  specs: "Customizable temperature control for optimized leaf spring toughness.",
-                  benefits: "Enhances durability and strength, meeting global standards for industrial applications.",
-                  image: "/images/products/heat-furnace.webp"
+                  title: "Hydraulic Endurance Testing",
+                  specs: "20 Ton load, CNC servo control machine",
+                  benefits: "Load and endurance testing with custom cylinder for long life",
+                  image: "/images/products/Hydraulic Endurance Testing.webp"
                 }
               ].map((product, index) => (
                 <Card 

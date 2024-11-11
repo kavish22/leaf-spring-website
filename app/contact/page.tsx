@@ -13,16 +13,16 @@ const contactInfo = [
   {
     icon: Phone,
     title: "Call Us",
-    content: "+91-8120005961",
-    detail: "Mon-Fri, 9:00 AM - 6:00 PM IST",
-    action: "tel:+918120005961"
+    content: "+91-8120007474",
+    detail: "Mon-Sat, 10:00 AM - 7:00 PM IST",
+    action: "tel:+918120007474"
   },
   {
     icon: Mail,
     title: "Email Us",
-    content: "engg@r-tech.in",
+    content: "gunalan@r-tech.in",
     detail: "24/7 support for urgent inquiries",
-    action: "mailto:engg@r-tech.in"
+    action: "mailto:gunalan@r-tech.in"
   },
   {
     icon: MapPin,
@@ -33,8 +33,8 @@ const contactInfo = [
   {
     icon: Clock,
     title: "Business Hours",
-    content: "Monday to Friday",
-    detail: "9:00 AM - 6:00 PM IST"
+    content: "Monday to Saturday",
+    detail: "10:00 AM - 7:00 PM IST"
   }
 ];
 
@@ -42,9 +42,9 @@ const contactInfo = [
 const contactMethods = [
   {
     icon: MessageSquare,
-    title: "Chat with Sales",
+    title: "Connect with Support",
     description: "Speak to our friendly team",
-    contact: "sales@r-tech.in",
+    contact: "vivek@r-tech.in",
     callToAction: "Start chat",
     linkType: "chat"
   },
@@ -52,15 +52,15 @@ const contactMethods = [
     icon: Mail,
     title: "Email us",
     description: "We'll respond within 24 hours",
-    contact: "engg@r-tech.in",
+    contact: "gunalan@r-tech.in",
     callToAction: "Send email",
     linkType: "email"
   },
   {
     icon: Phone,
     title: "Call us",
-    description: "Mon-Fri from 9am to 6pm IST",
-    contact: "+91-8120005961",
+    description: "Mon-Sat from 10am to 7pm IST",
+    contact: "+91-8120007474",
     callToAction: "Call now",
     linkType: "phone"
   },
@@ -98,17 +98,17 @@ interface FAQ {
 const faqs: FAQ[] = [
   {
     question: "How quickly can you respond to inquiries?",
-    answer: "We typically respond to all inquiries within 24 hours during business days. For urgent matters, please contact us by phone at +91-8120005961 for immediate assistance.",
+    answer: "We typically respond to all inquiries within 24 hours during business days. For urgent matters, please contact us by phone at +91-8120007474 for immediate assistance.",
     category: "support"
   },
   {
     question: "Do you offer international shipping?",
-    answer: "Yes, we provide worldwide shipping services for our leaf springs. We have extensive experience in international logistics, customs documentation, and have established partnerships with reliable shipping providers to ensure safe and timely delivery to any global destination.",
+    answer: "Yes, we provide worldwide shipping services for our leaf spring machines. We have extensive experience in international logistics, customs documentation, and have established partnerships with reliable shipping providers to ensure safe and timely delivery to any global destination.",
     category: "shipping"
   },
   {
     question: "What are your quality certifications?",
-    answer: "We maintain the highest quality standards in the industry with certifications including: ISO 9001:2015, IATF 16949:2016, and ISO 14001:2015. Our manufacturing processes are regularly audited and comply with international automotive quality management systems.",
+    answer: "We maintain the highest quality standards in the industry with certifications including: ISO 9001:2015.",
     category: "quality"
   },
   {
@@ -274,7 +274,7 @@ const EnhancedFAQSection = () => {
             </p>
             <Button 
               className="bg-red-600 hover:bg-red-700 text-white px-8 py-6 rounded-xl"
-              onClick={() => window.location.href = 'mailto:engg@r-tech.in'}
+              onClick={() => window.location.href = 'mailto:gunalan@r-tech.in'}
             >
               Contact Support
               <Mail className="ml-2 h-4 w-4" />
@@ -300,7 +300,7 @@ export default function ContactPage() {
           <div className="absolute inset-0 z-0 opacity-50 scale-100" style={{ backgroundImage: `url('/patterns/grid.svg')` }} />
           <div className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
             <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold mb-4 sm:mb-8 leading-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-300">
-              Let's Build Something Together
+              Let's Build Great Together
             </h1>
             <p className="text-lg sm:text-xl md:text-2xl mb-6 sm:mb-10">
               Get in touch with our experts to discuss your leaf spring manufacturing needs
@@ -419,14 +419,14 @@ export default function ContactPage() {
                   </div>
 
                   <div className="bg-white p-8 rounded-2xl border border-red-100 shadow-lg">
-                    <h4 className="font-bold text-gray-900 mb-6">Visit our office</h4>
+                    <h4 className="font-bold text-gray-900 mb-6">Visit our works</h4>
                     <div className="space-y-6">
                       <div className="flex gap-4">
                         <div className="bg-red-50 rounded-lg p-2 h-fit">
                           <MapPin className="w-5 h-5 text-red-600" />
                         </div>
                         <div>
-                          <h5 className="font-semibold text-gray-900 mb-1">Office Address</h5>
+                          <h5 className="font-semibold text-gray-900 mb-1">Works Address</h5>
                           <p className="text-gray-600">Sanwer Road, Indore,<br />Madhya Pradesh, India</p>
                         </div>
                       </div>
@@ -436,12 +436,12 @@ export default function ContactPage() {
                         </div>
                         <div>
                           <h5 className="font-semibold text-gray-900 mb-1">Working Hours</h5>
-                          <p className="text-gray-600">Monday - Friday: 9:00 AM - 6:00 PM IST<br />Saturday - Sunday: Closed</p>
+                          <p className="text-gray-600">Monday - Saturday: 10:00 AM - 7:00 PM IST<br />Sunday: Closed</p>
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>
+                </div>  
               </div>
             </div>
           </div>

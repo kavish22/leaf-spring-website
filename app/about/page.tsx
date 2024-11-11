@@ -1044,7 +1044,7 @@ export default function AboutPage() {
                 asChild
               >
                 <Link href="/contact">
-                  Contact Sales <ChevronRight className="ml-2 h-4 w-4" />
+                  Contact Us <ChevronRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
               <Button 

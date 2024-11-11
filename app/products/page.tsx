@@ -78,7 +78,7 @@ const products = [
   {
     title: "High Pressure De-scaler",
     specs: "300 BAR pressure, Sophisticated hydraulic controls",
-    benefits: "Cleans 95-99% scales, suitable for steel mills",
+    benefits: "Cleans 95% scales, decarb free surfaces, improved endurance life.",
     image: "/images/products/High Pressure De-scaler.webp",
     category: "Cleaning",
     details: [
@@ -877,7 +877,7 @@ export default function ProductsPage() {
           </motion.div>
           <div className="relative z-20 text-center text-white px-4">
             <motion.h1 
-              className="text-4xl sm:text-6xl font-bold mb-6"
+              className="text-4xl sm:text-6xl font-bold mb-6 leading-tight"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
@@ -890,7 +890,7 @@ export default function ProductsPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              Discover our comprehensive range of high-performance leaf spring machinery, engineered for excellence in automotive and heavy industry applications.
+              Discover our comprehensive range of high-performance leaf spring machinery, engineered for excellence in automotive industry applications.
             </motion.p>
           </div>
           <motion.div
