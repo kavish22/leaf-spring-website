@@ -19,7 +19,10 @@ export default function Header() {
     <header className="bg-white shadow-sm sticky top-0 z-50 transition-all duration-300">
       <nav className="container mx-auto px-4 py-4 flex justify-between items-center">
         <Link href="/" className="text-2xl md:text-3xl font-bold text-red-600 transition-colors hover:text-red-700">
-          LEAF SPRING MACHINES
+          <div>
+            LEAF SPRING MACHINES
+            <div className="text-sm text-gray-600 font-normal">Engineered for Excellence</div>
+          </div>
         </Link>
         <ul className="hidden md:flex space-x-8">
           {navItems.map((item) => (

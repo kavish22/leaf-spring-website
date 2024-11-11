@@ -17,8 +17,8 @@ export default function Footer() {
 
   const contactItems: ContactItem[] = [
     [Phone, '+91 81200 07474 '],
-    [Mail, 'info@leafsprings.com'],
-    [MapPin, 'Sawer Road, Indore, MP, India'],
+    [Mail, 'gunalan@r-tech.in'],
+    [MapPin, 'Sanwer Road, Indore, MP, India'],
     [Clock, '10:00am-7:00pm IST']
   ];
 
