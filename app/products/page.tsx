@@ -14,7 +14,7 @@ import { Skeleton } from "@/components/ui/skeleton"
 import { debounce } from 'lodash';
 import { cn } from "@/lib/utils"
 import { useInView } from 'react-intersection-observer';
-import { motion, useScroll, useTransform } from 'framer-motion'
+import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
 import { useSwipeable } from 'react-swipeable';
 
 interface Product {
@@ -380,6 +380,13 @@ interface ProductCardProps {
   isVideoReady: boolean;
 }
 
+interface FilterButtonProps {
+  active: boolean;
+  label: string;
+  onClick: () => void;
+  count?: number;
+}
+
 const ProductCard = ({ product, index, isSlideOpen, onSlideToggle, onLearnMore, isVideoReady }: ProductCardProps) => {
   const createSlug = (title: string) => {
     return title
@@ -405,18 +412,42 @@ const ProductCard = ({ product, index, isSlideOpen, onSlideToggle, onLearnMore, 
   };
 
   return (
-    <div className="relative w-full h-full">
+    <motion.div 
+      className="relative w-full h-full"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4, delay: index * 0.1 }}
+    >
       <Card className="overflow-hidden transition-all duration-300 hover:shadow-lg group flex flex-col h-full bg-white/80 backdrop-blur-sm border border-gray-100">
-        {/* Image Container */}
-        <div className="relative h-24 xs:h-32 sm:h-48 lg:h-52 w-full">
-          {renderMedia()}
-          <Badge className="absolute top-1 right-1 sm:top-3 sm:right-3 bg-red-600/90 backdrop-blur-sm text-white px-1 sm:px-2.5 py-0.5 text-[8px] leading-relaxed sm:text-xs font-medium">
-            {product.category}
-          </Badge>
-        </div>
+        {/* Image Container with smooth hover effect */}
+        <motion.div 
+          className="relative h-24 xs:h-32 sm:h-48 lg:h-52 w-full overflow-hidden"
+          whileHover={{ scale: 1.02 }}
+          transition={{ duration: 0.3, ease: "easeOut" }}
+        >
+          <Image 
+            src={product.image} 
+            alt={product.title}
+            fill
+            className="object-cover transition-transform duration-300"
+            onError={(e) => {
+              e.currentTarget.src = '/images/fallback.jpg'
+            }}
+            loading="lazy"
+          />
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.3 }}
+          >
+            <Badge className="absolute top-1 right-1 sm:top-3 sm:right-3 bg-red-600/90 backdrop-blur-sm text-white px-1 sm:px-2.5 py-0.5 text-[8px] leading-relaxed sm:text-xs font-medium">
+              {product.category}
+            </Badge>
+          </motion.div>
+        </motion.div>
         
-        {/* Content Container */}
-        <div className="flex flex-col flex-grow p-1.5 xs:p-2 sm:p-4 lg:p-5">
+        {/* Content Container with hover effects */}
+        <div className="flex flex-col flex-grow p-1.5 xs:p-2 sm:p-4 lg:p-5 group-hover:bg-gray-50/50 transition-colors duration-300">
           {/* Title */}
           <h3 className="text-[10px] leading-tight xs:text-xs sm:text-lg font-bold text-gray-900 mb-1 sm:mb-2 line-clamp-2 min-h-[24px] xs:min-h-[32px] sm:min-h-[3.5rem]">
             {product.title}
@@ -435,126 +466,136 @@ const ProductCard = ({ product, index, isSlideOpen, onSlideToggle, onLearnMore, 
             </div>
           </div>
 
-          {/* Action Buttons Container */}
+          {/* Enhanced Button Animations */}
           <div className="mt-1 xs:mt-1.5 sm:mt-4 grid grid-cols-2 gap-1 xs:gap-1.5 sm:block sm:space-y-2">
-            <Button 
-              className={cn(
-                "w-full text-white bg-red-600 hover:bg-red-700",
-                "h-4 xs:h-5 sm:h-8",
-                "text-[6px] xs:text-[7px] sm:text-xs",
-                "rounded px-1 xs:px-2 sm:px-4",
-                "flex items-center justify-center",
-                "border border-red-600 sm:border-transparent"
-              )}
-              asChild
-            >
-              <Link
-                href={`/products/${createSlug(product.title)}`}
-                legacyBehavior={false}
-              >
-                <Info className="hidden sm:inline-block sm:mr-2 sm:h-4 sm:w-4" />
-                Explore
-              </Link>
-            </Button>
-            <Button 
-              className={cn(
-                "w-full bg-white text-red-600 border border-red-600 hover:bg-red-50",
-                "h-4 xs:h-5 sm:h-8",
-                "text-[6px] xs:text-[7px] sm:text-xs",
-                "rounded px-1 xs:px-2 sm:px-4",
-                "flex items-center justify-center"
-              )}
-              onClick={() => onSlideToggle(index)}
-            >
-              <Info className="hidden sm:inline-block sm:mr-2 sm:h-4 sm:w-4" />
-              Details
-            </Button>
-          </div>
-        </div>
-
-        {/* Optimized Mobile Sliding Panel */}
-        <div 
-          className={cn(
-            "fixed inset-0 z-50 bg-white/95 backdrop-blur-sm transition-all duration-300 flex flex-col",
-            "sm:absolute sm:inset-auto sm:left-0 sm:right-0 sm:bottom-0",
-            isSlideOpen ? "translate-y-0" : "translate-y-full"
-          )}
-          style={{ 
-            height: 'calc(100vh - 56px)',
-            top: '56px',
-          }}
-        >
-          {/* Extra Compact Header */}
-          <div className="sticky top-0 bg-white/95 backdrop-blur-sm p-1 xs:p-1.5 sm:p-4 border-b flex justify-between items-center">
-            <h3 className="text-[10px] xs:text-xs sm:text-lg font-bold text-gray-900 pr-2 line-clamp-2">{product.title}</h3>
-            <button 
-              onClick={() => onSlideToggle(index)}
-              className="p-0.5 hover:bg-gray-100 rounded-full flex-shrink-0"
-            >
-              <X className="h-3 w-3 xs:h-3.5 xs:w-3.5 sm:h-5 sm:w-5 text-gray-500" />
-            </button>
-          </div>
-          
-          {/* Content - Maximum Space for Details */}
-          <div className="flex-grow overflow-y-auto">
-            <div className="p-1.5 xs:p-2 sm:p-4">
-              {/* Mobile-Only Technical Details */}
-              <div className="block sm:hidden">
-                {/* Technical Details Section */}
-                <div>
-                  <h4 className="text-[8px] xs:text-[10px] font-semibold text-gray-900 mb-1">Technical Details</h4>
-                  <ul className="space-y-[2px] xs:space-y-1">
-                    {product.details.map((detail, i) => (
-                      <li key={i} className="flex items-start">
-                        <ChevronRight className="h-1.5 w-1.5 xs:h-2 xs:w-2 text-red-500 mt-[3px] flex-shrink-0" />
-                        <span className="ml-0.5 text-[7px] xs:text-[9px] text-gray-600 leading-tight">{detail}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-
-              {/* Desktop Content - Hidden on Mobile */}
-              <div className="hidden sm:block">
-                <div className="mb-4">
-                  <h4 className="text-sm font-semibold text-gray-900 mb-2">Specifications</h4>
-                  <p className="text-xs text-gray-600">{product.specs}</p>
-                </div>
-                
-                <div className="mb-4">
-                  <h4 className="text-sm font-semibold text-gray-900 mb-2">Benefits</h4>
-                  <p className="text-xs text-gray-600">{product.benefits}</p>
-                </div>
-                
-                <div>
-                  <h4 className="text-sm font-semibold text-gray-900 mb-2">Technical Details</h4>
-                  <ul className="space-y-1.5 text-xs text-gray-600">
-                    {product.details.map((detail, i) => (
-                      <li key={i} className="flex items-start">
-                        <ChevronRight className="h-3 w-3 text-red-500 mt-0.5 flex-shrink-0" />
-                        <span className="ml-2">{detail}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Extra Compact Footer */}
-          <div className="bg-white/95 backdrop-blur-sm border-t">
-            <div className="p-1 xs:p-1.5 sm:p-4">
+            <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
               <Button 
-                className="w-full h-6 xs:h-7 sm:h-10 text-[8px] xs:text-[10px] sm:text-sm bg-red-600 text-white hover:bg-red-700"
+                className={cn(
+                  "w-full text-white bg-red-600 hover:bg-red-500",
+                  "h-4 xs:h-5 sm:h-8",
+                  "text-[6px] xs:text-[7px] sm:text-xs",
+                  "rounded px-1 xs:px-2 sm:px-4",
+                  "flex items-center justify-center",
+                  "transition-all duration-300 ease-in-out"
+                )}
+                asChild
+              >
+                <Link href={`/products/${createSlug(product.title)}`}>
+                  <Info className="hidden sm:inline-block sm:mr-2 sm:h-4 sm:w-4" />
+                  Explore
+                </Link>
+              </Button>
+            </motion.div>
+            
+            <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+              <Button 
+                className={cn(
+                  "w-full bg-white text-red-600 border border-red-600 hover:bg-red-50",
+                  "h-4 xs:h-5 sm:h-8",
+                  "text-[6px] xs:text-[7px] sm:text-xs",
+                  "rounded px-1 xs:px-2 sm:px-4",
+                  "flex items-center justify-center",
+                  "transition-all duration-300 ease-in-out"
+                )}
                 onClick={() => onSlideToggle(index)}
               >
-                Close
+                <Info className="hidden sm:inline-block sm:mr-2 sm:h-4 sm:w-4" />
+                Details
               </Button>
-            </div>
+            </motion.div>
           </div>
         </div>
+
+        {/* Sliding Panel with smooth animation */}
+        <AnimatePresence>
+          {isSlideOpen && (
+            <motion.div 
+              className={cn(
+                "fixed inset-0 z-50 bg-white/95 backdrop-blur-sm",
+                "sm:absolute sm:inset-auto sm:left-0 sm:right-0 sm:bottom-0"
+              )}
+              initial={{ y: "100%" }}
+              animate={{ y: 0 }}
+              exit={{ y: "100%" }}
+              transition={{ type: "spring", damping: 25, stiffness: 200 }}
+              style={{ 
+                height: 'calc(100vh - 56px)',
+                top: '56px',
+              }}
+            >
+              {/* Extra Compact Header */}
+              <div className="sticky top-0 bg-white/95 backdrop-blur-sm p-1 xs:p-1.5 sm:p-4 border-b flex justify-between items-center">
+                <h3 className="text-[10px] xs:text-xs sm:text-lg font-bold text-gray-900 pr-2 line-clamp-2">{product.title}</h3>
+                <button 
+                  onClick={() => onSlideToggle(index)}
+                  className="p-0.5 hover:bg-gray-100 rounded-full flex-shrink-0"
+                >
+                  <X className="h-3 w-3 xs:h-3.5 xs:w-3.5 sm:h-5 sm:w-5 text-gray-500" />
+                </button>
+              </div>
+              
+              {/* Content - Maximum Space for Details */}
+              <div className="flex-grow overflow-y-auto">
+                <div className="p-1.5 xs:p-2 sm:p-4">
+                  {/* Mobile-Only Technical Details */}
+                  <div className="block sm:hidden">
+                    {/* Technical Details Section */}
+                    <div>
+                      <h4 className="text-[8px] xs:text-[10px] font-semibold text-gray-900 mb-1">Technical Details</h4>
+                      <ul className="space-y-[2px] xs:space-y-1">
+                        {product.details.map((detail, i) => (
+                          <li key={i} className="flex items-start">
+                            <ChevronRight className="h-1.5 w-1.5 xs:h-2 xs:w-2 text-red-500 mt-[3px] flex-shrink-0" />
+                            <span className="ml-0.5 text-[7px] xs:text-[9px] text-gray-600 leading-tight">{detail}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+
+                  {/* Desktop Content - Hidden on Mobile */}
+                  <div className="hidden sm:block">
+                    <div className="mb-4">
+                      <h4 className="text-sm font-semibold text-gray-900 mb-2">Specifications</h4>
+                      <p className="text-xs text-gray-600">{product.specs}</p>
+                    </div>
+                    
+                    <div className="mb-4">
+                      <h4 className="text-sm font-semibold text-gray-900 mb-2">Benefits</h4>
+                      <p className="text-xs text-gray-600">{product.benefits}</p>
+                    </div>
+                    
+                    <div>
+                      <h4 className="text-sm font-semibold text-gray-900 mb-2">Technical Details</h4>
+                      <ul className="space-y-1.5 text-xs text-gray-600">
+                        {product.details.map((detail, i) => (
+                          <li key={i} className="flex items-start">
+                            <ChevronRight className="h-3 w-3 text-red-500 mt-0.5 flex-shrink-0" />
+                            <span className="ml-2">{detail}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Extra Compact Footer */}
+              <div className="bg-white/95 backdrop-blur-sm border-t">
+                <div className="p-1 xs:p-1.5 sm:p-4">
+                  <Button 
+                    className="w-full h-6 xs:h-7 sm:h-10 text-[8px] xs:text-[10px] sm:text-sm bg-red-600 text-white hover:bg-red-700"
+                    onClick={() => onSlideToggle(index)}
+                  >
+                    Close
+                  </Button>
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </Card>
-    </div>
+    </motion.div>
   );
 };
 
@@ -570,39 +611,48 @@ const ProductSkeleton = () => (
   </div>
 );
 
-const FilterButton = ({ 
-  active, 
-  label, 
-  onClick,
-  count 
-}: { 
-  active: boolean; 
-  label: string; 
-  onClick: () => void;
-  count?: number;
-}) => (
-  <button
+// Enhance the filter section with smooth transitions
+const FilterButton = ({ active, label, onClick, count }: FilterButtonProps) => (
+  <motion.button
     onClick={onClick}
     className={cn(
-      "inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200",
+      "inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium",
       "border border-transparent",
       active 
         ? "bg-red-50 text-red-600 border-red-200" 
         : "bg-transparent hover:bg-gray-50 text-gray-600",
-      "focus:outline-none focus:ring-2 focus:ring-red-500/20"
+      "focus:outline-none focus:ring-2 focus:ring-red-500/20",
+      "transition-all duration-300 ease-in-out"
     )}
+    whileHover={{ scale: 1.02 }}
+    whileTap={{ scale: 0.98 }}
   >
     {label}
     {count && (
-      <span className={cn(
-        "text-xs px-2 py-0.5 rounded-full",
-        active ? "bg-red-100 text-red-600" : "bg-gray-100 text-gray-600"
-      )}>
+      <motion.span 
+        initial={{ scale: 0.8 }}
+        animate={{ scale: 1 }}
+        className={cn(
+          "text-xs px-2 py-0.5 rounded-full",
+          active ? "bg-red-100 text-red-600" : "bg-gray-100 text-gray-600"
+        )}
+      >
         {count}
-      </span>
+      </motion.span>
     )}
-  </button>
+  </motion.button>
 );
+
+// Add smooth scroll behavior
+const scrollToProducts = () => {
+  const productsSection = document.getElementById('products-section');
+  if (productsSection) {
+    productsSection.scrollIntoView({ 
+      behavior: 'smooth',
+      block: 'start'
+    });
+  }
+};
 
 // Add this new component for the floating filter bar
 const FloatingFilterBar = ({ 
@@ -765,7 +815,12 @@ export default function ProductsPage() {
   // Separate immediate input update from debounced search
   const debouncedSearch = useCallback(
     debounce((value: string) => {
-      document.getElementById('products-section')?.scrollIntoView({ behavior: 'smooth' });
+      const filterSection = document.querySelector('.filter-section');
+      if (filterSection) {
+        const headerHeight = 56; // Height of your header
+        const yOffset = filterSection.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+        window.scrollTo({ top: yOffset, behavior: 'smooth' });
+      }
     }, 300),
     []
   );
@@ -789,18 +844,12 @@ export default function ProductsPage() {
     onFocus={() => setIsSearchExpanded(true)}
   />
 
-  const [isFilterVisible, setIsFilterVisible] = useState(false);
-  
-  // Create a separate ref for scrolling
-  const scrollRef = useRef<HTMLDivElement>(null);
-
-  // Use this for the intersection observer
-  const { ref: productsRef, inView } = useInView();
-
-  // Update filter visibility based on scroll position
-  useEffect(() => {
-    setIsFilterVisible(inView);
-  }, [inView]);
+  // Keep only these observers
+ 
+const { ref: productsEndRef, inView: isEndVisible } = useInView({
+    threshold: 0,
+    rootMargin: '-100px 0px 0px 0px'
+  });
 
   // Get unique categories
   const categories = useMemo(() => 
@@ -815,10 +864,6 @@ export default function ProductsPage() {
   const { ref: heroEndRef, inView: isHeroVisible } = useInView({
     threshold: 0,
     rootMargin: `-${HEADER_HEIGHT}px 0px 0px 0px`
-  });
-
-  const { ref: productsEndRef, inView: isProductsVisible } = useInView({
-    threshold: 1
   });
 
   const onCategorySelect = (category: string | null) => {
@@ -863,6 +908,9 @@ export default function ProductsPage() {
     }
   }, [isSlideOpen]);
 
+  // Add this with other useRef declarations at the top of the component
+  const productsRef = useRef<HTMLDivElement>(null);
+
   return (
     <>
       <main className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
@@ -906,9 +954,22 @@ export default function ProductsPage() {
         <div ref={heroEndRef} className="h-1" />
 
         {/* Filter Section */}
-        <div className="sticky top-[56px] z-40 bg-white/80 backdrop-blur-lg sm:bg-transparent sm:backdrop-blur-none py-3 sm:py-4">
+        <div 
+          className={cn(
+            "relative w-full bg-white/80 backdrop-blur-sm border-b",
+            "py-3 sm:py-4",
+            "filter-section"
+          )}
+        >
           <div className="container mx-auto px-4 mt-2 sm:mt-0">
-            <div className="max-w-2xl mx-auto bg-white/95 backdrop-blur-lg rounded-full shadow-lg border border-gray-100 p-1.5 sm:p-2 flex items-center gap-2">
+            <div className={cn(
+              "max-w-2xl mx-auto",
+              "bg-white",
+              "rounded-full shadow-lg",
+              "border-2 border-red-600",
+              "p-1.5 sm:p-2",
+              "flex items-center gap-2"
+            )}>
               {/* Search Container */}
               <div className={cn(
                 "relative flex-1 search-container transition-all duration-300",
@@ -1039,6 +1100,9 @@ export default function ProductsPage() {
             </div>
           </div>
         </section>
+
+        {/* Add this div just before your CTA section */}
+        <div ref={productsEndRef} className="h-1" />
 
         {/* CTA Section */}
         <section className="py-12 sm:py-16 md:py-24 bg-gradient-to-br from-gray-900 to-red-900 text-white relative">

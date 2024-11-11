@@ -17,11 +17,11 @@ export default function Header() {
 
   return (
     <header className="bg-white shadow-sm sticky top-0 z-50 transition-all duration-300">
-      <nav className="container mx-auto px-4 py-4 flex justify-between items-center">
-        <Link href="/" className="text-2xl md:text-3xl font-bold text-red-600 transition-colors hover:text-red-700">
+      <nav className="container mx-auto px-4 py-2 flex justify-between items-center">
+        <Link href="/" className="text-xl md:text-2xl font-bold text-red-600 transition-colors hover:text-red-700">
           <div>
             LEAF SPRING MACHINES
-            <div className="text-sm text-gray-600 font-normal">Engineered for Excellence</div>
+            <div className="text-xs text-gray-600 font-normal">Engineered for Excellence</div>
           </div>
         </Link>
         <ul className="hidden md:flex space-x-8">
