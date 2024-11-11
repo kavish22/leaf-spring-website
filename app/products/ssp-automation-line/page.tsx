@@ -35,6 +35,9 @@ const product = {
   ],
   gallery: [
     "/images/products/SSP Automation Line.webp",
+    "/images/products/SSP-1.png",
+    "/images/products/SSP-2.png",
+    "https://www.youtube.com/embed/6F-hUuJ5_iY"
     // Add more images/videos as needed
   ]
 }

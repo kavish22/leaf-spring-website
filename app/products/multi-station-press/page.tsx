@@ -35,6 +35,9 @@ const product = {
   ],
   gallery: [
     "/images/products/Multi Station Press.webp",
+    "/images/products/Multi Station-1.png",
+    "/images/products/Multi Station-2.png",
+    "https://player.vimeo.com/video/1028193026?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479",
     // Add more images/videos as needed
   ]
 }
@@ -71,7 +74,7 @@ export default function ProductPage() {
                     setSelectedImage(media);
                   }}
                 >
-                  {media.includes('youtube.com') ? (
+                  {media.includes('vimeo.com') ? (
                     <div className="w-full h-full bg-gray-100 flex items-center justify-center">
                       <Image 
                         src={product.image}
@@ -96,11 +99,11 @@ export default function ProductPage() {
             {/* Main Display */}
             <div className="relative aspect-video bg-white rounded-lg overflow-hidden cursor-pointer"
                  onClick={() => setIsImageModalOpen(true)}>
-              {selectedImage.includes('youtube.com') ? (
+              {selectedImage.includes('vimeo.com') ? (
                 <iframe
                   src={selectedImage}
                   className="w-full h-full"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allow="autoplay; fullscreen; picture-in-picture; clipboard-write"
                   allowFullScreen
                 />
               ) : (
@@ -175,11 +178,11 @@ export default function ProductPage() {
           onClick={() => setIsImageModalOpen(false)}
         >
           <div className="relative w-full max-w-4xl aspect-video">
-            {selectedImage.includes('youtube.com') ? (
+            {selectedImage.includes('vimeo.com') ? (
               <iframe
                 src={selectedImage}
                 className="w-full h-full"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allow="autoplay; fullscreen; picture-in-picture; clipboard-write"
                 allowFullScreen
               />
             ) : (

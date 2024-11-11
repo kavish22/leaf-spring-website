@@ -35,6 +35,7 @@ const product = {
   ],
   gallery: [
     "/images/products/Hockey Bending Machine.webp",
+    "/images/products/Hockey Bending-1.png",
     // Add more images/videos as needed
   ]
 }

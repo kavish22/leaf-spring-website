@@ -38,6 +38,8 @@ const product = {
   ],
   gallery: [
     "/images/products/Straightening-Linear.webp",
+    "/images/products/Straightening-Linear-1.png",
+    "https://www.youtube.com/embed/gZ49yp2zo0I?rel=0",
     // Add more images/videos as needed
   ]
 }

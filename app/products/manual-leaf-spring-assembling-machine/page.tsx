@@ -38,6 +38,7 @@ const product = {
   ],
   gallery: [
     "/images/products/Leaf Spring Assembling Press.webp",
+    "https://www.youtube.com/embed/H1WAfRhMZZQ?rel=0",
     // Add more images/videos as needed
   ]
 } 

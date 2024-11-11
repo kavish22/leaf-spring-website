@@ -35,6 +35,8 @@ const product = {
   ],
   gallery: [
     "/images/products/High Pressure De-scaler.webp",
+    "/images/products/De-scaler-1.png",
+    "https://www.youtube.com/embed/2Ao5W3gpmks"
     // Add more images/videos as needed
   ]
 }

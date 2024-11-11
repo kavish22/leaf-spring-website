@@ -35,9 +35,17 @@ const product = {
   ],
   gallery: [
     "/images/products/Z-Bending Press-4 Cylinder.webp",
+    "/images/products/Z Bending Cylinder-1.png",
+    "/images/products/Z Bending Cylinder-2.png",
+    "/images/products/Z Bending Cylinder-3.png",
+    "/images/products/Z Bending Cylinder-4.png",
+    "/images/products/Z Bending Cylinder-5.png",
+    "https://www.youtube.com/embed/k3DflcqZ9qE?rel=0",
+    "https://www.youtube.com/embed/h7Aw-umRHp8?rel=0",
+    "https://www.youtube.com/embed/W1NFo2xK-BM?rel=0",
     // Add more images/videos as needed
   ]
-}
+  }
 
 export default function ProductPage() {
   const [selectedImage, setSelectedImage] = useState(product.image)

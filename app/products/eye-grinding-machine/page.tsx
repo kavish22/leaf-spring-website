@@ -35,6 +35,9 @@ const product = {
   ],
   gallery: [
     "/images/products/Eye Grinding Machine.webp",
+    "/images/products/Eye Grinding-1.png",
+    "/images/products/Eye Grinding-2.png",
+    "https://www.youtube.com/embed/p3Aro50hTQ?rel=0",
     // Add more images/videos as needed
   ]
 }

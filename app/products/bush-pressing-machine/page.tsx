@@ -35,6 +35,7 @@ const product = {
   ],
   gallery: [
     "/images/products/Bush Pressing Machine.webp",
+    "/images/products/Bush Pressing-1.png",
     // Add more images/videos as needed
   ]
 }

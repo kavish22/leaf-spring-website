@@ -41,8 +41,6 @@ const product = {
   ],
   gallery: [
     "/images/products/Straightening-Parallelogram.webp",
-    "/images/products/Straightening-Parallelogram-2.webp",
-    "/images/products/Straightening-Parallelogram-3.webp"
   ]
 }
 

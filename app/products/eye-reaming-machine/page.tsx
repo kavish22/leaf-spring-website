@@ -16,6 +16,13 @@ const product = {
   image: "/images/products/Eye Reaming Machine.webp",
   gallery: [
     "/images/products/Eye Reaming Machine.webp",
+    "/images/products/Eye Reaming-1.png",
+    "/images/products/Eye Reaming-2.png",
+    "/images/products/Eye Reaming-3.png",
+    "https://www.youtube.com/embed/gZ49yp2zo0I?rel=0",
+
+
+
     // Add more images once available
   ],
   specs: "Reaming diameter: 20-80mm, Hydraulic operation",
