@@ -35,8 +35,8 @@ const product = {
   ],
   gallery: [
     { type: 'image', url: "/images/products/Heavy Assembly Line.webp" },
-    { type: 'image', url: "/images/products/Assembly-2.png" },
-    { type: 'image', url: "/images/products/Assembly-3.png" },
+    { type: 'image', url: "/images/products/Assembly-2.webp" },
+    { type: 'image', url: "/images/products/Assembly-3.webp" },
     { type: 'video', url: "https://www.youtube.com/embed/gZ49yp2zo0I?rel=0" },
     { type: 'video', url: "https://www.youtube.com/embed/WwOQ2fnjPfs?rel=0" },
     { type: 'video', url: "https://www.youtube.com/embed/2M6mY3_5wLI?rel=0" }

@@ -35,7 +35,7 @@ const product = {
   ],
   gallery: [
     "/images/products/Scragging Machine.webp",
-    "/images/products/Scragging-1.png",
+    "/images/products/Scragging-1.webp",
     "https://player.vimeo.com/video/1028192855?title=0&byline=0&portrait=0&badge=0&autopause=0",
     // Add more images/videos as needed
   ]

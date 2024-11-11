@@ -35,7 +35,7 @@ const product = {
   ],
   gallery: [
     "/images/products/Hydraulic Endurance Testing.webp",
-    "/images/products/Endurance-1.png",
+    "/images/products/Endurance-1.webp",
     "https://www.youtube.com/embed/hirBZ4sJm0c?rel=0",
     // Add more images/videos as needed
   ]

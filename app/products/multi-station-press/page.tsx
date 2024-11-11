@@ -35,8 +35,8 @@ const product = {
   ],
   gallery: [
     "/images/products/Multi Station Press.webp",
-    "/images/products/Multi Station-1.png",
-    "/images/products/Multi Station-2.png",
+    "/images/products/Multi Station-1.webp",
+    "/images/products/Multi Station-2.webp",
     "https://player.vimeo.com/video/1028193026?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479",
     // Add more images/videos as needed
   ]

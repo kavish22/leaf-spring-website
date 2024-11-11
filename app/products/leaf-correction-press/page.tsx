@@ -38,7 +38,7 @@ const product = {
   ],
   gallery: [
     "/images/products/Leaf Correction Press.webp",
-    "/images/products/Leaf Correction-1.png",
+    "/images/products/Leaf Correction-1.webp",
     "https://www.youtube.com/embed/gZ49yp2zo0I?rel=0",
     // Add more images/videos as needed
   ]

@@ -35,7 +35,7 @@ const product = {
   ],
   gallery: [
     "/images/products/Profile Checking Gauge.webp",
-    "/images/products/Profile Checking-1.png",
+    "/images/products/Profile Checking-1.webp",
     "https://www.youtube.com/embed/gZ49yp2zo0I?rel=0",
     // Add more images/videos as needed
   ]
