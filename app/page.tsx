@@ -236,8 +236,13 @@ export default function HomePage() {
           <div className="absolute inset-0 bg-gradient-to-b from-gray-50/50 to-white/50 backdrop-blur-sm" />
           <div className="container mx-auto px-4 relative">
             <div className="text-center mb-12 md:mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold mb-3 bg-clip-text text-transparent bg-gradient-to-r from-red-600 to-red-800 leading-[1.3] pb-2">
-                LEAF SPRING MACHINERY PRODUCT RANGE
+              <h2 className="text-xl sm:text-2xl md:text-5xl font-bold mb-3 bg-clip-text text-transparent bg-gradient-to-r from-red-600 to-red-800 leading-tight pb-2">
+                <span className="block sm:hidden">
+                  Leaf Spring Machinery<br />Product Range
+                </span>
+                <span className="hidden sm:block">
+                  LEAF SPRING MACHINERY PRODUCT RANGE
+                </span>
               </h2>
               <p className="text-lg md:text-xl text-gray-600">
                 Engineered for Reliability and Performance
