@@ -325,10 +325,10 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* View All Products Button - Further reduced spacing */}
+        {/* View All Products Button */}
         <div className="-mt-20 md:-mt-28 py-2 md:py-4 bg-gradient-to-b from-white to-gray-50 relative z-10">
           <div className="container mx-auto px-4">
-            <div className="text-center mt-2 md:mt-4">
+            <div className="text-center mt-2 md:mt-4 mb-10 md:mb-20">
               <Link 
                 href="/products" 
                 className="inline-flex items-center justify-center bg-red-600 text-white border-2 border-red-600 
@@ -347,11 +347,21 @@ export default function HomePage() {
           <div className="absolute inset-0 bg-gradient-to-br from-black/90 to-black/80" />
           
           <div className="container mx-auto px-4 relative">
-            <div className="max-w-5xl mx-auto text-center mb-4">
-              <h2 className="text-xl sm:text-2xl md:text-2xl lg:text-[28px] font-bold mb-3 text-white leading-tight">
-                Why Choose Our Leaf Spring Manufacturing Machinery
-              </h2>
-              <p className="text-sm sm:text-base md:text-lg text-gray-300 leading-relaxed">
+            <div className="max-w-5xl mx-auto text-center mb-4 mt-8 sm:mt-12">
+              <div className="inline-block">
+                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-[28px] font-bold mb-2 sm:mb-3 text-white leading-tight pb-1 sm:pb-2 px-4 sm:px-6 text-center">
+                  <span className="block sm:hidden text-center mx-auto">
+                    Why Choose Our Leaf Spring<br />Manufacturing Machinery
+                  </span>
+                  <span className="hidden sm:block text-center mx-auto">
+                    Why Choose Our Leaf Spring Manufacturing Machinery
+                  </span>
+                </h2>
+                <div className="h-1 bg-gradient-to-r from-white to-white/80 mt-1 mx-auto w-[200px] sm:w-[400px] md:w-[500px] lg:w-[600px]">
+                  <div className="h-px bg-white/20 transform translate-y-1"></div>
+                </div>
+              </div>
+              <p className="text-xs sm:text-base md:text-lg text-gray-300 leading-relaxed mt-3 sm:mt-4 mx-auto text-center">
                 Innovative, Durable, and Certified for Automotive Industries
               </p>
             </div>
