@@ -235,16 +235,22 @@ export default function HomePage() {
         <section id="product-showcase" className="pt-8 pb-16 md:pt-12 md:pb-24 relative">
           <div className="absolute inset-0 bg-gradient-to-b from-gray-50/50 to-white/50 backdrop-blur-sm" />
           <div className="container mx-auto px-4 relative">
-            <div className="text-center mb-12 md:mb-16">
-              <h2 className="text-xl sm:text-2xl md:text-5xl font-bold mb-3 bg-clip-text text-transparent bg-gradient-to-r from-red-600 to-red-800 leading-tight pb-2">
-                <span className="block sm:hidden">
-                  Leaf Spring Machinery<br />Product Range
-                </span>
-                <span className="hidden sm:block">
-                  LEAF SPRING MACHINERY PRODUCT RANGE
-                </span>
-              </h2>
-              <p className="text-lg md:text-xl text-gray-600">
+            <div className="text-center mb-8 md:mb-12">
+              <div className="inline-block">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-red-600 to-red-800 leading-tight pb-2">
+                  <span className="block md:hidden">
+                    Leaf Spring Machinery<br />
+                    Product Range
+                  </span>
+                  <span className="hidden md:block">
+                    Leaf Spring Machinery Product Range
+                  </span>
+                </h2>
+                <div className="h-1 bg-gradient-to-r from-red-600 to-red-800 mt-1 mx-auto md:w-3/4">
+                  <div className="h-px bg-red-600/20 transform translate-y-1"></div>
+                </div>
+              </div>
+              <p className="text-base md:text-lg text-gray-600 mt-4">
                 Engineered for Reliability and Performance
               </p>
             </div>
@@ -319,10 +325,10 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* View All Products Button - Adjusted spacing */}
-        <div className="-mt-20 md:-mt-28 py-4 md:py-6 bg-gradient-to-b from-white to-gray-50 relative z-10">
+        {/* View All Products Button - Further reduced spacing */}
+        <div className="-mt-20 md:-mt-28 py-2 md:py-4 bg-gradient-to-b from-white to-gray-50 relative z-10">
           <div className="container mx-auto px-4">
-            <div className="text-center mt-4 md:mt-6">
+            <div className="text-center mt-2 md:mt-4">
               <Link 
                 href="/products" 
                 className="inline-flex items-center justify-center bg-red-600 text-white border-2 border-red-600 
@@ -335,24 +341,24 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* Why Choose Us Section - Enhanced */}
-        <section className="py-20 md:py-32 relative bg-black">
+        {/* Why Choose Us Section - Adjusted spacing */}
+        <section className="py-4 md:py-12 relative bg-black">
           <div className="absolute inset-0" style={subtlePattern} />
           <div className="absolute inset-0 bg-gradient-to-br from-black/90 to-black/80" />
           
           <div className="container mx-auto px-4 relative">
-            <div className="max-w-3xl mx-auto text-center mb-4 md:mb-6">
-              <h2 className="text-3xl md:text-4xl font-bold mb-3 text-white">
+            <div className="max-w-5xl mx-auto text-center mb-4">
+              <h2 className="text-xl sm:text-2xl md:text-2xl lg:text-[28px] font-bold mb-3 text-white leading-tight">
                 Why Choose Our Leaf Spring Manufacturing Machinery
               </h2>
-              <p className="text-lg md:text-xl text-gray-300">
-                Innovative, Durable, and Certified for Automotive and Heavy-Duty Industries
+              <p className="text-sm sm:text-base md:text-lg text-gray-300 leading-relaxed">
+                Innovative, Durable, and Certified for Automotive Industries
               </p>
             </div>
             
             {/* Feature Cards */}
-            <div className="relative">
-              {/* Fading borders - adjusted for dark theme */}
+            <div className="relative mt-8">
+              {/* Fading borders */}
               <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gray-700 to-transparent" />
               <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-gray-700 to-transparent" />
               <div className="absolute inset-y-0 left-0 w-px bg-gradient-to-b from-transparent via-gray-700 to-transparent" />
