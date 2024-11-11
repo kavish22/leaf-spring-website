@@ -261,8 +261,8 @@ export default function HomePage() {
                 },
                 {
                   title: "Hydraulic Endurance Testing",
-                  specs: "20 Ton load, CNC servo control machine",
-                  benefits: "Load and endurance testing with custom cylinder for long life",
+                  specs: "20-ton capacity, CNC servo control for precise and efficient load testing.",
+                  benefits: "Load and endurance testing with a durable custom cylinder.",
                   image: "/images/products/Hydraulic Endurance Testing.webp"
                 }
               ].map((product, index) => (
