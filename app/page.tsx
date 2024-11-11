@@ -185,30 +185,43 @@ export default function HomePage() {
           
           <div className="container mx-auto px-4 relative z-10">
             <div className="max-w-3xl">
-              <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 md:mb-4 leading-tight">
+              <h1 className="text-[26px] sm:text-4xl md:text-5xl font-bold mb-2 md:mb-4 leading-tight">
                 <span className="bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-gray-300">
                   Complete Leaf Spring Manufacturing Machinery Solutions
                 </span>
               </h1>
 
-              <p className="text-base sm:text-lg md:text-xl mb-6 md:mb-8 text-gray-200 max-w-2xl leading-relaxed">
+              <p className="text-sm sm:text-lg md:text-xl mb-4 md:mb-8 text-gray-200 max-w-2xl leading-relaxed">
                 Industry-Leading Heavy Duty Shearing Machines, Assembly Lines, and Stress Shot Peening Automation Systems
               </p>
 
-              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 items-center">
+              <div className="flex flex-col sm:flex-row gap-2.5 sm:gap-4 items-center">
                 <Link 
                   href="#product-showcase" 
-                  className="group w-full sm:w-auto inline-flex items-center justify-center bg-red-600 text-white border-2 border-red-600 hover:bg-red-700 hover:border-red-700 transition-all duration-300 px-5 py-2.5 rounded-full text-sm font-semibold shadow-lg hover:shadow-red-600/30"
+                  className="group w-full sm:w-auto inline-flex items-center justify-center bg-red-600 
+                            hover:bg-red-700 transition-all duration-300 
+                            text-[11px] sm:text-sm font-medium text-white
+                            px-4 py-1.5 sm:px-5 sm:py-2.5 h-auto rounded sm:rounded-full
+                            border-2 border-red-600 hover:border-red-700
+                            shadow-lg hover:shadow-red-600/30
+                            hover:translate-y-px"
                 >
                   Explore Our Machinery 
-                  <ChevronRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                  <ChevronRight className="ml-1.5 h-2.5 w-2.5 sm:ml-2 sm:h-4 sm:w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
                 </Link>
                 <Link 
                   href="/contact" 
-                  className="group w-full sm:w-auto inline-flex items-center justify-center bg-white/10 text-white border-2 border-white/20 hover:bg-white/20 backdrop-blur-sm transition-all duration-300 px-5 py-2.5 rounded-full text-sm font-semibold shadow-lg"
+                  className="group w-full sm:w-auto inline-flex items-center justify-center 
+                            bg-white/5 hover:bg-white/10 backdrop-blur-sm
+                            transition-all duration-300 
+                            text-[11px] sm:text-sm font-medium text-white
+                            px-4 py-1.5 sm:px-5 sm:py-2.5 h-auto rounded sm:rounded-full
+                            border border-white/20 hover:border-white/30
+                            shadow-lg hover:shadow-black/10
+                            hover:translate-y-px"
                 >
                   Get In Touch 
-                  <ChevronRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                  <ChevronRight className="ml-1.5 h-2.5 w-2.5 sm:ml-2 sm:h-4 sm:w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
                 </Link>
                 
                 {/* Social proof - Only show on larger screens */}
@@ -231,22 +244,22 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Product Showcase Section - Adjusted spacing */}
-        <section id="product-showcase" className="pt-8 pb-16 md:pt-12 md:pb-24 relative">
+        {/* Product Showcase Section - Increased top spacing */}
+        <section id="product-showcase" className="pt-16 pb-16 md:pt-20 md:pb-24 relative">
           <div className="absolute inset-0 bg-gradient-to-b from-gray-50/50 to-white/50 backdrop-blur-sm" />
           <div className="container mx-auto px-4 relative">
             <div className="text-center mb-8 md:mb-12">
               <div className="inline-block">
                 <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-red-600 to-red-800 leading-tight pb-2">
                   <span className="block md:hidden">
-                    Leaf Spring Machinery<br />
-                    Product Range
+                    LEAF SPRING MACHINERY<br />
+                    PRODUCT RANGE
                   </span>
                   <span className="hidden md:block">
                     Leaf Spring Machinery Product Range
                   </span>
                 </h2>
-                <div className="h-1 bg-gradient-to-r from-red-600 to-red-800 mt-1 mx-auto md:w-3/4">
+                <div className="h-1 bg-gradient-to-r from-red-600 to-red-800 mt-1 mx-auto w-[200px]">
                   <div className="h-px bg-red-600/20 transform translate-y-1"></div>
                 </div>
               </div>
@@ -262,64 +275,69 @@ export default function HomePage() {
                   title: "High-Pressure Water Jet Descaler Machine",
                   specs: "Operates at 300 BAR, removing 95-99% of scale for better surface quality.",
                   benefits: "Provides clean and decarb free surfaces on the rolled leaf, loss of profile is avoided, Endurance life of the leaf improved.",
-                  image: "/images/products/Descaler.webp"
+                  image: "/images/products/High Pressure De-scaler.webp",
+                  link: "/products/high-pressure-de-scaler"
                 },
                 {
                   title: "Heavy-Duty Leaf Spring Shearing Machine",
                   specs: "250-ton capacity, robust scissor mechanism for precise and efficient shearing.",
                   benefits: "Thickness up to 32mm possible, Hydraulic shearing enables higher tooling life.",
-                  image: "/images/products/Shearing.webp"
+                  image: "/images/products/Shearing.webp",
+                  link: "/products/heavy-duty-shearing-machine"
                 },
                 {
                   title: "Hydraulic Endurance Testing",
                   specs: "20-ton capacity, CNC servo control for precise and efficient load testing.",
-                  benefits: "Load and endurance testing with a durable custom cylinder.",
-                  image: "/images/products/Hydraulic Endurance Testing.webp"
+                  benefits: "Efficiently facilitates load and endurance testing with a durable custom cylinder.",
+                  image: "/images/products/Hydraulic Endurance Testing.webp",
+                  link: "/products/hydraulic-endurance-testing"
                 }
               ].map((product, index) => (
-                <Card 
-                  key={index} 
-                  className="overflow-hidden bg-white border border-gray-100 rounded-xl 
-                            shadow-[0_2px_10px_-4px_rgba(0,0,0,0.1)]
-                            transition-all duration-300 ease-out
-                            hover:-translate-y-1 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.15)]"
-                >
-                  <div className="relative h-[300px] overflow-hidden">
-                    <Image 
-                      src={product.image} 
-                      alt={product.title} 
-                      fill
-                      className="object-cover"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-                  </div>
-                  
-                  <CardHeader className="space-y-4 pb-2">
-                    <CardTitle className="text-xl font-bold tracking-tight text-gray-900 leading-tight text-left">
-                      {product.title}
-                    </CardTitle>
-                  </CardHeader>
-                  
-                  <CardContent className="space-y-4">
-                    <div className="space-y-2">
-                      <h4 className="text-sm font-semibold uppercase tracking-wider text-red-600 text-left">
-                        Specifications
-                      </h4>
-                      <p className="text-sm text-gray-700 leading-relaxed text-left">
-                        {product.specs}
-                      </p>
+                <Link href={product.link} key={index}>
+                  <Card 
+                    className="overflow-hidden bg-white border border-red-600/60 rounded-xl 
+                              shadow-[0_2px_10px_-4px_rgba(0,0,0,0.1)]
+                              transition-all duration-300 ease-out
+                              hover:-translate-y-1 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.15)]
+                              hover:border-red-600/40"
+                  >
+                    <div className="relative h-[300px] overflow-hidden">
+                      <Image 
+                        src={product.image} 
+                        alt={product.title} 
+                        fill
+                        className="object-cover"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
                     </div>
                     
-                    <div className="space-y-2">
-                      <h4 className="text-sm font-semibold uppercase tracking-wider text-red-600 text-left">
-                        Key Benefits
-                      </h4>
-                      <p className="text-sm text-gray-700 leading-relaxed text-left">
-                        {product.benefits}
-                      </p>
-                    </div>
-                  </CardContent>
-                </Card>
+                    <CardHeader className="space-y-4 pb-2">
+                      <CardTitle className="text-xl font-bold tracking-tight text-gray-900 leading-tight text-left">
+                        {product.title}
+                      </CardTitle>
+                    </CardHeader>
+                    
+                    <CardContent className="space-y-4">
+                      <div className="space-y-2">
+                        <h4 className="text-sm font-semibold uppercase tracking-wider text-red-600 text-left">
+                          Specifications
+                        </h4>
+                        <p className="text-sm text-gray-700 leading-relaxed text-left">
+                          {product.specs}
+                        </p>
+                      </div>
+                      
+                      <div className="space-y-2">
+                        <h4 className="text-sm font-semibold uppercase tracking-wider text-red-600 text-left">
+                          Key Benefits
+                        </h4>
+                        <p className="text-sm text-gray-700 leading-relaxed text-left">
+                          {product.benefits}
+                        </p>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </Link>
               ))}
             </div>
           </div>
@@ -328,7 +346,7 @@ export default function HomePage() {
         {/* View All Products Button */}
         <div className="-mt-20 md:-mt-28 py-2 md:py-4 bg-gradient-to-b from-white to-gray-50 relative z-10">
           <div className="container mx-auto px-4">
-            <div className="text-center mt-2 md:mt-4 mb-10 md:mb-20">
+            <div className="text-center mt-2 md:mt-4 mb-4 md:mb-8">
               <Link 
                 href="/products" 
                 className="inline-flex items-center justify-center bg-red-600 text-white border-2 border-red-600 
@@ -342,22 +360,23 @@ export default function HomePage() {
         </div>
 
         {/* Why Choose Us Section - Adjusted spacing */}
-        <section className="py-4 md:py-12 relative bg-black">
+        <section className="py-4 md:py-10 relative bg-black">
           <div className="absolute inset-0" style={subtlePattern} />
           <div className="absolute inset-0 bg-gradient-to-br from-black/90 to-black/80" />
           
           <div className="container mx-auto px-4 relative">
-            <div className="max-w-5xl mx-auto text-center mb-4 mt-8 sm:mt-12">
+            <div className="max-w-5xl mx-auto text-center mb-4 mt-8 md:mt-8 md:mb-16">
               <div className="inline-block">
                 <h2 className="text-2xl sm:text-3xl md:text-3xl lg:text-[28px] font-bold mb-2 sm:mb-3 text-white leading-tight pb-1 sm:pb-2 px-4 sm:px-6 text-center">
-                  <span className="block sm:hidden text-center mx-auto">
-                    Why Choose Our Leaf Spring<br />Manufacturing Machinery
+                  <span className="block sm:hidden text-[20px] leading-tight text-center mx-auto">
+                    WHY CHOOSE OUR LEAF SPRING<br />
+                    MANUFACTURING MACHINERY
                   </span>
                   <span className="hidden sm:block text-center mx-auto">
                     Why Choose Our Leaf Spring Manufacturing Machinery
                   </span>
                 </h2>
-                <div className="h-1 bg-gradient-to-r from-white to-white/80 mt-1 mx-auto w-[200px] sm:w-[400px] md:w-[500px] lg:w-[600px]">
+                <div className="h-1 bg-gradient-to-r from-white to-white/80 mt-1 mx-auto w-[200px]">
                   <div className="h-px bg-white/20 transform translate-y-1"></div>
                 </div>
               </div>
@@ -443,17 +462,22 @@ export default function HomePage() {
         {/* Client Showcase - Enhanced */}
         <section className="pt-12 pb-24 md:pt-16 md:pb-32 bg-white">
           <div className="container mx-auto px-4">
-            <div>
-              <h2 className="text-4xl md:text-5xl font-bold mb-6 text-center bg-clip-text text-transparent bg-gradient-to-r from-red-600 to-red-700 leading-[1.3] pb-2">
-                Trusted by Industry Leaders
-              </h2>
-              <p className="text-xl mb-16 text-center text-gray-600">
+            <div className="text-center">
+              <div className="inline-block">
+                <h2 className="text-4xl md:text-5xl font-bold mb-2 text-center bg-clip-text text-transparent bg-gradient-to-r from-red-600 to-red-700 leading-[1.3] pb-2">
+                  TRUSTED BY INDUSTRY LEADERS
+                </h2>
+                <div className="h-1 bg-gradient-to-r from-red-600 to-red-800 mt-1 mx-auto w-[200px]">
+                  <div className="h-px bg-red-600/20 transform translate-y-1"></div>
+                </div>
+              </div>
+              <p className="text-xl mb-16 text-center text-gray-600 mt-4">
                 Our clients rely on our machinery for reliable leaf spring manufacturing solutions
               </p>
               
               <div className="relative">
-                <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-white to-transparent z-10" />
-                <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-white to-transparent z-10" />
+                <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-white to-transparent z-10 hidden md:block" />
+                <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-white to-transparent z-10 hidden md:block" />
                 
                 <InfiniteClientCarousel clients={clients} />
               </div>
@@ -461,24 +485,65 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* CTA Section - Updated to match Join Our Team style */}
-        <section className="py-12 sm:py-16 md:py-24 bg-gradient-to-br from-gray-900 to-red-900 text-white relative">
+        {/* CTA Section - Refined mobile typography and buttons */}
+        <section className="py-12 md:py-24 bg-gradient-to-br from-gray-900 to-red-900 text-white relative overflow-hidden">
           <div className="absolute inset-0" style={heroPattern} />
-          <div className="container mx-auto px-4 text-center relative">
-            <h2 className="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8 text-white">
-              Explore Our Full Range of Leaf Spring Manufacturing Solutions
-            </h2>
-            <p className="text-base sm:text-lg md:text-xl mb-8 sm:mb-12 max-w-3xl mx-auto text-gray-100">
-              Discover our comprehensive selection of high-quality machinery designed for optimal performance and reliability.
-            </p>
-            <Button 
-              variant="default" 
-              size="lg" 
-              className="bg-white hover:bg-gray-100 text-red-600 transition-colors text-base sm:text-lg px-6 sm:px-8 py-2.5 sm:py-3" 
-              asChild
-            >
-              <Link href="/products">Browse Our Products</Link>
-            </Button>
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/10 to-black/20" />
+          
+          <div className="container mx-auto px-4 relative">
+            <div className="max-w-4xl mx-auto text-center">
+              <div className="space-y-4 md:space-y-6">
+                <span className="inline-block text-red-300 text-[11px] md:text-sm font-semibold tracking-wider uppercase px-2.5 py-1.5 bg-white/5 rounded-full backdrop-blur-sm border border-white/10">
+                  Ready to Transform Your Manufacturing?
+                </span>
+                
+                <h2 className="text-[22px] md:text-4xl font-bold text-white leading-[1.2] max-w-3xl mx-auto">
+                  Explore Our Full Range of
+                  <span className="block mt-1 text-[18px] md:text-3xl text-gray-100">Solutions for Leaf Spring Manufacturing</span>
+                </h2>
+
+                <div className="h-1 bg-gradient-to-r from-white to-white/80 mx-auto w-[200px]">
+                  <div className="h-px bg-white/20 transform translate-y-1"></div>
+                </div>
+              </div>
+
+              <p className="text-xs md:text-base text-gray-200 max-w-2xl mx-auto leading-relaxed mt-4 md:mt-6 mb-6 md:mb-8">
+                Discover our comprehensive selection of high-quality machinery designed for optimal performance and reliability.
+              </p>
+
+              <div className="flex flex-col sm:flex-row gap-2.5 justify-center items-center mt-4 md:mt-6">
+                <Button 
+                  asChild
+                  variant="outline"
+                  className="w-full sm:w-auto bg-transparent hover:bg-white/5
+                             border border-white/20 hover:border-white/30
+                             transition-all duration-300 text-[11px] md:text-sm font-medium
+                             px-4 py-1.5 md:px-5 md:py-2 h-auto rounded
+                             shadow-lg shadow-black/5 hover:shadow-black/10
+                             hover:translate-y-px group"
+                >
+                  <Link href="/products" className="flex items-center justify-center gap-1.5 md:gap-2">
+                    Browse Our Products
+                    <ChevronRight className="h-2.5 w-2.5 md:h-3 md:w-3 transition-transform duration-300 group-hover:translate-x-0.5" />
+                  </Link>
+                </Button>
+                <Button 
+                  asChild
+                  variant="outline"
+                  className="w-full sm:w-auto bg-transparent hover:bg-white/5
+                             border border-white/20 hover:border-white/30
+                             transition-all duration-300 text-[11px] md:text-sm font-medium
+                             px-4 py-1.5 md:px-5 md:py-2 h-auto rounded
+                             shadow-lg shadow-black/5 hover:shadow-black/10
+                             hover:translate-y-px group"
+                >
+                  <Link href="/contact" className="flex items-center justify-center gap-1.5 md:gap-2">
+                    Contact Our Team
+                    <ChevronRight className="h-2.5 w-2.5 md:h-3 md:w-3 transition-transform duration-300 group-hover:translate-x-0.5" />
+                  </Link>
+                </Button>
+              </div>
+            </div>
           </div>
         </section>
       </main>

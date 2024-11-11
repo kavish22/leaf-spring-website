@@ -150,7 +150,18 @@ export default function Footer() {
             {/* Map Section */}
             <div className="col-span-1">
               <h3 className="text-xl font-bold mb-6 text-red-400 tracking-wide">Location</h3>
-              <div className="bg-gray-800 h-[160px] rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300"></div>
+              <div className="bg-gray-800 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden h-[160px]">
+                <iframe 
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d919.7481392011757!2d75.8401197695867!3d22.765657498709665!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3963032dc74c8d15%3A0x19ae869d0e2ccb43!2sRaghavendar%20Tech%20Excellence%20Pvt%20Ltd%20%7C%20Special%20purpose%20machine%20manufacturer!5e0!3m2!1sen!2sin!4v1731327058707!5m2!1sen!2sin"
+                  width="100%" 
+                  height="100%" 
+                  style={{ border: 0 }} 
+                  allowFullScreen 
+                  loading="lazy" 
+                  referrerPolicy="no-referrer-when-downgrade"
+                  className="w-full h-full"
+                />
+              </div>
             </div>
           </div>
         </div>

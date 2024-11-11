@@ -165,11 +165,11 @@ const InfiniteTestimonialCarousel = ({ testimonials }: { testimonials: Testimoni
         {testimonials.map((testimonial: typeof testimonials[0], index: number) => (
           <Card 
             key={`testimonial-${index}`}
-            className="w-[384px] flex-shrink-0 bg-white hover:shadow-xl transition-shadow duration-300 border-red-500"
+            className="w-[384px] flex-shrink-0 bg-red-600 hover:bg-red-700 transition-colors duration-300 border-none"
           >
             <CardContent className="p-6 sm:p-8 flex flex-col h-full">
               {/* Quote Icon */}
-              <div className="text-red-100 mb-4">
+              <div className="text-white/40 mb-4">
                 <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
                 </svg>
@@ -180,27 +180,27 @@ const InfiniteTestimonialCarousel = ({ testimonials }: { testimonials: Testimoni
                 {[...Array(5)].map((_, i) => (
                   <Star 
                     key={i} 
-                    className="w-5 h-5 text-yellow-400 fill-current"
+                    className="w-5 h-5 text-yellow-300 fill-current"
                   />
                 ))}
               </div>
               
               {/* Testimonial Content */}
-              <p className="text-gray-700 text-base leading-relaxed mb-6">
+              <p className="text-white/90 text-base leading-relaxed mb-6">
                 "{testimonial.content}"
               </p>
               
               {/* Author Info */}
-              <div className="mt-auto pt-4 border-t border-gray-100">
+              <div className="mt-auto pt-4 border-t border-red-500/30">
                 <div className="flex items-center">
-                  <div className="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center">
-                    <span className="text-red-600 font-bold text-lg">
+                  <div className="w-10 h-10 bg-red-600 rounded-full flex items-center justify-center border-2 border-white/20">
+                    <span className="text-white font-bold text-lg">
                       {testimonial.author.charAt(0)}
                     </span>
                   </div>
                   <div className="ml-3">
-                    <p className="font-semibold text-gray-900">{testimonial.author}</p>
-                    <p className="text-sm text-red-600">{testimonial.company}</p>
+                    <p className="font-semibold text-white">{testimonial.author}</p>
+                    <p className="text-sm text-white/70">{testimonial.company}</p>
                   </div>
                 </div>
               </div>
@@ -294,15 +294,15 @@ export default function AboutPage() {
         </section>
 
         {/* Company Overview - Our Journey of Excellence */}
-        <section className="py-16 sm:py-32 bg-gradient-to-b from-white via-gray-50 to-white relative overflow-hidden">
+        <section className="py-8 sm:py-20 bg-gradient-to-b from-white via-gray-50 to-white relative overflow-hidden">
           {/* Decorative elements */}
           <div className="absolute top-0 left-0 w-96 h-96 bg-red-50/50 rounded-full -translate-x-1/2 -translate-y-1/2 blur-3xl" />
           <div className="absolute bottom-0 right-0 w-96 h-96 bg-blue-50/50 rounded-full translate-x-1/2 translate-y-1/2 blur-3xl" />
 
           <div className="container mx-auto px-4 relative">
-            <div className="max-w-3xl mx-auto text-center mb-16">
+            <div className="max-w-3xl mx-auto text-center mb-12">
               <motion.span 
-                className="inline-block text-red-600 font-semibold text-sm tracking-wider uppercase mb-4"
+                className="inline-block text-red-600 font-semibold text-sm tracking-wider uppercase mb-3"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -310,7 +310,7 @@ export default function AboutPage() {
                 Our Journey of Excellence
               </motion.span>
               <motion.h2 
-                className="text-3xl sm:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-gray-900 to-gray-600"
+                className="text-3xl sm:text-5xl font-bold mb-8 pb-2 bg-clip-text text-transparent bg-gradient-to-r from-gray-900 to-gray-600"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -993,27 +993,14 @@ export default function AboutPage() {
         </section>
 
         {/* Core Values / Client Testimonials Section */}
-        <section className="py-16 sm:py-24 relative overflow-hidden">
-          {/* Add this red border section */}
-          <div className="w-full h-px bg-red-600 mb-16" />
-          
-          {/* Add subtle background pattern */}
-          <div className="absolute inset-0 opacity-5">
-            <div className="absolute inset-0 bg-repeat" style={{ 
-              backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M54.627 0l.83.828-1.415 1.415L51.8 0h2.827zM5.373 0l-.83.828L5.96 2.243 8.2 0H5.374zM48.97 0l3.657 3.657-1.414 1.414L46.143 0h2.828zM11.03 0L7.372 3.657 8.787 5.07 13.857 0H11.03zm32.284 0L49.8 6.485 48.384 7.9l-7.9-7.9h2.83zM16.686 0L10.2 6.485 11.616 7.9l7.9-7.9h-2.83zM22.344 0L13.858 8.485 15.272 9.9l9.9-9.9h-2.83zM32 0l-3.486 3.485 1.414 1.414L40.97 0H32zM0 5.373l.828-.83L2.243 5.96 0 8.2V5.374zm0 5.656l.828-.829 5.657 5.657-1.414 1.414L0 11.03v-2.83zm0 5.656l.828-.828 8.485 8.485-1.414 1.414L0 16.686v-2.83zm0 5.657l.828-.828 11.314 11.314-1.414 1.414L0 22.343v-2.83zM0 32l3.485-3.485 1.414 1.414L0 40.97V32zm0 5.657L5.657 32.3l1.414 1.414L0 46.686v-2.83zm0 5.657L8.485 35.15l1.414 1.414L0 52.343v-2.83zm0 5.657l11.314-11.314 1.414 1.414L0 58v-2.83zM60 5.373L59.172 4.54 57.757 5.957 60 8.2V5.374zm0 5.656L54.343 5.54l1.414-1.414L60 11.03v-2.83zm0 5.656L51.515 8.485l1.414-1.414L60 16.686v-2.83zm0 5.657L48.686 11.343l1.415-1.414L60 22.343v-2.83zM60 32L56.515 28.515l-1.414 1.414L60 40.97V32zm0 5.657L54.343 31.485l-1.414 1.414L60 46.686v-2.83zm0 5.657L51.515 34.343l-1.414 1.414L60 52.343v-2.83zm0 5.657L48.686 37.515l-1.414 1.414L60 58v-2.83zM39.88 0L0 39.88V32l32-32h7.88zm-7.88 0L0 32v-7.88L24.12 0h7.88zM15.8 0L0 15.8V8.2L8.2 0h7.6zm-7.8 0L0 8v-.627L5.373 0H8zm45.254 60L60 44.254V52l-8 8h-7.746zM52.12 60L60 52.12V60h-7.88zm7.88-7.88L45.254 60H37.6L60 37.6v7.654zm-31.88 7.88L60 29.12V37L37 60h-8.88zM37 60L60 37V45L45 60h-8zm-17.88 0L60 21.12V29L29 60h-9.88zM21 60L60 21v8L29 60h-8zm-9.88 0L60 13.12V21L21 60h-9.88zM13 60L60 13v8L21 60h-8zM5.12 60L60 5.12V13L13 60H5.12zm-4.494 0L60-2.627V5.373L2.627 60H.626zM0 52.627L52.627 0H60L0 60v-7.373zM0 44.747L44.747 0h7.88L0 52.627v-7.88zM0 37.093L37.093 0H45L0 45v-7.907z' fill='%23FFFFFF' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E")` 
-            }} />
-          </div>
-          
+        <section className="py-16 sm:py-24 bg-gray-900 relative overflow-hidden">
           <div className="container mx-auto px-4">
-            <div className="text-center mb-10 sm:mb-16">
-              <div className="w-24 h-1 bg-red-600 mx-auto mb-8" />
-              <h2 className="text-3xl sm:text-4xl font-bold mb-4 text-red-600">
-                What Our Clients Say
-              </h2>
-              <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-                Discover why leading manufacturers trust LEAFSPRINGS for their machinery needs
-              </p>
-            </div>
+            <h2 className="text-3xl sm:text-4xl font-bold mb-4 text-white text-center">
+              WHAT OUR CLIENTS SAY
+            </h2>
+            <p className="text-gray-400 text-lg max-w-2xl mx-auto text-center mb-10 sm:mb-16">
+              Discover why leading manufacturers trust LEAFSPRINGS for their machinery needs
+            </p>
             
             <div className="relative">
               {/* Testimonials carousel */}
@@ -1023,7 +1010,7 @@ export default function AboutPage() {
         </section>
 
         {/* CTA Section */}
-        <section className="py-16 sm:py-24 bg-gradient-to-br from-gray-900 to-red-900 text-white relative">
+        <section className="py-16 sm:py-24 bg-gradient-to-br from-gray-900 to-red-900 text-white relative border-t-2 border-b-2 border-white">
           {/* Add the pattern overlay */}
           <div className="absolute inset-0" style={{ 
             backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")` 
@@ -1034,7 +1021,7 @@ export default function AboutPage() {
               Ready to Transform Your Leaf Spring Manufacturing?
             </h2>
             <p className="text-base sm:text-lg md:text-xl mb-8 sm:mb-12 max-w-3xl mx-auto text-gray-100">
-              Take the first step towards optimizing your manufacturing process with our innovative solutions.
+              Take the first step towards optimizing your manufacturing process with our innovative and effective solutions.
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
               <Button 

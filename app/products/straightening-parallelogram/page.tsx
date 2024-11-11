@@ -142,7 +142,7 @@ export default function ProductPage() {
                 </Link>
               </Button>
               <Button className="flex-1 text-red-600 border-red-600 hover:bg-red-50" variant="outline" asChild>
-                <Link href="mailto:sales@example.com">
+              <Link href="mailto:gunalan@r-tech.in">
                   <Mail className="mr-2 h-4 w-4" />
                   Email Inquiry
                 </Link>
