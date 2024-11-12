@@ -371,8 +371,8 @@ export default function HomePage() {
   return (
     <>
       <main className="bg-gradient-to-b from-gray-50 to-white w-full overflow-x-hidden">
-        {/* Hero Section - Updated mobile height */}
-        <section className="relative h-[calc(100vh-4rem)] flex items-center overflow-hidden bg-gray-900 pt-16 sm:pt-16">
+        {/* Hero Section - Updated mobile styles */}
+        <section className="relative h-[100vw] sm:h-[calc(100vh-4rem)] flex items-center overflow-hidden bg-gray-900 pt-16 sm:pt-16">
           {/* Video Container - With mobile CTA buttons */}
           <div className="absolute inset-0">
             <video
@@ -381,41 +381,22 @@ export default function HomePage() {
               muted
               loop
               playsInline
-              preload="auto"
+              preload="none"
               className={cn(
                 "absolute inset-0 w-full h-full object-cover transition-opacity duration-700",
                 "sm:object-center", // Desktop centered
                 "object-[95%_center]", // Mobile: show more of the right side
                 isVideoPlaying ? "opacity-100" : "opacity-0"
               )}
-              poster={heroImage.src}
+              poster="/images/video-poster.jpg"
             >
-              <source src="/videos/hero-background.mp4" type="video/mp4" />
+              <source 
+                src="/videos/hero-background.mp4" 
+                type="video/mp4"
+                media="all"
+              />
               Your browser does not support the video tag.
             </video>
-
-            {/* Fallback image - Updated mobile object position to match video */}
-            <div 
-              className={cn(
-                "absolute inset-0 transition-opacity duration-700",
-                isVideoPlaying ? "opacity-0" : "opacity-100"
-              )}
-            >
-              <Image
-                src={heroImage}
-                alt="Leaf Spring Manufacturing"
-                fill
-                priority
-                className={cn(
-                  "object-cover",
-                  "sm:object-center", // Desktop centered
-                  "object-[95%_center]" // Mobile: show more of the right side
-                )}
-                sizes="100vw"
-                quality={85}
-                placeholder="blur"
-              />
-            </div>
 
             {/* Mobile CTA buttons - Positioned at bottom right of video */}
             <div className="sm:hidden absolute bottom-6 right-4 z-20 flex flex-row gap-2">
@@ -555,10 +536,10 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Mobile-only Product Carousel Section - Updated height and spacing */}
-        <section className="block sm:hidden bg-black h-[calc(100vh-100vh+4rem)]">
-          <div className="container mx-auto h-full">
-            <div className="overflow-hidden h-full flex items-center">
+        {/* Mobile-only Product Carousel Section - Black background */}
+        <section className="block sm:hidden bg-black h-[calc(100vh-100vw)]">
+          <div className="container mx-auto h-full flex items-center">
+            <div className="overflow-hidden">
               <div
                 className="flex gap-3 animate-scroll"
                 style={{
@@ -598,28 +579,10 @@ export default function HomePage() {
               </div>
             </div>
           </div>
-
-          <style jsx global>{`
-            @keyframes scroll {
-              0% {
-                transform: translateX(0);
-              }
-              100% {
-                transform: translateX(-50%);
-              }
-            }
-            .animate-scroll {
-              will-change: transform;
-              animation: scroll 25s linear infinite;
-            }
-            .animate-scroll:hover {
-              animation-play-state: paused;
-            }
-          `}</style>
         </section>
 
-        {/* Product Showcase Section - Add top margin for mobile */}
-        <section id="product-showcase" className="pt-0 sm:pt-16 pb-16 md:pt-20 md:pb-24 relative">
+        {/* Product Showcase Section - Increased top spacing */}
+        <section id="product-showcase" className="pt-16 pb-16 md:pt-20 md:pb-24 relative">
           <div className="absolute inset-0 bg-gradient-to-b from-gray-50/50 to-white/50 backdrop-blur-sm" />
           <div className="container mx-auto px-4 relative">
             <div className="text-center mb-8 md:mb-12">
