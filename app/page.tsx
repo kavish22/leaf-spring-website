@@ -23,11 +23,12 @@ interface Client {
   logo: string;
 }
 
-// Add this interface if not already present
+// Update the ProductCard interface
 interface ProductCard {
   title: string;
   description: string;
   image: string;
+  link: string;
 }
 
 // Add this component before the HomePage component
@@ -162,37 +163,41 @@ const HeroCarousel = ({ products }: { products: ProductCard[] }) => {
         }}
       >
         {products.map((product, index) => (
-          <div 
-            key={`product-${index}`} 
-            className="flex-shrink-0 
-                     w-[180px] sm:w-[320px] 
-                     h-[120px] sm:h-[200px] 
-                     bg-black/40 backdrop-blur-sm 
-                     border border-white/40 rounded-lg overflow-hidden 
-                     transition-all duration-300"
+          <Link 
+            key={`product-${index}`}
+            href={product.link}
+            className="flex-shrink-0"
           >
-            <div className="flex flex-col h-full">
-              <div className="relative w-full h-[80px] sm:h-[140px] flex-shrink-0">
-                <Image
-                  src={product.image}
-                  alt={product.title}
-                  fill
-                  className="object-contain opacity-90 transition-opacity duration-300"
-                />
-                <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/10" />
-              </div>
-              
-              <div className="flex-1 p-1.5 sm:p-2.5 bg-gradient-to-t from-black/60 to-black/30">
-                <h3 className="text-red-500 text-[11px] sm:text-sm font-medium mb-0.5 
-                             transition-colors duration-300 line-clamp-1">
-                  {product.title}
-                </h3>
-                <p className="text-gray-300/80 text-[9px] sm:text-xs line-clamp-1 sm:line-clamp-2">
-                  {product.description}
-                </p>
+            <div 
+              className="w-[180px] sm:w-[320px] 
+                        h-[120px] sm:h-[200px] 
+                        bg-black/40 backdrop-blur-sm 
+                        border border-white/40 rounded-lg overflow-hidden 
+                        transition-all duration-300"
+            >
+              <div className="flex flex-col h-full">
+                <div className="relative w-full h-[80px] sm:h-[140px] flex-shrink-0">
+                  <Image
+                    src={product.image}
+                    alt={product.title}
+                    fill
+                    className="object-contain opacity-90 transition-opacity duration-300"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/10" />
+                </div>
+                
+                <div className="flex-1 p-1.5 sm:p-2.5 bg-gradient-to-t from-black/60 to-black/30">
+                  <h3 className="text-red-500 text-[11px] sm:text-sm font-medium mb-0.5 
+                               transition-colors duration-300 line-clamp-1">
+                    {product.title}
+                  </h3>
+                  <p className="text-gray-300/80 text-[9px] sm:text-xs line-clamp-1 sm:line-clamp-2">
+                    {product.description}
+                  </p>
+                </div>
               </div>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </div>
@@ -278,19 +283,19 @@ export default function HomePage() {
       title: "High-Pressure Water Jet Descaler",
       description: "300 BAR system for 95% scale removal",
       image: "/images/5s.png",
-      link: "/products/high-pressure-descaler"
+      link: "/products/high-pressure-de-scaler"
     },
     {
       title: "Heavy-Duty Shearing Machine",
       description: "250-ton hydraulic shearing for large sections",
       image: "/images/6s.png",
-      link: "/products/heavy-duty-shearing"
+      link: "/products/heavy-duty-shearing-machine"
     },
     {
       title: "Leaf Spring Assembly Line",
       description: "50-ton automated system with quality control",
       image: "/images/7s.png",
-      link: "/products/assembly-line"
+      link: "/products/manual-leaf-spring-assembling-machine"
     },
     {
       title: "Multi Station Press",
@@ -302,19 +307,19 @@ export default function HomePage() {
       title: "Eye Milling Machine",
       description: "Precision milling with 0.5-2.0mm stock capacity",
       image: "/images/1s.png",
-      link: "/products/eye-milling"
+      link: "/products/eye-milling-machine"
     },
     {
       title: "Hockey Puck Bending Machine",
       description: "25+25+50 Ton system for lateral bend correction",
       image: "/images/3s.png",
-      link: "/products/hockey-puck-bending"
+      link: "/products/hockey-bending-machine"
     },
     {
       title: "Eye Grinding Machine",
       description: "High-precision automated grinding for eye ends",
       image: "/images/4s.png",
-      link: "/products/eye-grinding"
+      link: "/products/eye-grinding-machine"
     }
   ]
 
