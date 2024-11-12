@@ -62,7 +62,7 @@ const InfiniteClientCarousel = ({ clients }: { clients: Client[] }) => {
     return () => {
       cancelAnimationFrame(animationFrameId)
     }
-  }, [])
+  }, [baseVelocity])
 
   return (
     <div className="overflow-hidden p-4">
@@ -141,7 +141,7 @@ const HeroCarousel = ({ products }: { products: ProductCard[] }) => {
     return () => {
       cancelAnimationFrame(animationFrameId)
     }
-  }, [])
+  }, [baseVelocity])
 
   return (
     <div className="absolute bottom-16 sm:bottom-0 left-0 right-0 overflow-hidden 

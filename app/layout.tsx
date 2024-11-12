@@ -4,8 +4,9 @@ import Header from '@/components/shared/header'
 import Footer from '@/components/shared/footer'
 
 export const metadata: Metadata = {
-  title: 'Leaf Spring Manufacturing Machinery & Equipment | Complete Product Range',
-  description: 'Leading manufacturer of leaf spring machinery: Heavy duty shearing machines, assembly lines, stress shot peening automation, and complete parabolic line solutions. ISO 9001-certified equipment.',
+  metadataBase: new URL('https://your-domain.com'),
+  title: 'Leaf Spring Machines',
+  description: 'Industry Leading Manufacturing Solutions',
   keywords: 'leaf spring machinery, heavy duty shearing machine, leaf spring assembly lines, stress shot peening automation, parabolic descaler, hydraulic endurance testing machine',
   openGraph: {
     title: 'Leaf Spring Manufacturing Machinery & Equipment',
