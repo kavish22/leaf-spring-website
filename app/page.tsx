@@ -477,15 +477,16 @@ export default function HomePage() {
                                bg-clip-text text-transparent bg-gradient-to-r 
                                from-white via-white to-gray-300
                                animate-gradient inline-block sm:inline
-                               leading-[1.2] tracking-tight">
+                               leading-[1.2] tracking-tight
+                               mb-1">
                   Complete Leaf Spring
                 </span>
-                <span className="block mt-1 sm:mt-2 
+                <span className="block mt-2 sm:mt-3
                                text-[26px] sm:text-4xl md:text-5xl lg:text-6xl font-bold
                                bg-clip-text text-transparent bg-gradient-to-r 
                                from-white/90 via-white/90 to-gray-300/90
                                leading-[1.4] tracking-tight
-                               pb-1">
+                               pb-2">
                   Manufacturing Machinery
                 </span>
               </h1>
