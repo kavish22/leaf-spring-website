@@ -537,14 +537,15 @@ export default function HomePage() {
         </section>
 
         {/* Mobile-only Product Carousel Section - Black background */}
-        <section className="block sm:hidden bg-black h-[calc(100vh-100vw)]">
+        <section className="block sm:hidden bg-black h-[calc(100vh-100vw)] py-4">
           <div className="container mx-auto h-full flex items-center">
             <div className="overflow-hidden">
               <div
-                className="flex gap-3 animate-scroll"
+                className="flex gap-3"
                 style={{
                   width: 'max-content',
-                  willChange: 'transform'
+                  willChange: 'transform',
+                  animation: 'scroll 40s linear infinite'
                 }}
               >
                 {[...heroProducts, ...heroProducts].map((product, index) => (
@@ -556,8 +557,8 @@ export default function HomePage() {
                                   hover:shadow-xl transition-all duration-300 
                                   hover:-translate-y-1 flex flex-col
                                   border-2 border-white/40
-                                  h-[180px]">
-                      <div className="relative w-full h-[120px] bg-black/10 backdrop-blur-[2px]">
+                                  h-[160px]">
+                      <div className="relative w-full h-[100px] bg-black/10 backdrop-blur-[2px]">
                         <Image
                           src={product.image}
                           alt={product.title}
@@ -889,6 +890,16 @@ export default function HomePage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
+      <style jsx global>{`
+        @keyframes scroll {
+          0% {
+            transform: translateX(0);
+          }
+          100% {
+            transform: translateX(-50%);
+          }
+        }
+      `}</style>
     </>
   )
 }
