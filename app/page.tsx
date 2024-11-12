@@ -277,37 +277,44 @@ export default function HomePage() {
     {
       title: "High-Pressure Water Jet Descaler",
       description: "300 BAR system for 95% scale removal",
-      image: "/images/5s.png"
+      image: "/images/5s.png",
+      link: "/products/high-pressure-descaler"
     },
     {
       title: "Heavy-Duty Shearing Machine",
       description: "250-ton hydraulic shearing for large sections",
-      image: "/images/6s.png"
+      image: "/images/6s.png",
+      link: "/products/heavy-duty-shearing"
     },
     {
       title: "Leaf Spring Assembly Line",
       description: "50-ton automated system with quality control",
-      image: "/images/7s.png"
+      image: "/images/7s.png",
+      link: "/products/assembly-line"
     },
     {
       title: "Multi Station Press",
       description: "100T/200T/100T/100T press for forming operations",
-      image: "/images/2s.png"
+      image: "/images/2s.png",
+      link: "/products/multi-station-press"
     },
     {
       title: "Eye Milling Machine",
       description: "Precision milling with 0.5-2.0mm stock capacity",
-      image: "/images/1s.png"
+      image: "/images/1s.png",
+      link: "/products/eye-milling"
     },
     {
       title: "Hockey Puck Bending Machine",
       description: "25+25+50 Ton system for lateral bend correction",
-      image: "/images/3s.png"
+      image: "/images/3s.png",
+      link: "/products/hockey-puck-bending"
     },
     {
       title: "Eye Grinding Machine",
-      description: "High-precision grinding for eye ends",
-      image: "/images/4s.png"
+      description: "High-precision automated grinding for eye ends",
+      image: "/images/4s.png",
+      link: "/products/eye-grinding"
     }
   ]
 
@@ -549,14 +556,15 @@ export default function HomePage() {
                 }}
               >
                 {[...heroProducts, ...heroProducts].map((product, index) => (
-                  <div 
+                  <Link 
+                    href={product.link} 
                     key={`product-${index}`} 
                     className="w-[200px] flex-shrink-0"
                   >
                     <div className="rounded-xl overflow-hidden 
                                   hover:shadow-xl transition-all duration-300 
                                   hover:-translate-y-1 flex flex-col
-                                  border-2 border-white/40
+                                  border-[3px] border-red-600/80
                                   h-[220px]">
                       <div className="relative w-full h-[140px] bg-black/10 backdrop-blur-[2px]">
                         <Image
@@ -576,7 +584,7 @@ export default function HomePage() {
                         </p>
                       </div>
                     </div>
-                  </div>
+                  </Link>
                 ))}
               </div>
             </div>
