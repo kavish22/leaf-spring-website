@@ -555,8 +555,9 @@ export default function HomePage() {
                     <div className="rounded-xl overflow-hidden 
                                   hover:shadow-xl transition-all duration-300 
                                   hover:-translate-y-1 flex flex-col
-                                  border-2 border-white/40">
-                      <div className="relative w-full h-[90px] bg-black/10 backdrop-blur-[2px]">
+                                  border-2 border-white/40
+                                  h-[180px]">
+                      <div className="relative w-full h-[120px] bg-black/10 backdrop-blur-[2px]">
                         <Image
                           src={product.image}
                           alt={product.title}
