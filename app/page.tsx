@@ -9,7 +9,13 @@ import Link from 'next/link'
 import { useRef, useEffect, useState } from 'react'
 import { cn } from "@/lib/utils"  
 import heroImage from '@/public/images/banner-1.png'
-import CountUp from 'react-countup'
+import dynamic from 'next/dynamic'
+
+// Dynamically import CountUp with SSR disabled
+const CountUp = dynamic(() => import('react-countup'), { 
+  ssr: false,
+  loading: () => <span>0</span>
+})
 
 // Add this interface at the top of the file
 interface Client {    
