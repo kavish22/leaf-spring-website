@@ -915,12 +915,19 @@ const { ref: productsEndRef, inView: isEndVisible } = useInView({
     <>
       <main className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
         {/* Hero Section */}
-        <section className="relative h-[60vh] sm:h-[calc(100vh-56px)] flex items-center justify-center overflow-hidden bg-gradient-to-br from-gray-900 via-black to-gray-800">
+        <section className="relative h-[60vh] sm:h-[calc(100vh-56px)] flex items-center justify-center overflow-hidden">
           <motion.div 
             className="absolute inset-0 z-0"
             style={{ opacity, scale }}
           >
-            {/* Removed image and opacity overlay */}
+            {/* Background Image */}
+            <Image
+              src="/images/product-banner.jpeg"
+              alt="Product Banner"
+              fill
+              className="object-cover"
+              priority
+            />
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-gray-900/50 via-black/80 to-black" />
           </motion.div>
           <div className="relative z-20 text-center text-white px-4">
