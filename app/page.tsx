@@ -479,9 +479,9 @@ export default function HomePage() {
 
               <h1 className="text-left sm:text-left">
                 <span className="text-[28px] sm:text-4xl md:text-5xl lg:text-6xl font-bold 
-                               bg-clip-text text-transparent 
+                               text-red-600
+                               sm:text-transparent sm:bg-clip-text 
                                sm:bg-gradient-to-r sm:from-white sm:via-white sm:to-gray-300
-                               text-red-600 sm:text-transparent
                                animate-gradient inline-block sm:inline
                                leading-[1.2] tracking-tight
                                mb-1">
@@ -489,9 +489,9 @@ export default function HomePage() {
                 </span>
                 <span className="block mt-2 sm:mt-3
                                text-[26px] sm:text-4xl md:text-5xl lg:text-6xl font-bold
-                               bg-clip-text text-transparent 
+                               text-red-600
+                               sm:text-transparent sm:bg-clip-text 
                                sm:bg-gradient-to-r sm:from-white/90 sm:via-white/90 sm:to-gray-300/90
-                               text-red-600 sm:text-transparent
                                leading-[1.4] tracking-tight
                                pb-2">
                   Manufacturing Machinery
