@@ -255,6 +255,14 @@ export default function AboutPage() {
     setImagesLoaded(true)
   }
 
+  // Update the image URLs for the tabs
+  const tabImages = {
+    story: "https://example.com/images/about/story.jpg",
+    vision: "https://example.com/images/about/vision.jpg",
+    innovation: "https://example.com/images/about/innovation.jpg",
+    quality: "https://example.com/images/about/quality.jpg",
+  }
+
   return (
     <ErrorBoundary FallbackComponent={ErrorFallback}>
       <main>
@@ -381,7 +389,7 @@ export default function AboutPage() {
                     >
                       <div className="relative h-[300px] sm:h-[400px] lg:h-[600px] rounded-2xl overflow-hidden shadow-2xl">
                         <Image
-                          src="/images/about/story.jpg"
+                          src={tabImages.story}
                           alt="Our Story"
                           fill
                           className="object-cover hover:scale-105 transition-transform duration-500"
@@ -456,7 +464,7 @@ export default function AboutPage() {
                     >
                       <div className="relative h-[300px] sm:h-[400px] lg:h-[600px] rounded-2xl overflow-hidden shadow-2xl">
                         <Image
-                          src="/images/about/vision.jpg"
+                          src={tabImages.vision}
                           alt="Our Vision"
                           fill
                           className="object-cover hover:scale-105 transition-transform duration-500"
@@ -525,7 +533,7 @@ export default function AboutPage() {
                     >
                       <div className="relative h-[300px] sm:h-[400px] lg:h-[600px] rounded-2xl overflow-hidden shadow-2xl">
                         <Image
-                          src="/images/about/innovation.jpg"
+                          src={tabImages.innovation}
                           alt="Innovation"
                           fill
                           className="object-cover hover:scale-105 transition-transform duration-500"
@@ -600,7 +608,7 @@ export default function AboutPage() {
                     >
                       <div className="relative h-[300px] sm:h-[400px] lg:h-[600px] rounded-2xl overflow-hidden shadow-2xl">
                         <Image
-                          src="/images/about/quality.jpg"
+                          src={tabImages.quality}
                           alt="Quality"
                           fill
                           className="object-cover hover:scale-105 transition-transform duration-500"
@@ -707,7 +715,7 @@ export default function AboutPage() {
                   >
                     <div className="relative h-[300px] sm:h-[400px] lg:h-[600px] rounded-2xl overflow-hidden shadow-2xl">
                       <Image
-                        src="/images/about/story.jpg"
+                        src={tabImages.story}
                         alt="Our Story"
                         fill
                         className="object-cover hover:scale-105 transition-transform duration-500"
@@ -783,7 +791,7 @@ export default function AboutPage() {
                   >
                     <div className="relative h-[300px] sm:h-[400px] lg:h-[600px] rounded-2xl overflow-hidden shadow-2xl">
                       <Image
-                        src="/images/about/vision.jpg"
+                        src={tabImages.vision}
                         alt="Our Vision"
                         fill
                         className="object-cover hover:scale-105 transition-transform duration-500"
@@ -853,7 +861,7 @@ export default function AboutPage() {
                   >
                     <div className="relative h-[300px] sm:h-[400px] lg:h-[600px] rounded-2xl overflow-hidden shadow-2xl">
                       <Image
-                        src="/images/about/innovation.jpg"
+                        src={tabImages.innovation}
                         alt="Innovation"
                         fill
                         className="object-cover hover:scale-105 transition-transform duration-500"
@@ -929,7 +937,7 @@ export default function AboutPage() {
                   >
                     <div className="relative h-[300px] sm:h-[400px] lg:h-[600px] rounded-2xl overflow-hidden shadow-2xl">
                       <Image
-                        src="/images/about/quality.jpg"
+                        src={tabImages.quality}
                         alt="Quality"
                         fill
                         className="object-cover hover:scale-105 transition-transform duration-500"
