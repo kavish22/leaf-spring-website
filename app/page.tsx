@@ -411,14 +411,14 @@ export default function HomePage() {
               />
             </div>
 
-            {/* Mobile CTA buttons - Positioned at bottom right of video container */}
-            <div className="sm:hidden absolute bottom-4 right-4 z-20 flex flex-row gap-2">
+            {/* Mobile CTA buttons - Positioned at bottom right of video */}
+            <div className="sm:hidden absolute bottom-6 right-4 z-20 flex flex-row gap-2">
               <Link 
                 href="#product-showcase" 
                 className="group inline-flex items-center justify-center 
                           bg-gradient-to-br from-red-600 to-red-700
                           hover:from-red-700 hover:to-red-800
-                          text-[10px] font-semibold text-white
+                          text-[9px] font-semibold text-white
                           px-2 py-1
                           rounded-lg
                           border border-red-500/50
@@ -432,7 +432,7 @@ export default function HomePage() {
                 href="/contact" 
                 className="group inline-flex items-center justify-center 
                           bg-white/10 hover:bg-white/15 backdrop-blur-sm
-                          text-[10px] font-semibold text-white
+                          text-[9px] font-semibold text-white
                           px-2 py-1
                           rounded-lg
                           border border-white/20
