@@ -42,7 +42,7 @@ const InfiniteClientCarousel = ({ clients }: { clients: Client[] }) => {
     const scrollContent = Array.from(scroller.children)
     
     // Clone items for seamless loop
-    scrollContent.forEach(item => {
+    scrollContent.forEach(item => { 
       const clone = item.cloneNode(true)
       scroller.appendChild(clone)
     })
@@ -537,7 +537,7 @@ export default function HomePage() {
         </section>
 
         {/* Mobile-only Product Carousel Section - Black background */}
-        <section className="block sm:hidden bg-black h-[calc(100vh-100vw)] py-4">
+        <section className="block sm:hidden bg-black h-[280px] py-4">
           <div className="container mx-auto h-full flex items-center">
             <div className="overflow-hidden">
               <div
