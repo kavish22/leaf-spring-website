@@ -541,7 +541,7 @@ export default function HomePage() {
           <div className="container mx-auto h-full flex items-center">
             <div className="overflow-hidden">
               <div
-                className="flex gap-3"
+                className="flex gap-4"
                 style={{
                   width: 'max-content',
                   willChange: 'transform',
@@ -551,27 +551,27 @@ export default function HomePage() {
                 {[...heroProducts, ...heroProducts].map((product, index) => (
                   <div 
                     key={`product-${index}`} 
-                    className="w-[140px] flex-shrink-0"
+                    className="w-[200px] flex-shrink-0"
                   >
                     <div className="rounded-xl overflow-hidden 
                                   hover:shadow-xl transition-all duration-300 
                                   hover:-translate-y-1 flex flex-col
                                   border-2 border-white/40
-                                  h-[160px]">
-                      <div className="relative w-full h-[100px] bg-black/10 backdrop-blur-[2px]">
+                                  h-[220px]">
+                      <div className="relative w-full h-[140px] bg-black/10 backdrop-blur-[2px]">
                         <Image
                           src={product.image}
                           alt={product.title}
                           fill
-                          className="object-contain p-2"
+                          className="object-contain p-3"
                         />
                       </div>
                       
-                      <div className="p-2 bg-white">
-                        <h3 className="text-red-900 text-[10px] font-semibold mb-0.5 line-clamp-1">
+                      <div className="p-3 bg-white">
+                        <h3 className="text-red-900 text-[12px] font-semibold mb-1 line-clamp-1">
                           {product.title}
                         </h3>
-                        <p className="text-gray-700 text-[8px] line-clamp-2">
+                        <p className="text-gray-700 text-[10px] line-clamp-2">
                           {product.description}
                         </p>
                       </div>
