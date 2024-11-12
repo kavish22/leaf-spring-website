@@ -479,7 +479,7 @@ export default function HomePage() {
 
               <h1 className="text-left sm:text-left">
                 <span className="text-[28px] sm:text-4xl md:text-5xl lg:text-6xl font-bold 
-                               text-red-600
+                               text-white
                                sm:text-transparent sm:bg-clip-text 
                                sm:bg-gradient-to-r sm:from-white sm:via-white sm:to-gray-300
                                animate-gradient inline-block sm:inline
@@ -489,7 +489,7 @@ export default function HomePage() {
                 </span>
                 <span className="block mt-2 sm:mt-3
                                text-[26px] sm:text-4xl md:text-5xl lg:text-6xl font-bold
-                               text-red-600
+                               text-white
                                sm:text-transparent sm:bg-clip-text 
                                sm:bg-gradient-to-r sm:from-white/90 sm:via-white/90 sm:to-gray-300/90
                                leading-[1.4] tracking-tight
