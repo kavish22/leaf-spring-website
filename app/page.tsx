@@ -371,8 +371,8 @@ export default function HomePage() {
   return (
     <>
       <main className="bg-gradient-to-b from-gray-50 to-white w-full overflow-x-hidden">
-        {/* Hero Section - Updated mobile styles */}
-        <section className="relative h-[100vw] sm:h-[calc(100vh-4rem)] flex items-center overflow-hidden bg-gray-900 pt-16 sm:pt-16">
+        {/* Hero Section - Updated mobile height */}
+        <section className="relative h-[calc(100vh-4rem)] flex items-center overflow-hidden bg-gray-900 pt-16 sm:pt-16">
           {/* Video Container - With mobile CTA buttons */}
           <div className="absolute inset-0">
             <video
@@ -489,14 +489,15 @@ export default function HomePage() {
                                bg-clip-text text-transparent bg-gradient-to-r 
                                from-white via-white to-gray-300
                                animate-gradient inline-block sm:inline
-                               leading-[1.1] tracking-tight">
+                               leading-[1.2] tracking-tight">
                   Complete Leaf Spring
                 </span>
                 <span className="block mt-1 sm:mt-2 
                                text-[26px] sm:text-4xl md:text-5xl lg:text-6xl font-bold
                                bg-clip-text text-transparent bg-gradient-to-r 
                                from-white/90 via-white/90 to-gray-300/90
-                               leading-[1.1] tracking-tight">
+                               leading-[1.4] tracking-tight
+                               pb-1">
                   Manufacturing Machinery
                 </span>
               </h1>
@@ -554,10 +555,10 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Mobile-only Product Carousel Section - Black background */}
-        <section className="block sm:hidden bg-black py-4">
-          <div className="container mx-auto">
-            <div className="overflow-hidden">
+        {/* Mobile-only Product Carousel Section - Updated height and spacing */}
+        <section className="block sm:hidden bg-black h-[calc(100vh-100vh+4rem)]">
+          <div className="container mx-auto h-full">
+            <div className="overflow-hidden h-full flex items-center">
               <div
                 className="flex gap-3 animate-scroll"
                 style={{
@@ -617,8 +618,8 @@ export default function HomePage() {
           `}</style>
         </section>
 
-        {/* Product Showcase Section - Increased top spacing */}
-        <section id="product-showcase" className="pt-16 pb-16 md:pt-20 md:pb-24 relative">
+        {/* Product Showcase Section - Add top margin for mobile */}
+        <section id="product-showcase" className="pt-0 sm:pt-16 pb-16 md:pt-20 md:pb-24 relative">
           <div className="absolute inset-0 bg-gradient-to-b from-gray-50/50 to-white/50 backdrop-blur-sm" />
           <div className="container mx-auto px-4 relative">
             <div className="text-center mb-8 md:mb-12">
