@@ -6,13 +6,22 @@ import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
 import { Award, Shield, Zap, Globe, Gauge, Flame, ChevronRight } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useRef, useEffect } from 'react'
-import { cn } from "@/lib/utils"
+import { useRef, useEffect, useState } from 'react'
+import { cn } from "@/lib/utils"  
+import heroImage from '@/public/images/banner-1.png'
+import CountUp from 'react-countup'
 
 // Add this interface at the top of the file
-interface Client {
+interface Client {    
   name: string;
   logo: string;
+}
+
+// Add this interface if not already present
+interface ProductCard {
+  title: string;
+  description: string;
+  image: string;
 }
 
 // Add this component before the HomePage component
@@ -94,6 +103,96 @@ const InfiniteClientCarousel = ({ clients }: { clients: Client[] }) => {
   )
 }
 
+// Add this component before HomePage
+const HeroCarousel = ({ products }: { products: ProductCard[] }) => {
+  const baseVelocity = -1
+  const scrollerRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const scroller = scrollerRef.current
+    if (!scroller) return
+
+    const scrollContent = Array.from(scroller.children)
+    
+    // Clone items for seamless loop
+    scrollContent.forEach(item => {
+      const clone = item.cloneNode(true)
+      scroller.appendChild(clone)
+    })
+
+    let xPos = 0
+    let animationFrameId: number
+
+    const animate = () => {
+      xPos += baseVelocity
+      
+      // Reset position when first set is fully scrolled
+      const contentWidth = scrollContent.length * (320 + 16) // card width + gap
+      if (Math.abs(xPos) >= contentWidth) {
+        xPos = 0
+      }
+
+      scroller.style.transform = `translateX(${xPos}px)`
+      animationFrameId = requestAnimationFrame(animate)
+    }
+
+    animate()
+
+    return () => {
+      cancelAnimationFrame(animationFrameId)
+    }
+  }, [])
+
+  return (
+    <div className="absolute bottom-16 sm:bottom-0 left-0 right-0 overflow-hidden 
+                    h-[140px] sm:h-[240px] 
+                    bg-gradient-to-t from-black/40 to-transparent">
+      <div
+        ref={scrollerRef}
+        className="flex gap-2 sm:gap-4 py-2 sm:py-4"
+        style={{
+          width: 'max-content',
+          willChange: 'transform'
+        }}
+      >
+        {products.map((product, index) => (
+          <div 
+            key={`product-${index}`} 
+            className="flex-shrink-0 
+                     w-[180px] sm:w-[320px] 
+                     h-[120px] sm:h-[200px] 
+                     bg-black/40 backdrop-blur-sm 
+                     border border-white/40 rounded-lg overflow-hidden 
+                     transition-all duration-300"
+          >
+            <div className="flex flex-col h-full">
+              <div className="relative w-full h-[80px] sm:h-[140px] flex-shrink-0">
+                <Image
+                  src={product.image}
+                  alt={product.title}
+                  fill
+                  className="object-contain opacity-90 transition-opacity duration-300"
+                />
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/10" />
+              </div>
+              
+              <div className="flex-1 p-1.5 sm:p-2.5 bg-gradient-to-t from-black/60 to-black/30">
+                <h3 className="text-red-500 text-[11px] sm:text-sm font-medium mb-0.5 
+                             transition-colors duration-300 line-clamp-1">
+                  {product.title}
+                </h3>
+                <p className="text-gray-300/80 text-[9px] sm:text-xs line-clamp-1 sm:line-clamp-2">
+                  {product.description}
+                </p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
 // Add this before the HomePage component
 const structuredData = {
   "@context": "https://schema.org",
@@ -165,83 +264,351 @@ const subtlePattern = {
 };
 
 export default function HomePage() {
+  console.log('Hero Image:', heroImage);
+
+  // Add this product data
+  const heroProducts = [
+    {
+      title: "High-Pressure Water Jet Descaler",
+      description: "300 BAR system for 95% scale removal",
+      image: "/images/5s.png"
+    },
+    {
+      title: "Heavy-Duty Shearing Machine",
+      description: "250-ton hydraulic shearing for large sections",
+      image: "/images/6s.png"
+    },
+    {
+      title: "Leaf Spring Assembly Line",
+      description: "50-ton automated system with quality control",
+      image: "/images/7s.png"
+    },
+    {
+      title: "Multi Station Press",
+      description: "100T/200T/100T/100T press for forming operations",
+      image: "/images/2s.png"
+    },
+    {
+      title: "Eye Milling Machine",
+      description: "Precision milling with 0.5-2.0mm stock capacity",
+      image: "/images/1s.png"
+    },
+    {
+      title: "Hockey Puck Bending Machine",
+      description: "25+25+50 Ton system for lateral bend correction",
+      image: "/images/3s.png"
+    },
+    {
+      title: "Eye Grinding Machine",
+      description: "High-precision grinding for eye ends",
+      image: "/images/4s.png"
+    }
+  ]
+
+  // Add state management for video
+  const [isVideoLoaded, setIsVideoLoaded] = useState(false);
+  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  // Add video loading and play handling
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const handleLoadedData = () => {
+      console.log('Video loaded');
+      setIsVideoLoaded(true);
+      
+      // Try to play the video
+      const playVideo = async () => {
+        try {
+          await video.play();
+          console.log('Video playing');
+          setIsVideoPlaying(true);
+        } catch (error) {
+          console.error("Video autoplay failed:", error);
+          // If autoplay fails, we keep showing the image
+          setIsVideoPlaying(false);
+        }
+      };
+
+      playVideo();
+    };
+
+    const handleError = (error: any) => {
+      console.error("Video loading error:", error);
+      setIsVideoLoaded(false);
+      setIsVideoPlaying(false);
+    };
+
+    const handlePlaying = () => {
+      console.log('Video is now playing');
+      setIsVideoPlaying(true);
+    };
+
+    video.addEventListener('loadeddata', handleLoadedData);
+    video.addEventListener('error', handleError);
+    video.addEventListener('playing', handlePlaying);
+
+    // Try to load the video immediately
+    if (video.readyState >= 3) {
+      handleLoadedData();
+    }
+
+    return () => {
+      video.removeEventListener('loadeddata', handleLoadedData);
+      video.removeEventListener('error', handleError);
+      video.removeEventListener('playing', handlePlaying);
+    };
+  }, []);
+
   return (
     <>
       <main className="bg-gradient-to-b from-gray-50 to-white w-full overflow-x-hidden">
-        {/* Hero Section - Enhanced */}
-        <section className="relative h-[60vh] sm:h-[calc(100vh-56px)] flex items-center overflow-hidden">
-          <div className="absolute inset-0 z-0">
-            <div className="absolute inset-0 bg-gradient-to-r from-black/95 via-black/90 to-black/85" />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/90 to-transparent" />
-            <div className="absolute inset-0" style={subtlePattern} />
-          </div>
-          
-          {/* Background image with subtle animation */}
-          <div className="absolute inset-0 z-0 scale-105">
-            <div className="h-full w-full">
-              <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-900" />
+        {/* Hero Section - Updated mobile styles */}
+        <section className="relative h-[100vw] sm:h-[calc(100vh-4rem)] flex items-center overflow-hidden bg-gray-900 pt-16 sm:pt-16">
+          {/* Video Container - With mobile CTA buttons */}
+          <div className="absolute inset-0">
+            <video
+              ref={videoRef}
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="auto"
+              className={cn(
+                "absolute inset-0 w-full h-full object-cover transition-opacity duration-700",
+                "sm:object-center", // Desktop centered
+                "object-[95%_center]", // Mobile: show more of the right side
+                isVideoPlaying ? "opacity-100" : "opacity-0"
+              )}
+              poster={heroImage.src}
+            >
+              <source src="/videos/hero-background.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+
+            {/* Fallback image - Updated mobile object position to match video */}
+            <div 
+              className={cn(
+                "absolute inset-0 transition-opacity duration-700",
+                isVideoPlaying ? "opacity-0" : "opacity-100"
+              )}
+            >
+              <Image
+                src={heroImage}
+                alt="Leaf Spring Manufacturing"
+                fill
+                priority
+                className={cn(
+                  "object-cover",
+                  "sm:object-center", // Desktop centered
+                  "object-[95%_center]" // Mobile: show more of the right side
+                )}
+                sizes="100vw"
+                quality={85}
+                placeholder="blur"
+              />
+            </div>
+
+            {/* Mobile CTA buttons - Positioned at bottom right of video container */}
+            <div className="sm:hidden absolute bottom-4 right-4 z-20 flex flex-row gap-2">
+              <Link 
+                href="#product-showcase" 
+                className="group inline-flex items-center justify-center 
+                          bg-gradient-to-br from-red-600 to-red-700
+                          hover:from-red-700 hover:to-red-800
+                          text-[10px] font-semibold text-white
+                          px-2 py-1
+                          rounded-lg
+                          border border-red-500/50
+                          shadow-lg shadow-black/20"
+              >
+                Explore 
+                <ChevronRight className="ml-1 h-2 w-2 transition-transform duration-300 group-hover:translate-x-0.5" />
+              </Link>
+
+              <Link 
+                href="/contact" 
+                className="group inline-flex items-center justify-center 
+                          bg-white/10 hover:bg-white/15 backdrop-blur-sm
+                          text-[10px] font-semibold text-white
+                          px-2 py-1
+                          rounded-lg
+                          border border-white/20
+                          shadow-lg shadow-black/10"
+              >
+                Contact 
+                <ChevronRight className="ml-1 h-2 w-2 transition-transform duration-300 group-hover:translate-x-0.5" />
+              </Link>
             </div>
           </div>
+
+          {/* Existing overlays */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/40 sm:bg-black/30" />
           
-          <div className="container mx-auto px-4 relative z-10">
-            <div className="max-w-3xl">
-              <h1 className="text-[26px] sm:text-4xl md:text-5xl font-bold mb-2 md:mb-4 leading-tight">
-                <span className="bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-gray-300">
-                  Complete Leaf Spring Manufacturing Machinery Solutions
+          {/* Lighter vignette effect */}
+          <div className="absolute inset-0 bg-radial-gradient pointer-events-none" 
+               style={{
+                 background: 'radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.2) 100%)'
+               }} 
+          />
+
+          {/* Optional: Add a subtle light overlay for better text contrast */}
+          <div className="absolute inset-0 mix-blend-soft-light bg-gradient-to-br from-neutral-400/10 to-neutral-900/10" />
+
+          {/* Updated text overlay with repositioned mobile CTAs */}
+          <div className="container mx-auto px-4 relative z-10 -mt-48 sm:-mt-64 md:-mt-72">
+            <div className="max-w-3xl relative">
+              {/* Mobile-only badge */}
+              <div className="sm:hidden mb-3">
+                <span className="inline-block bg-white/10 backdrop-blur-sm border border-white/20 
+                                rounded-full px-3 py-1 text-[10px] font-medium tracking-wider 
+                                text-white/90 uppercase">
+                  Premium Manufacturing Solutions
+                </span>
+              </div>
+
+              {/* Desktop badge remains unchanged */}
+              <div className="hidden sm:inline-block mb-2 sm:mb-3">
+                <span className="text-[9px] sm:text-sm font-semibold tracking-wider uppercase 
+                               px-2 sm:px-3 py-1 sm:py-1.5 rounded-full bg-white/10 backdrop-blur-sm 
+                               border border-white/20 text-white/90">
+                  Industry Leading Manufacturing Solutions
+                </span>
+              </div>
+
+              <h1 className="text-left sm:text-left">
+                <span className="text-[28px] sm:text-4xl md:text-5xl lg:text-6xl font-bold 
+                               bg-clip-text text-transparent bg-gradient-to-r 
+                               from-white via-white to-gray-300
+                               animate-gradient inline-block sm:inline
+                               leading-[1.1] tracking-tight">
+                  Complete Leaf Spring
+                </span>
+                <span className="block mt-1 sm:mt-2 
+                               text-[26px] sm:text-4xl md:text-5xl lg:text-6xl font-bold
+                               bg-clip-text text-transparent bg-gradient-to-r 
+                               from-white/90 via-white/90 to-gray-300/90
+                               leading-[1.1] tracking-tight">
+                  Manufacturing Machinery
                 </span>
               </h1>
 
-              <p className="text-sm sm:text-lg md:text-xl mb-4 md:mb-8 text-gray-200 max-w-2xl leading-relaxed">
-                Industry-Leading Heavy Duty Shearing Machines, Assembly Lines, and Stress Shot Peening Automation Systems
+              <p className="text-[13px] sm:text-base md:text-lg 
+                           mb-5 sm:mb-8 
+                           text-gray-300/90 max-w-2xl 
+                           leading-relaxed font-medium 
+                           backdrop-blur-[2px] text-left sm:text-left
+                           tracking-wide">
+                Industry-Leading Heavy Duty Shearing Machines, Assembly Lines, and High Pressure Descaler
               </p>
 
-              <div className="flex flex-col sm:flex-row gap-2.5 sm:gap-4 items-center">
+              {/* Desktop CTA buttons remain unchanged */}
+              <div className="hidden sm:flex flex-row gap-4 items-center justify-start">
                 <Link 
                   href="#product-showcase" 
-                  className="group w-full sm:w-auto inline-flex items-center justify-center bg-red-600 
-                            hover:bg-red-700 transition-all duration-300 
-                            text-[11px] sm:text-sm font-medium text-white
-                            px-4 py-1.5 sm:px-5 sm:py-2.5 h-auto rounded sm:rounded-full
-                            border-2 border-red-600 hover:border-red-700
-                            shadow-lg hover:shadow-red-600/30
-                            hover:translate-y-px"
+                  className="group flex-none sm:flex-none inline-flex items-center justify-center 
+                            bg-gradient-to-br from-red-600 to-red-700
+                            hover:from-red-700 hover:to-red-800
+                            text-[11px] sm:text-sm font-semibold text-white
+                            px-4 sm:px-6 py-2.5 sm:py-3 
+                            rounded-lg sm:rounded-full
+                            border border-red-500/50
+                            shadow-lg shadow-black/20"
                 >
                   Explore Our Machinery 
-                  <ChevronRight className="ml-1.5 h-2.5 w-2.5 sm:ml-2 sm:h-4 sm:w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
+                  <ChevronRight className="ml-1.5 sm:ml-2 h-3 w-3 sm:h-4 sm:w-4 
+                                      transition-transform duration-300 
+                                      group-hover:translate-x-0.5" />
                 </Link>
+
                 <Link 
                   href="/contact" 
-                  className="group w-full sm:w-auto inline-flex items-center justify-center 
-                            bg-white/5 hover:bg-white/10 backdrop-blur-sm
-                            transition-all duration-300 
-                            text-[11px] sm:text-sm font-medium text-white
-                            px-4 py-1.5 sm:px-5 sm:py-2.5 h-auto rounded sm:rounded-full
-                            border border-white/20 hover:border-white/30
-                            shadow-lg hover:shadow-black/10
-                            hover:translate-y-px"
+                  className="group flex-none sm:flex-none inline-flex items-center justify-center 
+                            bg-white/10 hover:bg-white/15 backdrop-blur-sm
+                            text-[11px] sm:text-sm font-semibold text-white
+                            px-4 sm:px-6 py-2.5 sm:py-3 
+                            rounded-lg sm:rounded-full
+                            border border-white/20
+                            shadow-lg shadow-black/10"
                 >
                   Get In Touch 
-                  <ChevronRight className="ml-1.5 h-2.5 w-2.5 sm:ml-2 sm:h-4 sm:w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
+                  <ChevronRight className="ml-1.5 sm:ml-2 h-3 w-3 sm:h-4 sm:w-4 
+                                      transition-transform duration-300 
+                                      group-hover:translate-x-0.5" />
                 </Link>
-                
-                {/* Social proof - Only show on larger screens */}
-                <div className="hidden lg:flex items-center gap-4 ml-6 text-white/80">
-                  <div className="w-px h-8 bg-white/20" />
-                  <div>
-                    <div className="flex -space-x-1.5">
-                      {[1, 2, 3, 4].map((i) => (
-                        <div 
-                          key={i} 
-                          className="w-6 h-6 rounded-full border-2 border-red-600 bg-white/10 backdrop-blur-sm"
-                        />
-                      ))}
-                    </div>
-                    <p className="text-xs mt-1.5">Trusted by 50+ Companies</p>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
+
+          {/* Add the carousel - Hide on mobile */}
+          <div className="hidden sm:block">
+            <HeroCarousel products={heroProducts} />
+          </div>
+        </section>
+
+        {/* Mobile-only Product Carousel Section - Black background */}
+        <section className="block sm:hidden bg-black py-4">
+          <div className="container mx-auto">
+            <div className="overflow-hidden">
+              <div
+                className="flex gap-3 animate-scroll"
+                style={{
+                  width: 'max-content',
+                  willChange: 'transform'
+                }}
+              >
+                {[...heroProducts, ...heroProducts].map((product, index) => (
+                  <div 
+                    key={`product-${index}`} 
+                    className="w-[140px] flex-shrink-0"
+                  >
+                    <div className="rounded-xl overflow-hidden 
+                                  hover:shadow-xl transition-all duration-300 
+                                  hover:-translate-y-1 flex flex-col
+                                  border-2 border-white/40">
+                      <div className="relative w-full h-[90px] bg-black/10 backdrop-blur-[2px]">
+                        <Image
+                          src={product.image}
+                          alt={product.title}
+                          fill
+                          className="object-contain p-2"
+                        />
+                      </div>
+                      
+                      <div className="p-2 bg-white">
+                        <h3 className="text-red-900 text-[10px] font-semibold mb-0.5 line-clamp-1">
+                          {product.title}
+                        </h3>
+                        <p className="text-gray-700 text-[8px] line-clamp-2">
+                          {product.description}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <style jsx global>{`
+            @keyframes scroll {
+              0% {
+                transform: translateX(0);
+              }
+              100% {
+                transform: translateX(-50%);
+              }
+            }
+            .animate-scroll {
+              will-change: transform;
+              animation: scroll 25s linear infinite;
+            }
+            .animate-scroll:hover {
+              animation-play-state: paused;
+            }
+          `}</style>
         </section>
 
         {/* Product Showcase Section - Increased top spacing */}
@@ -282,7 +649,7 @@ export default function HomePage() {
                   title: "Heavy-Duty Leaf Spring Shearing Machine",
                   specs: "250-ton capacity, robust scissor mechanism for precise and efficient shearing.",
                   benefits: "Thickness up to 32mm possible, Hydraulic shearing enables higher tooling life.",
-                  image: "/images/products/Shearing.webp",
+                  image: "/images/products/Heavy Duty Shearing Machine.webp",
                   link: "/products/heavy-duty-shearing-machine"
                 },
                 {

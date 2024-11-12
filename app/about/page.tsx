@@ -13,6 +13,7 @@ import { ChevronRight } from 'lucide-react'
 import { Suspense } from 'react'
 import { Skeleton } from "@/components/ui/skeleton"
 import { ErrorBoundary } from 'react-error-boundary'
+import heroImage from '@/public/images/banner-2.png'
 
 const coreValues = [
   { 
@@ -263,7 +264,13 @@ export default function AboutPage() {
             className="absolute inset-0 z-0"
             style={{ opacity, scale }}
           >
-            {/* Removed image and opacity overlay */}
+            <Image
+              src={heroImage}
+              alt="Leaf Spring Manufacturing"
+              fill
+              className="object-cover"
+              priority
+            />
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-gray-900/50 via-black/80 to-black" />
           </motion.div>
           <div className="relative z-20 text-center text-white px-4">
@@ -372,9 +379,9 @@ export default function AboutPage() {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.5 }}
                     >
-                      <div className="relative h-[600px] rounded-2xl overflow-hidden shadow-2xl">
+                      <div className="relative h-[300px] sm:h-[400px] lg:h-[600px] rounded-2xl overflow-hidden shadow-2xl">
                         <Image
-                          src="/images/story-image.jpg"
+                          src="/images/about/story.jpg"
                           alt="Our Story"
                           fill
                           className="object-cover hover:scale-105 transition-transform duration-500"
@@ -447,9 +454,9 @@ export default function AboutPage() {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.5 }}
                     >
-                      <div className="relative h-[600px] rounded-2xl overflow-hidden shadow-2xl">
+                      <div className="relative h-[300px] sm:h-[400px] lg:h-[600px] rounded-2xl overflow-hidden shadow-2xl">
                         <Image
-                          src="/images/vision-image.jpg"
+                          src="/images/about/vision.jpg"
                           alt="Our Vision"
                           fill
                           className="object-cover hover:scale-105 transition-transform duration-500"
@@ -516,9 +523,9 @@ export default function AboutPage() {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.5 }}
                     >
-                      <div className="relative h-[600px] rounded-2xl overflow-hidden shadow-2xl">
+                      <div className="relative h-[300px] sm:h-[400px] lg:h-[600px] rounded-2xl overflow-hidden shadow-2xl">
                         <Image
-                          src="/images/innovation-image.jpg"
+                          src="/images/about/innovation.jpg"
                           alt="Innovation"
                           fill
                           className="object-cover hover:scale-105 transition-transform duration-500"
@@ -591,9 +598,9 @@ export default function AboutPage() {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.5 }}
                     >
-                      <div className="relative h-[600px] rounded-2xl overflow-hidden shadow-2xl">
+                      <div className="relative h-[300px] sm:h-[400px] lg:h-[600px] rounded-2xl overflow-hidden shadow-2xl">
                         <Image
-                          src="/images/quality-image.jpg"
+                          src="/images/about/quality.jpg"
                           alt="Quality"
                           fill
                           className="object-cover hover:scale-105 transition-transform duration-500"
@@ -700,7 +707,7 @@ export default function AboutPage() {
                   >
                     <div className="relative h-[300px] sm:h-[400px] lg:h-[600px] rounded-2xl overflow-hidden shadow-2xl">
                       <Image
-                        src="/images/story-image.jpg"
+                        src="/images/about/story.jpg"
                         alt="Our Story"
                         fill
                         className="object-cover hover:scale-105 transition-transform duration-500"
@@ -776,7 +783,7 @@ export default function AboutPage() {
                   >
                     <div className="relative h-[300px] sm:h-[400px] lg:h-[600px] rounded-2xl overflow-hidden shadow-2xl">
                       <Image
-                        src="/images/vision-image.jpg"
+                        src="/images/about/vision.jpg"
                         alt="Our Vision"
                         fill
                         className="object-cover hover:scale-105 transition-transform duration-500"
@@ -846,7 +853,7 @@ export default function AboutPage() {
                   >
                     <div className="relative h-[300px] sm:h-[400px] lg:h-[600px] rounded-2xl overflow-hidden shadow-2xl">
                       <Image
-                        src="/images/innovation-image.jpg"
+                        src="/images/about/innovation.jpg"
                         alt="Innovation"
                         fill
                         className="object-cover hover:scale-105 transition-transform duration-500"
@@ -922,7 +929,7 @@ export default function AboutPage() {
                   >
                     <div className="relative h-[300px] sm:h-[400px] lg:h-[600px] rounded-2xl overflow-hidden shadow-2xl">
                       <Image
-                        src="/images/quality-image.jpg"
+                        src="/images/about/quality.jpg"
                         alt="Quality"
                         fill
                         className="object-cover hover:scale-105 transition-transform duration-500"
