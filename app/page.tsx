@@ -71,7 +71,7 @@ const InfiniteClientCarousel = ({ clients }: { clients: Client[] }) => {
   }, [baseVelocity])
 
   return (
-    <div className="overflow-hidden p-4">
+    <div className="overflow-hidden py-2">
       <div
         ref={scrollerRef}
         className="flex gap-8"
