@@ -8,6 +8,8 @@ import WhatsAppButton from '@/components/shared/whatsapp-button'
 import { Card, CardContent } from "@/components/ui/card"
 import { useState, useEffect } from 'react';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs"
+import Image from 'next/image'
+import { motion, useScroll, useTransform } from 'framer-motion'
 
 const contactInfo = [
   {
@@ -287,6 +289,10 @@ const EnhancedFAQSection = () => {
 };
 
 export default function ContactPage() {
+  const { scrollYProgress } = useScroll()
+  const opacity = useTransform(scrollYProgress, [0, 0.2], [1, 0])
+  const scale = useTransform(scrollYProgress, [0, 0.2], [1, 0.8])
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     // Add form submission logic
@@ -295,16 +301,40 @@ export default function ContactPage() {
   return (
     <>
       <main className="bg-gradient-to-b from-gray-50 to-white">
-        {/* Hero Section */}
-        <section className="relative h-[60vh] sm:h-[calc(100vh-56px)] flex items-center justify-center overflow-hidden bg-gradient-to-b from-black to-gray-900">
-          <div className="absolute inset-0 z-0 opacity-50 scale-100" style={{ backgroundImage: `url('/patterns/grid.svg')` }} />
-          <div className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
-            <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold mb-4 sm:mb-8 leading-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-300">
-              Let's Build Great Together
-            </h1>
-            <p className="text-lg sm:text-xl md:text-2xl mb-6 sm:mb-10">
-              Get in touch with our experts to discuss your leaf spring manufacturing needs
-            </p>
+        <section className="relative h-[60vh] sm:h-[calc(100vh-56px)] flex items-center justify-center overflow-hidden">
+          <Image
+            src="/images/contact-banner.jpeg"
+            alt="Contact Banner"
+            fill
+            className="object-cover"
+            priority
+          />
+          <div className="absolute inset-0 bg-black/50" />
+          
+          <motion.div 
+            className="absolute inset-0 z-0"
+            style={{ opacity, scale }}
+          />
+          
+          <div className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto flex flex-col justify-center items-center h-full">
+            <div className="transform -translate-y-8">
+              <motion.h1 
+                className="text-4xl sm:text-5xl md:text-7xl font-bold mb-2 sm:mb-4 leading-[1.3] sm:leading-[1.4] bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-300 px-2 py-4"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+              >
+                Let's Build Great Together
+              </motion.h1>
+              <motion.p 
+                className="text-lg sm:text-xl md:text-2xl"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+              >
+                Get in touch with our experts to discuss your leaf spring manufacturing needs
+              </motion.p>
+            </div>
           </div>
           <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
             <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">

@@ -124,11 +124,6 @@ const InfiniteCarousel = ({ testimonials }: { testimonials: Testimonial[] }) => 
   )
 }
 
-// Add a subtle pattern overlay to the hero section
-const heroPattern = {
-  backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-};
-
 export default function TeamPage() {
   const { scrollYProgress } = useScroll()
   const opacity = useTransform(scrollYProgress, [0, 0.2], [1, 0])
@@ -215,12 +210,21 @@ export default function TeamPage() {
   return (
     <>
       <main className="bg-gradient-to-b from-gray-50 to-white">
-        <section className="relative h-[60vh] sm:h-[calc(100vh-56px)] flex items-center justify-center overflow-hidden bg-gradient-to-b from-black to-gray-900">
+        <section className="relative h-[60vh] sm:h-[calc(100vh-56px)] flex items-center justify-center overflow-hidden">
+          <Image
+            src="/images/team-banner.jpeg"
+            alt="Team Banner"
+            fill
+            className="object-cover"
+            priority
+          />
+          <div className="absolute inset-0 bg-black/50" />
+          
           <motion.div 
             className="absolute inset-0 z-0"
-            style={{ opacity, scale, ...heroPattern }}
-          >
-          </motion.div>
+            style={{ opacity, scale }}
+          />
+          
           <div className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
             <motion.h1 
               className="text-4xl sm:text-5xl md:text-7xl font-bold mb-4 sm:mb-8 leading-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-300"
@@ -362,7 +366,7 @@ export default function TeamPage() {
         </section>
 
         <section className="py-12 sm:py-16 md:py-24 bg-gradient-to-br from-gray-900 to-red-900 text-white relative">
-          <div className="absolute inset-0" style={heroPattern} />
+          <div className="absolute inset-0" />
           <div className="container mx-auto px-4 text-center relative">
             <h2 className="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8 text-white">Join Our Team</h2>
             <p className="text-base sm:text-lg md:text-xl mb-8 sm:mb-12 max-w-3xl mx-auto text-gray-100">

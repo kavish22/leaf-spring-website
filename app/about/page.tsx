@@ -13,7 +13,6 @@ import { ChevronRight } from 'lucide-react'
 import { Suspense } from 'react'
 import { Skeleton } from "@/components/ui/skeleton"
 import { ErrorBoundary } from 'react-error-boundary'
-import heroImage from '@/public/images/banner-2.png'
 
 const coreValues = [
   { 
@@ -257,33 +256,34 @@ export default function AboutPage() {
 
   // Update the image URLs for the tabs
   const tabImages = {
-    story: "https://example.com/images/about/story.jpg",
-    vision: "https://example.com/images/about/vision.jpg",
-    innovation: "https://example.com/images/about/innovation.jpg",
-    quality: "https://example.com/images/about/quality.jpg",
+    story: "/images/a1-card.jpeg",
+    vision: "/images/a2-card.jpeg",
+    innovation: "/images/a3-card.jpeg",
+    quality: "/images/a4-card.jpeg",
   }
 
   return (
     <ErrorBoundary FallbackComponent={ErrorFallback}>
       <main>
-        {/* Hero Section */}
-        <section className="relative h-[60vh] sm:h-[calc(100vh-56px)] flex items-center justify-center overflow-hidden bg-gradient-to-br from-gray-900 via-black to-gray-800">
+        {/* Updated Hero Section */}
+        <section className="relative h-[60vh] sm:h-[calc(100vh-56px)] flex items-center justify-center overflow-hidden">
+          <Image
+            src="/images/banner-2.png"
+            alt="About Us Banner"
+            fill
+            className="object-cover"
+            priority
+          />
+          <div className="absolute inset-0 bg-black/50" />
+          
           <motion.div 
             className="absolute inset-0 z-0"
             style={{ opacity, scale }}
-          >
-            <Image
-              src={heroImage}
-              alt="Leaf Spring Manufacturing"
-              fill
-              className="object-cover"
-              priority
-            />
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-gray-900/50 via-black/80 to-black" />
-          </motion.div>
-          <div className="relative z-20 text-center text-white px-4">
+          />
+          
+          <div className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
             <motion.h1 
-              className="text-4xl sm:text-6xl font-bold mb-6"
+              className="text-4xl sm:text-5xl md:text-7xl font-bold mb-4 sm:mb-8 leading-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-300"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
@@ -291,7 +291,7 @@ export default function AboutPage() {
               About Leaf Spring Machines
             </motion.h1>
             <motion.p 
-              className="text-xl sm:text-2xl mb-8 max-w-2xl mx-auto"
+              className="text-lg sm:text-xl md:text-2xl mb-6 sm:mb-10"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
@@ -299,13 +299,11 @@ export default function AboutPage() {
               Three decades of innovation in leaf spring manufacturing technology
             </motion.p>
           </div>
-          <motion.div
-            className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20"
-            animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
-          >
-            <ChevronDown className="w-8 h-8 text-white" />
-          </motion.div>
+          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+            <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+            </svg>
+          </div>
         </section>
 
         {/* Company Overview - Our Journey of Excellence */}

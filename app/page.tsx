@@ -8,7 +8,6 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useRef, useEffect, useState } from 'react'
 import { cn } from "@/lib/utils"  
-import heroImage from '@/public/images/banner-1.png'
 import dynamic from 'next/dynamic'
 
 // Dynamically import CountUp with SSR disabled
@@ -275,8 +274,6 @@ const subtlePattern = {
 };
 
 export default function HomePage() {
-  console.log('Hero Image:', heroImage);
-
   // Add this product data
   const heroProducts = [
     {
