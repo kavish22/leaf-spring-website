@@ -932,7 +932,7 @@ const { ref: productsEndRef, inView: isEndVisible } = useInView({
           
           <div className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
             <motion.h1 
-              className="text-4xl sm:text-5xl md:text-7xl font-bold mb-4 sm:mb-8 leading-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-300"
+              className="text-4xl sm:text-5xl md:text-7xl font-bold mb-4 sm:mb-8 leading-[1.2] sm:leading-[1.2] bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-300"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
