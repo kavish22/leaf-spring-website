@@ -37,13 +37,13 @@ const product = {
     "Easy maintenance design"
   ],
   gallery: [
-    "/images/products/Leaf Spring Assembling Press.webp",
+    "/images/products/Manual Leaf Spring Assembling Machine.webp",
     "https://www.youtube.com/embed/H1WAfRhMZZQ?rel=0",
     // Add more images/videos as needed
   ]
 } 
 export default function ProductPage() {
-    const [selectedImage, setSelectedImage] = useState(product.image)
+    const [selectedImage, setSelectedImage] = useState(product.gallery[0])
     const [isImageModalOpen, setIsImageModalOpen] = useState(false)
   
     return (
@@ -77,7 +77,7 @@ export default function ProductPage() {
                     {media.includes('youtube.com') ? (
                       <div className="w-full h-full bg-gray-100 flex items-center justify-center">
                         <Image 
-                          src={product.image}
+                          src={product.gallery[0]}
                           alt="Video thumbnail"
                           fill
                           className="object-cover"
