@@ -48,10 +48,16 @@ const InfiniteClientCarousel = ({ clients }: { clients: Client[] }) => {
     })
 
     let xPos = 0
+    let lastTimestamp: number | null = null
     let animationFrameId: number
 
-    const animate = () => {
-      xPos += baseVelocity
+    const animate = (timestamp: number) => {
+      if (!lastTimestamp) lastTimestamp = timestamp
+      const elapsed = timestamp - lastTimestamp
+      lastTimestamp = timestamp
+
+      // Smooth movement based on elapsed time
+      xPos += baseVelocity * (elapsed / 16.67) // 60fps normalized
 
       // Reset position when first set is fully scrolled
       const contentWidth = scrollContent.length * (200 + 24) // card width + gap
@@ -59,11 +65,12 @@ const InfiniteClientCarousel = ({ clients }: { clients: Client[] }) => {
         xPos = 0
       }
 
-      scroller.style.transform = `translateX(${xPos}px)`
+      // Use transform3d for better performance
+      scroller.style.transform = `translate3d(${xPos}px, 0, 0)`
       animationFrameId = requestAnimationFrame(animate)
     }
 
-    animate()
+    animationFrameId = requestAnimationFrame(animate)
 
     return () => {
       cancelAnimationFrame(animationFrameId)
@@ -71,13 +78,15 @@ const InfiniteClientCarousel = ({ clients }: { clients: Client[] }) => {
   }, [baseVelocity])
 
   return (
-    <div className="overflow-hidden py-2">
+    <div className="overflow-hidden py-2 will-change-transform">
       <div
         ref={scrollerRef}
         className="flex gap-8"
         style={{
           width: 'max-content',
-          willChange: 'transform'
+          willChange: 'transform',
+          backfaceVisibility: 'hidden',
+          transform: 'translate3d(0, 0, 0)'
         }}
       >
         {clients.map((client, index) => (
@@ -120,29 +129,32 @@ const HeroCarousel = ({ products }: { products: ProductCard[] }) => {
 
     const scrollContent = Array.from(scroller.children)
     
-    // Clone items for seamless loop
     scrollContent.forEach(item => {
       const clone = item.cloneNode(true)
       scroller.appendChild(clone)
     })
 
     let xPos = 0
+    let lastTimestamp: number | null = null
     let animationFrameId: number
 
-    const animate = () => {
-      xPos += baseVelocity
+    const animate = (timestamp: number) => {
+      if (!lastTimestamp) lastTimestamp = timestamp
+      const elapsed = timestamp - lastTimestamp
+      lastTimestamp = timestamp
+
+      xPos += baseVelocity * (elapsed / 16.67)
       
-      // Reset position when first set is fully scrolled
-      const contentWidth = scrollContent.length * (320 + 16) // card width + gap
+      const contentWidth = scrollContent.length * (320 + 16)
       if (Math.abs(xPos) >= contentWidth) {
         xPos = 0
       }
 
-      scroller.style.transform = `translateX(${xPos}px)`
+      scroller.style.transform = `translate3d(${xPos}px, 0, 0)`
       animationFrameId = requestAnimationFrame(animate)
     }
 
-    animate()
+    animationFrameId = requestAnimationFrame(animate)
 
     return () => {
       cancelAnimationFrame(animationFrameId)
@@ -158,7 +170,9 @@ const HeroCarousel = ({ products }: { products: ProductCard[] }) => {
         className="flex gap-2 sm:gap-4 py-2 sm:py-4"
         style={{
           width: 'max-content',
-          willChange: 'transform'
+          willChange: 'transform',
+          backfaceVisibility: 'hidden',
+          transform: 'translate3d(0, 0, 0)'
         }}
       >
         {products.map((product, index) => (
@@ -906,10 +920,35 @@ export default function HomePage() {
       <style jsx global>{`
         @keyframes scroll {
           0% {
-            transform: translateX(0);
+            transform: translate3d(0, 0, 0);
           }
           100% {
-            transform: translateX(-50%);
+            transform: translate3d(-50%, 0, 0);
+          }
+        }
+        
+        /* Optimize paint performance */
+        .will-change-transform {
+          will-change: transform;
+          transform: translateZ(0);
+          backface-visibility: hidden;
+        }
+        
+        /* Add CSS containment for better performance */
+        section {
+          contain: content;
+        }
+        
+        .card {
+          contain: layout style paint;
+        }
+        
+        @media (prefers-reduced-motion: reduce) {
+          * {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+            scroll-behavior: auto !important;
           }
         }
       `}</style>
