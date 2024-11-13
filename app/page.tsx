@@ -32,41 +32,32 @@ interface ProductCard {
 
 // Add this component before the HomePage component
 const InfiniteClientCarousel = ({ clients }: { clients: Client[] }) => {
-  const baseVelocity = -0.5
   const scrollerRef = useRef<HTMLDivElement>(null)
+  const [isHovered, setIsHovered] = useState(false)
 
   useEffect(() => {
     const scroller = scrollerRef.current
     if (!scroller) return
 
-    const scrollContent = Array.from(scroller.children)
-    
-    // Clone items for seamless loop
-    scrollContent.forEach(item => { 
-      const clone = item.cloneNode(true)
-      scroller.appendChild(clone)
-    })
-
-    let xPos = 0
-    let lastTimestamp: number | null = null
+    // Calculate exact dimensions
+    const itemWidth = 224  // 200px card + 24px gap
+    const totalWidth = clients.length * itemWidth
+    let currentTranslate = 0
     let animationFrameId: number
-
+    let startTime: number | null = null
+    
     const animate = (timestamp: number) => {
-      if (!lastTimestamp) lastTimestamp = timestamp
-      const elapsed = timestamp - lastTimestamp
-      lastTimestamp = timestamp
-
-      // Smooth movement based on elapsed time
-      xPos += baseVelocity * (elapsed / 16.67) // 60fps normalized
-
-      // Reset position when first set is fully scrolled
-      const contentWidth = scrollContent.length * (200 + 24) // card width + gap
-      if (Math.abs(xPos) >= contentWidth) {
-        xPos = 0
+      if (!startTime) startTime = timestamp
+      const progress = timestamp - startTime
+      
+      if (!isHovered) {
+        // Smooth linear movement
+        currentTranslate = -(progress * 0.03) % totalWidth
+        
+        // Apply transform with rounded values to prevent sub-pixel rendering
+        scroller.style.transform = `translate3d(${Math.round(currentTranslate)}px, 0, 0)`
       }
-
-      // Use transform3d for better performance
-      scroller.style.transform = `translate3d(${xPos}px, 0, 0)`
+      
       animationFrameId = requestAnimationFrame(animate)
     }
 
@@ -75,27 +66,55 @@ const InfiniteClientCarousel = ({ clients }: { clients: Client[] }) => {
     return () => {
       cancelAnimationFrame(animationFrameId)
     }
-  }, [baseVelocity])
+  }, [clients.length, isHovered])
 
   return (
-    <div className="overflow-hidden py-2 will-change-transform">
+    <div 
+      className="overflow-hidden py-2"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
       <div
         ref={scrollerRef}
-        className="flex gap-8"
+        className="flex gap-6"
         style={{
           width: 'max-content',
-          willChange: 'transform',
+          transform: 'translate3d(0, 0, 0)',
           backfaceVisibility: 'hidden',
-          transform: 'translate3d(0, 0, 0)'
+          perspective: 1000,
+          WebkitFontSmoothing: 'antialiased',
+          MozOsxFontSmoothing: 'grayscale'
         }}
       >
+        {/* Original items */}
         {clients.map((client, index) => (
           <div key={`client-${index}`} className="flex-shrink-0">
-            <Card 
-              className="w-[200px] h-[200px] border-2 border-red-900 rounded-xl overflow-hidden 
-                        bg-white hover:shadow-xl transition-all duration-300 
-                        hover:border-red-800 group hover:-translate-y-1 hover:shadow-red-900/10"
-            >
+            <Card className="w-[200px] h-[200px] border-2 border-red-900 rounded-xl overflow-hidden 
+                           bg-white hover:shadow-xl transition-all duration-300 
+                           hover:border-red-800 group hover:-translate-y-1 hover:shadow-red-900/10">
+              <CardContent className="w-full h-full p-4">
+                <div className="w-full h-full flex items-center justify-center border-2 border-red-900/50 
+                              rounded-lg bg-white p-4 group-hover:border-red-800/50 
+                              transition-all duration-300">
+                  <Image
+                    src={client.logo}
+                    alt={client.name}
+                    width={140}
+                    height={140}
+                    className="max-w-full max-h-full object-contain opacity-90 group-hover:opacity-100 
+                              transition-opacity duration-300 drop-shadow-sm"
+                  />
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        ))}
+        {/* Duplicated items for seamless loop */}
+        {clients.map((client, index) => (
+          <div key={`client-clone-${index}`} className="flex-shrink-0">
+            <Card className="w-[200px] h-[200px] border-2 border-red-900 rounded-xl overflow-hidden 
+                           bg-white hover:shadow-xl transition-all duration-300 
+                           hover:border-red-800 group hover:-translate-y-1 hover:shadow-red-900/10">
               <CardContent className="w-full h-full p-4">
                 <div className="w-full h-full flex items-center justify-center border-2 border-red-900/50 
                               rounded-lg bg-white p-4 group-hover:border-red-800/50 
@@ -120,37 +139,32 @@ const InfiniteClientCarousel = ({ clients }: { clients: Client[] }) => {
 
 // Add this component before HomePage
 const HeroCarousel = ({ products }: { products: ProductCard[] }) => {
-  const baseVelocity = -1
   const scrollerRef = useRef<HTMLDivElement>(null)
+  const [isHovered, setIsHovered] = useState(false)
 
   useEffect(() => {
     const scroller = scrollerRef.current
     if (!scroller) return
 
-    const scrollContent = Array.from(scroller.children)
-    
-    scrollContent.forEach(item => {
-      const clone = item.cloneNode(true)
-      scroller.appendChild(clone)
-    })
-
-    let xPos = 0
-    let lastTimestamp: number | null = null
+    // Calculate exact dimensions
+    const itemWidth = 336  // 320px card + 16px gap
+    const totalWidth = products.length * itemWidth
+    let currentTranslate = 0
     let animationFrameId: number
-
+    let startTime: number | null = null
+    
     const animate = (timestamp: number) => {
-      if (!lastTimestamp) lastTimestamp = timestamp
-      const elapsed = timestamp - lastTimestamp
-      lastTimestamp = timestamp
-
-      xPos += baseVelocity * (elapsed / 16.67)
+      if (!startTime) startTime = timestamp
+      const progress = timestamp - startTime
       
-      const contentWidth = scrollContent.length * (320 + 16)
-      if (Math.abs(xPos) >= contentWidth) {
-        xPos = 0
+      if (!isHovered) {
+        // Smooth linear movement
+        currentTranslate = -(progress * 0.05) % totalWidth
+        
+        // Apply transform with rounded values
+        scroller.style.transform = `translate3d(${Math.round(currentTranslate)}px, 0, 0)`
       }
-
-      scroller.style.transform = `translate3d(${xPos}px, 0, 0)`
+      
       animationFrameId = requestAnimationFrame(animate)
     }
 
@@ -159,25 +173,70 @@ const HeroCarousel = ({ products }: { products: ProductCard[] }) => {
     return () => {
       cancelAnimationFrame(animationFrameId)
     }
-  }, [baseVelocity])
+  }, [products.length, isHovered])
 
   return (
-    <div className="absolute bottom-16 sm:bottom-0 left-0 right-0 overflow-hidden 
-                    h-[140px] sm:h-[240px] 
-                    bg-gradient-to-t from-black/40 to-transparent">
+    <div 
+      className="absolute bottom-16 sm:bottom-0 left-0 right-0 overflow-hidden 
+                h-[140px] sm:h-[240px] 
+                bg-gradient-to-t from-black/40 to-transparent"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
       <div
         ref={scrollerRef}
         className="flex gap-2 sm:gap-4 py-2 sm:py-4"
         style={{
           width: 'max-content',
-          willChange: 'transform',
+          transform: 'translate3d(0, 0, 0)',
           backfaceVisibility: 'hidden',
-          transform: 'translate3d(0, 0, 0)'
+          perspective: 1000,
+          WebkitFontSmoothing: 'antialiased',
+          MozOsxFontSmoothing: 'grayscale'
         }}
       >
+        {/* Original items */}
         {products.map((product, index) => (
           <Link 
             key={`product-${index}`}
+            href={product.link}
+            className="flex-shrink-0"
+          >
+            <div 
+              className="w-[180px] sm:w-[320px] 
+                        h-[120px] sm:h-[200px] 
+                        bg-black/40 backdrop-blur-sm 
+                        border border-white/40 rounded-lg overflow-hidden 
+                        transition-all duration-300"
+            >
+              <div className="flex flex-col h-full">
+                <div className="relative w-full h-[80px] sm:h-[140px] flex-shrink-0">
+                  <Image
+                    src={product.image}
+                    alt={product.title}
+                    fill
+                    className="object-contain opacity-90 transition-opacity duration-300"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/10" />
+                </div>
+                
+                <div className="flex-1 p-1.5 sm:p-2.5 bg-gradient-to-t from-black/60 to-black/30">
+                  <h3 className="text-red-500 text-[11px] sm:text-sm font-medium mb-0.5 
+                               transition-colors duration-300 line-clamp-1">
+                    {product.title}
+                  </h3>
+                  <p className="text-gray-300/80 text-[9px] sm:text-xs line-clamp-1 sm:line-clamp-2">
+                    {product.description}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </Link>
+        ))}
+        {/* Duplicated items for seamless loop */}
+        {products.map((product, index) => (
+          <Link 
+            key={`product-clone-${index}`}
             href={product.link}
             className="flex-shrink-0"
           >
@@ -287,6 +346,37 @@ const subtlePattern = {
   backgroundImage: `url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E")`,
 };
 
+// Add to your global styles
+const globalStyles = `
+  .smooth-scroll {
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+  }
+
+  @property --scroll-position {
+    syntax: '<percentage>';
+    inherits: false;
+    initial-value: 0%;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .smooth-carousel {
+      animation: scroll-x 30s linear infinite;
+    }
+  }
+
+  @keyframes scroll-x {
+    to {
+      --scroll-position: 100%;
+    }
+  }
+
+  * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+`
+
 export default function HomePage() {
   // Add this product data
   const heroProducts = [
@@ -393,6 +483,7 @@ export default function HomePage() {
 
   return (
     <>
+      <style jsx global>{globalStyles}</style>
       <main className="bg-gradient-to-b from-gray-50 to-white w-full overflow-x-hidden">
         {/* Hero Section - Updated mobile styles */}
         <section className="relative h-[100vw] sm:h-[calc(100vh-4rem)] flex items-center overflow-hidden bg-gray-900 pt-16 sm:pt-16">
