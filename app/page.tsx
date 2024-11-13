@@ -33,65 +33,50 @@ interface ProductCard {
 // Add this component before the HomePage component
 const InfiniteClientCarousel = ({ clients }: { clients: Client[] }) => {
   const scrollerRef = useRef<HTMLDivElement>(null)
-  const [isHovered, setIsHovered] = useState(false)
 
   useEffect(() => {
     const scroller = scrollerRef.current
     if (!scroller) return
 
-    // Calculate exact dimensions
-    const itemWidth = 224  // 200px card + 24px gap
+    const itemWidth = 224
     const totalWidth = itemWidth * clients.length
-    const scrollSpeed = 0.5 // pixels per frame - reduced for smoother motion
+    const scrollSpeed = 0.3 // Smooth, consistent speed
     let currentTranslate = 0
-    let lastTimestamp = 0
+    let animationFrameId: number
 
-    const animate = (timestamp: number) => {
-      if (!lastTimestamp) lastTimestamp = timestamp
-      const deltaTime = timestamp - lastTimestamp
-      lastTimestamp = timestamp
+    const animate = () => {
+      currentTranslate -= scrollSpeed
 
-      if (!isHovered) {
-        // Update position based on delta time for consistent speed
-        currentTranslate -= scrollSpeed * deltaTime / 16 // normalize to 60fps
-        
-        // Reset position when reaching the end
-        if (Math.abs(currentTranslate) >= totalWidth) {
-          currentTranslate = 0
-        }
-
-        // Use transform3d for better performance
-        scroller.style.transform = `translate3d(${currentTranslate}px, 0, 0)`
+      if (Math.abs(currentTranslate) >= totalWidth) {
+        currentTranslate = 0
       }
 
-      requestAnimationFrame(animate)
+      scroller.style.transform = `translate3d(${currentTranslate}px, 0, 0)`
+      animationFrameId = requestAnimationFrame(animate)
     }
 
-    const animationId = requestAnimationFrame(animate)
+    animationFrameId = requestAnimationFrame(animate)
+    return () => cancelAnimationFrame(animationFrameId)
+  }, [clients.length])
 
-    return () => cancelAnimationFrame(animationId)
-  }, [clients.length, isHovered])
-
-  // Duplicate items for seamless loop
-  const duplicatedClients = [...clients, ...clients, ...clients] // Triple the items
+  const duplicatedClients = [...clients, ...clients, ...clients, ...clients]
 
   return (
-    <div 
-      className="overflow-hidden py-2 relative"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
+    <div className="overflow-hidden py-2 relative select-none">
       <div
         ref={scrollerRef}
-        className="flex gap-6 transition-transform duration-100"
+        className="flex gap-6"
         style={{
           width: 'max-content',
           willChange: 'transform',
           transform: 'translate3d(0, 0, 0)',
           backfaceVisibility: 'hidden',
+          WebkitBackfaceVisibility: 'hidden',
           perspective: 1000,
+          WebkitPerspective: 1000,
           WebkitFontSmoothing: 'antialiased',
-          MozOsxFontSmoothing: 'grayscale'
+          MozOsxFontSmoothing: 'grayscale',
+          touchAction: 'none'
         }}
       >
         {duplicatedClients.map((client, index) => (
@@ -124,66 +109,54 @@ const InfiniteClientCarousel = ({ clients }: { clients: Client[] }) => {
 // Add this component before HomePage
 const HeroCarousel = ({ products }: { products: ProductCard[] }) => {
   const scrollerRef = useRef<HTMLDivElement>(null)
-  const [isHovered, setIsHovered] = useState(false)
 
   useEffect(() => {
     const scroller = scrollerRef.current
     if (!scroller) return
 
-    // Calculate exact dimensions
-    const itemWidth = 336  // 320px card + 16px gap
+    const itemWidth = 336
     const totalWidth = itemWidth * products.length
-    const scrollSpeed = 0.8 // pixels per frame - adjusted for hero section
+    const scrollSpeed = 0.4 // Smooth, consistent speed
     let currentTranslate = 0
-    let lastTimestamp = 0
+    let animationFrameId: number
 
-    const animate = (timestamp: number) => {
-      if (!lastTimestamp) lastTimestamp = timestamp
-      const deltaTime = timestamp - lastTimestamp
-      lastTimestamp = timestamp
+    const animate = () => {
+      currentTranslate -= scrollSpeed
 
-      if (!isHovered) {
-        // Update position based on delta time
-        currentTranslate -= scrollSpeed * deltaTime / 16
-        
-        // Reset position when reaching the end
-        if (Math.abs(currentTranslate) >= totalWidth) {
-          currentTranslate = 0
-        }
-
-        scroller.style.transform = `translate3d(${currentTranslate}px, 0, 0)`
+      if (Math.abs(currentTranslate) >= totalWidth) {
+        currentTranslate = 0
       }
 
-      requestAnimationFrame(animate)
+      scroller.style.transform = `translate3d(${currentTranslate}px, 0, 0)`
+      animationFrameId = requestAnimationFrame(animate)
     }
 
-    const animationId = requestAnimationFrame(animate)
+    animationFrameId = requestAnimationFrame(animate)
+    return () => cancelAnimationFrame(animationFrameId)
+  }, [products.length])
 
-    return () => cancelAnimationFrame(animationId)
-  }, [products.length, isHovered])
-
-  // Triple the products for seamless loop
-  const duplicatedProducts = [...products, ...products, ...products]
+  const duplicatedProducts = [...products, ...products, ...products, ...products]
 
   return (
     <div 
       className="absolute bottom-16 sm:bottom-0 left-0 right-0 overflow-hidden 
-                h-[140px] sm:h-[240px] 
+                h-[140px] sm:h-[240px] select-none
                 bg-gradient-to-t from-black/40 to-transparent"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
     >
       <div
         ref={scrollerRef}
-        className="flex gap-2 sm:gap-4 py-2 sm:py-4 transition-transform duration-100"
+        className="flex gap-2 sm:gap-4 py-2 sm:py-4"
         style={{
           width: 'max-content',
           willChange: 'transform',
           transform: 'translate3d(0, 0, 0)',
           backfaceVisibility: 'hidden',
+          WebkitBackfaceVisibility: 'hidden',
           perspective: 1000,
+          WebkitPerspective: 1000,
           WebkitFontSmoothing: 'antialiased',
-          MozOsxFontSmoothing: 'grayscale'
+          MozOsxFontSmoothing: 'grayscale',
+          touchAction: 'none'
         }}
       >
         {duplicatedProducts.map((product, index) => (
@@ -191,13 +164,13 @@ const HeroCarousel = ({ products }: { products: ProductCard[] }) => {
             key={`product-${index}`}
             href={product.link}
             className="flex-shrink-0"
+            style={{ transform: 'translate3d(0, 0, 0)' }} // Prevent link hover jitter
           >
             <div 
               className="w-[180px] sm:w-[320px] 
                         h-[120px] sm:h-[200px] 
                         bg-black/40 backdrop-blur-sm 
-                        border border-white/40 rounded-lg overflow-hidden 
-                        transition-all duration-300"
+                        border border-white/40 rounded-lg overflow-hidden"
             >
               <div className="flex flex-col h-full">
                 <div className="relative w-full h-[80px] sm:h-[140px] flex-shrink-0">
@@ -702,12 +675,14 @@ export default function HomePage() {
                   link: "/products/hydraulic-endurance-testing"
                 }
               ].map((product, index) => (
-                <Link href={product.link} key={index}>
+                <Link 
+                  href={product.link} 
+                  key={index}
+                  className="transform-none" // Remove slide-up animation
+                >
                   <Card 
                     className="overflow-hidden bg-white border border-red-600/60 rounded-xl 
                               shadow-[0_2px_10px_-4px_rgba(0,0,0,0.1)]
-                              transition-all duration-300 ease-out
-                              hover:-translate-y-1 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.15)]
                               hover:border-red-600/40"
                   >
                     <div className="relative h-[300px] overflow-hidden">
