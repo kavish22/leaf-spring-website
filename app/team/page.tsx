@@ -308,7 +308,7 @@ export default function TeamPage() {
               </Button>
             </motion.div>
 
-            <motion.div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 px-2 sm:gap-6 sm:px-4 md:gap-8 md:px-6">
+            <motion.div className="grid grid-cols-2 md:grid-cols-3 gap-3 px-2 sm:gap-6 sm:px-4 md:gap-8 md:px-6">
               {filteredTeamMembers.map((member, index) => (
                 <motion.div
                   key={index}
@@ -321,7 +321,7 @@ export default function TeamPage() {
                   }}
                   layout
                 >
-                  <Card className="overflow-hidden transition-all duration-300 hover:shadow-xl group">
+                  <Card className="overflow-hidden transition-all duration-300 hover:shadow-xl group !border-2 !border-red-600">
                     <div className="relative bg-gradient-to-b from-gray-50 to-white h-36 sm:h-48 md:h-72 p-2 sm:p-4">
                       <div className="relative h-full w-full border border-gray-200 rounded-sm bg-white overflow-hidden">
                         <Image
@@ -333,12 +333,12 @@ export default function TeamPage() {
                         />
                       </div>
                     </div>
-                    <CardContent className="text-center p-2 sm:p-3 md:p-4 bg-white relative">
-                      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-red-600/20 to-transparent" />
-                      <h3 className="text-base sm:text-lg md:text-xl font-semibold mb-0.5 sm:mb-1 text-gray-800 truncate">
+                    <CardContent className="text-center p-2 sm:p-3 md:p-4 bg-red-600 relative">
+                      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+                      <h3 className="text-base sm:text-lg md:text-xl font-semibold mb-0.5 sm:mb-1 text-white truncate">
                         {member.name}
                       </h3>
-                      <p className="text-xs sm:text-sm md:text-base text-gray-600 truncate">
+                      <p className="text-xs sm:text-sm md:text-base text-gray-100 truncate">
                         {member.position}
                       </p>
                     </CardContent>

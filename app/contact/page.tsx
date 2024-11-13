@@ -457,7 +457,7 @@ export default function ContactPage() {
                         </div>
                         <div>
                           <h5 className="font-semibold text-gray-900 mb-1">Works Address</h5>
-                          <p className="text-gray-600">Sanwer Road, Indore,<br />Madhya Pradesh, India</p>
+                          <p className="text-gray-600">Raghavendra Tech Excellence Pvt Ltd<br /> Sanwer Road, Indore, M.P. India</p>
                         </div>
                       </div>
                       <div className="flex gap-4">

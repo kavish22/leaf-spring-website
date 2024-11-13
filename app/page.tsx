@@ -318,10 +318,10 @@ export default function HomePage() {
       link: "/products/heavy-duty-shearing-machine"
     },
     {
-      title: "Leaf Spring Assembly Line",
-      description: "50-ton automated system with quality control",
+      title: "Profile Checking Gauge",
+      description: "Hot or cold checking with ±1 mm length tolerance",
       image: "/images/7s.png",
-      link: "/products/manual-leaf-spring-assembling-machine"
+      link: "/products/profile-checking-gauge"
     },
     {
       title: "Multi Station Press",
@@ -531,7 +531,8 @@ export default function HomePage() {
                            leading-relaxed font-medium 
                            backdrop-blur-[2px] text-left sm:text-left
                            tracking-wide">
-                Industry-Leading Heavy Duty Shearing Machines, Assembly Lines, and High Pressure Descaler
+                Highly reliable shearing machines, Assembly lines and other leaf spring production machines. 
+
               </p>
 
               {/* Desktop CTA buttons remain unchanged */}

@@ -43,7 +43,7 @@ const coreValues = [
 
 const timelineEvents = [
   { year: 1990, title: "Foundation", description: "LEAFSPRINGS was established with a vision to revolutionize leaf spring manufacturing." },
-  { year: 2000, title: "Global Expansion", description: "Expanded operations to serve international markets across 20 countries." },
+  { year: 2000, title: "Global Expansion", description: "Expanded operations to serve international markets across 10 countries." },
   { year: 2010, title: "Innovation Milestone", description: "Launched our patented high-efficiency leaf spring forming technology." },
   { year: 2020, title: "Industry 4.0 Integration", description: "Implemented AI and IoT solutions in our manufacturing processes." },
 ]
@@ -417,8 +417,8 @@ export default function AboutPage() {
                             {
                               icon: <Globe className="w-12 h-12 text-red-600" />,
                               title: "Global Presence",
-                              description: "Serving customers in over 50 countries worldwide",
-                              metric: "50+ Countries"
+                              description: "Serving customers in over 10 countries worldwide",
+                              metric: "10+ Countries"
                             },
                             {
                               icon: <Award className="w-12 h-12 text-red-600" />,
