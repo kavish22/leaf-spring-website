@@ -29,8 +29,8 @@ const contactInfo = [
   {
     icon: MapPin,
     title: "Visit Us",
-    content: "Sanwer Road, Indore",
-    detail: "Madhya Pradesh, India"
+    content: "Raghavendra Tech Excellence Pvt Ltd",
+    detail: "Sanwer Road, Indore, M.P. India"
   },
   {
     icon: Clock,
@@ -439,7 +439,7 @@ export default function ContactPage() {
                 <div className="sticky top-8 space-y-8">
                   <div className="bg-white rounded-2xl border border-red-100 shadow-lg overflow-hidden">
                     <iframe
-                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3679.332528666897!2d75.85344531496!3d22.75999998509083!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3962fd0b7d3c4c8f%3A0x4a3c91a1f5a6e0a!2sSanwer%20Rd%2C%20Indore%2C%20Madhya%20Pradesh!5e0!3m2!1sen!2sin!4v1651234567890!5m2!1sen!2sin"
+                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1691.225810069866!2d75.83938314916165!3d22.76554826110897!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3963032dc74c8d15%3A0x19ae869d0e2ccb43!2sRaghavendar%20Tech%20Excellence%20Pvt%20Ltd%20%7C%20Special%20purpose%20machine%20manufacturer!5e0!3m2!1sen!2sin!4v1731511058650!5m2!1sen!2sin"
                       className="w-full h-[300px]"
                       style={{ border: 0 }}
                       allowFullScreen
