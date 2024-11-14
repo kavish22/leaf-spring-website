@@ -483,13 +483,13 @@ export default function HomePage() {
           {/* Optional: Add a subtle light overlay for better text contrast */}
           <div className="absolute inset-0 mix-blend-soft-light bg-gradient-to-br from-neutral-400/10 to-neutral-900/10" />
 
-          {/* Updated text overlay with repositioned mobile CTAs */}
-          <div className="container mx-auto px-4 relative z-10 -mt-48 sm:-mt-64 md:-mt-72">
+          {/* Text overlay with optimized mobile spacing */}
+          <div className="container mx-auto px-4 relative z-10 -mt-16 sm:-mt-48 md:-mt-64 lg:-mt-72">
             <div className="max-w-3xl relative">
               {/* Mobile-only badge */}
-              <div className="sm:hidden mb-3">
+              <div className="sm:hidden mb-2">
                 <span className="inline-block bg-white/10 backdrop-blur-sm border border-white/20 
-                                rounded-full px-3 py-1 text-[10px] font-medium tracking-wider 
+                                rounded-full px-2.5 py-0.5 text-[10px] font-medium tracking-wider 
                                 text-white/90 uppercase">
                   Premium Manufacturing Solutions
                 </span>
@@ -505,28 +505,28 @@ export default function HomePage() {
               </div>
 
               <h1 className="text-left sm:text-left">
-                <span className="text-[28px] sm:text-4xl md:text-5xl lg:text-6xl font-bold 
+                <span className="text-[24px] sm:text-4xl md:text-5xl lg:text-6xl font-bold 
                                text-white
                                sm:text-transparent sm:bg-clip-text 
                                sm:bg-gradient-to-r sm:from-white sm:via-white sm:to-gray-300
                                animate-gradient inline-block sm:inline
-                               leading-[1.2] tracking-tight
-                               mb-1">
+                               leading-[1.1] tracking-tight
+                               mb-0.5">
                   Complete Leaf Spring
                 </span>
-                <span className="block mt-2 sm:mt-3
-                               text-[26px] sm:text-4xl md:text-5xl lg:text-6xl font-bold
+                <span className="block mt-1 sm:mt-3
+                               text-[22px] sm:text-4xl md:text-5xl lg:text-6xl font-bold
                                text-white
                                sm:text-transparent sm:bg-clip-text 
                                sm:bg-gradient-to-r sm:from-white/90 sm:via-white/90 sm:to-gray-300/90
-                               leading-[1.4] tracking-tight
-                               pb-2">
+                               leading-[1.2] tracking-tight
+                               pb-1">
                   Manufacturing Machinery
                 </span>
               </h1>
 
-              <p className="text-[13px] sm:text-base md:text-lg 
-                           mb-5 sm:mb-8 
+              <p className="text-[12px] sm:text-base md:text-lg 
+                           mb-3 sm:mb-8 
                            text-gray-300/90 max-w-2xl 
                            leading-relaxed font-medium 
                            backdrop-blur-[2px] text-left sm:text-left
@@ -579,8 +579,8 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Mobile-only Product Carousel Section - Black background */}
-        <section className="block sm:hidden bg-black h-[280px] py-4">
+        {/* Mobile-only Product Carousel Section */}
+        <section className="block sm:hidden bg-white h-[280px] py-4">
           <div className="container mx-auto h-full flex items-center">
             <div className="overflow-hidden">
               <div
@@ -600,9 +600,9 @@ export default function HomePage() {
                     <div className="rounded-xl overflow-hidden 
                                   hover:shadow-xl transition-all duration-300 
                                   hover:-translate-y-1 flex flex-col
-                                  border-[3px] border-red-600/80
+                                  border-2 border-red-600/20
                                   h-[220px]">
-                      <div className="relative w-full h-[140px] bg-black/10 backdrop-blur-[2px]">
+                      <div className="relative w-full h-[140px] bg-gray-50">
                         <Image
                           src={product.image}
                           alt={product.title}
@@ -611,11 +611,11 @@ export default function HomePage() {
                         />
                       </div>
                       
-                      <div className="p-3 bg-white">
-                        <h3 className="text-red-900 text-[12px] font-semibold mb-1 line-clamp-1">
+                      <div className="flex-1 p-3 bg-gradient-to-br from-red-600 to-red-700">
+                        <h3 className="text-white text-[12px] font-semibold mb-1 line-clamp-1">
                           {product.title}
                         </h3>
-                        <p className="text-gray-700 text-[10px] line-clamp-2">
+                        <p className="text-gray-100/90 text-[10px] line-clamp-2">
                           {product.description}
                         </p>
                       </div>
@@ -651,7 +651,7 @@ export default function HomePage() {
               </p>
             </div>
 
-            {/* Product cards grid */}
+            {/* Product cards grid - Updated mobile styles */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
               {[
                 {
@@ -679,25 +679,28 @@ export default function HomePage() {
                 <Link 
                   href={product.link} 
                   key={index}
-                  className="transform-none" // Remove slide-up animation
+                  className="transform-none"
                 >
                   <Card 
                     className="overflow-hidden bg-white border border-red-600/60 rounded-xl 
                               shadow-[0_2px_10px_-4px_rgba(0,0,0,0.1)]
-                              hover:border-red-600/40"
+                              hover:border-red-600/40
+                              sm:hover:border-red-600/40 
+                              sm:border-red-600/60
+                              sm:bg-white"
                   >
-                    <div className="relative h-[300px] overflow-hidden">
+                    <div className="relative h-[200px] sm:h-[300px] overflow-hidden">
                       <Image 
                         src={product.image} 
                         alt={product.title} 
                         fill
-                        className="object-cover"
+                        className="object-contain sm:object-cover p-4 sm:p-0"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent sm:block hidden" />
                     </div>
                     
                     <CardHeader className="space-y-4 pb-2">
-                      <CardTitle className="text-xl font-bold tracking-tight text-gray-900 leading-tight text-left">
+                      <CardTitle className="text-lg sm:text-xl font-bold tracking-tight text-gray-900 leading-tight text-left">
                         {product.title}
                       </CardTitle>
                     </CardHeader>
@@ -712,7 +715,7 @@ export default function HomePage() {
                         </p>
                       </div>
                       
-                      <div className="space-y-2">
+                      <div className="space-y-2 sm:block hidden">
                         <h4 className="text-sm font-semibold uppercase tracking-wider text-red-600 text-left">
                           Key Benefits
                         </h4>
