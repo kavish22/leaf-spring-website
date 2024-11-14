@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { Facebook, Twitter, Linkedin, Instagram, Phone, Mail, MapPin, Clock, Home, Package, Info, MessageSquare, LucideIcon } from 'lucide-react'
+import Image from 'next/image'
 
 export default function Footer() {
   const getHref = (item: string) => {
@@ -29,8 +30,13 @@ export default function Footer() {
         <div className="sm:hidden">
           {/* Company Logo & Info */}
           <div className="mb-6">
-            <h3 className="text-lg font-bold text-red-400">LEAF SPRING MACHINES</h3>
-            <p className="text-gray-400 text-xs">Engineered for excellence</p>
+            <div className="flex items-center gap-2">
+              <Image src="/logo.png" alt="Leaf Spring Machines Logo" width={40} height={40} />
+              <div>
+                <h3 className="text-lg font-bold text-red-400">LEAF SPRING MACHINES</h3>
+                <p className="text-gray-400 text-xs">Engineered for excellence</p>
+              </div>
+            </div>
           </div>
 
           {/* Mobile Navigation Cards */}
@@ -100,8 +106,13 @@ export default function Footer() {
           <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
             {/* Company Info */}
             <div className="col-span-1">
-              <h3 className="text-3xl font-bold text-red-400 tracking-wide">LEAF SPRING</h3>
-              <h4 className="text-2xl font-bold text-red-400 mb-4">MACHINES</h4>
+              <div className="flex items-center gap-3 mb-4">
+                <Image src="/logo.png" alt="Leaf Spring Machines Logo" width={60} height={60} />
+                <div>
+                  <h3 className="text-3xl font-bold text-red-400 tracking-wide">LEAF SPRING</h3>
+                  <h4 className="text-2xl font-bold text-red-400">MACHINES</h4>
+                </div>
+              </div>
               <p className="text-gray-400 mb-6 text-base leading-relaxed">Engineered for excellence</p>
               <div className="flex space-x-6">
                 {[Facebook, Twitter, Linkedin, Instagram].map((Icon, i) => (
