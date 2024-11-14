@@ -11,10 +11,8 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs"
 import Image from 'next/image'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import dynamic from 'next/dynamic'
-const Toaster = dynamic(() => import('sonner').then((mod) => mod.Toaster), {
-  ssr: false,
-})
 import '../globals.css'
+import { toast } from 'react-hot-toast';
 
 const contactInfo = [
   {
@@ -317,7 +315,6 @@ export default function ContactPage() {
   };
 
   const showToast = async (message: string, type: 'success' | 'error') => {
-    const { toast } = await import('sonner');
     if (type === 'success') {
       toast.success(message);
     } else {
@@ -361,8 +358,9 @@ export default function ContactPage() {
 
   return (
     <>
-      <Toaster richColors position="top-center" />
       <main className="bg-gradient-to-b from-gray-50 to-white">
+        <Toaster position="top-center" />
+        
         {/* Hero Section */}
         <section className="relative h-[60vh] sm:h-[calc(100vh-56px)] flex items-center justify-center overflow-hidden mb-0 sm:mb-0">
           <Image
