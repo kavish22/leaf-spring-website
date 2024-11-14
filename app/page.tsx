@@ -483,14 +483,20 @@ export default function HomePage() {
           {/* Optional: Add a subtle light overlay for better text contrast */}
           <div className="absolute inset-0 mix-blend-soft-light bg-gradient-to-br from-neutral-400/10 to-neutral-900/10" />
 
-          {/* Text overlay with optimized mobile spacing */}
-          <div className="container mx-auto px-4 relative z-10 -mt-16 sm:-mt-48 md:-mt-64 lg:-mt-72">
-            <div className="max-w-3xl relative">
+          {/* Text overlay with updated mobile positioning */}
+          <div className="container mx-auto px-4 relative z-10 sm:-mt-48 md:-mt-64 lg:-mt-72">
+            <div className="max-w-3xl relative 
+                            sm:relative 
+                            absolute top-0 sm:top-auto 
+                            -translate-y-[calc(100vh-90vh)] sm:translate-y-0">
               {/* Mobile-only badge */}
               <div className="sm:hidden mb-2">
-                <span className="inline-block bg-white/10 backdrop-blur-sm border border-white/20 
-                                rounded-full px-2.5 py-0.5 text-[10px] font-medium tracking-wider 
-                                text-white/90 uppercase">
+                <span className="inline-block bg-gradient-to-br from-red-600 to-red-700 
+                                border border-red-500/50 
+                                rounded-full px-2.5 py-0.5 
+                                text-[10px] font-medium tracking-wider 
+                                text-white uppercase
+                                shadow-sm shadow-black/10">
                   Premium Manufacturing Solutions
                 </span>
               </div>
@@ -504,7 +510,7 @@ export default function HomePage() {
                 </span>
               </div>
 
-              <h1 className="text-left sm:text-left">
+              <h1 className="text-left">
                 <span className="text-[24px] sm:text-4xl md:text-5xl lg:text-6xl font-bold 
                                text-white
                                sm:text-transparent sm:bg-clip-text 
@@ -515,7 +521,7 @@ export default function HomePage() {
                   Complete Leaf Spring
                 </span>
                 <span className="block mt-1 sm:mt-3
-                               text-[20px] sm:text-4xl md:text-5xl lg:text-6xl font-bold
+                               text-[24px] sm:text-4xl md:text-5xl lg:text-6xl font-bold 
                                text-white
                                sm:text-transparent sm:bg-clip-text 
                                sm:bg-gradient-to-r sm:from-white/90 sm:via-white/90 sm:to-gray-300/90
@@ -525,14 +531,13 @@ export default function HomePage() {
                 </span>
               </h1>
 
-              <p className="text-[12px] sm:text-base md:text-lg 
+              <p className="text-[11px] sm:text-base md:text-lg 
                            mb-3 sm:mb-8 
                            text-gray-300/90 max-w-2xl 
                            leading-relaxed font-medium 
-                           backdrop-blur-[2px] text-left sm:text-left
+                           backdrop-blur-[2px] text-left
                            tracking-wide">
                 Highly reliable shearing machines, Assembly lines and other leaf spring production machines. 
-
               </p>
 
               {/* Desktop CTA buttons remain unchanged */}
@@ -571,6 +576,38 @@ export default function HomePage() {
                 </Link>
               </div>
             </div>
+          </div>
+
+          {/* Mobile CTA buttons remain in their current position */}
+          <div className="sm:hidden absolute bottom-6 right-4 z-20 flex flex-row gap-2">
+            <Link 
+              href="#product-showcase" 
+              className="group inline-flex items-center justify-center 
+                        bg-gradient-to-br from-red-600 to-red-700
+                        hover:from-red-700 hover:to-red-800
+                        text-[9px] font-semibold text-white
+                        px-2 py-1
+                        rounded-lg
+                        border border-red-500/50
+                        shadow-lg shadow-black/20"
+            >
+              Explore 
+              <ChevronRight className="ml-1 h-2 w-2 transition-transform duration-300 group-hover:translate-x-0.5" />
+            </Link>
+
+            <Link 
+              href="/contact" 
+              className="group inline-flex items-center justify-center 
+                        bg-white/10 hover:bg-white/15 backdrop-blur-sm
+                        text-[9px] font-semibold text-white
+                        px-2 py-1
+                        rounded-lg
+                        border border-white/20
+                        shadow-lg shadow-black/10"
+            >
+              Contact 
+              <ChevronRight className="ml-1 h-2 w-2 transition-transform duration-300 group-hover:translate-x-0.5" />
+            </Link>
           </div>
 
           {/* Add the carousel - Hide on mobile */}
@@ -628,7 +665,7 @@ export default function HomePage() {
         </section>
 
         {/* Product Showcase Section - Adjusted spacing */}
-        <section id="product-showcase" className="pt-16 pb-24 md:pt-20 md:pb-32 relative">
+        <section id="product-showcase" className="pt-8 sm:pt-16 pb-24 md:pt-20 md:pb-32 relative">
           <div className="absolute inset-0 bg-gradient-to-b from-gray-50/50 to-white/50 backdrop-blur-sm" />
           <div className="container mx-auto px-4 relative">
             <div className="text-center mb-8 md:mb-12">
@@ -756,10 +793,10 @@ export default function HomePage() {
           <div className="container mx-auto px-4 relative">
             <div className="max-w-5xl mx-auto text-center mb-4 mt-8 md:mt-8 md:mb-16">
               <div className="inline-block">
-                <h2 className="text-2xl sm:text-3xl md:text-3xl lg:text-[28px] font-bold mb-2 sm:mb-3 text-white leading-tight pb-1 sm:pb-2 px-4 sm:px-6 text-center">
-                  <span className="block sm:hidden text-[20px] leading-tight text-center mx-auto">
-                    WHY CHOOSE OUR LEAF SPRING<br />
-                    MANUFACTURING MACHINERY
+                <h2 className="text-2xl sm:text-3xl md:text-3xl lg:text-[28px] font-bold mb-2 sm:mb-3 text-center bg-clip-text text-transparent bg-gradient-to-r from-red-600 to-red-700 leading-[1.3] pb-2">
+                  <span className="block sm:hidden text-white bg-clip-text text-center mx-auto">
+                    <span className="text-[18px] block leading-tight">WHY CHOOSE OUR LEAF SPRING</span>
+                    <span className="text-[16px] block leading-tight mt-0.5">MANUFACTURING MACHINERY</span>
                   </span>
                   <span className="hidden sm:block text-center mx-auto">
                     Why Choose Our Leaf Spring Manufacturing Machinery
