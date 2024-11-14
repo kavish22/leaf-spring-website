@@ -37,7 +37,7 @@ const product = {
     "Industrial-grade construction"
   ],
   gallery: [
-    "/images/products/Straightening-Linear.webp",
+    "/images/products/Straightening - Linear.webp",
     "/images/products/Straightening-Linear-1.webp",
     "https://www.youtube.com/embed/gZ49yp2zo0I?rel=0",
     // Add more images/videos as needed
@@ -47,6 +47,8 @@ const product = {
 export default function ProductPage() {
   const [selectedImage, setSelectedImage] = useState(product.gallery[0])
   const [isImageModalOpen, setIsImageModalOpen] = useState(false)
+
+  const isVideo = (url: string) => url.includes('youtube.com')
 
   return (
     <main className="min-h-screen bg-gray-50">
@@ -72,30 +74,51 @@ export default function ProductPage() {
                   key={index}
                   className={`relative aspect-video bg-white rounded-lg overflow-hidden cursor-pointer border-2 
                     ${selectedImage === media ? 'border-red-600' : 'border-gray-200'}`}
-                  onClick={() => {
-                    setSelectedImage(media);
-                  }}
+                  onClick={() => setSelectedImage(media)}
                 >
-                  <Image
-                    src={media}
-                    alt={`${product.title} ${index + 1}`}
-                    fill
-                    className="object-cover"
-                  />
+                  {isVideo(media) ? (
+                    <div className="absolute inset-0 flex items-center justify-center bg-gray-100">
+                      <PlayCircle className="h-8 w-8 text-red-600" />
+                    </div>
+                  ) : (
+                    <Image
+                      src={media}
+                      alt={`${product.title} ${index + 1}`}
+                      fill
+                      className="object-cover"
+                      onError={(e) => {
+                        const img = e.target as HTMLImageElement;
+                        img.style.display = 'none';
+                      }}
+                    />
+                  )}
                 </div>
               ))}
             </div>
 
             {/* Main Display */}
-            <div className="relative aspect-video bg-white rounded-lg overflow-hidden cursor-pointer"
-                 onClick={() => setIsImageModalOpen(true)}>
-              <Image
-                src={selectedImage}
-                alt={product.title}
-                fill
-                className="object-cover"
-                priority
-              />
+            <div className="relative aspect-video bg-white rounded-lg overflow-hidden">
+              {isVideo(selectedImage) ? (
+                <iframe
+                  src={selectedImage}
+                  className="w-full h-full"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              ) : (
+                <Image
+                  src={selectedImage}
+                  alt={product.title}
+                  fill
+                  className="object-cover cursor-pointer"
+                  priority
+                  onError={(e) => {
+                    const img = e.target as HTMLImageElement;
+                    img.style.display = 'none';
+                  }}
+                  onClick={() => setIsImageModalOpen(true)}
+                />
+              )}
             </div>
           </div>
 
@@ -164,6 +187,10 @@ export default function ProductPage() {
               alt={product.title}
               fill
               className="object-contain"
+              onError={(e) => {
+                const img = e.target as HTMLImageElement;
+                img.style.display = 'none';
+              }}
             />
           </div>
         </div>
