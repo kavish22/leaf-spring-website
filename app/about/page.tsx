@@ -42,7 +42,7 @@ const coreValues = [
 ]
 
 const timelineEvents = [
-  { year: 1990, title: "Foundation", description: "LEAFSPRINGS was established with a vision to revolutionize leaf spring manufacturing." },
+  { year: 1990, title: "Foundation", description: "Leaf Spring Machines was established with a vision to revolutionize leaf spring manufacturing." },
   { year: 2000, title: "Global Expansion", description: "Expanded operations to serve international markets across 10 countries." },
   { year: 2010, title: "Innovation Milestone", description: "Launched our patented high-efficiency leaf spring forming technology." },
   { year: 2020, title: "Industry 4.0 Integration", description: "Implemented AI and IoT solutions in our manufacturing processes." },
@@ -57,15 +57,15 @@ type Testimonial = {
 
 // Update the testimonials array type
 const testimonials: Testimonial[] = [
-  { author: "Alex Thompson", company: "AutoTech Industries", content: "LEAFSPRINGS has been instrumental in optimizing our production line. Their innovative solutions have significantly improved our efficiency." },
-  { author: "Maria Garcia", company: "Global Motors", content: "The quality and reliability of LEAFSPRINGS machinery are unmatched. They've been a crucial partner in our manufacturing success." },
-  { author: "Chris Lee", company: "EcoVehicles", content: "Working with LEAFSPRINGS has helped us stay at the forefront of sustainable vehicle manufacturing. Their expertise is truly invaluable." },
-  { author: "Sarah Johnson", company: "TruckPro Manufacturing", content: "The precision and durability of LEAFSPRINGS machines have revolutionized our production capabilities. Outstanding service and support." },
-  { author: "David Chen", company: "Pacific Auto Parts", content: "We've seen a 40% increase in productivity since implementing LEAFSPRINGS solutions. Their technology is truly game-changing." },
-  { author: "Emma Williams", company: "European Motors", content: "LEAFSPRINGS' commitment to innovation and quality has made them our go-to partner for all leaf spring manufacturing needs." },
-  { author: "Michael Brown", company: "Advanced Auto", content: "The customer support from LEAFSPRINGS is exceptional. They're always available to help optimize our manufacturing processes." },
-  { author: "Lisa Zhang", company: "Global Transport", content: "Since implementing LEAFSPRINGS machinery, our production efficiency has improved dramatically. A truly reliable partner." },
-  { author: "James Wilson", company: "Elite Motors", content: "LEAFSPRINGS' innovative solutions have helped us maintain our competitive edge in the market. Excellent quality and service." },
+  { author: "Alex Thompson", company: "AutoTech Industries", content: "Leaf Spring Machines has been instrumental in optimizing our production line. Their innovative solutions have significantly improved our efficiency." },
+  { author: "Maria Garcia", company: "Global Motors", content: "The quality and reliability of Leaf Spring Machines machinery are unmatched. They've been a crucial partner in our manufacturing success." },
+  { author: "Chris Lee", company: "EcoVehicles", content: "Working with Leaf Spring Machines has helped us stay at the forefront of sustainable vehicle manufacturing. Their expertise is truly invaluable." },
+  { author: "Sarah Johnson", company: "TruckPro Manufacturing", content: "The precision and durability of Leaf Spring Machines' machines have revolutionized our production capabilities. Outstanding service and support." },
+  { author: "David Chen", company: "Pacific Auto Parts", content: "We've seen a 40% increase in productivity since implementing LLeaf Spring Machines' solutions. Their technology is truly game-changing." },
+  { author: "Emma Williams", company: "European Motors", content: "Leaf Spring Machines' commitment to innovation and quality has made them our go-to partner for all leaf spring manufacturing needs." },
+  { author: "Michael Brown", company: "Advanced Auto", content: "The customer support from Leaf Spring Machines is exceptional. They're always available to help optimize our manufacturing processes." },
+  { author: "Lisa Zhang", company: "Global Transport", content: "Since implementing Leaf Spring Machines' machinery, our production efficiency has improved dramatically. A truly reliable partner." },
+  { author: "James Wilson", company: "Elite Motors", content: "Leaf Spring Machines' innovative solutions have helped us maintain our competitive edge in the market. Excellent quality and service." },
 ]
 
 const LoadingSkeleton = () => (
@@ -1012,7 +1012,7 @@ export default function AboutPage() {
               WHAT OUR CLIENTS SAY
             </h2>
             <p className="text-gray-400 text-lg max-w-2xl mx-auto text-center mb-10 sm:mb-16">
-              Discover why leading manufacturers trust LEAFSPRINGS for their machinery needs
+              Discover why leading manufacturers trust Leaf Spring Machines for their machinery needs
             </p>
             
             <div className="relative">
