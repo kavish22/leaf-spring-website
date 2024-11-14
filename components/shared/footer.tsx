@@ -31,8 +31,8 @@ export default function Footer() {
           {/* Company Logo & Info */}
           <div className="mb-6">
             <div className="flex items-center gap-2">
-              <Image src="images/logo-2.png" alt="Leaf Spring Machines Logo" width={40} height={40} />
-              <div>
+              <Image src="/images/logo-2.png" alt="Leaf Spring Machines Logo" width={40} height={40} />
+              <div className="flex flex-col">
                 <h3 className="text-lg font-bold text-red-400">LEAF SPRING MACHINES</h3>
                 <p className="text-gray-400 text-xs">Engineered for excellence</p>
               </div>
@@ -106,14 +106,16 @@ export default function Footer() {
           <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
             {/* Company Info */}
             <div className="col-span-1">
-              <div className="flex items-center gap-3 mb-4">
-                <Image src="/logo.png" alt="Leaf Spring Machines Logo" width={60} height={60} />
-                <div>
-                  <h3 className="text-3xl font-bold text-red-400 tracking-wide">LEAF SPRING</h3>
-                  <h4 className="text-2xl font-bold text-red-400">MACHINES</h4>
+              <div className="flex flex-col mb-4">
+                <div className="flex items-start gap-3">
+                  <Image src="/images/logo-2.png" alt="Leaf Spring Machines Logo" width={60} height={60} />
+                  <div className="flex flex-col">
+                    <h3 className="text-3xl font-bold text-red-400 tracking-wide">LEAF SPRING</h3>
+                    <h4 className="text-2xl font-bold text-red-400">MACHINES</h4>
+                    <p className="text-gray-400 text-base leading-relaxed">Engineered for excellence</p>
+                  </div>
                 </div>
               </div>
-              <p className="text-gray-400 mb-6 text-base leading-relaxed">Engineered for excellence</p>
               <div className="flex space-x-6">
                 {[Facebook, Twitter, Linkedin, Instagram].map((Icon, i) => (
                   <Link
