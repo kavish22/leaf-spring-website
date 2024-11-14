@@ -10,6 +10,7 @@ import { useState, useEffect } from 'react';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs"
 import Image from 'next/image'
 import { motion, useScroll, useTransform } from 'framer-motion'
+import { toast } from 'sonner'
 
 const contactInfo = [
   {
@@ -293,10 +294,62 @@ export default function ContactPage() {
   const opacity = useTransform(scrollYProgress, [0, 0.2], [1, 0])
   const scale = useTransform(scrollYProgress, [0, 0.2], [1, 0.8])
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
-    // Add form submission logic
-  }
+  // Add form state
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    message: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const resetForm = () => {
+    setFormData({
+      firstName: '',
+      lastName: '',
+      email: '',
+      message: ''
+    });
+  };
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setIsSubmitting(true);
+
+    try {
+      // You can replace this with your actual API endpoint
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to send message');
+      }
+
+      toast.success('Message sent successfully!', {
+        duration: 3000,
+      });
+      resetForm();
+    } catch (error) {
+      toast.error('Failed to send message. Please try again.', {
+        duration: 3000,
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
 
   return (
     <>
@@ -423,36 +476,56 @@ export default function ContactPage() {
                       <div className="space-y-2">
                         <label className="text-sm font-medium text-gray-900">First name</label>
                         <Input 
+                          name="firstName"
+                          value={formData.firstName}
+                          onChange={handleInputChange}
                           className="border-gray-200 focus:border-red-400 focus:ring-red-400 rounded-xl" 
                           placeholder="John"
+                          required
                         />
                       </div>
                       <div className="space-y-2">
                         <label className="text-sm font-medium text-gray-900">Last name</label>
                         <Input 
+                          name="lastName"
+                          value={formData.lastName}
+                          onChange={handleInputChange}
                           className="border-gray-200 focus:border-red-400 focus:ring-red-400 rounded-xl"
                           placeholder="Doe"
+                          required
                         />
                       </div>
                       <div className="sm:col-span-2 space-y-2">
                         <label className="text-sm font-medium text-gray-900">Email</label>
                         <Input 
-                          type="email" 
+                          type="email"
+                          name="email"
+                          value={formData.email}
+                          onChange={handleInputChange}
                           className="border-gray-200 focus:border-red-400 focus:ring-red-400 rounded-xl"
                           placeholder="john@example.com"
+                          required
                         />
                       </div>
                       <div className="sm:col-span-2 space-y-2">
                         <label className="text-sm font-medium text-gray-900">Message</label>
                         <Textarea 
+                          name="message"
+                          value={formData.message}
+                          onChange={handleInputChange}
                           rows={6} 
                           className="border-gray-200 focus:border-red-400 focus:ring-red-400 rounded-xl"
                           placeholder="Tell us about your requirements..."
+                          required
                         />
                       </div>
                     </div>
-                    <Button className="w-full bg-gradient-to-r from-red-600 to-red-500 hover:from-red-700 hover:to-red-600 text-white rounded-xl py-6">
-                      Send message
+                    <Button 
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="w-full bg-gradient-to-r from-red-600 to-red-500 hover:from-red-700 hover:to-red-600 text-white rounded-xl py-6"
+                    >
+                      {isSubmitting ? 'Sending...' : 'Send message'}
                       <Send className="ml-2 h-4 w-4" />
                     </Button>
                   </form>
