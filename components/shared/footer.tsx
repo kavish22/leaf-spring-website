@@ -31,7 +31,7 @@ export default function Footer() {
           {/* Company Logo & Info */}
           <div className="mb-6">
             <div className="flex items-center gap-2">
-              <Image src="/logo.png" alt="Leaf Spring Machines Logo" width={40} height={40} />
+              <Image src="images/logo-2.png" alt="Leaf Spring Machines Logo" width={40} height={40} />
               <div>
                 <h3 className="text-lg font-bold text-red-400">LEAF SPRING MACHINES</h3>
                 <p className="text-gray-400 text-xs">Engineered for excellence</p>
