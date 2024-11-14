@@ -26,3 +26,10 @@
   width: fit-content;
   display: flex;
 }
+
+.bg-grid-gray-100\/40 {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgb(243 244 246 / 0.1) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(243 244 246 / 0.1) 1px, transparent 1px);
+}

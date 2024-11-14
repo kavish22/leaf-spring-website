@@ -1057,31 +1057,22 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* CTA Section */}
-        <section className="relative">
-          <div className="bg-gradient-to-r from-red-500 to-red-600 py-8 md:py-20">
-            <div className="container mx-auto px-4">
-              <div className="flex flex-col md:flex-row items-center justify-between max-w-6xl mx-auto">
-                <div className="text-center md:text-left mb-6 md:mb-0">
-                  <h2 className="text-lg sm:text-xl md:text-3xl lg:text-4xl font-bold text-white mb-3 md:mb-4 whitespace-nowrap md:whitespace-normal">
-                    Let's Start a Conversation
-                  </h2>
-                  <p className="text-sm md:text-base text-white/90 max-w-xl">
-                    Let's collaborate to create innovative solutions that drive your business forward. 
-                    Get in touch with us today to start your digital transformation journey.
-                  </p>
-                </div>
-                
-                <div className="w-full md:w-auto flex justify-center">
-                  <Button 
-                    size="lg"
-                    className="bg-white text-red-600 hover:bg-gray-100 transition-colors duration-300 text-base md:text-lg px-6 md:px-8 py-3 md:py-4 w-full md:w-auto max-w-xs"
-                  >
-                    Contact Us
-                  </Button>
-                </div>
-              </div>
-            </div>
+        {/* Updated CTA Section with cross pattern overlay */}
+        <section className="py-12 sm:py-16 md:py-24 bg-gradient-to-br from-gray-900 to-red-900 text-white relative">
+          <div className="absolute inset-0" />
+          <div className="container mx-auto px-4 text-center relative">
+            <h2 className="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8 text-white">Join Our Team</h2>
+            <p className="text-base sm:text-lg md:text-xl mb-8 sm:mb-12 max-w-3xl mx-auto text-gray-100">
+              We're always looking for talented individuals to join our innovative team. Explore our current openings and be part of shaping the future of leaf spring machinery.
+            </p>
+            <Button 
+              variant="default" 
+              size="lg" 
+              className="bg-white hover:bg-gray-100 text-red-600 transition-colors text-base sm:text-lg px-6 sm:px-8 py-2.5 sm:py-3" 
+              asChild
+            >
+              <Link href="/contact">Contact Us</Link>
+            </Button>
           </div>
         </section>
       </main>
