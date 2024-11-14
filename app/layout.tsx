@@ -2,6 +2,7 @@ import './globals.css'
 import type { Metadata } from 'next'
 import Header from '@/components/shared/header'
 import Footer from '@/components/shared/footer'
+import { Toaster } from 'sonner';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://your-domain.com'),
