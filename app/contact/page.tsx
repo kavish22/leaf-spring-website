@@ -10,7 +10,7 @@ import { useState, useEffect } from 'react';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs"
 import Image from 'next/image'
 import { motion, useScroll, useTransform } from 'framer-motion'
-import { toast } from 'sonner'
+import { Toaster, toast } from 'sonner'
 import '../globals.css'
 
 const contactInfo = [
@@ -353,6 +353,7 @@ export default function ContactPage() {
 
   return (
     <>
+      <Toaster position="top-center" />
       <main className="bg-gradient-to-b from-gray-50 to-white">
         {/* Hero Section */}
         <section className="relative h-[60vh] sm:h-[calc(100vh-56px)] flex items-center justify-center overflow-hidden mb-0 sm:mb-0">
