@@ -602,7 +602,7 @@ export default function HomePage() {
                                   hover:-translate-y-1 flex flex-col
                                   border-2 border-red-600/20
                                   h-[220px] bg-white">
-                      <div className="relative w-full h-[140px] bg-black/100">
+                      <div className="relative w-full h-[140px] bg-white/100">
                         <Image
                           src={product.image}
                           alt={product.title}
@@ -682,7 +682,8 @@ export default function HomePage() {
                   className="transform-none"
                 >
                   <Card 
-                    className="overflow-hidden bg-white border border-red-600/60 rounded-xl 
+                    className="overflow-hidden bg-white 
+                              border-[3px] sm:border border-red-600/60 rounded-xl 
                               shadow-[0_2px_10px_-4px_rgba(0,0,0,0.1)]
                               hover:border-red-600/40
                               sm:hover:border-red-600/40 
