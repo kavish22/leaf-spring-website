@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { Button } from "@/components/ui/button"
 import { Menu, X } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
+import Image from 'next/image'
 
 const navItems = ['Home', 'Products', 'About', 'Team', 'Contact']
 
@@ -19,9 +20,18 @@ export default function Header() {
     <header className="bg-white shadow-sm sticky top-0 z-50 transition-all duration-300">
       <nav className="container mx-auto px-4 py-2 flex justify-between items-center">
         <Link href="/" className="text-xl md:text-2xl font-bold text-red-600 transition-colors hover:text-red-700">
-          <div>
-            LEAF SPRING MACHINES
-            <div className="text-xs text-gray-600 font-normal">Engineered for Excellence</div>
+          <div className="flex items-center gap-2">
+            <Image 
+              src="/images/logo.png"
+              alt="Leaf Spring Machines Logo"
+              width={40}
+              height={40}
+              className="object-contain"
+            />
+            <div>
+              LEAF SPRING MACHINES
+              <div className="text-xs text-gray-600 font-normal">Engineered for Excellence</div>
+            </div>
           </div>
         </Link>
         <ul className="hidden md:flex space-x-8">
