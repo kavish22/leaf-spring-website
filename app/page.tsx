@@ -515,7 +515,7 @@ export default function HomePage() {
                   Complete Leaf Spring
                 </span>
                 <span className="block mt-1 sm:mt-3
-                               text-[22px] sm:text-4xl md:text-5xl lg:text-6xl font-bold
+                               text-[20px] sm:text-4xl md:text-5xl lg:text-6xl font-bold
                                text-white
                                sm:text-transparent sm:bg-clip-text 
                                sm:bg-gradient-to-r sm:from-white/90 sm:via-white/90 sm:to-gray-300/90
