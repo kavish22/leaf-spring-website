@@ -10,7 +10,10 @@ import { useState, useEffect } from 'react';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs"
 import Image from 'next/image'
 import { motion, useScroll, useTransform } from 'framer-motion'
-import { Toaster, toast } from 'sonner'
+import dynamic from 'next/dynamic'
+const Toaster = dynamic(() => import('sonner').then((mod) => mod.Toaster), {
+  ssr: false,
+})
 import '../globals.css'
 
 const contactInfo = [
@@ -313,6 +316,15 @@ export default function ContactPage() {
     });
   };
 
+  const showToast = async (message: string, type: 'success' | 'error') => {
+    const { toast } = await import('sonner');
+    if (type === 'success') {
+      toast.success(message);
+    } else {
+      toast.error(message);
+    }
+  };
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setIsSubmitting(true);
@@ -330,14 +342,10 @@ export default function ContactPage() {
         throw new Error('Failed to send message');
       }
 
-      toast.success('Message sent successfully!', {
-        duration: 3000,
-      });
+      await showToast('Message sent successfully!', 'success');
       resetForm();
     } catch (error) {
-      toast.error('Failed to send message. Please try again.', {
-        duration: 3000,
-      });
+      await showToast('Failed to send message. Please try again.', 'error');
     } finally {
       setIsSubmitting(false);
     }
@@ -353,7 +361,7 @@ export default function ContactPage() {
 
   return (
     <>
-      <Toaster position="top-center" />
+      <Toaster richColors position="top-center" />
       <main className="bg-gradient-to-b from-gray-50 to-white">
         {/* Hero Section */}
         <section className="relative h-[60vh] sm:h-[calc(100vh-56px)] flex items-center justify-center overflow-hidden mb-0 sm:mb-0">
