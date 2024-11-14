@@ -34,7 +34,7 @@ const product = {
     "Heavy-duty construction"
   ],
   gallery: [
-    "/images/products/Z-Bending Press-4 Cylinder.webp",
+    "/images/products/Z-bending Press-4 Cylinder.webp,
     "/images/products/Z Bending Cylinder-1.webp",
     "/images/products/Z Bending Cylinder-2.webp",
     "/images/products/Z Bending Cylinder-3.webp",
