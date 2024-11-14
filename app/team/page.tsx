@@ -161,7 +161,7 @@ export default function TeamPage() {
       name: "Santhana Lakshmi",
       position: "Director",
       image: "/images/team/Santhana lakshmi photo.webp",
-      quote: "At Leaf Springs Machinery, we've created more than a company - we've built a family that shares a passion for excellence."
+      quote: "At R-Tech, we've created more than a company - we've built a family that shares a passion for excellence."
     },
     {
       name: "Pooja Abhirami",
@@ -203,7 +203,7 @@ export default function TeamPage() {
       name: "Pankaj Mahadik",
       position: "Production Supervisor",
       image: "/images/team/Pankaj.webp",
-      quote: "The collaborative spirit and commitment to excellence make Leaf Springs Machinery an amazing place to work."
+      quote: "The collaborative spirit and commitment to excellence make R-Tech an amazing place to work."
     }
   ];
 
@@ -240,7 +240,7 @@ export default function TeamPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              The dedicated professionals behind Leaf Spring Machinery's innovative leaf spring machinery solutions.
+              The dedicated professionals behind R-Tech's innovative leaf spring machinery solutions.
             </motion.p>
           </div>
           <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
@@ -250,19 +250,47 @@ export default function TeamPage() {
           </div>
         </section>
 
-        <section className="py-12 sm:py-16 md:py-24 bg-white relative">
-          <div className="absolute inset-0 bg-gradient-to-b from-gray-50/50 to-transparent" />
+        <section className="py-8 sm:py-20 bg-gradient-to-b from-white via-gray-50 to-white relative overflow-hidden">
+          {/* Decorative elements */}
+          <div className="absolute top-0 left-0 w-96 h-96 bg-red-50/50 rounded-full -translate-x-1/2 -translate-y-1/2 blur-3xl" />
+          <div className="absolute bottom-0 right-0 w-96 h-96 bg-blue-50/50 rounded-full translate-x-1/2 translate-y-1/2 blur-3xl" />
+
           <div className="container mx-auto px-4 relative">
-            <motion.div 
-              className="text-center max-w-3xl mx-auto mb-12"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-            >
-              <h2 className="text-2xl sm:text-3xl font-bold mb-4 text-gray-800">Our Expert Team</h2>
-              <p className="text-gray-600">Meet the talented individuals who make Leaf Spring Machinery a leader in leaf spring machinery solutions.</p>
-            </motion.div>
+            <div className="max-w-3xl mx-auto text-center mb-12">
+              <motion.span 
+                className="inline-block text-red-600 font-semibold text-sm tracking-wider uppercase mb-3"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+              >
+                Our Expert Team
+              </motion.span>
+              <motion.h2 
+                className="text-3xl sm:text-5xl font-bold mb-8 pb-2 bg-clip-text text-transparent bg-gradient-to-r from-gray-900 to-gray-600"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.1 }}
+              >
+                Meet the Innovative Minds
+              </motion.h2>
+              <motion.div 
+                className="w-24 h-1 bg-red-600 mx-auto mb-6"
+                initial={{ width: 0 }}
+                whileInView={{ width: 96 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2 }}
+              />
+              <motion.p 
+                className="text-gray-600 text-lg"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.3 }}
+              >
+                Meet the talented individuals who make R-Tech a leader in leaf spring machinery solutions.
+              </motion.p>
+            </div>
 
             <motion.div 
               className="flex flex-wrap gap-4 justify-center mb-8"
@@ -330,7 +358,7 @@ export default function TeamPage() {
                           fill
                           className="object-contain p-1 sm:p-2"
                           sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                        />
+                        />  
                       </div>
                     </div>
                     <CardContent className="text-center p-2 sm:p-3 md:p-4 bg-red-600 relative">
@@ -355,7 +383,7 @@ export default function TeamPage() {
             <div className="text-center max-w-3xl mx-auto mb-12">
               <h2 className="text-3xl font-bold mb-4 text-white">What Our Team Says</h2>
               <p className="text-gray-300">
-                Hear directly from our team members about their experiences working at Leaf Springs Machinery.
+                Hear directly from our team members about their experiences working at R-Tech.
               </p>
             </div>
             

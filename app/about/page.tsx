@@ -42,7 +42,7 @@ const coreValues = [
 ]
 
 const timelineEvents = [
-  { year: 1990, title: "Foundation", description: "Leaf Spring Machines was established with a vision to revolutionize leaf spring manufacturing." },
+  { year: 1990, title: "Foundation", description: "R-Tech was established with a vision to revolutionize leaf spring manufacturing." },
   { year: 2000, title: "Global Expansion", description: "Expanded operations to serve international markets across 10 countries." },
   { year: 2010, title: "Innovation Milestone", description: "Launched our patented high-efficiency leaf spring forming technology." },
   { year: 2020, title: "Industry 4.0 Integration", description: "Implemented AI and IoT solutions in our manufacturing processes." },
@@ -57,15 +57,15 @@ type Testimonial = {
 
 // Update the testimonials array type
 const testimonials: Testimonial[] = [
-  { author: "Alex Thompson", company: "AutoTech Industries", content: "Leaf Spring Machines has been instrumental in optimizing our production line. Their innovative solutions have significantly improved our efficiency." },
-  { author: "Maria Garcia", company: "Global Motors", content: "The quality and reliability of Leaf Spring Machines machinery are unmatched. They've been a crucial partner in our manufacturing success." },
-  { author: "Chris Lee", company: "EcoVehicles", content: "Working with Leaf Spring Machines has helped us stay at the forefront of sustainable vehicle manufacturing. Their expertise is truly invaluable." },
-  { author: "Sarah Johnson", company: "TruckPro Manufacturing", content: "The precision and durability of Leaf Spring Machines' machines have revolutionized our production capabilities. Outstanding service and support." },
-  { author: "David Chen", company: "Pacific Auto Parts", content: "We've seen a 40% increase in productivity since implementing LLeaf Spring Machines' solutions. Their technology is truly game-changing." },
-  { author: "Emma Williams", company: "European Motors", content: "Leaf Spring Machines' commitment to innovation and quality has made them our go-to partner for all leaf spring manufacturing needs." },
-  { author: "Michael Brown", company: "Advanced Auto", content: "The customer support from Leaf Spring Machines is exceptional. They're always available to help optimize our manufacturing processes." },
-  { author: "Lisa Zhang", company: "Global Transport", content: "Since implementing Leaf Spring Machines' machinery, our production efficiency has improved dramatically. A truly reliable partner." },
-  { author: "James Wilson", company: "Elite Motors", content: "Leaf Spring Machines' innovative solutions have helped us maintain our competitive edge in the market. Excellent quality and service." },
+  { author: "Alex Thompson", company: "AutoTech Industries", content: "R-Tech has been instrumental in optimizing our production line. Their innovative solutions have significantly improved our efficiency." },
+  { author: "Maria Garcia", company: "Global Motors", content: "The quality and reliability of R-Tech machinery are unmatched. They've been a crucial partner in our manufacturing success." },
+  { author: "Chris Lee", company: "EcoVehicles", content: "Working with R-Tech has helped us stay at the forefront of sustainable vehicle manufacturing. Their expertise is truly invaluable." },
+  { author: "Sarah Johnson", company: "TruckPro Manufacturing", content: "The precision and durability of R-tech machines have revolutionized our production capabilities. Outstanding service and support." },
+  { author: "David Chen", company: "Pacific Auto Parts", content: "We've seen a 40% increase in productivity since implementing R-Tech solutions. Their technology is truly game-changing." },
+  { author: "Emma Williams", company: "European Motors", content: "R-Tech' commitment to innovation and quality has made them our go-to partner for all leaf spring manufacturing needs." },
+  { author: "Michael Brown", company: "Advanced Auto", content: "The customer support from R-Tech is exceptional. They're always available to help optimize our manufacturing processes." },
+  { author: "Lisa Zhang", company: "Global Transport", content: "Since implementing R-Tech machinery, our production efficiency has improved dramatically. A truly reliable partner." },
+  { author: "James Wilson", company: "Elite Motors", content: "R-Tech' innovative solutions have helped us maintain our competitive edge in the market. Excellent quality and service." },
 ]
 
 const LoadingSkeleton = () => (
@@ -165,42 +165,32 @@ const InfiniteTestimonialCarousel = ({ testimonials }: { testimonials: Testimoni
         {testimonials.map((testimonial: typeof testimonials[0], index: number) => (
           <Card 
             key={`testimonial-${index}`}
-            className="w-[384px] flex-shrink-0 bg-red-600 hover:bg-red-700 transition-colors duration-300 border-none"
+            className="w-[320px] flex-shrink-0 bg-white hover:bg-gray-50 transition-colors duration-300 border-none"
           >
-            <CardContent className="p-6 sm:p-8 flex flex-col h-full">
+            <CardContent className="p-6 flex flex-col h-full">
               {/* Quote Icon */}
-              <div className="text-white/40 mb-4">
+              <div className="text-red-600 mb-4">
                 <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
                 </svg>
               </div>
-
-              {/* Rating Stars */}
-              <div className="flex mb-4">
-                {[...Array(5)].map((_, i) => (
-                  <Star 
-                    key={i} 
-                    className="w-5 h-5 text-yellow-300 fill-current"
-                  />
-                ))}
-              </div>
               
               {/* Testimonial Content */}
-              <p className="text-white/90 text-base leading-relaxed mb-6">
+              <p className="text-black text-base leading-relaxed mb-6">
                 "{testimonial.content}"
               </p>
               
               {/* Author Info */}
-              <div className="mt-auto pt-4 border-t border-red-500/30">
+              <div className="mt-auto bg-red-600 p-4 -mx-6 -mb-6 rounded-b-lg">
                 <div className="flex items-center">
-                  <div className="w-10 h-10 bg-red-600 rounded-full flex items-center justify-center border-2 border-white/20">
+                  <div className="w-10 h-10 rounded-full flex items-center justify-center border-2 border-white">
                     <span className="text-white font-bold text-lg">
                       {testimonial.author.charAt(0)}
                     </span>
                   </div>
                   <div className="ml-3">
                     <p className="font-semibold text-white">{testimonial.author}</p>
-                    <p className="text-sm text-white/70">{testimonial.company}</p>
+                    <p className="text-sm text-white/80">{testimonial.company}</p>
                   </div>
                 </div>
               </div>
@@ -288,7 +278,7 @@ export default function AboutPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
             >
-              About Leaf Spring Machines
+              About R-Tech
             </motion.h1>
             <motion.p 
               className="text-lg sm:text-xl md:text-2xl mb-6 sm:mb-10"
@@ -1006,57 +996,91 @@ export default function AboutPage() {
         </section>
 
         {/* Core Values / Client Testimonials Section */}
-        <section className="py-16 sm:py-24 bg-gray-900 relative overflow-hidden">
+        <section className="bg-white py-8 md:py-16 overflow-hidden relative">
+          {/* Red Border Section */}
+          <div className="absolute top-0 left-0 right-0 h-1 bg-red-600"></div>
+
           <div className="container mx-auto px-4">
-            <h2 className="text-3xl sm:text-4xl font-bold mb-4 text-white text-center">
-              WHAT OUR CLIENTS SAY
-            </h2>
-            <p className="text-gray-400 text-lg max-w-2xl mx-auto text-center mb-10 sm:mb-16">
-              Discover why leading manufacturers trust Leaf Spring Machines for their machinery needs
-            </p>
-            
+            <div className="text-center mb-8 md:mb-12">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-red-600 mb-3 md:mb-4">
+                What Our Clients Say
+              </h2>
+              <p className="text-sm md:text-base text-gray-600 max-w-2xl mx-auto">
+                Don't just take our word for it - hear from some of our satisfied clients about their experience working with us.
+              </p>
+            </div>
+
+            {/* Testimonial Carousel */}
             <div className="relative">
-              {/* Testimonials carousel */}
-              <InfiniteTestimonialCarousel testimonials={testimonials} />
+              <div className="flex gap-4 md:gap-6 animate-scroll overflow-hidden">
+                {[...testimonials, ...testimonials].map((testimonial: typeof testimonials[0], index: number) => (
+                  <Card 
+                    key={`testimonial-${index}`}
+                    className="w-[280px] md:w-[320px] flex-shrink-0 bg-white hover:bg-gray-50 transition-colors duration-300 border-2 border-red-600"
+                  >
+                    <CardContent className="p-4 md:p-6 flex flex-col h-full">
+                      {/* Quote Icon */}
+                      <div className="text-red-600 mb-3 md:mb-4">
+                        <svg className="w-6 h-6 md:w-8 md:h-8" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+                        </svg>
+                      </div>
+                      
+                      {/* Testimonial Content */}
+                      <p className="text-sm md:text-base text-black leading-relaxed mb-4 md:mb-6">
+                        "{testimonial.content}"
+                      </p>
+                      
+                      {/* Author Info */}
+                      <div className="mt-auto bg-red-600 p-3 md:p-4 -mx-4 md:-mx-6 -mb-4 md:-mb-6 rounded-b-lg">
+                        <div className="flex items-center">
+                          <div className="w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center border-2 border-white">
+                            <span className="text-white font-bold text-base md:text-lg">
+                              {testimonial.author.charAt(0)}
+                            </span>
+                          </div>
+                          <div className="ml-3">
+                            <p className="font-semibold text-white text-sm md:text-base">
+                              {testimonial.author}
+                            </p>
+                            <p className="text-xs md:text-sm text-white/80">
+                              {testimonial.company}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
             </div>
           </div>
         </section>
 
         {/* CTA Section */}
-        <section className="py-16 sm:py-24 bg-gradient-to-br from-gray-900 to-red-900 text-white relative border-t-2 border-b-2 border-white">
-          {/* Add the pattern overlay */}
-          <div className="absolute inset-0" style={{ 
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")` 
-          }} />
-          
-          <div className="container mx-auto px-4 text-center relative">
-            <h2 className="text-3xl sm:text-4xl font-bold mb-6 sm:mb-8 text-white">
-              Ready to Transform Your Leaf Spring Manufacturing?
-            </h2>
-            <p className="text-base sm:text-lg md:text-xl mb-8 sm:mb-12 max-w-3xl mx-auto text-gray-100">
-              Take the first step towards optimizing your manufacturing process with our innovative and effective solutions.
-            </p>
-            <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <Button 
-                variant="default" 
-                size="lg" 
-                className="bg-white hover:bg-gray-100 text-red-600 transition-colors text-base sm:text-lg px-6 sm:px-8 py-2.5 sm:py-3"
-                asChild
-              >
-                <Link href="/contact">
-                  Contact Us <ChevronRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
-              <Button 
-                variant="default" 
-                size="lg" 
-                className="bg-white hover:bg-gray-100 text-red-600 transition-colors text-base sm:text-lg px-6 sm:px-8 py-2.5 sm:py-3"
-                asChild
-              >
-                <Link href="/products">
-                  View Products <ChevronRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
+        <section className="relative">
+          <div className="bg-gradient-to-r from-red-500 to-red-600 py-8 md:py-20">
+            <div className="container mx-auto px-4">
+              <div className="flex flex-col md:flex-row items-center justify-between max-w-6xl mx-auto">
+                <div className="text-center md:text-left mb-6 md:mb-0">
+                  <h2 className="text-lg sm:text-xl md:text-3xl lg:text-4xl font-bold text-white mb-3 md:mb-4 whitespace-nowrap md:whitespace-normal">
+                    Let's Start a Conversation
+                  </h2>
+                  <p className="text-sm md:text-base text-white/90 max-w-xl">
+                    Let's collaborate to create innovative solutions that drive your business forward. 
+                    Get in touch with us today to start your digital transformation journey.
+                  </p>
+                </div>
+                
+                <div className="w-full md:w-auto flex justify-center">
+                  <Button 
+                    size="lg"
+                    className="bg-white text-red-600 hover:bg-gray-100 transition-colors duration-300 text-base md:text-lg px-6 md:px-8 py-3 md:py-4 w-full md:w-auto max-w-xs"
+                  >
+                    Contact Us
+                  </Button>
+                </div>
+              </div>
             </div>
           </div>
         </section>

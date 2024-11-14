@@ -301,7 +301,8 @@ export default function ContactPage() {
   return (
     <>
       <main className="bg-gradient-to-b from-gray-50 to-white">
-        <section className="relative h-[60vh] sm:h-[calc(100vh-56px)] flex items-center justify-center overflow-hidden">
+        {/* Hero Section */}
+        <section className="relative h-[60vh] sm:h-[calc(100vh-56px)] flex items-center justify-center overflow-hidden mb-0 sm:mb-0">
           <Image
             src="/images/contact-banner.jpeg"
             alt="Contact Banner"
@@ -316,25 +317,23 @@ export default function ContactPage() {
             style={{ opacity, scale }}
           />
           
-          <div className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto flex flex-col justify-center items-center h-full">
-            <div className="transform -translate-y-8">
-              <motion.h1 
-                className="text-4xl sm:text-5xl md:text-7xl font-bold mb-2 sm:mb-4 leading-[1.3] sm:leading-[1.4] bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-300 px-2 py-4"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
-              >
-                Let's Build Great Together
-              </motion.h1>
-              <motion.p 
-                className="text-lg sm:text-xl md:text-2xl"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-              >
-                Get in touch with our experts to discuss your leaf spring manufacturing needs
-              </motion.p>
-            </div>
+          <div className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
+            <motion.h1 
+              className="text-4xl sm:text-5xl md:text-7xl font-bold mb-4 sm:mb-8 leading-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-300"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+            >
+              Contact Us
+            </motion.h1>
+            <motion.p 
+              className="text-lg sm:text-xl md:text-2xl mb-6 sm:mb-10"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
+              Get in touch with our experts to discuss your leaf spring manufacturing needs
+            </motion.p>
           </div>
           <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
             <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -344,19 +343,45 @@ export default function ContactPage() {
         </section>
 
         {/* Main Contact Section */}
-        <section className="py-24 relative">
-          <div className="absolute inset-0 bg-[url('/patterns/grid.svg')] opacity-5" />
-          
-          <div className="container mx-auto px-4 max-w-7xl relative">
-            {/* Section Header */}
-            <div className="text-center mb-20">
-              <span className="text-red-600 font-semibold tracking-wider uppercase text-sm">Contact Us</span>
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mt-3 mb-4">
-                Let's Start a Conversation
-              </h2>
-              <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+        <section className="py-8 sm:py-12 bg-gradient-to-b from-white via-gray-50 to-white relative overflow-hidden">
+          <div className="absolute top-0 left-0 w-96 h-96 bg-red-50/50 rounded-full -translate-x-1/2 -translate-y-1/2 blur-3xl" />
+          <div className="absolute bottom-0 right-0 w-96 h-96 bg-blue-50/50 rounded-full translate-x-1/2 translate-y-1/2 blur-3xl" />
+
+          <div className="container mx-auto px-4 relative">
+            <div className="max-w-3xl mx-auto text-center mb-12 mt-0">
+              <motion.span 
+                className="inline-block text-red-600 font-semibold text-sm tracking-wider uppercase mb-3"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+              >
+                Contact Us Now!
+              </motion.span>
+              <motion.h2 
+                className="text-3xl sm:text-5xl font-bold mb-8 pb-2 bg-clip-text text-transparent bg-gradient-to-r from-gray-900 to-gray-600"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.1 }}
+              >
+                Start a Conversation With Us.
+              </motion.h2>
+              <motion.div 
+                className="w-24 h-1 bg-red-600 mx-auto mb-6"
+                initial={{ width: 0 }}
+                whileInView={{ width: 96 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2 }}
+              />
+              <motion.p 
+                className="text-gray-600 text-lg"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.3 }}
+              >
                 Whether you have a question about our products, services, or just want to say hello, we're ready to answer all your questions
-              </p>
+              </motion.p>
             </div>
 
             {/* Contact Methods Grid */}
