@@ -601,8 +601,8 @@ export default function HomePage() {
                                   hover:shadow-xl transition-all duration-300 
                                   hover:-translate-y-1 flex flex-col
                                   border-2 border-red-600/20
-                                  h-[220px]">
-                      <div className="relative w-full h-[140px] bg-gray-50">
+                                  h-[220px] bg-white">
+                      <div className="relative w-full h-[140px] bg-black/100">
                         <Image
                           src={product.image}
                           alt={product.title}
