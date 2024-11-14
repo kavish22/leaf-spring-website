@@ -40,7 +40,7 @@ const product = {
     "Safety interlocking mechanism"
   ],
   gallery: [
-    "/images/products/Straightening-Parallelogram.webp",
+    "/images/products/Straightening - Parallelogram.webp",
   ]
 }
 
