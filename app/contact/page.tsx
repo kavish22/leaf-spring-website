@@ -13,6 +13,7 @@ import { motion, useScroll, useTransform } from 'framer-motion'
 import dynamic from 'next/dynamic'
 import '../globals.css'
 import { toast } from 'react-hot-toast';
+import { Toaster } from 'react-hot-toast';
 
 const contactInfo = [
   {
